@@ -11,7 +11,7 @@ This document will define the serial protocols for various NZXT devices.
 The Hue+ operates on a serial port, and is made to handle discrete commands sent in packets.
 To open a connection to a Hue+ device, open a serial connection on port `COM3` with a baud rate of 256000 and begin the handshake process.
 
-Effect protocols are made of exactly 125 bytes or less. For all protocols, the first five bits in each packet are what I will call ìsettings bytesî, and the remaining 120 are LED data in G, R, B format. 
+Effect protocols are made of exactly 125 bytes or less. For all protocols, the first five bits in each packet are what I will call ‚Äúsettings bytes‚Äù, and the remaining 120 are LED data in G, R, B format. 
 <br>Settings bytes (in order) consist of which kind of command is being set, the channels to apply the effect to, which effect to set, and two parameters. See set effect protocol for more information.
 
 
@@ -93,10 +93,10 @@ Turning the Hue+ unit's LED on or off is pretty simple. All of the data needed f
 
 ###### Special Thanks to [Pet0203][4] for helping me get started and providing base code.
 
-[0]: Direction
-[1]: CIS/S
-[2]: LS/s
-[3]: Handshakeprocess
+[0]: https://github.com/akmadian/NZXTSharp/blob/master/Docs/protocol.md#direction
+[1]: https://github.com/akmadian/NZXTSharp/blob/master/Docs/protocol.md#ciss---color-in-set-speed
+[2]: https://github.com/akmadian/NZXTSharp/blob/master/Docs/protocol.md#lss---led-size-speed
+[3]: https://github.com/akmadian/NZXTSharp/blob/master/Docs/protocol.md#handshakes
 [4]: https://github.com/Pet0203
 
 
