@@ -1,6 +1,6 @@
 ﻿using System;
 
 namespace NZXTSharp {
-    public class Class1 {
+    public class HuePlus {
     }
 }
