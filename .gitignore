@@ -299,7 +299,7 @@ paket-files/
 __pycache__/
 *.pyc
 
-# Cake - Uncomment if you are using it
+# Ca ke - Uncomment if you are using it
 # tools/**
 # !tools/packages.config
 
@@ -332,3 +332,5 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+ 
+TestApp/
