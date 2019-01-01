@@ -8,7 +8,7 @@ using NZXTSharp.Params;
 namespace NZXTSharp.Effects {
     public class Fixed : IEffect {
 
-        private int _EffectByte = 0x01;
+        private int _EffectByte = 0x00;
         private HexColor _Color;
         private Channel _Channel;
         private byte[] _EffectBytes;
