@@ -13,11 +13,12 @@ NZXTSharp's syntax is lightweight, only taking a few lines to get started.
 
 ```C#
 using NZXTSharp;
-using NZXTSharp.Core.Effects;
+using NZXTSharp.Devices;
+using NZXTSharp.Effects;
 
-HuePlus hue = new HuePlus();
-Fixed effect = new Fixed({Channel}, new HexColor(255, 255, 255)); // Make fixed effect
-effect.Apply(hue); // Apply effect
+HuePlus hue = new HuePlus(); // Create device
+Fixed effect = new Fixed(new HexColor(255, 255, 255)); // Make fixed effect
+hue.ApplyEffect(hue.Both, effect); // Apply effect
 ```
 
 ### Disclaimer
