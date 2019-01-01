@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NZXTSharp.Effects {
-    class Pulse : Effect {
+namespace NZXTSharp.Devices.Hue {
+    interface IHueEffect {
     }
 }

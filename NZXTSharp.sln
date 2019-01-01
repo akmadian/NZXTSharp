@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZXTSharp", "NZXTSharp\NZXTSharp.csproj", "{D82AC01D-C629-4BBF-9E25-18B0BDA66D3F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{CDEB958B-5717-4232-BE56-3A0F8A74DC66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D82AC01D-C629-4BBF-9E25-18B0BDA66D3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D82AC01D-C629-4BBF-9E25-18B0BDA66D3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D82AC01D-C629-4BBF-9E25-18B0BDA66D3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDEB958B-5717-4232-BE56-3A0F8A74DC66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDEB958B-5717-4232-BE56-3A0F8A74DC66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDEB958B-5717-4232-BE56-3A0F8A74DC66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDEB958B-5717-4232-BE56-3A0F8A74DC66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

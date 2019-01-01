@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NZXTSharp.Effects {
-    class Fading : Effect {
+namespace NZXTSharp.Helpers {
+    class Conversions {
+        
     }
 }

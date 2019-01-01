@@ -2,6 +2,23 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0.1-alpha</Version>
+    <Description>NZXTSharp is a .NET package that facilitates interaction with NZXT's Hue+</Description>
+    <Authors>Ari Madian</Authors>
+    <Company />
+    <PackageProjectUrl>https://github.com/akmadian/NZXTSharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/akmadian/NZXTSharp</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageTags>NZXT, Hue+, Hue Plus, NZXT SDK, SDK, RGB, AER, Hue Plus SDK, Hue+ SDK</PackageTags>
+    <PackageLicenseUrl>https://github.com/akmadian/NZXTSharp/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageIconUrl>https://i.imgur.com/0RWzc3b.png</PackageIconUrl>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.IO.Ports" Version="4.6.0-preview.18571.3" />
+  </ItemGroup>
 
 </Project>
