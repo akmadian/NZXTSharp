@@ -7,6 +7,10 @@ namespace NZXTSharp {
 
         int Value { get; }
 
+        List<string> CompatibleWith { get; }
+
         int GetValue();
+
+
     }
 }

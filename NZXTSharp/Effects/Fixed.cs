@@ -24,10 +24,6 @@ namespace NZXTSharp.Effects {
 
         public readonly List<string> CompatibleWith = new List<string>() {"HuePlus"};
 
-        public bool IsCompatibleWith(string name) {
-            return CompatibleWith.Contains(name) ? true : false;
-        }
-
         public Fixed(HexColor color) {
             this.Color = color;
         }
@@ -37,10 +33,14 @@ namespace NZXTSharp.Effects {
             this.Color = color;
         }
 
-        public byte[] BuildBytes() {
+        public bool IsCompatibleWith(string name) {
+            return CompatibleWith.Contains(name) ? true : false;
+        }
+
+        public List<byte[]> BuildBytes() {
             byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x00, Param1, Param2 };
             byte[] final = SettingsBytes.ConcatenateByteArr(Color.Expanded());
-            return final;
+            return new List<byte[]>() { final };
         }
     }
 }

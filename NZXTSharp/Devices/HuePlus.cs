@@ -122,98 +122,13 @@ namespace NZXTSharp.Devices {
         public void ApplyEffect(Channel channel, IEffect effect) {
             channel.Effect = effect;
             effect.Channel = channel;
-            byte[] commandBytes = effect.BuildBytes();
-            WriteSerial(commandBytes, 0, commandBytes.Length);
+            List<byte[]> commandBytes = effect.BuildBytes();
+            foreach (byte[] command in commandBytes)
+                WriteSerial(command, 0, command.Length);
         }
 
         public void ApplyCustom(byte[] Bytes) {
             WriteSerial(Bytes, 0, Bytes.Length);
-        }
-
-        public static class Params {
-            public class CISS {
-
-                private int colorIndex;
-                private int speed;
-
-                private int evaluatedIndex;
-
-                public CISS(int colorIndex, int speed) {
-                    this.colorIndex = colorIndex;
-                    this.speed = speed;
-
-                    this.evaluatedIndex = colorIndex * 2;
-                }
-
-                private void ValidateInput() {
-                    if (speed > 4 || speed < 0)
-                        throw new InvalidParamException("Invalid Param; Speed Must Be Between 0 and 4 (inclusive).");
-
-                    if (colorIndex > 15 || colorIndex < 0)
-                        throw new InvalidParamException("Invalid Param; ColorIndex Value Must Be Between 15 and 0 (inclusive).");
-                }
-
-                public int GetValue() {
-                    return Convert.ToInt32(evaluatedIndex.DecimalToByte().ToString() + speed.ToString());
-                }
-            }
-
-            class Direction {
-
-                private bool withMovement;
-                private bool isForward;
-
-                public Direction(bool isForward, bool withMovement) {
-                    this.withMovement = withMovement;
-                    this.isForward = isForward;
-                }
-
-                public int GetValue() {
-                    if (isForward)
-                        if (withMovement)
-                            return 0x0b; // Forward W/ movement
-                        else
-                            return 0x03; // Forward W/O movement
-                    else
-                        if (withMovement)
-                        return 0x1b; // Backward W/ movement
-                    else
-                        return 0x13; // Backward W/O movement
-                }
-
-            }
-
-            class LSS {
-
-                private List<List<int>> LSSTable = new List<List<int>>() {
-                    new List<int>() {0x00, 0x08, 0x10, 0x18},
-                    new List<int>() {0x01, 0x09, 0x11, 0x19},
-                    new List<int>() {0x02, 0x0a, 0x12, 0x1a},
-                    new List<int>() {0x03, 0x0b, 0x13, 0x1b},
-                    new List<int>() {0x04, 0x0c, 0x14, 0x1c}
-                };
-
-                private int speed;
-                private int LEDSize;
-
-                public LSS(int speed, int LEDSize) {
-                    this.speed = speed;
-                    this.LEDSize = LEDSize;
-                }
-
-                private void ValidateParams() {
-                    if (speed > 4 || speed < 0)
-                        throw new InvalidParamException("Invalid Param; Speed Must Be Between 0 and 4 (inclusive).");
-
-                    if (LEDSize > 6 || LEDSize < 3)
-                        throw new InvalidParamException("Invalid Param; LEDSize Must Be Between 3 and 6 (inclusive).");
-                }
-
-                public int GetValue() {
-                    return LSSTable[speed][this.LEDSize - 3];
-                }
-
-            }
         }
     }
 }

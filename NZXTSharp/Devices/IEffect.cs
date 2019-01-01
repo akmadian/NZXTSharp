@@ -11,9 +11,7 @@ namespace NZXTSharp {
 
         Channel Channel { get; set; }
 
-        HexColor Color { get; set; }
-
-        byte[] BuildBytes();
+        List<byte[]> BuildBytes();
         
     }
 }
