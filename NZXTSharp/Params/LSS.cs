@@ -24,6 +24,7 @@ namespace NZXTSharp.Params {
         public LSS(int speed, int LEDSize) {
             this._speed = speed;
             this._LEDSize = LEDSize;
+            ValidateParams();
         }
 
         private void ValidateParams() {

@@ -15,6 +15,10 @@ namespace NZXTSharp.Params {
         public int Value { get; }
         public List<string> CompatibleWith { get; }
 
+        public CISS(int speed) {
+            this.speed = speed;
+        }
+
         public CISS(int colorIndex, int speed) {
             this.colorIndex = colorIndex;
             this.speed = speed;

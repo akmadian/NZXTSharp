@@ -2,40 +2,43 @@
 using System.Collections.Generic;
 using System.Text;
 
-using NZXTSharp.Exceptions;
 using NZXTSharp.Params;
+using NZXTSharp.Exceptions;
 
-// TOTEST
 namespace NZXTSharp.Effects {
-    public class Fading : IEffect {
-        private int _EffectByte = 0x01;
-        private string _EffectName = "Fading";
+    class Wings : IEffect {
+        private int _EffectByte = 0x0c;
+        private string _EffectName = "Wings";
         public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };
 
         public HexColor[] Colors;
-        private _03Param Param1 = new _03Param();
-        private CISS Param2;
         private Channel _Channel;
-        private int _Speed = 2;
+        private _03Param _Param1;
+        private CISS _Param2;
+        private int speed = 2;
 
         public int EffectByte { get; }
         public Channel Channel { get; set; }
         public string EffectName { get; }
 
-        public Fading(HexColor[] Colors) {
+        public Wings(HexColor[] Colors) {
             this.Colors = Colors;
             ValidateParams();
         }
 
-        public Fading(HexColor[] Colors, int speed = 2) {
+        public Wings(HexColor[] Colors, int Speed) {
             this.Colors = Colors;
-            this._Speed = speed;
+            this.speed = Speed;
             ValidateParams();
         }
 
         private void ValidateParams() {
             if (this.Colors.Length > 15) {
                 throw new TooManyColorsProvidedException();
+            }
+
+            if (speed > 4 || speed < 0) {
+                throw new InvalidEffectSpeedException();
             }
         }
 
@@ -46,7 +49,7 @@ namespace NZXTSharp.Effects {
         public List<byte[]> BuildBytes() {
             List<byte[]> outList = new List<byte[]>();
             for (int colorIndex = 0; colorIndex < Colors.Length; colorIndex++) {
-                byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x01, Param1, new CISS(colorIndex, this._Speed) };
+                byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x0c, _Param1, new CISS(colorIndex, this.speed) };
                 byte[] final = SettingsBytes.ConcatenateByteArr(Colors[colorIndex].Expanded());
                 outList.Add(final);
             }

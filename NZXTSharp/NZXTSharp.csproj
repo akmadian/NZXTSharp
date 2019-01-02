@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0.1-alpha</Version>
-    <Description>NZXTSharp is a .NET package that facilitates interaction with NZXT's Hue+</Description>
+    <Version>1.0.0.2-alpha</Version>
+    <Description>The one-stop C# sdk that facilitates interaction with NZXT devices.</Description>
     <Authors>Ari Madian</Authors>
     <Company />
     <PackageProjectUrl>https://github.com/akmadian/NZXTSharp</PackageProjectUrl>
@@ -15,6 +15,9 @@
     <PackageIconUrl>https://i.imgur.com/0RWzc3b.png</PackageIconUrl>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <AssemblyVersion>1.0.0.2</AssemblyVersion>
+    <FileVersion>1.0.0.2</FileVersion>
+    <PackageReleaseNotes>Refactoring, adding more boilerplate.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

@@ -7,11 +7,13 @@ namespace NZXTSharp {
 
         int EffectByte { get; }
 
-        byte[] EffectBytes { get; }
+        string EffectName { get; }
 
         Channel Channel { get; set; }
 
         List<byte[]> BuildBytes();
+
+        bool IsCompatibleWith(string Device);
         
     }
 }

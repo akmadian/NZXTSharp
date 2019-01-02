@@ -34,8 +34,9 @@ namespace NZXTSharp {
 
         public void On() {
             byte[] SettingsBytes = new byte[] { 0x4b, (byte)this, (byte)this.Effect.EffectByte, 0x03, 0x02 };
-            byte[] final = SettingsBytes.ConcatenateByteArr(this.Effect.Color.Expanded());
-            _Parent.ApplyCustom(final);   
+            // TODO : TOFIX
+            //byte[] final = SettingsBytes.ConcatenateByteArr(this.Effect.Color.Expanded());
+            //_Parent.ApplyCustom(final);   
         }
 
         public void Off() {

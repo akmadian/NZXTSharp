@@ -14,31 +14,32 @@ namespace NZXTSharp.Devices {
         private SerialPort _serialPort;
         private static int NumOfLeds = 40;
         private static int serialmessage;
+        private string _CustomName = null;
 
         private Channel _Both;
         private Channel _Channel1;
         private Channel _Channel2;
-
-        public enum Mode {
-            Fixed = 0x00,
-            Fading = 0x01,
-            Wave = 0x02,
-            Marquee = 0x03,
-            CoveringMarquee = 0x04,
-            Alternating = 0x05,
-            Pulse = 0x06,
-            Breathing = 0x07,
-            CandleLight = 0x09,
-            Wings = 0x0c
-        }
 
         public string Name { get; }
         public static SerialPort SerialPort { get; }
         public Channel Both { get; }
         public Channel Channel1 { get; }
         public Channel Channel2 { get; }
+        public string CustomName { get; set; }
+
+        public delegate void LogHandler(string message);
+
+        public event LogHandler OnLogMessage;
 
         public HuePlus() {
+            SendLogEvent("Initializing HuePlus");
+            Initialize();
+            InitializeChannels();
+        }
+
+        public HuePlus(string CustName) {
+            this.CustomName = CustomName;
+            SendLogEvent("Initializing HuePlus");
             Initialize();
             InitializeChannels();
         }
@@ -58,16 +59,20 @@ namespace NZXTSharp.Devices {
             // Open port
             try {
                 SerialPort.Open();
+                SendLogEvent("Opened Serial Port");
             }
             catch (Exception e) {
-                // Logger.Severe(e);
+                SendLogEvent("Exception Occurred When Opening Serial Port");
+                throw e;
             }
 
             //Start connection
             if (SerialPort.IsOpen) {
+                SendLogEvent("Initiating Handshake");
                 //Initial handshaking
                 while (true) {
                     if (serialmessage == 1) {
+                        SendLogEvent("Handshake Response Good");
                         break;
                     }
                     Thread.Sleep(500);
@@ -87,15 +92,16 @@ namespace NZXTSharp.Devices {
         }
 
         private void InitializeChannels() {
+            SendLogEvent("Initializing Channels");
             this._Both = new Channel(0x00, this);
             this._Channel1 = new Channel(0x01, this);
             this._Channel2 = new Channel(0x02, this);
         }
 
         private void WriteSerial(byte[] buffer, int offset, int count) {
-            if (SerialPort.IsOpen) {
+            if (SerialPort.IsOpen)
                 SerialPort.Write(buffer, offset, count);
-            }
+            
         }
 
         public bool IsInitialized() {
@@ -105,6 +111,7 @@ namespace NZXTSharp.Devices {
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e) {
             int indata = SerialPort.ReadByte();
             serialmessage = indata;
+            SendLogEvent("Response: " + indata);
             //Logger.Debug("Devices", "NZXTDevice: " + String.Format("Data Received: {0}", indata));
         }
 
@@ -120,6 +127,12 @@ namespace NZXTSharp.Devices {
         }
 
         public void ApplyEffect(Channel channel, IEffect effect) {
+
+            if (!effect.IsCompatibleWith(_Name))
+                throw new IncompatibleEffectException(_Name, effect.EffectName);
+
+            SendLogEvent("Applying Effect: " + effect.EffectName);
+
             channel.Effect = effect;
             effect.Channel = channel;
             List<byte[]> commandBytes = effect.BuildBytes();
@@ -129,6 +142,11 @@ namespace NZXTSharp.Devices {
 
         public void ApplyCustom(byte[] Bytes) {
             WriteSerial(Bytes, 0, Bytes.Length);
+        }
+
+        private void SendLogEvent(string Message) {
+            string baseString = "NZXTSharp HuePlus " + (this.CustomName != null ? this.CustomName : "") + " - ";
+            OnLogMessage(baseString + Message);
         }
     }
 }
