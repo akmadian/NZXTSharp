@@ -101,7 +101,6 @@ namespace NZXTSharp.Devices {
         private void WriteSerial(byte[] buffer, int offset, int count) {
             if (SerialPort.IsOpen)
                 SerialPort.Write(buffer, offset, count);
-            
         }
 
         public bool IsInitialized() {
@@ -116,13 +115,13 @@ namespace NZXTSharp.Devices {
         }
 
         public bool Reconnect() {
-            Shutdown();
+            Dispose();
             Thread.Sleep(100);
             Initialize();
             return true;
         }
 
-        public void Shutdown() {
+        public void Dispose() {
             SerialPort.Close();
         }
 

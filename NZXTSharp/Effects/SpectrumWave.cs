@@ -6,7 +6,7 @@ using NZXTSharp.Params;
 
 // TOTEST
 namespace NZXTSharp.Effects {
-    class SpectrumWave : IEffect {
+    public class SpectrumWave : IEffect {
         private int _EffectByte = 0x02;
         private string _EffectName = "SpectrumWave";
         public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace NZXTSharp.Params {
-    class Direction : IParam {
+    public class Direction : IParam {
         private bool _withMovement;
         private bool _isForward;
         private int _Value;

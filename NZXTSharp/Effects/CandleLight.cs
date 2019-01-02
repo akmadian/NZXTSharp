@@ -5,7 +5,7 @@ using System.Text;
 using NZXTSharp.Params;
 
 namespace NZXTSharp.Effects {
-    class CandleLight : IEffect {
+    public class CandleLight : IEffect {
         private int _EffectByte = 0x09;
         private string _EffectName = "CandleLight";
         public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };

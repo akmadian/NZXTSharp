@@ -8,7 +8,7 @@ using NZXTSharp.Params;
 
 // TOTEST
 namespace NZXTSharp.Effects {
-    class Alternating : IEffect {
+    public class Alternating : IEffect {
         private int _EffectByte = 0x05;
         private string _EffectName = "Alternating";
         public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };

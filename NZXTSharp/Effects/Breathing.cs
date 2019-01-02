@@ -7,7 +7,7 @@ using NZXTSharp.Exceptions;
 
 // TOTEST
 namespace NZXTSharp.Effects {
-    class Breathing : IEffect {
+    public class Breathing : IEffect {
 
         // Per Effect Fields
         private int _EffectByte = 0x07;

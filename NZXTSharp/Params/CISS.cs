@@ -5,7 +5,7 @@ using System.Text;
 using NZXTSharp.Exceptions;
 
 namespace NZXTSharp.Params {
-    class CISS : IParam {
+    public class CISS : IParam {
         private int colorIndex;
         private int speed;
         private int evaluatedIndex;

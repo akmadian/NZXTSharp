@@ -7,7 +7,7 @@ using NZXTSharp.Exceptions;
 
 // TOTEST
 namespace NZXTSharp.Effects {
-    class Pulse : IEffect {
+    public class Pulse : IEffect {
         private int _EffectByte = 0x06;
         private string _EffectName = "Pulse";
         public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };

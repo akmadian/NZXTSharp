@@ -6,7 +6,7 @@ using NZXTSharp.Params;
 using NZXTSharp.Exceptions;
 
 namespace NZXTSharp.Effects {
-    class Wings : IEffect {
+    public class Wings : IEffect {
         private int _EffectByte = 0x0c;
         private string _EffectName = "Wings";
         public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };

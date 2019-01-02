@@ -5,7 +5,7 @@ using System.Text;
 using NZXTSharp.Exceptions;
 
 namespace NZXTSharp.Params {
-    class LSS : IParam {
+    public class LSS : IParam {
         private List<List<int>> LSSTable = new List<List<int>>() {
             new List<int>() {0x00, 0x08, 0x10, 0x18},
             new List<int>() {0x01, 0x09, 0x11, 0x19},

@@ -7,7 +7,7 @@ using NZXTSharp.Params;
 
 // TOTEST
 namespace NZXTSharp.Effects {
-    class Marquee : IEffect {
+    public class Marquee : IEffect {
         private int _EffectByte = 0x03;
         private string _EffectName = "Marquee";
         public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };
