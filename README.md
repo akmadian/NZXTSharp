@@ -22,10 +22,10 @@ hue.ApplyEffect(hue.Both, effect); // Apply effect
 ```
 
 ### Disclaimer
-NZXTSharp is provided under the unlicence, but I want to re-iterate these stipulations:
+NZXTSharp is provided under the GNU GPLv3 license, but I want to re-iterate these stipulations:
  - This software is provided as is.
  - This software is provided with no warranty.
- - I (the owner) hold no liability for any broken or not working hardware resulting from using this package.
+ - I (the owner) hold no liability for any broken or not working hardware resulting from using this package. Please use your best judgement, and 
  
  A big thank you to [Pet0203][2] for his help in reverse engineering the protocols and building NZXTSharp.
  
