@@ -87,7 +87,7 @@ Turning the Hue+ unit's LED on or off is pretty simple. All of the data needed f
 <br> Just send the desired byte codes over the serial port, and the light should do as instructed.
 
 ##### On: 46 00 c0 00 00 00 ff
-##### Off: 46 00 c0 00 ff 00
+##### Off: 46 00 c0 00 00 ff 00
 
 <br>
 
