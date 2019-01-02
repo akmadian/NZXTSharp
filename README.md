@@ -27,7 +27,10 @@ NZXTSharp is provided under the unlicence, but I want to re-iterate these stipul
  - This software is provided with no warranty.
  - I (the owner) hold no liability for any broken or not working hardware resulting from using this package.
  
+ A big thank you to [Pet0203][2] for his help in reverse engineering the protocols and building NZXTSharp.
+ 
  ###### </> With ♥ by Ari Madian
 
 [0]: https://www.nuget.org/packages/NZXTSharp
 [1]: https://github.com/akmadian/NZXTSharp/issues/new
+[2]: https://github.com/Pet0203
