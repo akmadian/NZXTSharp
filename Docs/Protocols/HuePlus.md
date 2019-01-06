@@ -9,7 +9,7 @@ This document will define the serial protocols for various NZXT devices.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;**Command Types: Set Effect = 4b, Unit LED = 46**
 
 The Hue+ operates on a serial port, and is made to handle discrete commands sent in packets.
-To open a connection to a Hue+ device, open a serial connection on port `COM3` with a baud rate of 256000 and begin the handshake process.
+To open a connection to a Hue+ device, open a serial connection on port `COM3` with a baud rate of `256000`, parity set to `None`, dataBits set to `8`, and stopBits set to `1`. Then, begin the handshake process.
 
 Effect protocols are made of exactly 125 bytes or less. For all protocols, the first five bits in each packet are what I will call “settings bytes”, and the remaining 120 are LED data in G, R, B format. 
 <br>Settings bytes (in order) consist of which kind of command is being set, the channels to apply the effect to, which effect to set, and two parameters. See set effect protocol for more information.
