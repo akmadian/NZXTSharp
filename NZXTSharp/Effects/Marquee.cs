@@ -4,10 +4,12 @@ using System.Text;
 
 using NZXTSharp;
 using NZXTSharp.Params;
+using NZXTSharp.Devices;
 
 // TOTEST
 namespace NZXTSharp.Effects {
     public class Marquee : IEffect {
+
         private int _EffectByte = 0x03;
         private string _EffectName = "Marquee";
         public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };
@@ -16,6 +18,7 @@ namespace NZXTSharp.Effects {
         private Direction Param1;
         private LSS Param2;
         private Channel _Channel;
+        private IHueDevice Parent;
 
         #region Properties
         public int EffectByte { get; }
@@ -23,7 +26,8 @@ namespace NZXTSharp.Effects {
         public string EffectName { get; }
         #endregion
 
-        public Marquee(HexColor Color, Direction Direction, LSS LSS) {
+        public Marquee(IHueDevice Parent, HexColor Color, Direction Direction, LSS LSS) {
+            this.Parent = Parent;
             this._Color = Color;
             this.Param1 = Direction;
             this.Param2 = LSS;
@@ -34,9 +38,14 @@ namespace NZXTSharp.Effects {
         }
 
         public List<byte[]> BuildBytes() {
-            byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x03, Param1, Param2 };
-            byte[] final = SettingsBytes.ConcatenateByteArr(_Color.Expanded());
-            return new List<byte[]>() { final };
+            List<byte[]> outList = new List<byte[]>();
+            foreach (Channel channel in Parent.Channels) {
+                byte[] SettingsBytes = new byte[] { 0x4b, (byte)channel, 0x03, Param1, Param2 };
+                byte[] final = SettingsBytes.ConcatenateByteArr(channel.State == false ? new HexColor().AllOff() : _Color.Expanded());
+                outList.Add(final);
+            }
+
+            return outList;
         }
     }
 }

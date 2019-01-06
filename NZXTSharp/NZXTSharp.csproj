@@ -3,10 +3,10 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0-beta</Version>
+    <Version>1.0.1-beta</Version>
     <Description>The one-stop C# sdk that facilitates interaction with NZXT devices.</Description>
     <Authors>Ari Madian</Authors>
-    <Company />
+    <Company>Ari Madian</Company>
     <PackageProjectUrl>https://github.com/akmadian/NZXTSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/akmadian/NZXTSharp</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
@@ -15,12 +15,10 @@
     <PackageIconUrl>https://i.imgur.com/0RWzc3b.png</PackageIconUrl>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <AssemblyVersion>1.0.0</AssemblyVersion>
-    <FileVersion>1.0.0</FileVersion>
-    <PackageReleaseNotes>Added more effects
-Added params
-Added compatibility check to HuePlus ApplyEffect()
-Added OnLogMessage event to HuePlus device</PackageReleaseNotes>
+    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <FileVersion>1.0.1</FileVersion>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <Copyright>Copyright provided under the GNU GPLv3 open source license.</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
