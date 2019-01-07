@@ -249,51 +249,31 @@ namespace NZXTSharp.Devices
         // TOTEST
         public void UpdateChannelInfo(Channel Channel) 
         {
-            if (Channel == this.Both) 
+            if (Channel == _Both) 
             {
-                UpdateChannel1Info();
-                UpdateChannel2Info();
-            } 
-            else if (Channel == this.Channel1) 
+                UpdateChannelInfoOp(_Channel1);
+                UpdateChannelInfoOp(_Channel2);
+            }
+            else
             {
-                UpdateChannel1Info();
-            } 
-            else if (Channel == this.Channel2) 
-            {
-                UpdateChannel2Info();
+                UpdateChannelInfoOp(Channel);
             }
         }
 
         // TOTEST
-        private void UpdateChannel1Info() 
+        private void UpdateChannelInfoOp(Channel channel) 
         {
             _serialPort.DataReceived -= new SerialDataReceivedEventHandler(DataReceivedHandler);
             ClearBuffers();
             
-            _serialPort.Write(new byte[] { 0x8d, 0x01 }, 0, 2); //Second handshake
+            _serialPort.Write(new byte[] { 0x8d, (byte)channel }, 0, 2); //Second handshake
             Thread.Sleep(50);
 
             List<byte> reply = new List<byte>();
             for (int bytes = 0; bytes < 5; bytes++)
                 reply.Add(Convert.ToByte(_serialPort.ReadByte()));
 
-            Channel1.ChannelInfo = new ChannelInfo(Channel1, reply.ToArray());
-        }
-
-        // TOTEST
-        private void UpdateChannel2Info() 
-        {
-            _serialPort.DataReceived -= new SerialDataReceivedEventHandler(DataReceivedHandler);
-            ClearBuffers();
-            
-            _serialPort.Write(new byte[] { 0x8d, 0x02 }, 0, 2); //Second handshake
-            Thread.Sleep(50);
-            
-            List<byte> reply = new List<byte>();
-            for (int bytes = 0; bytes < 5; bytes++)
-                reply.Add(Convert.ToByte(_serialPort.ReadByte()));
-            
-            Channel2.ChannelInfo = new ChannelInfo(Channel2, reply.ToArray());
+            channel.ChannelInfo = new ChannelInfo(channel, reply.ToArray());
         }
 
         public void ClearBuffers()
