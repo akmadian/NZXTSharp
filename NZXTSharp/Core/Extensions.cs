@@ -36,11 +36,7 @@ namespace NZXTSharp {
         public static byte[] ConcatenateByteArr(this byte[] thisone, byte[] other) {
             List<byte> l1 = new List<byte>(thisone);
             List<byte> l2 = new List<byte>(other);
-            Console.WriteLine("Other Length - " + other.Length);
-            Console.WriteLine("L1 Length - " + l1.Count);
-            Console.WriteLine("L2 Length - " + l2.Count);
             l1.AddRange(l2);
-            Console.WriteLine("Final Length Prior Return - " + l1.Count);
             byte[] sum = l1.ToArray();
             return sum;
         }

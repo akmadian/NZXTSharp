@@ -80,14 +80,21 @@ namespace NZXTSharp.Devices
 
         public event DataRecieved OnDataReceived;
 
+
+        public HuePlus(bool HoldInitialize = false, string CustomName = null)
+        {
+            this._CustomName = CustomName;
+            
+            if (!HoldInitialize)
+                Initialize();
+        }
+
         private bool Initialize()
         {
             SendLogEvent("Initializing HuePlus");
             // Create a new SerialPort object with default settings.
             _serialPort = new SerialPort("COM3", 256000, Parity.None, 8, StopBits.One)
             {
-
-                //Set the read/write timeouts
                 WriteTimeout = 1000,
                 ReadTimeout = 1000
             };
@@ -138,10 +145,13 @@ namespace NZXTSharp.Devices
 
                 }
                 _IsComInitialized = true;
+                
                 InitializeChannels();
                 _AreChannelsInitialized = true;
+                
                 InitializeChannelInfo();
                 _AreChannelInfosInitialized = true;
+                
                 return true;
             }
             else { /*Logger.Error("Could not connect to serial port");*/ return false; }
