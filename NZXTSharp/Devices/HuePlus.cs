@@ -266,6 +266,7 @@ namespace NZXTSharp.Devices
         {
             _serialPort.DataReceived -= new SerialDataReceivedEventHandler(DataReceivedHandler);
             ClearBuffers();
+            
             _serialPort.Write(new byte[] { 0x8d, 0x01 }, 0, 2); //Second handshake
             Thread.Sleep(50);
 
@@ -279,15 +280,17 @@ namespace NZXTSharp.Devices
         // TOTEST
         private void UpdateChannel2Info() 
         {
+            _serialPort.DataReceived -= new SerialDataReceivedEventHandler(DataReceivedHandler);
             ClearBuffers();
+            
             _serialPort.Write(new byte[] { 0x8d, 0x02 }, 0, 2); //Second handshake
             Thread.Sleep(50);
             
-            byte[] reply = new byte[0];
-            for (int bytes = 0; bytes < 5; bytes++) 
-                reply[bytes] = Convert.ToByte(_serialPort.ReadByte());
+            List<byte> reply = new List<byte>();
+            for (int bytes = 0; bytes < 5; bytes++)
+                reply.Add(Convert.ToByte(_serialPort.ReadByte()));
             
-            Channel2.ChannelInfo = new ChannelInfo(Channel2, reply);
+            Channel2.ChannelInfo = new ChannelInfo(Channel2, reply.ToArray());
         }
 
         public void ClearBuffers()
