@@ -43,6 +43,7 @@ namespace NZXTSharp.Devices
         private static int serialmessage;
         private string _CustomName = null;
 
+        private bool WasLastSentHelloShake = false;
         private bool WasLastSentChannelShake = false;
         private Channel ChannelShakeChannel;
 
@@ -132,10 +133,12 @@ namespace NZXTSharp.Devices
                     if (serialmessage == 1) 
                     {
                         SendLogEvent("Handshake Response Good");
+                        WasLastSentHelloShake = false;
                         break;
                     }
-                    Thread.Sleep(1);
                     _serialPort.Write(new byte[] { 0xc0 }, 0, 1); //Check if hue+ responds
+                    Thread.Sleep(500);
+                    WasLastSentHelloShake = true;
 
                 }
                 Thread.Sleep(100);
@@ -169,10 +172,14 @@ namespace NZXTSharp.Devices
             return isInitialised;
         }
 
-        private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e) 
+        private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
-            var indata = _serialPort.ReadExisting();
-            SendLogEvent("Response: " + indata);
+            int readbyte;
+            readbyte = _serialPort.ReadByte();
+            if (WasLastSentHelloShake)
+                serialmessage = readbyte;
+
+            SendLogEvent("Response: " + readbyte);
         }
 
         public bool Reconnect(bool fromCold = false) 
@@ -257,15 +264,16 @@ namespace NZXTSharp.Devices
         // TOTEST
         private void UpdateChannel1Info() 
         {
+            _serialPort.DataReceived -= new SerialDataReceivedEventHandler(DataReceivedHandler);
             ClearBuffers();
             _serialPort.Write(new byte[] { 0x8d, 0x01 }, 0, 2); //Second handshake
             Thread.Sleep(50);
-            
-            byte[] reply = new byte[0];
-            for (int bytes = 0; bytes < 5; bytes++) 
-                reply[bytes] = Convert.ToByte(_serialPort.ReadByte());
-            
-            Channel1.ChannelInfo = new ChannelInfo(Channel1, reply);
+
+            List<byte> reply = new List<byte>();
+            for (int bytes = 0; bytes < 5; bytes++)
+                reply.Add(Convert.ToByte(_serialPort.ReadByte()));
+
+            Channel1.ChannelInfo = new ChannelInfo(Channel1, reply.ToArray());
         }
 
         // TOTEST
