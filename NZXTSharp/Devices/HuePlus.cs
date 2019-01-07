@@ -1,4 +1,4 @@
-﻿/*
+/*
     HuePlus.cs facilitates interaction with NZXT's Hue+ RGB Controller
     Copyright (C) 2018  Ari Madian
 
@@ -21,20 +21,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.IO.Ports;
-
+using System.Linq;
 using NZXTSharp.Devices.Hue;
 using NZXTSharp.Exceptions;
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnassignedGetOnlyAutoProperty
 
-namespace NZXTSharp.Devices 
+namespace NZXTSharp.Devices
 {
 
     public delegate void LogHandler(string message);
 
     public delegate void DataRecieved(string message);
 
-    public class HuePlus : IHueDevice 
+    public class HuePlus : IHueDevice
     {
 
         private string _Name = "HuePlus";
@@ -57,7 +57,10 @@ namespace NZXTSharp.Devices
 
         public string Name { get; }
         public static SerialPort SerialPort { get; set; }
-        public Channel Both { get; }
+        public Channel Both
+        {
+            get => _Both;
+        }
         public Channel Channel1 { get; }
         public Channel Channel2 { get; }
         public List<Channel> Channels { get; }
@@ -77,33 +80,9 @@ namespace NZXTSharp.Devices
 
         public event DataRecieved OnDataReceived;
 
-        public HuePlus(bool manualStart = false) 
+        private bool Initialize()
         {
-            if (manualStart) return;
-            
             SendLogEvent("Initializing HuePlus");
-            Initialize();
-            _IsComInitialized = true;
-            InitializeChannels();
-            _AreChannelsInitialized = true;
-            InitializeChannelInfo();
-            _AreChannelInfosInitialized = true;
-        }
-
-        public HuePlus(string CustomName) 
-        {
-            this.CustomName = CustomName;
-            SendLogEvent("Initializing HuePlus");
-            Initialize();
-            _IsComInitialized = true;
-            InitializeChannels();
-            _AreChannelsInitialized = true;
-            InitializeChannelInfo();
-            _AreChannelInfosInitialized = true;
-        }
-
-        private bool Initialize() 
-        {
             // Create a new SerialPort object with default settings.
             _serialPort = new SerialPort("COM3", 256000, Parity.None, 8, StopBits.One)
             {
@@ -114,9 +93,6 @@ namespace NZXTSharp.Devices
             };
 
             SerialPort = _serialPort;
-
-            //Set event handler
-            _serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
 
             // Open port
             try
@@ -130,51 +106,54 @@ namespace NZXTSharp.Devices
                     "UnauthorizedAccessException When Opening Serial Port. Ensure that CAM is not running and try again.");
                 throw new UnauthorizedAccessException(
                     "UnauthorizedAccessException When Opening Serial Port. Ensure that CAM is not running and try again.");
-            } 
-            catch (IOException e) 
+            }
+            catch (IOException e)
             {
                 SendLogEvent("SerialPort COM3 does not exist. Please be sure that your Hue+ is connected.");
                 throw new IOException("SerialPort COM3 does not exist. Please be sure that your Hue+ is connected.");
-            } 
-            catch (Exception e) 
+            }
+            catch (Exception e)
             {
                 SendLogEvent("Exception Occurred When Opening Serial Port");
                 throw;
             }
 
             //Start connection
-            if (_serialPort.IsOpen) 
+            if (_serialPort.IsOpen)
             {
                 SendLogEvent("Initiating Handshake");
                 //Initial handshaking
 
                 while (true)
                 {
-                    if (serialmessage == 1)
+                    if (SerialWrite(new byte[1] {0xc0}, 1).FirstOrDefault() == 1)
                     {
                         SendLogEvent("Handshake Response Good");
                         WasLastSentHelloShake = false;
                         break;
                     }
 
-                    _serialPort.Write(new byte[] {0xc0}, 0, 1); //Check if hue+ responds
                     Thread.Sleep(500);
                     WasLastSentHelloShake = true;
 
                 }
-
+                _IsComInitialized = true;
+                InitializeChannels();
+                _AreChannelsInitialized = true;
+                InitializeChannelInfo();
+                _AreChannelInfosInitialized = true;
                 return true;
             }
             else { /*Logger.Error("Could not connect to serial port");*/ return false; }
         }
 
-        private void InitializeChannels() 
+        private void InitializeChannels()
         {
             SendLogEvent("Initializing Channels");
             this._Both = new Channel(0x00, this);
             this._Channel1 = new Channel(0x01, this);
             this._Channel2 = new Channel(0x02, this);
-            this._Channels = new List<Channel>() { _Both, _Channel1, _Channel2};
+            this._Channels = new List<Channel>() { _Both, _Channel1, _Channel2 };
         }
 
         private void InitializeChannelInfo()
@@ -182,23 +161,13 @@ namespace NZXTSharp.Devices
             UpdateChannelInfo(this._Both);
         }
 
-        private static void WriteSerial(byte[] buffer, int offset, int count) 
+        private static void WriteSerial(byte[] buffer, int offset, int count)
         {
             if (SerialPort.IsOpen)
                 SerialPort.Write(buffer, offset, count);
         }
 
-        private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
-        {
-            int readbyte;
-            readbyte = _serialPort.ReadByte();
-            if (WasLastSentHelloShake)
-                serialmessage = readbyte;
-
-            SendLogEvent("Response: " + readbyte);
-        }
-
-        public bool Reconnect(bool fromCold = false) 
+        public bool Reconnect(bool fromCold = false)
         {
             if (!fromCold)
             {
@@ -212,42 +181,42 @@ namespace NZXTSharp.Devices
         }
 
         // ReSharper disable once MemberCanBePrivate.Global
-        public void Dispose() 
+        public void Dispose()
         {
             _serialPort.Close();
         }
 
-        public void ApplyEffect(Channel channel, IEffect effect) 
+        public void ApplyEffect(Channel channel, IEffect effect)
         {
             if (!effect.IsCompatibleWith(_Name))
                 throw new IncompatibleEffectException(_Name, effect.EffectName);
 
             SendLogEvent("Applying Effect: " + effect.EffectName);
 
-            channel.Effect = effect;
+            //channel.Effect = effect;
             effect.Channel = channel;
             List<byte[]> commandBytes = effect.BuildBytes();
             foreach (byte[] command in commandBytes)
                 WriteSerial(command, 0, command.Length);
         }
 
-        public void ApplyCustom(byte[] Bytes) 
+        public void ApplyCustom(byte[] Bytes)
         {
             WriteSerial(Bytes, 0, Bytes.Length);
         }
 
-        public void UnitLedOn() 
+        public void UnitLedOn()
         {
-            byte[] commandBytes = new byte[] { 0x46, 0x00, 0xc0, 0x00, 0x00, 0x00, 0xff};
+            byte[] commandBytes = new byte[] { 0x46, 0x00, 0xc0, 0x00, 0x00, 0x00, 0xff };
             ApplyCustom(commandBytes);
         }
 
-        public void UnitLedOff() 
+        public void UnitLedOff()
         {
-            byte[] commandBytes = new byte[] { 0x46, 0x00, 0xc0, 0x00, 0x00, 0xff, 0x00};
+            byte[] commandBytes = new byte[] { 0x46, 0x00, 0xc0, 0x00, 0x00, 0xff, 0x00 };
         }
-        
-        private void SendLogEvent(string Message) 
+
+        private void SendLogEvent(string Message)
         {
             var baseString = "NZXTSharp HuePlus " + (this.CustomName ?? "") + " - ";
             OnLogMessage?.Invoke(baseString + Message);
@@ -260,9 +229,9 @@ namespace NZXTSharp.Devices
         }
 
         // TOTEST
-        public void UpdateChannelInfo(Channel Channel) 
+        public void UpdateChannelInfo(Channel Channel)
         {
-            if (Channel == _Both) 
+            if (Channel == _Both)
             {
                 UpdateChannelInfoOp(_Channel1);
                 UpdateChannelInfoOp(_Channel2);
@@ -274,26 +243,27 @@ namespace NZXTSharp.Devices
         }
 
         // TOTEST
-        private void UpdateChannelInfoOp(Channel channel) 
+        private void UpdateChannelInfoOp(Channel channel)
         {
-            _serialPort.DataReceived -= new SerialDataReceivedEventHandler(DataReceivedHandler);
-            ClearBuffers();
-            
-            _serialPort.Write(new byte[] { 0x8d, (byte)channel }, 0, 2); //Second handshake
+            _serialPort.DiscardInBuffer(); //This will have to be removed later
+            _serialPort.DiscardOutBuffer(); //This will have to be removed later
+            SerialWrite(new byte[] { 0x8d, (byte)channel }, 5); //Second handshake
+            channel.ChannelInfo = new ChannelInfo(channel, SerialWrite(new byte[] { 0x8d, (byte)channel }, 5));
+        }
+
+        private byte[] SerialWrite(byte[] buffer, int responselength)
+        {
+            /*_serialPort.DiscardInBuffer();
+             THIS CREATES ERRORS FOR NOW
+            _serialPort.DiscardOutBuffer();*/
+            _serialPort.Write(buffer, 0, buffer.Length); //Second handshake
             Thread.Sleep(50);
-
             List<byte> reply = new List<byte>();
-            for (int bytes = 0; bytes < 5; bytes++)
+            for (int bytes = 0; bytes < responselength; bytes++)
                 reply.Add(Convert.ToByte(_serialPort.ReadByte()));
-
-            channel.ChannelInfo = new ChannelInfo(channel, reply.ToArray());
+            return reply.ToArray();
         }
 
-        public void ClearBuffers()
-        {
-            _serialPort.DiscardInBuffer();
-            _serialPort.DiscardOutBuffer();
-        }
     }
 }
 
