@@ -72,6 +72,7 @@ namespace NZXTSharp.Devices
             SendLogEvent("Initializing HuePlus");
             Initialize();
             InitializeChannels();
+            InitializeChannelInfo();
         }
 
         public HuePlus(string CustomName) 
@@ -80,6 +81,7 @@ namespace NZXTSharp.Devices
             SendLogEvent("Initializing HuePlus");
             Initialize();
             InitializeChannels();
+            InitializeChannelInfo();
         }
 
         private bool Initialize() 
@@ -128,24 +130,20 @@ namespace NZXTSharp.Devices
                 SendLogEvent("Initiating Handshake");
                 //Initial handshaking
 
-                while (true) 
+                while (true)
                 {
-                    if (serialmessage == 1) 
+                    if (serialmessage == 1)
                     {
                         SendLogEvent("Handshake Response Good");
                         WasLastSentHelloShake = false;
                         break;
                     }
-                    _serialPort.Write(new byte[] { 0xc0 }, 0, 1); //Check if hue+ responds
+
+                    _serialPort.Write(new byte[] {0xc0}, 0, 1); //Check if hue+ responds
                     Thread.Sleep(500);
                     WasLastSentHelloShake = true;
 
                 }
-                Thread.Sleep(100);
-                UpdateChannel1Info(); // First Channel Handshake
-
-                Thread.Sleep(100);
-                UpdateChannel2Info(); // Second Channel Handshake
 
                 return true;
             }
@@ -159,6 +157,11 @@ namespace NZXTSharp.Devices
             this._Channel1 = new Channel(0x01, this);
             this._Channel2 = new Channel(0x02, this);
             this._Channels = new List<Channel>() { _Both, _Channel1, _Channel2};
+        }
+
+        private void InitializeChannelInfo()
+        {
+            UpdateChannelInfo(this._Both);
         }
 
         private static void WriteSerial(byte[] buffer, int offset, int count) 
