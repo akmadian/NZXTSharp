@@ -38,7 +38,6 @@ namespace NZXTSharp.Devices
     {
 
         private string _Name = "HuePlus";
-        private bool isInitialised = false;
         private SerialPort _serialPort;
         private static int serialmessage;
         private string _CustomName = null;
@@ -46,6 +45,10 @@ namespace NZXTSharp.Devices
         private bool WasLastSentHelloShake = false;
         private bool WasLastSentChannelShake = false;
         private Channel ChannelShakeChannel;
+
+        private bool _IsComInitialized = false;
+        private bool _AreChannelsInitialized = false;
+        private bool _AreChannelInfosInitialized = false;
 
         private Channel _Both;
         private Channel _Channel1;
@@ -59,7 +62,16 @@ namespace NZXTSharp.Devices
         public Channel Channel2 { get; }
         public List<Channel> Channels { get; }
         public string CustomName { get; set; }
-        
+
+        public bool IsComInitialized
+        {
+            get => _IsComInitialized;
+        }
+
+        public bool AreChannelsInitialized => _AreChannelsInitialized;
+
+        public bool AreChannelInfosInitialized => _AreChannelInfosInitialized;
+
 
         public event LogHandler OnLogMessage;
 
@@ -71,8 +83,11 @@ namespace NZXTSharp.Devices
             
             SendLogEvent("Initializing HuePlus");
             Initialize();
+            _IsComInitialized = true;
             InitializeChannels();
+            _AreChannelsInitialized = true;
             InitializeChannelInfo();
+            _AreChannelInfosInitialized = true;
         }
 
         public HuePlus(string CustomName) 
@@ -80,8 +95,11 @@ namespace NZXTSharp.Devices
             this.CustomName = CustomName;
             SendLogEvent("Initializing HuePlus");
             Initialize();
+            _IsComInitialized = true;
             InitializeChannels();
+            _AreChannelsInitialized = true;
             InitializeChannelInfo();
+            _AreChannelInfosInitialized = true;
         }
 
         private bool Initialize() 
@@ -168,11 +186,6 @@ namespace NZXTSharp.Devices
         {
             if (SerialPort.IsOpen)
                 SerialPort.Write(buffer, offset, count);
-        }
-
-        public bool IsInitialized() 
-        {
-            return isInitialised;
         }
 
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
