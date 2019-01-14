@@ -17,11 +17,14 @@ namespace NZXTSharp.Params {
 
         public CISS(int speed) {
             this.speed = speed;
+            ValidateInput();
         }
 
         public CISS(int colorIndex, int speed) {
             this.colorIndex = colorIndex;
             this.speed = speed;
+
+            ValidateInput();
 
             this.evaluatedIndex = colorIndex * 2;
         }
@@ -30,12 +33,13 @@ namespace NZXTSharp.Params {
             if (speed > 4 || speed < 0)
                 throw new InvalidParamException("Invalid Param; Speed Must Be Between 0 and 4 (inclusive).");
 
-            if (colorIndex > 15 || colorIndex < 0)
-                throw new InvalidParamException("Invalid Param; ColorIndex Value Must Be Between 15 and 0 (inclusive).");
+            if (colorIndex > 7 || colorIndex < 0)
+                throw new InvalidParamException("Invalid Param; ColorIndex Value Must Be Between 7 and 0 (inclusive). (Zero-Indexed)");
         }
 
         public int GetValue() {
-            return Convert.ToInt32(evaluatedIndex.DecimalToByte().ToString() + speed.ToString());
+            string concatenated = evaluatedIndex.ToString("X") + speed.ToString();
+            return int.Parse(concatenated, System.Globalization.NumberStyles.HexNumber);
         }
 
         public static implicit operator byte(CISS param) {
