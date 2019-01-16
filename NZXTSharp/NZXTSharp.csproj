@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.1-beta</Version>
+    <Version>1.0.1.1-beta</Version>
     <Description>The one-stop C# sdk that facilitates interaction with NZXT devices.</Description>
     <Authors>Ari Madian</Authors>
     <Company>Ari Madian</Company>
@@ -12,12 +12,12 @@
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>NZXT, Hue+, Hue_Plus, Hue, Plus, SDK, NZXT_SDK, RGB, RGB_SDK</PackageTags>
     <PackageLicenseUrl>https://github.com/akmadian/NZXTSharp/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageIconUrl>https://i.imgur.com/0RWzc3b.png</PackageIconUrl>
+    <PackageIconUrl>https://i.imgur.com/4GAobyk.jpg</PackageIconUrl>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
-    <FileVersion>1.0.1</FileVersion>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <AssemblyVersion>1.0.1.1</AssemblyVersion>
+    <FileVersion>1.0.1.1</FileVersion>
+    <PackageReleaseNotes>Fix CISS param evaluation</PackageReleaseNotes>
     <Copyright>Copyright provided under the GNU GPLv3 open source license.</Copyright>
   </PropertyGroup>
 
