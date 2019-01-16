@@ -16,4 +16,4 @@ Docs here are organized by namespace.
    :maxdepth: 2
    :caption: SDK-Docs
 
-   SDK-Docs/Devices
+   SDK-Docs/*
