@@ -4,7 +4,10 @@ Welcome to NZXTSharp's readthedocs page
 
 .. toctree::
    :maxdepth: 2
-   :hidden:
-   :caption: Getting Started
-
+   
+   :caption: Protocols
    Protocols/Hue+
+   
+   :caption: SDK Docs
+   HexColor.cs
+   Devices/HuePlus.cs
