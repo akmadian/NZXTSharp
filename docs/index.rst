@@ -12,6 +12,10 @@ Docs here are organized by namespace.
    :caption: Protocols
    Protocols/Hue+
    
+   
+.. toctree::
+   :maxdepth: 2
+
    :caption: SDK Docs
    NXZTSharp/HexColor
    NZXTSharp/Devices/HuePlus
