@@ -17,4 +17,6 @@ Docs here are organized by namespace.
    :caption: SDK Docs
    
    NXZTSharp/HexColor
+   
+   :caption: NZXTSharp.Devices
    NZXTSharp/Devices/HuePlus
