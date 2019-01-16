@@ -21,11 +21,20 @@ Fixed effect = new Fixed(new HexColor(255, 255, 255)); // Make fixed effect
 hue.ApplyEffect(hue.Both, effect); // Apply effect
 ```
 
+### FAQ
+
+**Q:** Are there any plans to make an SDK in XX language?
+<br>**A:** As of yet, no. I am focusing on support for the .NET framework. Python is most likely next.
+
+**Q:** Is XX device supported? 
+<br>**A:** Right now, I am working on support for the Hue+. Once that is complete, I plan to move into the Krakens and the Hue 2.
+
+
 ### Disclaimer
 NZXTSharp is provided under the GNU GPLv3 license, but I want to re-iterate these stipulations:
  - This software is provided as is.
  - This software is provided with no warranty.
- - I (the owner) hold no liability for any broken or not working hardware resulting from using this package. Please use your best judgement, and 
+ - Neither I, nor any of NZXTSharp's collaborators hold any liability for any broken or not working hardware resulting from using this package. Please use your best judgement.
  
  A big thank you to [Pet0203][2] for his help in reverse engineering the protocols and building NZXTSharp.
  
