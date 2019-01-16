@@ -6,18 +6,14 @@ Welcome to NZXTSharp's readthedocs page!
 
 Docs here are organized by namespace.
 
-.. contents:: Table of Contents
+.. toctree:: 
+   :maxdepth: 2
+   :caption: Protocols
 
-Protocols
-=====
+   Protocols/Hue+
+   
+.. toctree::
+   :maxdepth: 2
+   :caption: SDK-Docs
 
-Hue+
-----------------
-placeholder
-
-SDK Docs
-=====
-
-Devices
-----------------
-HuePlus.cs
+   SDK-Docs/Devices
