@@ -13,5 +13,5 @@ Docs here are organized by namespace.
    Protocols/Hue+
    
    :caption: SDK Docs
-   NXZTSharp/HexColor.cs
-   NZXTSharp/Devices/HuePlus.cs
+   NXZTSharp/HexColor
+   NZXTSharp/Devices/HuePlus
