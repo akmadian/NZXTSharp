@@ -1,3 +1,3 @@
 #####
-Devices and Features Supported by NXZTSharp
+Supported Devices and Features
 #####
