@@ -1,6 +1,10 @@
-#######################################
-Welcome to NZXTSharp's readthedocs page
-#######################################
+#########
+NZXTSharp
+#########
+
+Welcome to NZXTSharp's readthedocs page!
+
+Docs here are organized by namespace.
 
 .. toctree::
    :maxdepth: 2
@@ -9,5 +13,5 @@ Welcome to NZXTSharp's readthedocs page
    Protocols/Hue+
    
    :caption: SDK Docs
-   HexColor.cs
-   Devices/HuePlus.cs
+   NXZTSharp/HexColor.cs
+   NZXTSharp/Devices/HuePlus.cs
