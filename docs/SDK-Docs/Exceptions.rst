@@ -4,6 +4,8 @@ NZXTSharp.Exceptions
 
 Exceptions are public, but are not meant for use by the user of the NZXTSharp SDK.
 
+.. contents:: Table Of Contents
+
 *****
 InvalidParamException
 *****
