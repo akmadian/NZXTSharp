@@ -129,4 +129,4 @@ Just send the desired byte codes over the serial port, and the light should do a
 **Off: 46 00 c0 00 00 ff 00**
 
 
-**Special Thanks to `Pet0203 <https://github.com/Pet0203>`_. for helping me get started and providing base code.**
+**Special Thanks to** `Pet0203 <https://github.com/Pet0203>`_. **for helping me get started and providing base code.**
