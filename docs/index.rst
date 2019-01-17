@@ -28,23 +28,23 @@ A basic getting started example with the Hue+:
   Fixed effect = new Fixed(new HexColor(255, 255, 255)); // Create effect object
   hue.ApplyEffect(hue.Both, effect); // Apply the effect
 
+
+.. toctree:: 
+   :maxdepth: 1
+
+   Examples/Getting-Started
+   SDK-Docs/Supported
+   
 .. toctree:: 
    :maxdepth: 2
    :caption: Protocols
 
    Protocols/Hue+
    
-.. toctree:: 
-   :maxdepth: 1
-   :caption: Examples
-
-   Examples/Getting-Started
-   
 .. toctree::
    :maxdepth: 2
    :caption: SDK-Docs
 
-   SDK-Docs/Supported
    SDK-Docs/NZXTSharp
    SDK-Docs/Devices
    SDK-Docs/Effects
