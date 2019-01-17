@@ -23,18 +23,18 @@ Hue+ unit reponds with 0x01.
 Below is a table outlining the settings packets for each effect. Click on linked param values to view the schema.
 <br>Direction params marked with `WM` can make use of movement in the effect. See [the direction param schema][0] for more information.
 
-| Effect           | Packets/ Send |       |      | EffectByte | Param1                | Param2         |
-| -------------    |:--------------| -----:|------|:----------:|:------:               |:-:             |
-| Fixed            | 1             |  0x4b | CB   | 0x00       | 0x03                  | 0x02           |
-| Fading           | 1/ Color*     |  0x4b | CB   | 0x01       | 0x03                  | [**CIS/S**][1] |
-| Spectrum Wave    | 1             |  0x4b | CB   | 0x02       | [**Direction**][0]    | [**CIS/S**][1] |
-| Marquee          | 3             |  0x4b | CB   | 0x03       | [**Direction**][0]    | [**LS/S**][2]  |
-| Covering Marquee | 3/ Color*     |  0x4b | CB   | 0x04       | [**Direction**][0]    | [**CIS/S**][1] |
-| Alternating      | 2             |  0x4b | CB   | 0x05       | [**Direction WM**][0] | [**CIS/S**][1] |
-| Pulse            | 1/ Color*     |  0x4b | CB   | 0x06       | 0x03                  | [**CIS/S**][1] |
-| Breathing        | 1/ Color*     |  0x4b | CB   | 0x07       | 0x03                  | [**CIS/S**][1] |
-| Candle Light     | 1             |  0x4b | CB   | 0x09       | 0x03                  | 0x02           |
-| Wings            | 1             |  0x4b | CB   | 0x0c       | 0x03                  | [**CIS/S**][1] |
+| Effect           | Packets/ Send |      |    | EffectByte | Param1                | Param2         |
+|------------------|---------------|:----:|----|:----------:|:---------------------:|:--------------:|
+| Fixed            | 1             | 0x4b | CB | 0x00       | 0x03                  | 0x02           |
+| Fading           | 1/ Color*     | 0x4b | CB | 0x01       | 0x03                  | [**CIS/S**][1] |
+| Spectrum Wave    | 1             | 0x4b | CB | 0x02       | [**Direction**][0]    | [**CIS/S**][1] |
+| Marquee          | 3             | 0x4b | CB | 0x03       | [**Direction**][0]    | [**LS/S**][2]  |
+| Covering Marquee | 3/ Color*     | 0x4b | CB | 0x04       | [**Direction**][0]    | [**CIS/S**][1] |
+| Alternating      | 2             | 0x4b | CB | 0x05       | [**Direction WM**][0] | [**CIS/S**][1] |
+| Pulse            | 1/ Color*     | 0x4b | CB | 0x06       | 0x03                  | [**CIS/S**][1] |
+| Breathing        | 1/ Color*     | 0x4b | CB | 0x07       | 0x03                  | [**CIS/S**][1] |
+| Candle Light     | 1             | 0x4b | CB | 0x09       | 0x03                  | 0x02           |
+| Wings            | 1             | 0x4b | CB | 0x0c       | 0x03                  | [**CIS/S**][1] |
 
 <br>
 
