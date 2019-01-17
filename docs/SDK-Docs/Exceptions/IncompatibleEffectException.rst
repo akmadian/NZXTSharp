@@ -1,0 +1,3 @@
+#####
+NZXTSharp.Exceptions.IncompatibleEffectException
+#####
