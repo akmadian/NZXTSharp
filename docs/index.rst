@@ -19,5 +19,6 @@ Docs here are organized by namespace.
    SDK-Docs/Supported
    SDK-Docs/NZXTSharp
    SDK-Docs/Devices
+   SDK-Docs/Effects
    SDK-Docs/Params
    SDK-Docs/Exceptions
