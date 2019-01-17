@@ -24,7 +24,7 @@ Below is a table outlining the settings packets for each effect. Click on linked
 <br>Direction params marked with `WM` can make use of movement in the effect. See [the direction param schema][0] for more information.
 
 | Effect           | Packets/ Send |      |    | EffectByte | Param1                | Param2         |
-|------------------|---------------|:----:|----|:----------:|:---------------------:|:--------------:|
+|------------------|---------------|------|----|------------|-----------------------|----------------|
 | Fixed            | 1             | 0x4b | CB | 0x00       | 0x03                  | 0x02           |
 | Fading           | 1/ Color*     | 0x4b | CB | 0x01       | 0x03                  | [**CIS/S**][1] |
 | Spectrum Wave    | 1             | 0x4b | CB | 0x02       | [**Direction**][0]    | [**CIS/S**][1] |
