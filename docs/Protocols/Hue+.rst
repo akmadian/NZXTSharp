@@ -1,27 +1,37 @@
-# Hue+ Protocol
+#####
+Hue+ Protocol
+#####
 
 **Basic Protocol Schema: Command Type, ChannelByte, EffectByte, Param1, Param2, LedData**
-<br>&nbsp;&nbsp;&nbsp;&nbsp;**ChannelByte: Both = 00, Channel 1 = 01, Channel 2 = 02**
-<br>&nbsp;&nbsp;&nbsp;&nbsp;**Command Types: Set Effect = 4b, Unit LED = 46**
+
+    **ChannelByte: Both = 00, Channel 1 = 01, Channel 2 = 02**
+    
+    **Command Types: Set Effect = 4b, Unit LED = 46**
 
 The Hue+ operates on a serial port, and is made to handle discrete commands sent in packets.
 To open a connection to a Hue+ device, open a serial connection on port `COM3` with a baud rate of `256000`, parity set to `None`, dataBits set to `8`, and stopBits set to `1`. Then, begin the handshake process.
 
 Effect protocols are made of exactly 125 bytes or less. For all protocols, the first five bits in each packet are what I will call “settings bytes”, and the remaining 120 are LED data in G, R, B format. 
-<br>Settings bytes (in order) consist of which kind of command is being set, the channels to apply the effect to, which effect to set, and two parameters. See set effect protocol for more information.
 
+Settings bytes (in order) consist of which kind of command is being set, the channels to apply the effect to, which effect to set, and two parameters. See set effect protocol for more information.
 
-## Handshakes
+*****
+Handshakes
+*****
 To begin interaction with a Hue+ device, a handshake must first be completed.
 
 The "Hello" handshake can be completed by continuously sending 0xc0, until the 
 Hue+ unit reponds with 0x01.
-<br>There is no trick to a "GoodBye" handshake, just close the serial connection.
 
-## Set Effect 
+There is no trick to a "GoodBye" handshake, just close the serial connection.
+
+*****
+Set Effect 
+*****
 
 Below is a table outlining the settings packets for each effect. Click on linked param values to view the schema.
-<br>Direction params marked with `WM` can make use of movement in the effect. See [the direction param schema][0] for more information.
+
+Direction params marked with `WM` can make use of movement in the effect. See [the direction param schema][0] for more information.
 
 | Effect           | Packets/ Send |      |    | EffectByte | Param1                | Param2         |
 |------------------|---------------|------|----|------------|-----------------------|----------------|
@@ -36,10 +46,11 @@ Below is a table outlining the settings packets for each effect. Click on linked
 | Candle Light     | 1             | 0x4b | CB | 0x09       | 0x03                  | 0x02           |
 | Wings            | 1             | 0x4b | CB | 0x0c       | 0x03                  | [**CIS/S**][1] |
 
-<br>
-
-## Param Schemas
-##### CIS/S - Color In Set/ Speed
+*****
+Param Schemas
+*****
+CIS/S - Color In Set/ Speed
+^^^^^
 CIS/S params are a composite of a couple values: The index of the current color in a set of colors, and the speed of the effect.
 Find the values individually, and concatenate them to get the btye to be passed as a param.
  - First Digit: Color In Set. If there are multiple colors being applied, this digit denotes the index of the color.
@@ -52,7 +63,8 @@ Find the values individually, and concatenate them to get the btye to be passed 
    - Ex: If the effect uses one color, and was at normal speed, the resulting byte would be `02`.
    - Ex: If the color is the third one in the set, and the speed is at fastest, the resulting byte would be `44`.
 
-##### Direction
+Direction
+^^^^^
 For direction, just like CIS/S, the byte result is a composite of two values: 
 whether or not the effect's direction is forward or backward, and whether or not the effect should be moving.
 
@@ -66,28 +78,38 @@ The byte values are as follows:
    - Backward W/ Movement: 1b
 
 
-##### LS/S - LED Size/ Speed
+LS/S - LED Size/ Speed
+^^^^^
 To find the desired byte composite, use the table below:
 
++----------------------+-----+-----+-----+-----+
 | Speed v ; LED Size > | 3   | 4   | 5   | 6   |
-| :------------------- | :-: | :-: | :-: | :-: |
++ ==================== + === + === + === + === +
 | Slowest              | 00  | 08  | 10  | 18  |
++----------------------+-----+-----+-----+-----+
 | Slow                 | 01  | 09  | 11  | 19  |
++----------------------+-----+-----+-----+-----+
 | Normal               | 02  | 0a  | 12  | 1a  |
++----------------------+-----+-----+-----+-----+
 | Fast                 | 03  | 0b  | 13  | 1b  |
++----------------------+-----+-----+-----+-----+
 | Fastest              | 04  | 0c  | 14  | 1c  |
++----------------------+-----+-----+-----+-----+
 
 
-## Unit LED Protocols
+*****
+Unit LED Protocols
+*****
 Turning the Hue+ unit's LED on or off is pretty simple. All of the data needed fits into one packet, and seven bytes.
-<br> Just send the desired byte codes over the serial port, and the light should do as instructed.
 
-##### On: 46 00 c0 00 00 00 ff
-##### Off: 46 00 c0 00 00 ff 00
+Just send the desired byte codes over the serial port, and the light should do as instructed.
 
-<br>
+**On: 46 00 c0 00 00 00 ff**
 
-###### Special Thanks to [Pet0203][4] for helping me get started and providing base code.
+**Off: 46 00 c0 00 00 ff 00**
+
+
+**Special Thanks to [Pet0203][4] for helping me get started and providing base code.**
 
 [0]: https://github.com/akmadian/NZXTSharp/blob/master/Docs/protocol.md#direction
 [1]: https://github.com/akmadian/NZXTSharp/blob/master/Docs/protocol.md#ciss---color-in-set-speed
