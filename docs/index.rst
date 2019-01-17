@@ -20,3 +20,4 @@ Docs here are organized by namespace.
    SDK-Docs/NZXTSharp
    SDK-Docs/Devices
    SDK-Docs/Params
+   SDK-Docs/Exceptions/*
