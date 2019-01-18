@@ -29,7 +29,7 @@ IParam
 Classes
 =====
 
-All effect classes have the following:
+All param classes have the following:
 
 **Properties**
 
