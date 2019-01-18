@@ -6,7 +6,7 @@ Hue+ Protocol
 
     **ChannelByte: Both = 00, Channel 1 = 01, Channel 2 = 02**
     
-    **Command Types: Set Effect = 4b, Unit LED = 46**
+    **Command Types: Set Effect = 4b, Unit LED = 46, Get Channel Info = 8d**
 
 The Hue+ operates on a serial port, and is made to handle discrete commands sent in packets.
 To open a connection to a Hue+ device, open a serial connection on port `COM3` with a baud rate of `256000`, parity set to `None`, dataBits set to `8`, and stopBits set to `1`. Then, begin the handshake process.
