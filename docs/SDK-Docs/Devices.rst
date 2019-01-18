@@ -7,30 +7,29 @@ NZXTSharp.Devices
 
 .. contents:: Table Of Contents
 
+*****
 Classes
-=====
+*****
 
 HuePlus.cs
-----------------
+=====
 The implementation of the Hue+ lighting controller.
 
 **Inherets** :code:`NZXTSharp.Device.IHueDevice.cs`
 
 Properties
-^^^^^
-
+-----
 :code:`Channel Channel1 { get; }` Channel 1 on the Hue+ device.  
 
 Events
-^^^^^
+-----
 
 :code:`OnLogMessage` Sends a string argument when a general event worth logging arises.
 
 :code:`OnDataReceived` Sends a string argument when data from the Hue+ device is received
 
 Constructors
-^^^^^
-
+-----
 To make an instace of a HuePlus Device:
 
 .. code-block:: csharp
@@ -39,38 +38,30 @@ To make an instace of a HuePlus Device:
    HuePlus hue = new HuePlus("CustomName"); //Or with custom device name
 
 Methods
-^^^^^
+-----
+:code:`void ApplyEffect(Channel channel, IEffect effect)` Applies an effect object to the given channel.
+   Params:
+      - :code:`channel` - The channel to apply the effect to.
+      - :code:`effect` - The effect to apply.
 
-ApplyEffect
-"""""
-
-:code:`void ApplyEffect(Channel channel, IEffect effect)` 
-   Applies an effect object to the given channel.
-
+   **Usage**
+   
    .. code-block:: csharp
 
       HuePlus hue = new HuePlus();
       hue.ApplyEffect(hue.Both, IEffect);
 
-Dispose
-"""""
+:code:`void Dispose()` Closes the HuePlus device's SerialPort connection.
 
-:code:`void Dispose()`
-   Closes the HuePlus device's SerialPort connection.
-   
-Reconnect
-"""""
-
-:code:`void Reconnect()`
-   Closes the HuePlus device's SerialPort connection, then reinitializes it.
+:code:`void Reconnect()` Closes the HuePlus device's SerialPort connection, then reinitializes it.
    
 Channel.cs
-----------------
+=====
 
 A channel object corresponds to a channel on a Hue device. Hue+ devices have two channels.
 
 Properties
-^^^^^
+-----
 :code:`int ChannelByte { get; }` The channel's ChannelByte. For more information on ChannelBytes, see the Hue+ protocol.
 
 :code:`bool State { get; set; }` Whether or not the channel is activated, true for on, false for off.
@@ -82,7 +73,7 @@ Properties
 :code:`ChannelInfo ChannelInfo { get; set; }` The Channel's ChannelInfo. See the ChannelInfo class in this file for more info.
 
 Constructors
-^^^^^
+-----
 :code:`Channel() {}`
 
 :code:`Channel(int _ChannelByte) {}`
@@ -101,7 +92,7 @@ Constructors
      
 
 Methods
-^^^^^
+-----
 :code:`void On() {}` Sets the Channel's state to :code:`true`. Re-sets the effect currently applied to the channel.
 
 :code:`void Off() {}` Sets the Channel's state to :code:`false`. Sets a fixed effect with a `#000000` color applied.
@@ -109,12 +100,12 @@ Methods
 :code:`void UpdateChannelInfo() {}` Updates the channel's ChannelInfo property.
 
 ChannelInfo.cs
-----------------
+=====
 
 Information about a given Channel object.
 
 Properties
-^^^^^
+-----
 :code:`int NumLeds { get; }` The number of LEDs available on the parent channel.
 
 :code:`int NumSubDevices { get; }` The number of fans or strips available on the parent channel.
@@ -128,34 +119,35 @@ Properties
 :code:`Channel Parent { get; }` The ChannelInfo's parent Channel.
 
 Constructors
-^^^^^
+-----
 :code:`ChannelInfo(Channel Parent, byte[] data) {}`
    Params:
       - :code:`Parent` - The parent Channel object.
       - :code:`data` - The response from the :code:`8d 01` or :code:`8d 02` command.
       
 Methods
-^^^^^
+-----
 :code:`void Update() {}` Updates the properties of the ChannelInfo object.
 
 Kraken.cs
-----------------
+=====
 Currently blank. Just boilerplate for future Kraken implementations.
 
 **Inherets:** :code:`NZXTSharp.Devices.IKrakenDevice.cs`
 
+*****
 Interfaces
-=====
+*****
 All interfaces in the :code:`NZXTSharp.Devices` namespace inheret from the :code:`INZXTDevice.cs` interface in the :code:`NZXTSharp` namespace.
 
 IHueDevice.cs
-----------------
+=====
 All Hue devices inheret from this interface; currently just the Hue+, when the Hue 2 is implemented, it will inheret from this interface too.
 
 **Inherets** :code:`NZXTSharp.INZXTDevice.cs`
 
 Properties
-^^^^^
+-----
 :code:`Channel Both { get; }` Both Channel Objects; ChannelByte: 0x00.
 
 :code:`Channel Channel1 { get; }` Channel 1; ChannelByte: 0x01.
@@ -165,7 +157,7 @@ Properties
 :code:`List<Channel> Channels { get; }` A list containing the above Channel objects.
 
 Methods
-^^^^^
+-----
 :code:`ApplyEffect(Channel channel, IEffect effect) {}` Sets the given effect on the given channel.
    Params:
       - :code:`channel` - The channel object to set the effect on.
@@ -180,7 +172,7 @@ Methods
       - :code:`Channel` - The channel to update.
 
 IKrakenDevice.cs
------
+=====
 Currently blank. Just boilerplate for future Kraken implementations.
 
 **Inherets** :code:`NZXTSharp.INZXTDevice.cs`
