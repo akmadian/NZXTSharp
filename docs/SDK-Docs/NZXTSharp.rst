@@ -9,7 +9,7 @@ The using statement for these contents is :code:`using NZXTSharp;`
 .. contents:: Table Of Contents
 
 *****
-Classes
+Interfaces
 *****
 
 INZXTDevice.cs
