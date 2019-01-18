@@ -12,6 +12,19 @@ The using statement for these contents is :code:`using NZXTSharp;`
 Classes
 *****
 
+INZXTDevice.cs
+=====
+All device classes and interfaces inheret from this interface.
+
+Properties
+-----
+:code:`string Name { get; }` The device's name. Used in compatibility checks.
+
+
+*****
+Classes
+*****
+
 HexColor.cs
 =====
 
