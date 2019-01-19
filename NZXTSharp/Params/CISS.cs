@@ -12,7 +12,7 @@ namespace NZXTSharp.Params {
         private int _Value;
         private List<string> _CompatibleWith = new List<string>() { "HuePlus" };
 
-        public int Value { get; }
+        public int Value { get => GetValue(); }
         public List<string> CompatibleWith { get; }
 
         public CISS(int speed) {

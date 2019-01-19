@@ -11,7 +11,7 @@ namespace NZXTSharp.Params {
 
         public bool WithMovement { get; }
         public bool IsForward { get; }
-        public int Value { get; }
+        public int Value { get => GetValue(); }
         public List<string> CompatibleWith { get; }
 
         public Direction(bool isForward, bool withMovement) {

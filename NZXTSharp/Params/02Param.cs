@@ -7,7 +7,7 @@ namespace NZXTSharp.Params {
         private int _Value = 0x02;
         private List<string> _CompatibleWith = new List<string>() { "HuePlus" };
 
-        public int Value { get; }
+        public int Value { get => GetValue(); }
         public List<string> CompatibleWith { get; }
 
         public int GetValue() {

@@ -22,8 +22,10 @@ using System.IO;
 using System.Threading;
 using System.IO.Ports;
 using System.Linq;
-using NZXTSharp.Devices.Hue;
+
 using NZXTSharp.Exceptions;
+using NZXTSharp.Effects;
+
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnassignedGetOnlyAutoProperty
 

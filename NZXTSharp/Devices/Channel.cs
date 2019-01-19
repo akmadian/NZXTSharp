@@ -2,11 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using NZXTSharp.Devices.Hue;
 
 using NZXTSharp.Devices;
+using NZXTSharp.Effects;
 
-namespace NZXTSharp {
+namespace NZXTSharp.Devices {
     public class Channel {
         
         private int _ChannelByte;

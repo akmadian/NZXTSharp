@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NZXTSharp {
+using NZXTSharp.Devices;
+
+namespace NZXTSharp.Effects {
     public interface IEffect {
 
         int EffectByte { get; }

@@ -4,6 +4,7 @@ using System.Text;
 
 using NZXTSharp.Params;
 using NZXTSharp.Exceptions;
+using NZXTSharp.Devices;
 
 namespace NZXTSharp.Effects {
     public class Wings : IEffect {

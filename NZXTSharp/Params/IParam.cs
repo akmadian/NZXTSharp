@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NZXTSharp {
+namespace NZXTSharp.Params {
     public interface IParam {
 
         int Value { get; }

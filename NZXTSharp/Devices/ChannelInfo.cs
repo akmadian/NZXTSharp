@@ -1,4 +1,4 @@
-﻿namespace NZXTSharp {
+﻿namespace NZXTSharp.Devices {
     public class ChannelInfo {
         private int _NumLeds;
         private bool _IsFan;

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
+using NZXTSharp.Effects;
+
 namespace NZXTSharp.Devices {
     public interface IHueDevice : INZXTDevice {
         
