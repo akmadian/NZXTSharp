@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NZXTSharp" Version="1.0.1.2-beta" />
+    <PackageReference Include="RGB.NET.Core" Version="0.1.15" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+    <Folder Include="FanController\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+
+</Project>
