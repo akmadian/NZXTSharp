@@ -20,18 +20,18 @@ namespace RGB.NET.Devices.NZXT {
         /// <summary>
         /// Gets the corsair specific device type.
         /// </summary>
-        public NZXTDeviceType CorsairDeviceType { get; }
+        public NZXTDeviceType NZXTDeviceType { get; }
 
         /// <summary>
         /// Gets the index of the <see cref="CorsairRGBDevice{TDeviceInfo}"/>.
         /// </summary>
-        public int CorsairDeviceIndex { get; }
+        public int NZXTDeviceIndex { get; }
 
         /// <inheritdoc />
         public RGBDeviceType DeviceType { get; }
 
         /// <inheritdoc />
-        public string Manufacturer => "Corsair";
+        public string Manufacturer => "NZXT";
 
         /// <inheritdoc />
         public string Model { get; }
@@ -45,11 +45,6 @@ namespace RGB.NET.Devices.NZXT {
         /// <inheritdoc />
         public RGBDeviceLighting Lighting => RGBDeviceLighting.Key;
 
-        /// <summary>
-        /// Gets a flag that describes device capabilities. (<see cref="CorsairDeviceCaps" />)
-        /// </summary>
-        public CorsairDeviceCaps CapsMask { get; }
-
         #endregion
 
         #region Constructors
@@ -60,12 +55,11 @@ namespace RGB.NET.Devices.NZXT {
         /// <param name="deviceIndex">The index of the <see cref="CorsairRGBDevice{TDeviceInfo}"/>.</param>
         /// <param name="deviceType">The type of the <see cref="IRGBDevice"/>.</param>
         /// <param name="nativeInfo">The native <see cref="_CorsairDeviceInfo" />-struct</param>
-        internal CorsairRGBDeviceInfo(int deviceIndex, RGBDeviceType deviceType, _CorsairDeviceInfo nativeInfo) {
-            this.CorsairDeviceIndex = deviceIndex;
+        internal NZXTRGBDeviceInfo(int deviceIndex, RGBDeviceType deviceType, _NZXTDeviceInfo) {
+            this.NZXTDeviceIndex = deviceIndex;
             this.DeviceType = deviceType;
-            this.CorsairDeviceType = nativeInfo.type;
+            this.NZXTDeviceType = nativeInfo.type;
             this.Model = nativeInfo.model == IntPtr.Zero ? null : Marshal.PtrToStringAnsi(nativeInfo.model);
-            this.CapsMask = (CorsairDeviceCaps)nativeInfo.capsMask;
         }
 
         #endregion
