@@ -5,9 +5,9 @@ using System.Text;
 using RGB.NET.Core;
 
 namespace RGB.NET.Devices.NZXT {
-    public class NZXTCoolerRGBDeviceInfo : NZXTRGBDeviceInfo {
+    public class NZXTStripRGBDeviceInfo : NZXTRGBDeviceInfo {
 
-        internal NZXTCoolerRGBDeviceInfo(int deviceIndex, _NZXTDeviceInfo nativeInfo)
+        internal NZXTStripRGBDeviceInfo(int deviceIndex, _NZXTDeviceInfo nativeInfo)
             : base(deviceIndex, RGBDeviceType.Mousepad, nativeInfo) { }
     }
 }
