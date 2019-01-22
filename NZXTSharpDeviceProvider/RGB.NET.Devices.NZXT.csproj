@@ -5,12 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NZXTSharp" Version="1.0.1.2-beta" />
     <PackageReference Include="RGB.NET.Core" Version="0.1.15" />
+    <PackageReference Include="System.IO.Ports" Version="4.6.0-preview.18571.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Exceptions\" />
     <Folder Include="Helpers\" />
   </ItemGroup>
 
