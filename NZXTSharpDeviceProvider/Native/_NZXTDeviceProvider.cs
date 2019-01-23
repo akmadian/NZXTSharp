@@ -129,6 +129,10 @@ namespace RGB.NET.Devices.NZXT {
             return reply.ToArray();
         }
 
+        public void UpdateChannel(_NZXTLedColor color, _NZXTDeviceInfo info) {
+            
+        }
+
         private void ProcessHuePlusChannelInfo(int ChannelByte, byte[] bytes) {
             int NumSubDevices = bytes[4];
             NZXTDeviceType Type;
@@ -151,5 +155,31 @@ namespace RGB.NET.Devices.NZXT {
         }
 
         #endregion
+
+
+    }
+
+    public class Fixed  {
+        private int _EffectByte = 0x00;
+        private string _EffectName = "Fixed";
+        public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };
+
+        private _NZXTDeviceInfo info;
+        private _NZXTLedColor color;
+
+        public Fixed(_NZXTLedColor color, _NZXTDeviceInfo info) {
+            this.color = color;
+            this.info = info;
+        }
+
+        public bool IsCompatibleWith(string name) {
+            return CompatibleWith.Contains(name) ? true : false;
+        }
+
+        public List<byte[]> BuildBytes() {
+            byte[] SettingsBytes = new byte[] { 0x4b, (byte)info.ChannelByte, 0x00, 0x02, 0x03 };
+            //byte[] final = SettingsBytes.ConcatenateByteArr(_Color.Expanded());
+            return new List<byte[]>() { final };
+        }
     }
 }

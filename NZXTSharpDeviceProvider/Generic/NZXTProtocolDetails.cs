@@ -37,5 +37,6 @@ namespace RGB.NET.Devices.NZXT {
             this.SdkProtocolVersion = nativeDetails.sdkProtocolVersion;
             this.BreakingChanges = nativeDetails.breakingChanges != 0;
         }
+        #endregion
     }
 }

@@ -8,7 +8,6 @@ namespace RGB.NET.Devices.NZXT {
     /// <inheritdoc cref="AbstractRGBDevice{TDeviceInfo}" />
     /// <inheritdoc cref="INZXTRGBDevice" />
     /// <summary>
-    /// Represents a generic CUE-device. (keyboard, mouse, headset, mousepad).
     /// </summary>
     public abstract class NZXTRGBDevice<TDeviceInfo> : AbstractRGBDevice<TDeviceInfo>, INZXTRGBDevice
         where TDeviceInfo : NZXTRGBDeviceInfo {
@@ -76,8 +75,8 @@ namespace RGB.NET.Devices.NZXT {
             }
 
             if (Size == Size.Invalid) {
-                Rectangle ledRectangle = new Rectangle(this.Select(x => x.LedRectangle));
-                Size = ledRectangle.Size + new Size(ledRectangle.Location.X, ledRectangle.Location.Y);
+                //ctangle ledRectangle = new Rectangle(this.Select(x => x.LedRectangle));
+                //Size = ledRectangle.Size + new Size(ledRectangle.Location.X, ledRectangle.Location.Y);
             }
         }
 
@@ -88,8 +87,8 @@ namespace RGB.NET.Devices.NZXT {
 
         // TODO
         /// <inheritdoc />
-        protected override void UpdateLeds(IEnumerable<Led> ledsToUpdate)
-            => UpdateQueue.SetData(ledsToUpdate.Where(x => (x.Color.A > 0) && (x.CustomData is NZXTLedId ledId && (ledId != NZXTLedId.Invalid))));
+        // protected override void UpdateLeds(IEnumerable<Led> ledsToUpdate)
+            //=> UpdateQueue.SetData();
 
         #endregion
     }
