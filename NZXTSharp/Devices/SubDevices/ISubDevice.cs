@@ -16,5 +16,15 @@ namespace NZXTSharp.Devices {
         void ToggleState();
 
         void ToggleLed(int Index);
+
+        void ToggleLedRange(int Start, int End);
+
+        void SetLedRange(int Start, int End, bool Value);
+
+        void AllLedOn();
+
+        void AllLedOff();
+
+        string LedsToString();
     }
 }

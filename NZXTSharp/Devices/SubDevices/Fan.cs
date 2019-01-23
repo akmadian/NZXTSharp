@@ -32,5 +32,35 @@ namespace NZXTSharp.Devices {
         public void ToggleLed(int Index) {
             this._Leds[Index] = (this._Leds[Index] ? false : true);
         }
+
+        public void ToggleLedRange(int Start, int End) {
+            for (int Index = Start; Index <= End; Index++) {
+                _Leds[Index] = (this._Leds[Index] ? false : true);
+            }
+        }
+
+        public void SetLedRange(int Start, int End, bool Value) {
+            for (int Index = Start; Index <= End; Index++) {
+                _Leds[Index] = Value;
+            }
+        }
+
+        public void AllLedOn() {
+            for (int index = 0; index < 8; index++) {
+                _Leds[index] = true;
+            }
+        }
+
+        public void AllLedOff() {
+            for (int index = 0; index < 8; index++) {
+                _Leds[index] = false;
+            }
+        }
+
+        public string LedsToString() {
+            StringBuilder sb = new StringBuilder();
+            _Leds.ForEach(c => sb.Append(c + " "));
+            return sb.ToString();
+        }
     }
 }
