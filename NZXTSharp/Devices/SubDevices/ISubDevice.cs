@@ -11,6 +11,10 @@ namespace NZXTSharp.Devices {
 
         int NumLeds { get; }
 
+        List<bool> Leds { get; }
+
         void ToggleState();
+
+        void ToggleLed(int Index);
     }
 }

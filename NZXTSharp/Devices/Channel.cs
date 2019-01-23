@@ -76,8 +76,17 @@ namespace NZXTSharp.Devices {
             {
                 if (device.IsActive) // If active, add effect color
                 {
-                    foreach (byte hex in color.Expanded(device.NumLeds)) {
-                        outList.Add(hex);
+                    Console.WriteLine("Device Is Active");
+                    byte[] exp = color.Expanded(device.NumLeds);
+                    for (int LED = 0; LED < device.NumLeds; LED++) {
+                        if (device.Leds[LED]) {
+                            Console.WriteLine("    LED is Active");
+                            outList.Add(exp[LED]);
+                        }
+                        else {
+                            Console.WriteLine("    LED is Not Active");
+                            outList.Add(0x00);
+                        }
                     }
                 }
                 else { // If not active, add padding bytes
