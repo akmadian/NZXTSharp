@@ -152,6 +152,9 @@ namespace NZXTSharp.Devices
 
                 InitializeChannels();
                 InitializeChannelInfo();
+
+                Channel1.BuildSubDevices();
+                Channel2.BuildSubDevices();
                 
                 return true;
             }
@@ -206,7 +209,7 @@ namespace NZXTSharp.Devices
 
             //channel.Effect = effect;
             effect.Channel = channel;
-            List<byte[]> commandBytes = effect.BuildBytes();
+            List<byte[]> commandBytes = effect.BuildBytes(channel);
             foreach (byte[] command in commandBytes)
                 WriteSerial(command, 0, command.Length);
         }

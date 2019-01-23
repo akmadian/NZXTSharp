@@ -73,6 +73,23 @@ namespace NZXTSharp {
 
             return outB.ToArray();
         }
+
+        public byte[] Expanded(int NumLeds) {
+            List<int> outBytes = new List<int>();
+            for (int i = 0; i < NumLeds; i++) {
+                outBytes.Add(G);
+                outBytes.Add(R);
+                outBytes.Add(B);
+            }
+
+            List<byte> outB = new List<byte>();
+
+            foreach (int val in outBytes) {
+                outB.Add(Convert.ToByte(val));
+            }
+
+            return outB.ToArray();
+        }
     }
 }
 

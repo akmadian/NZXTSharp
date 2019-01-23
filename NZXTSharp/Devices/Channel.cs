@@ -14,6 +14,7 @@ namespace NZXTSharp.Devices {
         private IHueDevice _Parent;
         private bool _State = true;
         private ChannelInfo _ChannelInfo;
+        private List<ISubDevice> _SubDevices = new List<ISubDevice>();
         
         #region Properties
         public int ChannelByte { get; }
@@ -21,6 +22,7 @@ namespace NZXTSharp.Devices {
         public bool State { get; set; }
         public ChannelInfo ChannelInfo { get => _ChannelInfo; }
         public IHueDevice Parent { get; }
+        public List<ISubDevice> SubDevices { get => _SubDevices; }
         #endregion
 
         public Channel() {
@@ -42,6 +44,19 @@ namespace NZXTSharp.Devices {
             this._ChannelInfo = Info;
         }
 
+        public void BuildSubDevices() {
+            for (int i = 0; i < ChannelInfo.NumSubDevices; i++) {
+                switch (ChannelInfo.Type) {
+                    case NZXTDeviceType.Fan:
+                        SubDevices.Add(new Fan());
+                        break;
+                    case NZXTDeviceType.Strip:
+                        SubDevices.Add(new Strip());
+                        break;
+                }
+            }
+        }
+
         public void On() {
             this._State = false;
             byte[] SettingsBytes = new byte[] { 0x4b, (byte)this, (byte)this.Effect.EffectByte, 0x03, 0x02 };
@@ -53,6 +68,28 @@ namespace NZXTSharp.Devices {
         public void Off() {
             this._State = false;
             _Parent.ApplyEffect(this, new Effects.Fixed(this, new HexColor(0, 0, 0)));
+        }
+        
+        public byte[] BuildColorBytes(HexColor color) {
+            List<byte> outList = new List<byte>();
+            foreach (ISubDevice device in SubDevices) 
+            {
+                if (device.IsActive) // If active, add effect color
+                {
+                    foreach (byte hex in color.Expanded(device.NumLeds)) {
+                        outList.Add(hex);
+                    }
+                }
+                else { // If not active, add padding bytes
+                    for (int led = 0; led < device.NumLeds * 3; led++) {
+                        outList.Add(0x00);
+                    }
+                }
+            }
+            for (int pad = outList.Count; pad < 120; pad++) { // Pad out remainder
+                outList.Add(0x00);
+            }
+            return outList.ToArray();
         }
 
         public void UpdateChannelInfo() {

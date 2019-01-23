@@ -30,9 +30,9 @@ namespace NZXTSharp.Effects {
             return CompatibleWith.Contains(Device) ? true : false;
         }
 
-        public List<byte[]> BuildBytes() {
+        public List<byte[]> BuildBytes(Channel Channel) {
             byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x02, Param1, Param2 };
-            byte[] final = SettingsBytes.ConcatenateByteArr(new HexColor(0, 0, 255).Expanded());
+            byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(new HexColor(0, 0, 255)));
             return new List<byte[]>() { final };
         }
     }

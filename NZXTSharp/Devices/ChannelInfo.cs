@@ -1,15 +1,15 @@
 ﻿namespace NZXTSharp.Devices {
     public class ChannelInfo {
         private int _NumLeds;
-        private bool _IsFan;
-        private bool _IsStrip;
+        private NZXTDeviceType _Type;
         private int _NumSubDevices;
+        private bool _IsActive;
         private Channel _Parent;
 
         public int NumLeds { get => _NumLeds; }
         public int NumSubDevices { get => _NumSubDevices; }
-        public bool IsFan { get => _IsFan; }
-        public bool IsStrip { get => _IsStrip; }
+        public NZXTDeviceType Type { get => _Type; }
+        public bool IsActive { get => _IsActive; }
         private Channel Parent { get; }
 
 
@@ -28,14 +28,28 @@
         private void ParseData(byte[] data) {
             this._NumSubDevices = data[4];
 
-            this._IsStrip = (data[3] == 0x00 ? true : false);
-            this._IsFan = (data[3] == 0x01 ? true : false);
+            switch(data[3]) {
+                case 0x00:
+                    this._Type = NZXTDeviceType.Strip;
+                    break;
+                case 0x01:
+                    this._Type = NZXTDeviceType.Fan;
+                    break;
+            }
 
-            if (this._IsFan)
-                this._NumLeds = _NumSubDevices * 8;
-            else
-                this._NumLeds = _NumSubDevices * 10;
+            switch (Type) {
+                case NZXTDeviceType.Fan:
+                    this._NumLeds = _NumSubDevices * 8;
+                    break;
+                case NZXTDeviceType.Strip:
+                    this._NumLeds = _NumSubDevices * 10;
+                    break;
+            }
 
+        }
+
+        public override string ToString() {
+            return string.Format("Type: {0}, NumSubDevices: {1}, NumLeds: {2}, IsActive: {3}", Type, NumSubDevices, NumLeds, IsActive);
         }
     }
 }
