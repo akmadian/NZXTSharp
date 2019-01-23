@@ -19,7 +19,7 @@ namespace NZXTSharp.Devices {
         public int ChannelByte { get; }
         public IEffect Effect { get; set; }
         public bool State { get; set; }
-        public ChannelInfo ChannelInfo { get; set; }
+        public ChannelInfo ChannelInfo { get => _ChannelInfo; }
         public IHueDevice Parent { get; }
         #endregion
 
@@ -57,6 +57,10 @@ namespace NZXTSharp.Devices {
 
         public void UpdateChannelInfo() {
             Parent.UpdateChannelInfo(this);
+        }
+
+        public void SetChannelInfo(ChannelInfo info) {
+            this._ChannelInfo = info;
         }
 
         public static explicit operator byte(Channel channel) {

@@ -26,6 +26,8 @@ using System.Linq;
 using NZXTSharp.Exceptions;
 using NZXTSharp.Effects;
 
+using NZXTSharp;
+
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnassignedGetOnlyAutoProperty
 
@@ -63,8 +65,8 @@ namespace NZXTSharp.Devices
         {
             get => _Both;
         }
-        public Channel Channel1 { get; }
-        public Channel Channel2 { get; }
+        public Channel Channel1 { get => _Channel1; }
+        public Channel Channel2 { get => _Channel2; }
         public List<Channel> Channels { get; }
         public string CustomName { get; set; }
 
@@ -95,7 +97,7 @@ namespace NZXTSharp.Devices
         {
             SendLogEvent("Initializing HuePlus");
             // Create a new SerialPort object with default settings.
-            _serialPort = new SerialPort("COM3", 256000, Parity.None, 8, StopBits.One)
+            _serialPort = new SerialPort("COM5", 256000, Parity.None, 8, StopBits.One)
             {
                 WriteTimeout = 1000,
                 ReadTimeout = 1000
@@ -147,12 +149,9 @@ namespace NZXTSharp.Devices
 
                 }
                 _IsComInitialized = true;
-                
+
                 InitializeChannels();
-                _AreChannelsInitialized = true;
-                
                 InitializeChannelInfo();
-                _AreChannelInfosInitialized = true;
                 
                 return true;
             }
@@ -243,15 +242,8 @@ namespace NZXTSharp.Devices
         // TOTEST
         public void UpdateChannelInfo(Channel Channel)
         {
-            if (Channel == _Both)
-            {
-                UpdateChannelInfoOp(_Channel1);
-                UpdateChannelInfoOp(_Channel2);
-            }
-            else
-            {
-                UpdateChannelInfoOp(Channel);
-            }
+            UpdateChannelInfoOp(this._Channel1);
+            UpdateChannelInfoOp(this._Channel2);
         }
 
         // TOTEST
@@ -259,8 +251,7 @@ namespace NZXTSharp.Devices
         {
             _serialPort.DiscardInBuffer(); //This will have to be removed later
             _serialPort.DiscardOutBuffer(); //This will have to be removed later
-            SerialWrite(new byte[] { 0x8d, (byte)channel }, 5); //Second handshake
-            channel.ChannelInfo = new ChannelInfo(channel, SerialWrite(new byte[] { 0x8d, (byte)channel }, 5));
+            channel.SetChannelInfo(new ChannelInfo(channel, SerialWrite(new byte[] { 0x8d, (byte)channel }, 5)));
         }
 
         private byte[] SerialWrite(byte[] buffer, int responselength)
