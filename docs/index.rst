@@ -50,3 +50,4 @@ A basic getting started example with the Hue+:
    SDK-Docs/Effects
    SDK-Docs/Params
    SDK-Docs/Exceptions
+   SDK-Docs/COM
