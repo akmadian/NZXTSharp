@@ -26,7 +26,7 @@ using System.Linq;
 using NZXTSharp.Exceptions;
 using NZXTSharp.Effects;
 
-using NZXTSharp;
+using NZXTSharp.COM;
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnassignedGetOnlyAutoProperty
@@ -69,6 +69,7 @@ namespace NZXTSharp.Devices
         public Channel Channel2 { get => _Channel2; }
         public List<Channel> Channels { get; }
         public string CustomName { get; set; }
+        public NZXTDeviceType Type { get => NZXTDeviceType.HuePlus; }
 
         public bool IsComInitialized
         {
@@ -97,7 +98,7 @@ namespace NZXTSharp.Devices
         {
             SendLogEvent("Initializing HuePlus");
             // Create a new SerialPort object with default settings.
-            _serialPort = new SerialPort("COM5", 256000, Parity.None, 8, StopBits.One)
+            _serialPort = new SerialPort("COM3", 256000, Parity.None, 8, StopBits.One)
             {
                 WriteTimeout = 1000,
                 ReadTimeout = 1000

@@ -5,7 +5,7 @@ using System.Text;
 namespace NZXTSharp {
     public interface INZXTDevice {
 
-        string Name { get; }
+        Devices.NZXTDeviceType Type { get; }
         
     }
 }
