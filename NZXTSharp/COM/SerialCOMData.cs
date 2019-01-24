@@ -19,13 +19,13 @@ namespace NZXTSharp.COM {
         private int _DataBits;
         private string _Name;
 
-        public Parity Parity { get; }
-        public StopBits StopBits { get; }
-        public int WriteTimeout { get; }
-        public int ReadTimeout { get; }
-        public int Baud { get; }
-        public int DataBits { get; }
-        public string Name { get; }
+        public Parity Parity { get => _Parity; }
+        public StopBits StopBits { get => _StopBits; }
+        public int WriteTimeout { get => _WriteTimeout; }
+        public int ReadTimeout { get => _ReadTimeout; }
+        public int Baud { get => _Baud; }
+        public int DataBits { get => _DataBits; }
+        public string Name { get => _Name; }
 
         /// <summary>
         /// Constructs a <see cref="SerialCOMData"/> object.
@@ -44,6 +44,19 @@ namespace NZXTSharp.COM {
             this._Baud = Baud;
             this._DataBits = DataBits;
             this._Name = Name;
+        }
+
+        public override string ToString()
+        {
+            return String.Format("Parity: {0}, StopBits: {1}, WriteTimeout: {2}, ReadTimeout: {3}, Baud: {4}, DataBits: {5}, Name: {6}",
+                this.Parity,
+                this.StopBits,
+                this.WriteTimeout,
+                this.ReadTimeout,
+                this.Baud,
+                this.DataBits,
+                this.Name
+            );
         }
     }
 }

@@ -6,6 +6,7 @@ namespace NZXTSharp.Devices {
     enum SerialDeviceID {
 
         Unknown = -1,
+        ManufacturerID = 0x1e71,
         
         // Kraken Devices
         KrakenM22 = 0x1715,
