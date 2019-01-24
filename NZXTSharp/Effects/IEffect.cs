@@ -13,7 +13,7 @@ namespace NZXTSharp.Effects {
 
         Channel Channel { get; set; }
 
-        List<byte[]> BuildBytes();
+        List<byte[]> BuildBytes(Channel Channel);
 
         bool IsCompatibleWith(string Device);
         

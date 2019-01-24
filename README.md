@@ -20,7 +20,7 @@ using NZXTSharp.Devices;
 using NZXTSharp.Effects;
 
 HuePlus hue = new HuePlus(); // Create device
-Fixed effect = new Fixed(new HexColor(255, 255, 255)); // Make fixed effect
+Fixed effect = new Fixed(new Color(255, 255, 255)); // Make fixed effect
 hue.ApplyEffect(hue.Both, effect); // Apply effect
 ```
 

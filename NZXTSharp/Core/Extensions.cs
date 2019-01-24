@@ -40,5 +40,13 @@ namespace NZXTSharp {
             byte[] sum = l1.ToArray();
             return sum;
         }
+
+        public static string ToString(this byte[] thisone) {
+            StringBuilder sb = new StringBuilder();
+            foreach (byte thing in thisone) {
+                sb.Append(thing.ToString() + " ");
+            }
+            return sb.ToString();
+        }
     }
 }

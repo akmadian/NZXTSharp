@@ -13,7 +13,7 @@ namespace NZXTSharp.Effects {
         private string _EffectName = "Alternating";
         public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };
 
-        public HexColor[] Colors;
+        public Color[] Colors;
         private Channel _Channel;
         private Direction _Param1 = new Direction(true, false);
         private CISS _Param2;
@@ -23,21 +23,21 @@ namespace NZXTSharp.Effects {
         public Channel Channel { get; set; }
         public string EffectName { get; }
         
-        public Alternating(HexColor[] Colors) {
+        public Alternating(Color[] Colors) {
             this.Colors = Colors;
             ValidateParams();
         }
 
         // Speed Optional, Direction Provided
-        public Alternating(HexColor[] Colors, Direction Direction, int speed = 2) {
+        public Alternating(Color[] Colors, Direction Direction, int speed = 2) {
             this.Colors = Colors;
             this._Param1 = Direction;
             this.speed = speed;
             ValidateParams();
         }
 
-        public Alternating(HexColor Color1, HexColor Color2, Direction Direction, int speed) {
-            this.Colors = new HexColor[] { Color1, Color2 };
+        public Alternating(Color Color1, Color Color2, Direction Direction, int speed) {
+            this.Colors = new Color[] { Color1, Color2 };
             this._Param1 = Direction;
             this.speed = speed;
         }
@@ -52,11 +52,11 @@ namespace NZXTSharp.Effects {
             return CompatibleWith.Contains(Device) ? true : false;
         }
 
-        public List<byte[]> BuildBytes() {
+        public List<byte[]> BuildBytes(Channel Channel) {
             List<byte[]> outList = new List<byte[]>();
             for (int colorIndex = 0; colorIndex < Colors.Length; colorIndex++) {
                 byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x05, _Param1, new CISS(colorIndex, this.speed) };
-                byte[] final = SettingsBytes.ConcatenateByteArr(Colors[colorIndex].Expanded());
+                byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Colors[colorIndex]));
                 outList.Add(final);
             }
             return outList;

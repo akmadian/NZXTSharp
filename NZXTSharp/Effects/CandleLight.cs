@@ -11,7 +11,7 @@ namespace NZXTSharp.Effects {
         private string _EffectName = "CandleLight";
         public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };
 
-        public HexColor Color;
+        public Color Color;
         private Channel _Channel;
         private _03Param _Param1;
         private _02Param _Param2;
@@ -20,7 +20,7 @@ namespace NZXTSharp.Effects {
         public Channel Channel { get; set; }
         public string EffectName { get; }
 
-        public CandleLight(HexColor Color) {
+        public CandleLight(Color Color) {
             this.Color = Color;
         }
 
@@ -28,9 +28,9 @@ namespace NZXTSharp.Effects {
             return CompatibleWith.Contains(Device) ? true : false;
         }
 
-        public List<byte[]> BuildBytes() {
+        public List<byte[]> BuildBytes(Channel Channel) {
             byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x09, _Param1, _Param2 };
-            byte[] final = SettingsBytes.ConcatenateByteArr(Color.Expanded());
+            byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Color));
             return new List<byte[]>() { final };
         }
     }

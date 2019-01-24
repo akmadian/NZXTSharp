@@ -4,19 +4,19 @@ using System.Text;
 using System.Linq;
 
 namespace NZXTSharp {
-    public class HexColor
+    public class Color
     {
 
         private int R;
         private int G;
         private int B;
 
-        public HexColor()
+        public Color()
         {
 
         }
 
-        public HexColor(string hexColor)
+        public Color(string hexColor)
         {
             if (hexColor.StartsWith("#")) // Strip leading # if it exists
                 hexColor = hexColor.Substring(1);
@@ -27,7 +27,7 @@ namespace NZXTSharp {
             this.B = Convert.ToInt32(splitHex[2]);
         }
 
-        public HexColor(int R, int G, int B)
+        public Color(int R, int G, int B)
         {
             this.R = R;
             this.G = G;
@@ -68,6 +68,23 @@ namespace NZXTSharp {
 
             foreach (int val in outBytes)
             {
+                outB.Add(Convert.ToByte(val));
+            }
+
+            return outB.ToArray();
+        }
+
+        public byte[] Expanded(int NumLeds) {
+            List<int> outBytes = new List<int>();
+            for (int i = 0; i < NumLeds; i++) {
+                outBytes.Add(G);
+                outBytes.Add(R);
+                outBytes.Add(B);
+            }
+
+            List<byte> outB = new List<byte>();
+
+            foreach (int val in outBytes) {
                 outB.Add(Convert.ToByte(val));
             }
 

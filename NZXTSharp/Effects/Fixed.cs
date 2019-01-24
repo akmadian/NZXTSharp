@@ -11,21 +11,22 @@ namespace NZXTSharp.Effects {
         private string _EffectName = "Fixed";
         public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };
 
-        private HexColor _Color;
-        private Channel _Channel;
+        private Color _Color;
         private _03Param _Param1 = new _03Param();
         private _02Param _Param2 = new _02Param();
+        private Channel _Channel;
 
         public int EffectByte { get; }
         public Channel Channel { get; set; }
         public string EffectName { get; }
+        
 
-        public Fixed(HexColor color) {
+        public Fixed(Color color) {
             this._Color = color;
         }
 
-        public Fixed(Channel channel, HexColor color) {
-            this.Channel = channel;
+        public Fixed(Channel Channel, Color color) {
+            this._Channel = Channel;
             this._Color = color;
         }
 
@@ -33,9 +34,9 @@ namespace NZXTSharp.Effects {
             return CompatibleWith.Contains(name) ? true : false;
         }
 
-        public List<byte[]> BuildBytes() {
+        public List<byte[]> BuildBytes(Channel Channel) {
             byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x00, _Param1, _Param2 };
-            byte[] final = SettingsBytes.ConcatenateByteArr(_Color.Expanded());
+            byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(_Color));
             return new List<byte[]>() { final };
         }
     }
