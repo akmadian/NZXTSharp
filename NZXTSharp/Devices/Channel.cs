@@ -67,10 +67,10 @@ namespace NZXTSharp.Devices {
 
         public void Off() {
             this._State = false;
-            _Parent.ApplyEffect(this, new Effects.Fixed(this, new HexColor(0, 0, 0)));
+            _Parent.ApplyEffect(this, new Effects.Fixed(this, new Color(0, 0, 0)));
         }
         
-        public byte[] BuildColorBytes(HexColor color) {
+        public byte[] BuildColorBytes(Color color) {
             List<byte> outList = new List<byte>();
             foreach (ISubDevice device in SubDevices) 
             {

@@ -11,7 +11,7 @@ namespace NZXTSharp.Effects {
         private string _EffectName = "Fixed";
         public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };
 
-        private HexColor _Color;
+        private Color _Color;
         private _03Param _Param1 = new _03Param();
         private _02Param _Param2 = new _02Param();
         private Channel _Channel;
@@ -21,11 +21,11 @@ namespace NZXTSharp.Effects {
         public string EffectName { get; }
         
 
-        public Fixed(HexColor color) {
+        public Fixed(Color color) {
             this._Color = color;
         }
 
-        public Fixed(Channel Channel, HexColor color) {
+        public Fixed(Channel Channel, Color color) {
             this._Channel = Channel;
             this._Color = color;
         }

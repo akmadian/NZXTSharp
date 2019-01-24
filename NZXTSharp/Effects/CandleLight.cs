@@ -11,7 +11,7 @@ namespace NZXTSharp.Effects {
         private string _EffectName = "CandleLight";
         public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };
 
-        public HexColor Color;
+        public Color Color;
         private Channel _Channel;
         private _03Param _Param1;
         private _02Param _Param2;
@@ -20,7 +20,7 @@ namespace NZXTSharp.Effects {
         public Channel Channel { get; set; }
         public string EffectName { get; }
 
-        public CandleLight(HexColor Color) {
+        public CandleLight(Color Color) {
             this.Color = Color;
         }
 

@@ -15,7 +15,7 @@ namespace NZXTSharp.Effects {
         private string _EffectName = "Breathing";
         public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };
         
-        public HexColor[] Colors;
+        public Color[] Colors;
         private Channel _Channel;
         private _03Param _Param1;
         private CISS _Param2;
@@ -25,12 +25,12 @@ namespace NZXTSharp.Effects {
         public Channel Channel { get; set; }
         public string EffectName { get; }
 
-        public Breathing(HexColor[] Colors) {
+        public Breathing(Color[] Colors) {
             this.Colors = Colors;
             ValidateParams();
         }
 
-        public Breathing(HexColor[] Colors, int Speed) {
+        public Breathing(Color[] Colors, int Speed) {
             this.Colors = Colors;
             this.speed = Speed;
             ValidateParams();

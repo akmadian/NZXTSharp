@@ -14,7 +14,7 @@ namespace NZXTSharp.Effects {
         private string _EffectName = "CoveringMarquee";
         public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };
 
-        private HexColor[] _Colors;
+        private Color[] _Colors;
         private Direction Param1;
         private CISS Param2;
         private Channel _Channel;
@@ -25,15 +25,15 @@ namespace NZXTSharp.Effects {
         public Channel Channel { get; set; }
         public string EffectName { get; }
 
-        public CoveringMarquee(IHueDevice Parent, HexColor Color1, HexColor Color2, Direction Direction, int speed = 2) {
+        public CoveringMarquee(IHueDevice Parent, Color Color1, Color Color2, Direction Direction, int speed = 2) {
             this.Parent = Parent;
-            this._Colors = new HexColor[] { Color1, Color2 };
+            this._Colors = new Color[] { Color1, Color2 };
             this.Param1 = Direction;
             this._Speed = speed;
             ValidateParams();
         }
 
-        public CoveringMarquee(IHueDevice Parent, HexColor[] Colors, Direction Direction, int speed = 2) {
+        public CoveringMarquee(IHueDevice Parent, Color[] Colors, Direction Direction, int speed = 2) {
             this.Parent = Parent;
             this._Colors = Colors;
             this.Param1 = Direction;

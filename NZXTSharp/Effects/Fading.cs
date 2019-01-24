@@ -13,7 +13,7 @@ namespace NZXTSharp.Effects {
         private string _EffectName = "Fading";
         public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };
 
-        public HexColor[] Colors;
+        public Color[] Colors;
         private _03Param Param1 = new _03Param();
         private CISS Param2;
         private Channel _Channel;
@@ -23,12 +23,12 @@ namespace NZXTSharp.Effects {
         public Channel Channel { get; set; }
         public string EffectName { get; }
 
-        public Fading(HexColor[] Colors) {
+        public Fading(Color[] Colors) {
             this.Colors = Colors;
             ValidateParams();
         }
 
-        public Fading(HexColor[] Colors, int speed = 2) {
+        public Fading(Color[] Colors, int speed = 2) {
             this.Colors = Colors;
             this._Speed = speed;
             ValidateParams();

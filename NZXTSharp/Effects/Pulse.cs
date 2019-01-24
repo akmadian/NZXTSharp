@@ -13,7 +13,7 @@ namespace NZXTSharp.Effects {
         private string _EffectName = "Pulse";
         public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };
 
-        public HexColor[] Colors;
+        public Color[] Colors;
         private Channel _Channel;
         private _03Param _Param1;
         private CISS _Param2;
@@ -23,12 +23,12 @@ namespace NZXTSharp.Effects {
         public Channel Channel { get; set; }
         public string EffectName { get; }
 
-        public Pulse(HexColor[] Colors) {
+        public Pulse(Color[] Colors) {
             this.Colors = Colors;
             ValidateParams();
         }
 
-        public Pulse(HexColor[] Colors, int speed) {
+        public Pulse(Color[] Colors, int speed) {
             this.Colors = Colors;
             this.speed = speed;
             ValidateParams();

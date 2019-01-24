@@ -14,7 +14,7 @@ namespace NZXTSharp.Effects {
         private string _EffectName = "Marquee";
         public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };
 
-        private HexColor _Color;
+        private Color _Color;
         private Direction Param1;
         private LSS Param2;
         private Channel _Channel;
@@ -26,7 +26,7 @@ namespace NZXTSharp.Effects {
         public string EffectName { get; }
         #endregion
 
-        public Marquee(IHueDevice Parent, HexColor Color, Direction Direction, LSS LSS) {
+        public Marquee(IHueDevice Parent, Color Color, Direction Direction, LSS LSS) {
             this.Parent = Parent;
             this._Color = Color;
             this.Param1 = Direction;
@@ -41,7 +41,7 @@ namespace NZXTSharp.Effects {
             List<byte[]> outList = new List<byte[]>();
             foreach (Channel channel in Parent.Channels) {
                 byte[] SettingsBytes = new byte[] { 0x4b, (byte)channel, 0x03, Param1, Param2 };
-                byte[] final = SettingsBytes.ConcatenateByteArr(channel.State == false ? new HexColor().AllOff() : Channel.BuildColorBytes(_Color));
+                byte[] final = SettingsBytes.ConcatenateByteArr(channel.State == false ? new Color().AllOff() : Channel.BuildColorBytes(_Color));
                 outList.Add(final);
             }
 
