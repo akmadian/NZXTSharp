@@ -61,7 +61,7 @@ namespace NZXTSharp.Devices
         public Channel Both { get => _Both; }
         public Channel Channel1 { get => _Channel1; }
         public Channel Channel2 { get => _Channel2; }
-        public List<Channel> Channels { get; }
+        public List<Channel> Channels { get => _Channels; }
         public string CustomName { get; set; }
         public NZXTDeviceType Type { get => NZXTDeviceType.HuePlus; }
         #endregion
@@ -108,7 +108,7 @@ namespace NZXTSharp.Devices
                 8,
                 "HuePlus"
             );
-
+            
             _COMController = new SerialController
             (
                 SerialPort.GetPortNames(),
@@ -130,12 +130,11 @@ namespace NZXTSharp.Devices
                     {
                         Retries++;
 
+                        Thread.Sleep(50);
+
                         if (Retries >= _MaxHandshakeRetry)
                             throw new MaxHandshakeRetryExceededException(_MaxHandshakeRetry);
                     }
-
-                    Thread.Sleep(50);
-
                 }
 
                 InitializeChannels();
@@ -152,9 +151,9 @@ namespace NZXTSharp.Devices
         private void InitializeChannels()
         {
             SendLogEvent("Initializing Channels");
-            this._Both = new Channel(0x00, this);
-            this._Channel1 = new Channel(0x01, this);
-            this._Channel2 = new Channel(0x02, this);
+            this._Both = new Channel(0x00, Parent: this);
+            this._Channel1 = new Channel(0x01, Parent: this);
+            this._Channel2 = new Channel(0x02, Parent: this);
             this._Channels = new List<Channel>() { _Both, _Channel1, _Channel2 };
         }
 
@@ -197,12 +196,83 @@ namespace NZXTSharp.Devices
 
             SendLogEvent("Applying Effect: " + effect.EffectName);
 
-            //channel.Effect = effect;
-            effect.Channel = channel;
-            List<byte[]> commandBytes = effect.BuildBytes(channel);
+            List<byte[]> commandBytes = new List<byte[]>();
 
-            foreach (byte[] command in commandBytes)
+            if (channel == this._Both) // If both channels, build and send bytes for both individually
+            {
+                foreach (byte[] arr in effect.BuildBytes(this._Channel1)) {
+                    commandBytes.Add(arr);
+                }
+
+                foreach (byte[] arr in effect.BuildBytes(this._Channel2)) {
+                    commandBytes.Add(arr);
+                }
+
+                _Channel1.UpdateEffect(effect);
+                _Channel2.UpdateEffect(effect);
+            }
+            else // Otherwise, just build for the selected channel
+            {
+                commandBytes = effect.BuildBytes(channel);
+            }
+
+
+            channel.UpdateEffect(effect);
+            effect.Channel = channel;
+
+            foreach (byte[] command in commandBytes) // Send command buffer
+            {
                 _COMController.WriteNoReponse(command);
+                Thread.Sleep(10);
+            }
+        }
+
+        /// <summary>
+        /// Applies the given <paramref name="effect"/> to the given <paramref name="channel"/>.
+        /// </summary>
+        /// <param name="channel">The <see cref="Channel"/> to apply the effect to.</param>
+        /// <param name="effect">The <see cref="IEffect"/> to apply.</param>
+        public void ApplyEffect(Channel channel, IEffect effect, bool ApplyToChannel)
+        {
+            if (!effect.IsCompatibleWith(_Name))
+                throw new IncompatibleEffectException(_Name, effect.EffectName);
+
+            SendLogEvent("Applying Effect: " + effect.EffectName);
+
+            List<byte[]> commandBytes = new List<byte[]>();
+
+            if (channel == this._Both) // If both channels, build and send bytes for both individually
+            {
+                foreach (byte[] arr in effect.BuildBytes(this._Channel1))
+                {
+                    commandBytes.Add(arr);
+                }
+
+                foreach (byte[] arr in effect.BuildBytes(this._Channel2))
+                {
+                    commandBytes.Add(arr);
+                }
+
+                if (ApplyToChannel)
+                {
+                    _Channel1.UpdateEffect(effect);
+                    _Channel2.UpdateEffect(effect);
+                }
+            }
+            else // Otherwise, just build for the selected channel
+            {
+                commandBytes = effect.BuildBytes(channel);
+            }
+
+
+            if (ApplyToChannel) { channel.UpdateEffect(effect); }
+            effect.Channel = channel;
+
+            foreach (byte[] command in commandBytes) // Send command buffer
+            {
+                _COMController.WriteNoReponse(command);
+                Thread.Sleep(10);
+            }
         }
 
         /// <summary>

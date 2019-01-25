@@ -57,12 +57,11 @@ namespace NZXTSharp.Effects {
 
         public List<byte[]> BuildBytes(Channel Channel) {
             List<byte[]> outList = new List<byte[]>();
-            foreach (Channel channel in Parent.Channels) {
-                for (int colorIndex = 0; colorIndex < _Colors.Length; colorIndex++) {
-                    byte[] SettingsBytes = new byte[] { 0x4b, (byte)channel, 0x04, Param1, new CISS(colorIndex, this._Speed) };
-                    byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(_Colors[colorIndex]));
-                    outList.Add(final);
-                }
+            for (int colorIndex = 0; colorIndex < _Colors.Length; colorIndex++)
+            {
+                byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x04, Param1, new CISS(colorIndex, this._Speed) };
+                byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(_Colors[colorIndex]));
+                outList.Add(final);
             }
 
             return outList;

@@ -2,22 +2,24 @@
 using System.Collections.Generic;
 using System.Text;
 
+using NZXTSharp.Devices;
+
 namespace NZXTSharp.Devices {
-    enum SerialDeviceID {
+    internal enum SerialDeviceID {
 
         Unknown = -1,
         ManufacturerID = 0x1e71,
         
         // Kraken Devices
-        KrakenM22 = 0x1715,
+        KrakenM = 0x1715,
         KrakenX   = 0x170e,
-
+        
         // Hue Devices
         Hue2       = 0x2001,
         HueAmbient = 0x2002,
 
         // Grid Devices
-        GridV2 = -1,
+        GridV2 = Unknown,
         GridV3 = 0x1711,
 
         // Motherboards
@@ -26,6 +28,6 @@ namespace NZXTSharp.Devices {
 
         // Misc
         H7Lumi      = 0x1712,
-        SmartDevice = 0x1714,
+        SmartDevice = 0x1714
     }
 }

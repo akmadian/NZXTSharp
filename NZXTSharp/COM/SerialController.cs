@@ -7,7 +7,7 @@ using System.IO;
 using System.IO.Ports;
 
 namespace NZXTSharp.COM {
-    class SerialController : ICOMController {
+    internal class SerialController : ICOMController {
         
         private SerialPort _Port;
         private SerialCOMData _StartData;

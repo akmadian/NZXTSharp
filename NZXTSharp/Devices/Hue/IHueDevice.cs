@@ -6,8 +6,10 @@ using NZXTSharp.Effects;
 
 namespace NZXTSharp.Devices {
     public interface IHueDevice : INZXTDevice {
-        
+
         void ApplyEffect(Channel channel, IEffect effect);
+
+        void ApplyEffect(Channel channel, IEffect effect, bool ApplyToChannel);
 
         void ApplyCustom(byte[] Bytes);
 

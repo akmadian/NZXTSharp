@@ -5,7 +5,7 @@ using System.Text;
 using NZXTSharp;
 
 namespace NZXTSharp.Params {
-    class _03Param : IParam {
+    internal class _03Param : IParam {
         private int _Value = 0x03;
         private List<string> _CompatibleWith = new List<string>() { "HuePlus" };
 

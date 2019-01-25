@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace NZXTSharp.Exceptions {
-    class InvalidParamException : Exception {
+    internal class InvalidParamException : Exception {
 
         public InvalidParamException() {
 

@@ -9,19 +9,21 @@ using NZXTSharp.Effects;
 namespace NZXTSharp.Devices {
     public class Channel {
         
-        private int _ChannelByte;
-        private IEffect _Effect;
+        private readonly int _ChannelByte;
+        private IEffect _Effect = new Fixed(new Color(255, 255, 255));
         private IHueDevice _Parent;
         private bool _State = true;
         private ChannelInfo _ChannelInfo;
+        #pragma warning disable IDE0044 // Add readonly modifier
         private List<ISubDevice> _SubDevices = new List<ISubDevice>();
-        
+        #pragma warning restore IDE0044 // Add readonly modifier
+
         #region Properties
         public int ChannelByte { get; }
-        public IEffect Effect { get; set; }
-        public bool State { get; set; }
+        public IEffect Effect { get => _Effect; }
+        public bool State { get => _State; }
         public ChannelInfo ChannelInfo { get => _ChannelInfo; }
-        public IHueDevice Parent { get; }
+        public IHueDevice Parent { get => _Parent; }
         public List<ISubDevice> SubDevices { get => _SubDevices; }
         #endregion
 
@@ -44,46 +46,56 @@ namespace NZXTSharp.Devices {
             this._ChannelInfo = Info;
         }
 
-        public void BuildSubDevices() {
-            for (int i = 0; i < ChannelInfo.NumSubDevices; i++) {
-                switch (ChannelInfo.Type) {
+        internal void BuildSubDevices() {
+            for (int i = 0; i < _ChannelInfo.NumSubDevices; i++) {
+                switch (_ChannelInfo.Type) {
                     case NZXTDeviceType.Fan:
-                        SubDevices.Add(new Fan());
+                        this._SubDevices.Add(new Fan());
                         break;
                     case NZXTDeviceType.Strip:
-                        SubDevices.Add(new Strip());
+                        this._SubDevices.Add(new Strip());
                         break;
                 }
             }
         }
 
+        internal void UpdateEffect(IEffect newOne)
+        {
+            this._Effect = newOne;
+        }
+
+
+        public void RefreshSubDevices()
+        {
+            BuildSubDevices();
+        }
+
         public void On() {
-            this._State = false;
-            byte[] SettingsBytes = new byte[] { 0x4b, (byte)this, (byte)this.Effect.EffectByte, 0x03, 0x02 };
-            // TODO : TOFIX
-            //byte[] final = SettingsBytes.ConcatenateByteArr(this.Effect.Color.Expanded());
-            //_Parent.ApplyCustom(final);   
+            this._State = true;
+            _Parent.ApplyEffect(this, _Effect);
         }
 
         public void Off() {
             this._State = false;
-            _Parent.ApplyEffect(this, new Effects.Fixed(this, new Color(0, 0, 0)));
+            _Parent.ApplyEffect(this, new Fixed(this, new Color(0, 0, 0)), false);
         }
         
-        public byte[] BuildColorBytes(Color color) {
+        internal byte[] BuildColorBytes(Color color) {
             List<byte> outList = new List<byte>();
-            foreach (ISubDevice device in SubDevices) 
+            foreach (ISubDevice device in _SubDevices)
             {
                 if (device.IsActive) // If active, add effect color
                 {
-                    byte[] exp = color.Expanded(device.NumLeds);
+                    byte[][] exp = color.ExpandedChunks(device.NumLeds);
                     for (int LED = 0; LED < device.NumLeds; LED++) {
-                        if (device.Leds[LED]) {
-                            outList.Add(exp[LED]);
-                            outList.Add(exp[LED + 1]);
-                            outList.Add(exp[LED + 2]);
+                        if (device.Leds[LED])
+                        {
+                            outList.Add(exp[LED][0]);
+                            outList.Add(exp[LED][1]);
+                            outList.Add(exp[LED][2]);
                         }
-                        else {
+                        else
+                        {
                             outList.Add(0x00);
                             outList.Add(0x00);
                             outList.Add(0x00);
@@ -99,11 +111,6 @@ namespace NZXTSharp.Devices {
             for (int pad = outList.Count; pad < 120; pad++) { // Pad out remainder
                 outList.Add(0x00);
             }
-            /*
-            for (int index = 0; index < outList.Count; index++) {
-                if (index % 12 == 0) {
-                }
-            }*/
             return outList.ToArray();
         }
 
