@@ -9,7 +9,6 @@ NZXTSharp is a C# package that allows interaction with NZXT's Hue+. Support for 
 Find NZXTSharp on NuGet [here][0]. If you are adding through Visual Studio, please be sure to check `Include Prereleases`.
 
 **Please keep in mind that NZXTSharp is in heavy development, and will have breaking changes in the future.**
-<br>**NZXTSharp is in very early development, and very little is supported at the moment. Please keep checking back!**
 
 Documentation is still a work in progress, and can be found at [NZXTSharp's readthedocs.io page][3]. Docs are built from [the docs branch][4].
 
