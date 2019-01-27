@@ -1,0 +1,3 @@
+#####
+InvalidEffectSpeedException
+#####
