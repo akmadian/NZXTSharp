@@ -32,14 +32,20 @@ A basic getting started example with the Hue+:
 .. toctree:: 
   :maxdepth: 1
 
-  Examples/Getting Started <Getting-Started>
   Supported Devices and Features <Supported>
+  Support
    
 .. toctree:: 
   :maxdepth: 2
   :caption: Protocols
 
   Protocols/Hue+
+
+.. toctree::
+  :maxdepth: 1
+  :caption: Examples
+
+  Examples/Getting Started <Getting-Started>
 
 .. toctree::
   :maxdepth: 2
