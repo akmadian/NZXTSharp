@@ -45,12 +45,17 @@ A basic getting started example with the Hue+:
    :maxdepth: 2
    :caption: SDK-Docs
 
+   :caption: NZXTSharp
    SDK-Docs/NZXTSharp/Color
    SDK-Docs/NZXTSharp/Extensions
+
+   :caption: NZXTSharp.COM
    SDK-Docs/NZXTSharp.COM/ICOMController
    SDK-Docs/NZXTSharp.COM/SerialCOMData
    SDK-Docs/NZXTSharp.COM/SerialController
    SDK-Docs/NZXTSharp.COM/USBController
+
+   :caption: NZXTSharp.Devices
    SDK-Docs/NZXTSharp.Devices/ISerialDevice
    SDK-Docs/NZXTSharp.Devices/IUSBDevice
    SDK-Docs/NZXTSharp.Devices/ISubDevice
@@ -62,6 +67,8 @@ A basic getting started example with the Hue+:
    SDK-Docs/NZXTSharp.Devices/HuePlus
    SDK-Docs/NZXTSharp.Devices/NZXTDeviceType
    SDK-Docs/NZXTSharp.Devices/SerialDeviceID
+
+   :caption: NZXTSharp.Effects
    SDK-Docs/NZXTSharp.Effects/IEffect
    SDK-Docs/NZXTSharp.Effects/Fixed
    SDK-Docs/NZXTSharp.Effects/Fading
@@ -73,11 +80,15 @@ A basic getting started example with the Hue+:
    SDK-Docs/NZXTSharp.Effects/Breathing
    SDK-Docs/NZXTSharp.Effects/CandleLight
    SDK-Docs/NZXTSharp.Effects/Wings
+
+   :caption: NZXTSharp.Params
    SDK-Docs/NZXTSharp.Params/02Param
    SDK-Docs/NZXTSharp.Params/03Param
    SDK-Docs/NZXTSharp.Params/CISS
    SDK-Docs/NZXTSharp.Params/Direction
    SDK-Docs/NZXTSharp.Params/LSS
+
+   :caption: NZXTSharp.Exceptions
    SDK-Docs/NZXTSharp.Exceptions/IncompatibleDeviceTypeException
    SDK-Docs/NZXTSharp.Exceptions/IncompatibleEffectException
    SDK-Docs/NZXTSharp.Exceptions/IncompatibleParamException
