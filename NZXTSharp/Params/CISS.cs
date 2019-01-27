@@ -5,21 +5,33 @@ using System.Text;
 using NZXTSharp.Exceptions;
 
 namespace NZXTSharp.Params {
+
+    /// <summary>
+    /// Represents a CISS effect param.
+    /// </summary>
     internal class CISS : IParam {
-        private int colorIndex;
+        private readonly int colorIndex;
         private int speed;
         private int evaluatedIndex;
-        private int _Value;
-        private List<string> _CompatibleWith = new List<string>() { "HuePlus" };
+        private readonly int _Value;
 
+        /// <inheritdoc/>
         public int Value { get => GetValue(); }
-        public List<string> CompatibleWith { get; }
 
+        /// <summary>
+        /// Constructs a <see cref="CISS"/> instance.
+        /// </summary>
+        /// <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
         public CISS(int speed) {
             this.speed = speed;
             ValidateInput();
         }
 
+        /// <summary>
+        /// Constructs a <see cref="CISS"/> instance.
+        /// </summary>
+        /// <param name="colorIndex">The index of the color in the list.</param>
+        /// <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
         public CISS(int colorIndex, int speed) {
             this.colorIndex = colorIndex;
             this.speed = speed;
@@ -37,11 +49,16 @@ namespace NZXTSharp.Params {
                 throw new InvalidParamException("Invalid Param; ColorIndex Value Must Be Between 7 and 0 (inclusive). (Zero-Indexed)");
         }
 
+        /// <inheritdoc/>
         public int GetValue() {
             string concatenated = evaluatedIndex.ToString("X") + speed.ToString();
             return int.Parse(concatenated, System.Globalization.NumberStyles.HexNumber);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="param"></param>
         public static implicit operator byte(CISS param) {
             return (byte)param.GetValue();
         }

@@ -5,8 +5,15 @@ using System.Text;
 using NZXTSharp.Devices;
 
 namespace NZXTSharp.Devices {
+
+    /// <summary>
+    /// Contains the Manufacturer and Product IDs of NZXT devices.
+    /// </summary>
     internal enum SerialDeviceID {
 
+        /// <summary>
+        /// An unknown ID.
+        /// </summary>
         Unknown = -1,
         ManufacturerID = 0x1e71,
         

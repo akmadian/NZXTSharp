@@ -34,8 +34,14 @@ using NZXTSharp.COM;
 namespace NZXTSharp.Devices
 {
 
+    /// <summary>
+    /// Triggers when a generic log message is sent.
+    /// </summary>
     public delegate void LogHandler(string message);
 
+    /// <summary>
+    /// Triggers when data is received from the COM port.
+    /// </summary>
     public delegate void DataRecieved(string message);
 
     /// <summary>
@@ -44,9 +50,9 @@ namespace NZXTSharp.Devices
     public class HuePlus : IHueDevice
     {
         #region Fields
-        private string _Name = "HuePlus";
-        private string _CustomName = null;
-        private int _MaxHandshakeRetry = 5;
+        private readonly string _Name = "HuePlus";
+        private readonly string _CustomName = null;
+        private readonly int _MaxHandshakeRetry = 5;
 
         private SerialController _COMController;
 
@@ -57,17 +63,51 @@ namespace NZXTSharp.Devices
         #endregion
 
         #region Properties
+        /// <summary>
+        /// The device's product name.
+        /// </summary>
         public string Name { get; }
+
+        /// <summary>
+        /// A <see cref="Channel"/> object representing both channels on the <see cref="HuePlus"/>.
+        /// </summary>
         public Channel Both { get => _Both; }
+
+        /// <summary>
+        /// A <see cref="Channel"/> object representing the Channel 1 of the <see cref="HuePlus"/> device.
+        /// </summary>
         public Channel Channel1 { get => _Channel1; }
+
+        /// <summary>
+        /// A <see cref="Channel"/> object representing the Channel 2 of the <see cref="HuePlus"/> device.
+        /// </summary>
         public Channel Channel2 { get => _Channel2; }
+
+        /// <summary>
+        /// A <see cref="List{T}"/> containing all <see cref="Channel"/> objects owned by the <see cref="HuePlus"/> device.
+        /// </summary>
         public List<Channel> Channels { get => _Channels; }
+        
+        /// <summary>
+        /// A custom name for the <see cref="HuePlus"/> instance.
+        /// </summary>
         public string CustomName { get; set; }
+
+        /// <summary>
+        /// The <see cref="NZXTDeviceType"/> of the <see cref="HuePlus"/> object.
+        /// </summary>
         public NZXTDeviceType Type { get => NZXTDeviceType.HuePlus; }
         #endregion
 
+
+        /// <summary>
+        /// Triggers when a generic log message is sent.
+        /// </summary>
         public event LogHandler OnLogMessage;
 
+        /// <summary>
+        /// Triggers when data is received from the COM port.
+        /// </summary>
         public event DataRecieved OnDataReceived;
 
         /// <summary>
@@ -78,6 +118,10 @@ namespace NZXTSharp.Devices
             Initialize();
         }
 
+        /// <summary>
+        /// Constructs a <see cref="HuePlus"/> instance with a custom <paramref name="MaxHandshakeRetry"/> count.
+        /// </summary>
+        /// <param name="MaxHandshakeRetry"></param>
         public HuePlus(int MaxHandshakeRetry)
         {
             if (MaxHandshakeRetry <= 0)
@@ -189,52 +233,10 @@ namespace NZXTSharp.Devices
         /// </summary>
         /// <param name="channel">The <see cref="Channel"/> to apply the effect to.</param>
         /// <param name="effect">The <see cref="IEffect"/> to apply.</param>
-        public void ApplyEffect(Channel channel, IEffect effect)
+        /// <param name="ApplyToChannel">Whether or not to save the given effect to the given channel.</param>
+        public void ApplyEffect(Channel channel, IEffect effect, bool ApplyToChannel = true)
         {
-            if (!effect.IsCompatibleWith(_Name))
-                throw new IncompatibleEffectException(_Name, effect.EffectName);
-
-            SendLogEvent("Applying Effect: " + effect.EffectName);
-
-            List<byte[]> commandBytes = new List<byte[]>();
-
-            if (channel == this._Both) // If both channels, build and send bytes for both individually
-            {
-                foreach (byte[] arr in effect.BuildBytes(this._Channel1)) {
-                    commandBytes.Add(arr);
-                }
-
-                foreach (byte[] arr in effect.BuildBytes(this._Channel2)) {
-                    commandBytes.Add(arr);
-                }
-
-                _Channel1.UpdateEffect(effect);
-                _Channel2.UpdateEffect(effect);
-            }
-            else // Otherwise, just build for the selected channel
-            {
-                commandBytes = effect.BuildBytes(channel);
-            }
-
-
-            channel.UpdateEffect(effect);
-            effect.Channel = channel;
-
-            foreach (byte[] command in commandBytes) // Send command buffer
-            {
-                _COMController.WriteNoReponse(command);
-                Thread.Sleep(10);
-            }
-        }
-
-        /// <summary>
-        /// Applies the given <paramref name="effect"/> to the given <paramref name="channel"/>.
-        /// </summary>
-        /// <param name="channel">The <see cref="Channel"/> to apply the effect to.</param>
-        /// <param name="effect">The <see cref="IEffect"/> to apply.</param>
-        public void ApplyEffect(Channel channel, IEffect effect, bool ApplyToChannel)
-        {
-            if (!effect.IsCompatibleWith(_Name))
+            if (!effect.IsCompatibleWith(Type))
                 throw new IncompatibleEffectException(_Name, effect.EffectName);
 
             SendLogEvent("Applying Effect: " + effect.EffectName);
@@ -278,7 +280,7 @@ namespace NZXTSharp.Devices
         /// <summary>
         /// Writes a custom <paramref name="Buffer"/> to the device's <see cref="SerialController"/>.
         /// </summary>
-        /// <param name="Bytes"></param>
+        /// <param name="Buffer">The buffer to write to the device.</param>
         public void ApplyCustom(byte[] Buffer)
         {
             _COMController.WriteNoReponse(Buffer);
@@ -340,7 +342,6 @@ namespace NZXTSharp.Devices
             UpdateChannelInfoOp(this._Channel2);
         }
 
-        // TOTEST
         private void UpdateChannelInfoOp(Channel channel)
         {
             _COMController.Port.DiscardInBuffer(); //This will have to be removed later

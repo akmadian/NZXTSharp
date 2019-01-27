@@ -7,8 +7,13 @@ using System.IO;
 using System.IO.Ports;
 
 namespace NZXTSharp.COM {
+
+    /// <summary>
+    /// Represents a <see cref="SerialPort"/> with some useful methods.
+    /// </summary>
     internal class SerialController : ICOMController {
-        
+
+        #region Properties and Fields
         private SerialPort _Port;
         private SerialCOMData _StartData;
         private string[] _PossiblePorts;
@@ -24,25 +29,37 @@ namespace NZXTSharp.COM {
         /// </summary>
         public SerialCOMData StartData { get => _StartData; }
 
-        public bool IsOpen { get => _Port.IsOpen; }
-
         /// <summary>
-        /// 
+        /// Returns a bool telling whether or not the <see cref="SerialController"/>'s <see cref="Port"/> is open.
         /// </summary>
-        /// <param name="COMPort"></param>
+        public bool IsOpen { get => _Port.IsOpen; }
+        #endregion
+
+        #region Constructors
+        /// <summary>
+        /// Opens the SerialController on a specific COM port.
+        /// </summary>
+        /// <param name="COMPort">The COM port to open in "COMx" format.</param>
         public SerialController(string COMPort) {
             this._PossiblePorts = new string[] { COMPort };
 
             Initialize();
         }
 
+        /// <summary>
+        /// Attempts to open each of the COM ports in <paramref name="PossiblePorts"/> with the provided <paramref name="Data"/>.
+        /// </summary>
+        /// <param name="PossiblePorts">An array of possible ports the device could be on.</param>
+        /// <param name="Data">The <see cref="SerialCOMData"/> to open the port with.</param>
         public SerialController(string[] PossiblePorts, SerialCOMData Data) {
             this._PossiblePorts = PossiblePorts;
             this._StartData = Data;
 
             Initialize();
         }
+        #endregion
 
+        #region Methods
         private void Initialize() {
             try
             {
@@ -129,5 +146,6 @@ namespace NZXTSharp.COM {
         {
             _Port.Close();
         }
+        #endregion
     }
 }
