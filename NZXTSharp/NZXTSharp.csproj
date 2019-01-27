@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.1.1-beta</Version>
+    <Version>1.0.3-beta</Version>
     <Description>The one-stop C# sdk that facilitates interaction with NZXT devices.</Description>
     <Authors>Ari Madian</Authors>
     <Company>Ari Madian</Company>
@@ -15,10 +15,31 @@
     <PackageIconUrl>https://i.imgur.com/4GAobyk.jpg</PackageIconUrl>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <AssemblyVersion>1.0.1.1</AssemblyVersion>
-    <FileVersion>1.0.1.1</FileVersion>
-    <PackageReleaseNotes>Fix CISS param evaluation</PackageReleaseNotes>
+    <AssemblyVersion>1.0.3</AssemblyVersion>
+    <FileVersion>1.0.3</FileVersion>
+    <PackageReleaseNotes>(1.0.3-beta)
+All effects are now working! Subdevices should also be working. 
+
+- Breaking Changes - N/A
+
+(1.0.2-beta)
+- Breaking Changes
+    - Renamed HexColor.cs to Color.cs
+
+- New Features
+    - Subdevices: Individually control fans, strips, and their individual leds! Documentation and getting started examples        coming soon.
+
+- Behind the Scenes
+    - Addition of COM system, will make it easier to add support for more devices.
+    - Refactoring, moved some files around, cleanup.
+
+Most effects still not working.</PackageReleaseNotes>
     <Copyright>Copyright provided under the GNU GPLv3 open source license.</Copyright>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;0414;0169;0649</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace NZXTSharp.Devices {
-    public interface IUSBDevice : INZXTDevice {
+    internal interface IUSBDevice : INZXTDevice {
 
         int DeviceID { get; }
 

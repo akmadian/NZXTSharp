@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
@@ -56,39 +57,34 @@ namespace NZXTSharp {
 
         public byte[] Expanded()
         {
-            List<int> outBytes = new List<int>();
+            List<byte> outBytes = new List<byte>();
             for (int i = 0; i < 40; i++)
             {
-                outBytes.Add(G);
-                outBytes.Add(R);
-                outBytes.Add(B);
+                outBytes.Add(Convert.ToByte(G));
+                outBytes.Add(Convert.ToByte(R));
+                outBytes.Add(Convert.ToByte(B));
             }
 
-            List<byte> outB = new List<byte>();
-
-            foreach (int val in outBytes)
-            {
-                outB.Add(Convert.ToByte(val));
-            }
-
-            return outB.ToArray();
+            return outBytes.ToArray();
         }
 
-        public byte[] Expanded(int NumLeds) {
-            List<int> outBytes = new List<int>();
-            for (int i = 0; i < NumLeds; i++) {
-                outBytes.Add(G);
-                outBytes.Add(R);
-                outBytes.Add(B);
+        /// <summary>
+        /// Expands the <see cref="Color"/> instance into an array of byte arrays. Each sub array contains the RGB values for each LED.
+        /// </summary>
+        /// <param name="NumLeds"></param>
+        /// <returns></returns>
+        public byte[][] ExpandedChunks(int NumLeds)
+        {
+            List<byte[]> outBytes = new List<byte[]>();
+            for (int i = 0; i < NumLeds; i++)
+            {
+                List<byte> arr = new List<byte>();
+                arr.Add(Convert.ToByte(G));
+                arr.Add(Convert.ToByte(R));
+                arr.Add(Convert.ToByte(B));
+                outBytes.Add(arr.ToArray());
             }
-
-            List<byte> outB = new List<byte>();
-
-            foreach (int val in outBytes) {
-                outB.Add(Convert.ToByte(val));
-            }
-
-            return outB.ToArray();
+            return outBytes.ToArray();
         }
     }
 }

@@ -5,14 +5,14 @@ using System.Text;
 
 namespace NZXTSharp {
 
-    public static class IntExtensions {
+    internal static class IntExtensions {
 
         public static int DecimalToByte(this int toConvert) {
             return Convert.ToInt32(toConvert.ToString("X"));
         }
     }
     
-    public static class StringExtensions {
+    internal static class StringExtensions {
 
         public static string[] SplitEveryN(this string toSplit, int n) {
             List<string> returnArr = new List<string>();
@@ -31,7 +31,7 @@ namespace NZXTSharp {
         }
     }
 
-    public static class ByteArrExtensions {
+    internal static class ByteArrExtensions {
 
         public static byte[] ConcatenateByteArr(this byte[] thisone, byte[] other) {
             List<byte> l1 = new List<byte>(thisone);
@@ -45,6 +45,23 @@ namespace NZXTSharp {
             StringBuilder sb = new StringBuilder();
             foreach (byte thing in thisone) {
                 sb.Append(thing.ToString() + " ");
+            }
+            return sb.ToString();
+        }
+
+        // TOFIX
+        public static string ColorArrToString(this byte[] thisone)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < thisone.Length; i++)
+            {
+                if (!(i % 12 == 0) || i == 0)
+                {
+                    sb.Append(thisone[i] + " ");
+                } else
+                {
+                    sb.Append("\n");
+                }
             }
             return sb.ToString();
         }

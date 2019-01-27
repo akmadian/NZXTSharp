@@ -9,6 +9,7 @@ using NZXTSharp.Params;
 // TOTEST
 namespace NZXTSharp.Effects {
     public class Alternating : IEffect {
+        #pragma warning disable IDE0044 // Add readonly modifier
         private int _EffectByte = 0x05;
         private string _EffectName = "Alternating";
         public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };
@@ -18,6 +19,7 @@ namespace NZXTSharp.Effects {
         private Direction _Param1 = new Direction(true, false);
         private CISS _Param2;
         private int speed = 2;
+        #pragma warning restore IDE0044 // Add readonly modifier
 
         public int EffectByte { get; }
         public Channel Channel { get; set; }

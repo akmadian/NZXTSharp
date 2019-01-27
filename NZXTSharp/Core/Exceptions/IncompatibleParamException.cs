@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace NZXTSharp.Exceptions {
-    class IncompatibleParamException : Exception {
+    internal class IncompatibleParamException : Exception {
         public IncompatibleParamException() {
 
         }

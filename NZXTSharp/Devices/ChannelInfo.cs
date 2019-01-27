@@ -1,10 +1,12 @@
 ﻿namespace NZXTSharp.Devices {
     public class ChannelInfo {
+        #pragma warning disable IDE0044 // Add readonly modifier
         private int _NumLeds;
         private NZXTDeviceType _Type;
         private int _NumSubDevices;
         private bool _IsActive;
         private Channel _Parent;
+        #pragma warning restore IDE0044 // Add readonly modifier
 
         public int NumLeds { get => _NumLeds; }
         public int NumSubDevices { get => _NumSubDevices; }
