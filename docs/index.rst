@@ -40,10 +40,6 @@ A basic getting started example with the Hue+:
   :caption: Protocols
 
   Protocols/Hue+
-   
-.. toctree::
-  :maxdepth: 2
-  :caption: SDK-Docs
 
 .. toctree::
   :maxdepth: 1
