@@ -1,0 +1,3 @@
+#####
+NZXTSharp.Effects
+#####
