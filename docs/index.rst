@@ -42,14 +42,14 @@ A basic getting started example with the Hue+:
   Protocols/Hue+
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 0
   :caption: NZXTSharp
 
   SDK-Docs/NZXTSharp/Color
   SDK-Docs/NZXTSharp/Extensions
 
 .. toctree::
-  :maxdepth: 1
+  :maxdepth: 0
   :caption: NZXTSharp.COM
 
   SDK-Docs/NZXTSharp.COM/ICOMController
@@ -58,7 +58,7 @@ A basic getting started example with the Hue+:
   SDK-Docs/NZXTSharp.COM/USBController
 
 .. toctree::
-  :maxdepth: 1
+  :maxdepth: 0
   :caption: NZXTSharp.Devices
 
   SDK-Docs/NZXTSharp.Devices/ISerialDevice
@@ -75,7 +75,7 @@ A basic getting started example with the Hue+:
 
 
 .. toctree::
-  :maxdepth: 1
+  :maxdepth: 0
   :caption: NZXTSharp.Effects
 
   SDK-Docs/NZXTSharp.Effects/IEffect
@@ -91,7 +91,7 @@ A basic getting started example with the Hue+:
   SDK-Docs/NZXTSharp.Effects/Wings
 
 .. toctree::
-  :maxdepth: 1
+  :maxdepth: 0
   :caption: NZXTSharp.Params
 
   SDK-Docs/NZXTSharp.Params/02Param
@@ -101,7 +101,7 @@ A basic getting started example with the Hue+:
   SDK-Docs/NZXTSharp.Params/LSS
 
 .. toctree::
-  :maxdepth: 1
+  :maxdepth: 0
   :caption: NZXTSharp.Exceptions
 
   SDK-Docs/NZXTSharp.Exceptions/IncompatibleDeviceTypeException
