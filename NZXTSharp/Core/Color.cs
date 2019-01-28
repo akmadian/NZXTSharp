@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Linq;
 
 namespace NZXTSharp {
@@ -47,6 +48,10 @@ namespace NZXTSharp {
         /// <param name="hexColor">The color code. Supports codes with a leading #, and without.</param>
         public Color(string hexColor)
         {
+               if (!Regex.IsMatch(hexColor, "#?([a-f]|[A-F]|[0-9]){6}"))
+            {
+                throw new Exception("Invalid colour format.  The color must be of the form #FFFFFF or FFFFFF");
+            }
             if (hexColor.StartsWith("#")) // Strip leading # if it exists
                 hexColor = hexColor.Substring(1);
 
