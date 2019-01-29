@@ -54,7 +54,7 @@ A basic getting started example with the Hue+:
   SDK-Docs/NZXTSharp
   SDK-Docs/NZXTSharp.COM  
   SDK-Docs/NZXTSharp.Devices
-  SDK-Docs/NXZTSharp.Effects
+  SDK-Docs/NZXTSharp.Effects
   SDK-Docs/NZXTSharp.Params
   SDK-Docs/NZXTSharp.Exceptions
 
