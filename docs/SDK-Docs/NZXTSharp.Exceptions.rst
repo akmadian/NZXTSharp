@@ -12,7 +12,7 @@ Classes
 
 IncompatibleDeviceTypeException
 =====
-**thrown** 
+**thrown** When an NZXTDeviceType is passed to a method or constructor that is not compatible with that method or constructor.
 
 
 IncompatibleEffectException
