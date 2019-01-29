@@ -4,6 +4,8 @@ Hue+ Protocol
 
 .. contents:: Table of Contents
 
+----------
+
 Basic Protocol Schema: Command Type, ChannelByte, EffectByte, Param1, Param2, LedData
     **ChannelByte: Both = 00, Channel 1 = 01, Channel 2 = 02**
     
