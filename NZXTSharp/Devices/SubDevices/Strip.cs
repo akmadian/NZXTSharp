@@ -54,6 +54,12 @@ namespace NZXTSharp.Devices {
             this._IsActive = (this._IsActive ? false : true);
         }
 
+        /// <inheritdoc/>
+        public void SetState(bool State)
+        {
+            this._IsActive = State;
+        }
+
         /// <summary>
         /// Toggles a specific LED owned by the <see cref="Strip"/> device.
         /// </summary>

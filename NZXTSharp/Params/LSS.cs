@@ -32,7 +32,7 @@ namespace NZXTSharp.Params {
         /// </summary>
         /// <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
         /// <param name="LEDSize">The LED group size, LEDSizes must be between 3-6 (inclusive).</param>
-        public LSS(int speed, int LEDSize) {
+        public LSS(int speed = 2, int LEDSize = 4) {
             this._speed = speed;
             this._LEDSize = LEDSize;
             ValidateParams();

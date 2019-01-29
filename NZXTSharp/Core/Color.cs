@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Linq;
+
+using NZXTSharp.Exceptions;
 
 namespace NZXTSharp {
 
@@ -48,17 +47,20 @@ namespace NZXTSharp {
         /// <param name="hexColor">The color code. Supports codes with a leading #, and without.</param>
         public Color(string hexColor)
         {
-               if (!Regex.IsMatch(hexColor, "#?([a-f]|[A-F]|[0-9]){6}"))
+            if (!Regex.IsMatch(hexColor, "#?([a-f]|[A-F]|[0-9]){6}")) // Validate input
             {
-                throw new Exception("Invalid colour format.  The color must be of the form #FFFFFF or FFFFFF");
+                throw new InvalidParamException("Invalid color format. The color must be of the form #FFFFFF or FFFFFF");
             }
+
             if (hexColor.StartsWith("#")) // Strip leading # if it exists
                 hexColor = hexColor.Substring(1);
+            
 
             string[] splitHex = hexColor.SplitEveryN(2);
-            this._R = Convert.ToInt32(splitHex[0]);
-            this._G = Convert.ToInt32(splitHex[1]);
-            this._B = Convert.ToInt32(splitHex[2]);
+
+            this._R = int.Parse(splitHex[0], System.Globalization.NumberStyles.HexNumber);
+            this._G = int.Parse(splitHex[1], System.Globalization.NumberStyles.HexNumber);
+            this._B = int.Parse(splitHex[2], System.Globalization.NumberStyles.HexNumber);
         }
 
         /// <summary>
@@ -69,6 +71,9 @@ namespace NZXTSharp {
         /// <param name="B">The color's B value. Must be 0-255 (inclusive).</param>
         public Color(int R, int G, int B)
         {
+            if ((_R > 255 || _R < 0) || (_G > 255 || _G < 0) || (_B > 255 || _B < 0))
+                throw new InvalidParamException("RGB Values must be between 0-255 (inclusive).");
+
             this._R = R;
             this._G = G;
             this._B = B;

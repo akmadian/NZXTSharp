@@ -39,22 +39,13 @@ namespace NZXTSharp.Effects {
         public string EffectName { get; }
 
         /// <summary>
-        /// Constructs a <see cref="Pulse"/> effect with the given <see cref="Color"/> array.
-        /// </summary>
-        /// <param name="Colors"></param>
-        public Pulse(Color[] Colors) {
-            this.Colors = Colors;
-            ValidateParams();
-        }
-
-        /// <summary>
         /// Constructs a <see cref="Pulse"/> effect with the given <see cref="Color"/> array and speed.
         /// </summary>
         /// <param name="Colors"></param>
-        /// <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
-        public Pulse(Color[] Colors, int speed) {
+        /// <param name="Speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
+        public Pulse(Color[] Colors, int Speed = 2) {
             this.Colors = Colors;
-            this.speed = speed;
+            this.speed = Speed;
             ValidateParams();
         }
 

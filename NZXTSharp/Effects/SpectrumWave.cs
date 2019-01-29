@@ -36,10 +36,10 @@ namespace NZXTSharp.Effects {
         /// Constructs a <see cref="SpectrumWave"/> effect with the given <see cref="Direction"/>.
         /// </summary>
         /// <param name="Direction"></param>
-        /// <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
-        public SpectrumWave(Direction Direction, int speed = 2) {
+        /// <param name="Speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
+        public SpectrumWave(Direction Direction, int Speed = 2) {
             this.Param1 = Direction;
-            this.Param2 = new CISS(0, speed);
+            this.Param2 = new CISS(0, Speed);
         }
 
         /// <inheritdoc/>

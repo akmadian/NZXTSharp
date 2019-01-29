@@ -24,7 +24,6 @@ namespace NZXTSharp.Effects {
         private Direction Param1;
         private LSS Param2;
         private Channel _Channel;
-        private IHueDevice Parent;
 
         #region Properties
         /// <inheritdoc/>
@@ -40,12 +39,10 @@ namespace NZXTSharp.Effects {
         /// <summary>
         /// Constructs a <see cref="Marquee"/> effect.
         /// </summary>
-        /// <param name="Parent">The <see cref="IHueDevice"/> that the effect is being applied to.</param>
         /// <param name="Color">The <see cref="Color"/> of the effect.</param>
         /// <param name="Direction">The <see cref="Direction"/> of the effect.</param>
         /// <param name="LSS">The <see cref="LSS"/> param to apply.</param>
-        public Marquee(IHueDevice Parent, Color Color, Direction Direction, LSS LSS) {
-            this.Parent = Parent;
+        public Marquee(Color Color, Direction Direction, LSS LSS) {
             this._Color = Color;
             this.Param1 = Direction;
             this.Param2 = LSS;

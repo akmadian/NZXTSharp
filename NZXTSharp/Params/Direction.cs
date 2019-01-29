@@ -31,7 +31,7 @@ namespace NZXTSharp.Params {
         /// </summary>
         /// <param name="isForward">Whether or not the param moves forward or backward.</param>
         /// <param name="withMovement">Whether or not the effect will move smoothly.</param>
-        public Direction(bool isForward, bool withMovement) {
+        public Direction(bool isForward = true, bool withMovement = true) {
             this._withMovement = withMovement;
             this._isForward = isForward;
         }

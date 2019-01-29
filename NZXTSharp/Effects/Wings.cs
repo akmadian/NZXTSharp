@@ -36,22 +36,12 @@ namespace NZXTSharp.Effects {
         /// <inheritdoc/>
         public string EffectName { get; }
 
-
-        /// <summary>
-        /// Constructs a <see cref="Wings"/> effect with the given <see cref="Color"/> array.
-        /// </summary>
-        /// <param name="Colors"></param>
-        public Wings(Color[] Colors) {
-            this.Colors = Colors;
-            ValidateParams();
-        }
-
         /// <summary>
         /// Constructs a <see cref="Wings"/> effect with the given <see cref="Color"/> array and speed.
         /// </summary>
         /// <param name="Colors"></param>
         /// <param name="Speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
-        public Wings(Color[] Colors, int Speed) {
+        public Wings(Color[] Colors, int Speed = 2) {
             this.Colors = Colors;
             this.speed = Speed;
             ValidateParams();

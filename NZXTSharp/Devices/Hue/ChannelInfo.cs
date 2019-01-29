@@ -23,7 +23,7 @@
         public int NumSubDevices { get => _NumSubDevices; }
 
         /// <summary>
-        /// 
+        /// Type of <see cref="ISubDevice"/>s available on a <see cref="Channel"/>.
         /// </summary>
         public NZXTDeviceType Type { get => _Type; }
 

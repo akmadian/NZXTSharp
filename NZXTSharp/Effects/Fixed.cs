@@ -44,7 +44,8 @@ namespace NZXTSharp.Effects {
         /// </summary>
         /// <param name="Channel">The <see cref="Channel"/> the effect will be applied to.</param>
         /// <param name="color">The <see cref="Color"/> to display.</param>
-        public Fixed(Channel Channel, Color color) {
+        public Fixed(Channel Channel, Color color)
+        {
             this._Channel = Channel;
             this._Color = color;
         }
@@ -57,8 +58,9 @@ namespace NZXTSharp.Effects {
 
         /// <inheritdoc/>
         public List<byte[]> BuildBytes(Channel Channel) {
-            byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x00, 0x02, 0x03 };
-            byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(_Color));
+            this._Channel = Channel;
+            byte[] SettingsBytes = new byte[] { 0x4b, (byte)_Channel, 0x00, 0x02, 0x03 };
+            byte[] final = SettingsBytes.ConcatenateByteArr(_Channel.BuildColorBytes(_Color));
             return new List<byte[]>() { final };
         }
     }

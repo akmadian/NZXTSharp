@@ -55,33 +55,34 @@ namespace NZXTSharp.Devices {
         #endregion
         
         /// <summary>
-        /// Constructs a <see cref="Channel"/> object with a given <paramref name="_ChannelByte"/>.
+        /// Constructs a <see cref="Channel"/> object with a given <paramref name="ChannelByte"/>.
         /// </summary>
-        /// <param name="_ChannelByte">The ChannelByte to construct the channel from.</param>
-        public Channel(int _ChannelByte) {
-            this._ChannelByte = _ChannelByte;
+        /// <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
+        public Channel(int ChannelByte) {
+            this._ChannelByte = ChannelByte;
         }
 
         /// <summary>
-        /// Constructs a <see cref="Channel"/> object with a given <paramref name="_ChannelByte"/>, owned by a given <paramref name="Parent"/> <see cref="IHueDevice"/>.
+        /// Constructs a <see cref="Channel"/> object with a given <paramref name="ChannelByte"/>, 
+        /// owned by a given <paramref name="Parent"/> <see cref="IHueDevice"/>.
         /// </summary>
-        /// <param name="_ChannelByte">The ChannelByte to construct the channel from.</param>
-        /// <param name="Parent">The <see cref="IHueDevice"/> that owns the <see cref="Channel"/></param>
-        public Channel(int _ChannelByte, IHueDevice Parent) {
-            this.ChannelByte = _ChannelByte;
+        /// <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
+        /// <param name="Parent">The <see cref="IHueDevice"/> that will own the <see cref="Channel"/></param>
+        public Channel(int ChannelByte, IHueDevice Parent) {
+            this.ChannelByte = ChannelByte;
             this._Parent = Parent;
         }
 
         /// <summary>
-        /// Constructs a <see cref="Channel"/> object with a given <paramref name="_ChannelByte"/>, 
+        /// Constructs a <see cref="Channel"/> object with a given <paramref name="ChannelByte"/>, 
         /// owned by a given <paramref name="Parent"/> <see cref="IHueDevice"/>, 
         /// with a given <see cref="ChannelInfo"/>.
         /// </summary>
-        /// <param name="_ChannelByte">The ChannelByte to construct the channel from.</param>
+        /// <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
         /// <param name="Parent">The <see cref="IHueDevice"/> that owns the <see cref="Channel"/></param>
         /// <param name="Info">The <see cref="ChannelInfo"/> owned by the <see cref="Channel"/>.</param>
-        public Channel(int _ChannelByte, IHueDevice Parent, ChannelInfo Info) {
-            this.ChannelByte = _ChannelByte;
+        public Channel(int ChannelByte, IHueDevice Parent, ChannelInfo Info) {
+            this.ChannelByte = ChannelByte;
             this._Parent = Parent;
             this._ChannelInfo = Info;
         }

@@ -22,7 +22,7 @@ namespace NZXTSharp.Params {
         /// Constructs a <see cref="CISS"/> instance.
         /// </summary>
         /// <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
-        public CISS(int speed) {
+        public CISS(int speed = 2) {
             this.speed = speed;
             ValidateInput();
         }
@@ -32,7 +32,7 @@ namespace NZXTSharp.Params {
         /// </summary>
         /// <param name="colorIndex">The index of the color in the list.</param>
         /// <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
-        public CISS(int colorIndex, int speed) {
+        public CISS(int colorIndex, int speed = 2) {
             this.colorIndex = colorIndex;
             this.speed = speed;
 

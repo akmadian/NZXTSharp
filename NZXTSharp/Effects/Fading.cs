@@ -41,15 +41,6 @@ namespace NZXTSharp.Effects {
         /// Constructs a <see cref="Fading"/> effect.
         /// </summary>
         /// <param name="Colors">The <see cref="Color"/>s to display.</param>
-        public Fading(Color[] Colors) {
-            this.Colors = Colors;
-            ValidateParams();
-        }
-
-        /// <summary>
-        /// Constructs a <see cref="Fading"/> effect.
-        /// </summary>
-        /// <param name="Colors">The <see cref="Color"/>s to display.</param>
         /// /// <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
         public Fading(Color[] Colors, int speed = 2) {
             this.Colors = Colors;

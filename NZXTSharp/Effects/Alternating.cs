@@ -66,7 +66,7 @@ namespace NZXTSharp.Effects {
         /// <param name="Color2">The second <see cref="Color"/> to display.</param>
         /// <param name="Direction">The <see cref="Direction"/> the effect will move in.</param>
         /// <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
-        public Alternating(Color Color1, Color Color2, Direction Direction, int speed) {
+        public Alternating(Color Color1, Color Color2, Direction Direction, int speed = 2) {
             this.Colors = new Color[] { Color1, Color2 };
             this._Param1 = Direction;
             this.speed = speed;

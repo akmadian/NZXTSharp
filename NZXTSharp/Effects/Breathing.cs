@@ -51,7 +51,7 @@ namespace NZXTSharp.Effects {
         /// </summary>
         /// <param name="Colors">A <see cref="Color"/> array of colors to display.</param>
         /// <param name="Speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
-        public Breathing(Color[] Colors, int Speed) {
+        public Breathing(Color[] Colors, int Speed = 2) {
             this.Colors = Colors;
             this.speed = Speed;
             ValidateParams();

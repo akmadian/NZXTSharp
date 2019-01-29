@@ -119,24 +119,17 @@ namespace NZXTSharp.Devices
         }
 
         /// <summary>
-        /// Constructs a <see cref="HuePlus"/> instance with a custom <paramref name="MaxHandshakeRetry"/> count.
+        /// Constructs a <see cref="HuePlus"/> instance with a custom <paramref name="MaxHandshakeRetry"/> count, 
+        /// and a custom name <paramref name="CustomName"/>.
         /// </summary>
         /// <param name="MaxHandshakeRetry"></param>
-        public HuePlus(int MaxHandshakeRetry)
+        /// <param name="CustomName">A custom name for the <see cref="HuePlus"/> instance.</param>
+        public HuePlus(int MaxHandshakeRetry = 5, string CustomName = null)
         {
             if (MaxHandshakeRetry <= 0)
                 throw new InvalidParamException("Invalid MaxHandshakeRetry may not be less than or equal to 0.");
 
             this._MaxHandshakeRetry = MaxHandshakeRetry;
-            Initialize();
-        }
-
-        /// <summary>
-        /// Constructs a <see cref="HuePlus"/> instance with a custom name <paramref name="CustomName"/>.
-        /// </summary>
-        /// <param name="CustomName"></param>
-        public HuePlus(string CustomName = null)
-        {
             this._CustomName = CustomName;
             Initialize();
         }
@@ -209,14 +202,12 @@ namespace NZXTSharp.Devices
         /// <summary>
         /// Disposes of and reconnects to the device's <see cref="SerialController"/>.
         /// </summary>
-        /// <returns></returns>
-        public bool Reconnect()
+        public void Reconnect()
         {
             _COMController.Dispose();
 
             Initialize();
             InitializeChannels();
-            return true;
         }
 
         /// <summary>
@@ -233,29 +224,31 @@ namespace NZXTSharp.Devices
         /// </summary>
         /// <param name="channel">The <see cref="Channel"/> to apply the effect to.</param>
         /// <param name="effect">The <see cref="IEffect"/> to apply.</param>
-        /// <param name="ApplyToChannel">Whether or not to save the given effect to the given channel.</param>
-        public void ApplyEffect(Channel channel, IEffect effect, bool ApplyToChannel = true)
+        /// <param name="SaveToChannel">Whether or not to save the given effect to the given channel.</param>
+        public void ApplyEffect(Channel channel, IEffect effect, bool SaveToChannel = true)
         {
             if (!effect.IsCompatibleWith(Type))
                 throw new IncompatibleEffectException(_Name, effect.EffectName);
 
-            SendLogEvent("Applying Effect: " + effect.EffectName);
 
-            List<byte[]> commandBytes = new List<byte[]>();
 
+
+            List<byte[]> commandQueue = new List<byte[]>();
+
+            // TODO : Improve this, not elegant.
             if (channel == this._Both) // If both channels, build and send bytes for both individually
             {
                 foreach (byte[] arr in effect.BuildBytes(this._Channel1))
                 {
-                    commandBytes.Add(arr);
+                    commandQueue.Add(arr);
                 }
 
                 foreach (byte[] arr in effect.BuildBytes(this._Channel2))
                 {
-                    commandBytes.Add(arr);
+                    commandQueue.Add(arr);
                 }
 
-                if (ApplyToChannel)
+                if (SaveToChannel)
                 {
                     _Channel1.UpdateEffect(effect);
                     _Channel2.UpdateEffect(effect);
@@ -263,14 +256,14 @@ namespace NZXTSharp.Devices
             }
             else // Otherwise, just build for the selected channel
             {
-                commandBytes = effect.BuildBytes(channel);
+                commandQueue = effect.BuildBytes(channel);
             }
 
 
-            if (ApplyToChannel) { channel.UpdateEffect(effect); }
+            if (SaveToChannel) { channel.UpdateEffect(effect); }
             effect.Channel = channel;
 
-            foreach (byte[] command in commandBytes) // Send command buffer
+            foreach (byte[] command in commandQueue) // Send command buffer
             {
                 _COMController.WriteNoReponse(command);
                 Thread.Sleep(10);
@@ -307,7 +300,7 @@ namespace NZXTSharp.Devices
         /// <summary>
         /// Sets the device's unit led state. true: on, false: off.
         /// </summary>
-        /// <param name="State"></param>
+        /// <param name="State">Which state to set the LED to; true: on, false: off.</param>
         public void SetUnitLed(bool State)
         {
             if (State)
@@ -335,7 +328,6 @@ namespace NZXTSharp.Devices
         /// Updates the given <see cref="Channel"/>'s <see cref="ChannelInfo"/>.
         /// </summary>
         /// <param name="Channel"></param>
-        // TOTEST
         public void UpdateChannelInfo(Channel Channel)
         {
             UpdateChannelInfoOp(this._Channel1);
