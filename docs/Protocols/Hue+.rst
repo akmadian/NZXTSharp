@@ -1,23 +1,26 @@
-#####
+#############
 Hue+ Protocol
-#####
+#############
 
-**Basic Protocol Schema: Command Type, ChannelByte, EffectByte, Param1, Param2, LedData**
+.. contents:: Table of Contents
 
+----------
+
+Basic Protocol Schema: Command Type, ChannelByte, EffectByte, Param1, Param2, LedData
     **ChannelByte: Both = 00, Channel 1 = 01, Channel 2 = 02**
     
     **Command Types: Set Effect = 4b, Unit LED = 46, Get Channel Info = 8d**
 
 The Hue+ operates on a serial port, and is made to handle discrete commands sent in packets.
-To open a connection to a Hue+ device, open a serial connection on port `COM3` with a baud rate of `256000`, parity set to `None`, dataBits set to `8`, and stopBits set to `1`. Then, begin the handshake process.
+To open a connection to a Hue+ device, open a serial connection on whatever COM port your Hue+ is operating on with a baud rate of :code:`256000`, parity set to :code:`None`, dataBits set to :code:`8`, and stopBits set to :code:`1`. Then, begin the handshake process.
 
 Effect protocols are made of exactly 125 bytes or less. For all protocols, the first five bits in each packet are what I will call “settings bytes”, and the remaining 120 are LED data in G, R, B format. 
 
 Settings bytes (in order) consist of which kind of command is being set, the channels to apply the effect to, which effect to set, and two parameters. See set effect protocol for more information.
 
-*****
+**********
 Handshakes
-*****
+**********
 To begin interaction with a Hue+ device, a handshake must first be completed.
 
 The "Hello" handshake can be completed by continuously sending 0xc0, until the 
@@ -25,9 +28,21 @@ Hue+ unit reponds with 0x01.
 
 There is no trick to a "GoodBye" handshake, just close the serial connection.
 
-*****
+****************************************
+Channel Handshakes/ Getting Channel Info
+****************************************
+To get information about what is connected to a channel, send an :code:`8d ChannelByte` command to the Hue+. Ex: To get channel info for channel 1, send :code:`8d 01`. For channel 2, :code:`8d 02`. The response structure is still being worked out, some of the values are still unclear.
+
+The response should be 5 bytes long, and follows this schema:
+    - ? : ? Consistent between devices
+    - ? : ? Not consistent between devices
+    - ? : ? Not consistent between devices.
+    - X : Fan or Strip; 0x00 = strips, 0x01 = fans.
+    - X : Number of fans or strips connected.
+
+**********
 Set Effect 
-*****
+**********
 
 Below is a table outlining the settings packets for each effect. Bolded param values are defined below in the `Param Scemas Section <https://nzxtsharp.readthedocs.io/en/latest/Protocols/Hue+.html#param-schemas>`_.
 
@@ -57,11 +72,11 @@ Direction params marked with `WM` can make use of movement in the effect. See th
 | Wings            | 1             | 0x4b | CB | 0x0c       | 0x03                  | **CIS/S**      |
 +------------------+---------------+------+----+------------+-----------------------+----------------+
 
-*****
+*************
 Param Schemas
-*****
+*************
 CIS/S - Color In Set/ Speed
-^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 CIS/S params are a composite of a couple values: The index of the current color in a set of colors, and the speed of the effect.
 Find the values individually, and concatenate them to get the btye to be passed as a param.
 
@@ -83,7 +98,7 @@ Find the values individually, and concatenate them to get the btye to be passed 
   - Ex: If the color is the third one in the set, and the speed is at fastest, the resulting byte would be `44`.
 
 Direction
-^^^^^
+^^^^^^^^^
 For direction, just like CIS/S, the byte result is a composite of two values: 
 whether or not the effect's direction is forward or backward, and whether or not the effect should be moving.
 
@@ -99,7 +114,7 @@ The byte values are as follows:
 
 
 LS/S - LED Size/ Speed
-^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 To find the desired byte composite, use the table below:
 
 +----------------------+----+----+----+----+ 
@@ -116,36 +131,11 @@ To find the desired byte composite, use the table below:
 | Fastest              | 04 | 0c | 14 | 1c |
 +----------------------+----+----+----+----+ 
 
-*****
-Getting Channel Info
-*****
-Information about channels can be aquired by issuing the following command:
 
-**Structure: 8d ChannelByte**
 
-Ex: To get channel info for channel 1, send :code:`8d 01`. For channel 2, :code:`8d 02`
-
-The response structure is still being worked out, some of the values are still unclear, but I am working to figure it out. Here is what I have now: The response should be five or six bytes. The following schema is just what I've found in testing, and is a work in progress; take it with a grain:
-
-+-------+---------------------------------------------+
-| Value | Explanation                                 |
-+=======+=============================================+
-| C0    | ?                                           |
-+-------+---------------------------------------------+
-| 5A    | ?                                           |
-+-------+---------------------------------------------+
-| 8A    | ?                                           |
-+-------+---------------------------------------------+
-| XX    | Maybe whether fans or strips are connected? |
-+-------+---------------------------------------------+
-| XX    | Number of fans/ strips connected            |
-+-------+---------------------------------------------+
-
-The last byte seems to be completely absent when nothing is connected to a given channel. Sometimes, there is a 01 or 02 byte before the rest of the message, but this seems to be inconsistent.
-
-*****
+******************
 Unit LED Protocols
-*****
+******************
 Turning the Hue+ unit's LED on or off is pretty simple. All of the data needed fits into one packet, and seven bytes.
 
 Just send the desired byte codes over the serial port, and the light should do as instructed.
@@ -153,6 +143,5 @@ Just send the desired byte codes over the serial port, and the light should do a
 **On: 46 00 c0 00 00 00 ff**
 
 **Off: 46 00 c0 00 00 ff 00**
-
 
 **Special Thanks to** `Pet0203 <https://github.com/Pet0203>`_. **for helping me get started and providing base code.**

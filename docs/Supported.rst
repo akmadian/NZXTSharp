@@ -1,0 +1,68 @@
+##############################
+Supported Devices and Features
+##############################
+
+This list is the most current resource for checking which devices and features are and are not supported. If a device is not listed, it is not supported.
+
+The Hue+ is supported, KrakenX products are next, most likely followed by Hue 2. If you would like to request a specific device or feature, please submit an issue at NZXTSharp's GitHub repo, and tag it with :code:`device-request` or :code:`feature-request`.
+
+The supported features tables use the following schema for column values:
+    - NI - Not Implemented.
+    - WIP - Work In Progress/ In Process of Implementation.
+    - ITT - Implemented, To Test.
+    - TNW - Tested, Not Working.
+    - TFW - Tested, Fully Working. 
+
+.. contents:: Table of Contents
+
+----------
+
+****
+Hue+
+****
+
+Device Features
+===============
++--------------------+----+-----+-----+-----+-----+
+| Feature            | NI | WIP | ITT | TNW | TFW |
++--------------------+----+-----+-----+-----+-----+
+| Unit LED On        |    |     |     |     | X   |
++--------------------+----+-----+-----+-----+-----+
+| Unit LED Off       |    |     |     |     | X   |
++--------------------+----+-----+-----+-----+-----+
+| Channel On         |    |     |     |     | X   |
++--------------------+----+-----+-----+-----+-----+
+| Channel Off        |    |     |     |     | X   |
++--------------------+----+-----+-----+-----+-----+
+| Channel Handshakes |    |     |     |     | X   |
++--------------------+----+-----+-----+-----+-----+
+| Subdevices         |    |     |     |     | X   |
++--------------------+----+-----+-----+-----+-----+
+| Subdevice LEDs     |    |     |     |     | X   |
++--------------------+----+-----+-----+-----+-----+
+
+Effects
+=======
++--------------------+----+-----+-----+-----+-----+
+| Feature            | NI | WIP | ITT | TNW | TFW |
++--------------------+----+-----+-----+-----+-----+
+| Fixed              |    |     |     |     | X   |
++--------------------+----+-----+-----+-----+-----+
+| Fading             |    |     |     |     | X   |
++--------------------+----+-----+-----+-----+-----+
+| Spectrum Wave      |    |     |     |     | X   |
++--------------------+----+-----+-----+-----+-----+
+| Marquee            |    |     |     |     | X   |
++--------------------+----+-----+-----+-----+-----+
+| Covering Marquee   |    |     |     |     | X   |
++--------------------+----+-----+-----+-----+-----+
+| Alternating        |    |     |     |     | X   |
++--------------------+----+-----+-----+-----+-----+
+| Pulse              |    |     |     |     | X   |
++--------------------+----+-----+-----+-----+-----+
+| Breathing          |    |     |     |     | X   |
++--------------------+----+-----+-----+-----+-----+
+| Candle Light       |    |     |     |     | X   |
++--------------------+----+-----+-----+-----+-----+
+| Wings              |    |     |     |     | X   |
++--------------------+----+-----+-----+-----+-----+

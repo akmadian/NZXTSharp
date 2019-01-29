@@ -20,34 +20,37 @@ A basic getting started example with the Hue+:
   using NZXTSharp;
   using NZXTSharp.Devices;
   using NZXTSharp.Effects;
-  using NZXTSharp.Params;
   
   HuePlus hue = new HuePlus();
-  hue.OnLogMessage += HandlerMethod; // Subscribe to OnLogMessage event.
   
-  Fixed effect = new Fixed(new HexColor(255, 255, 255)); // Create effect object
+  Fixed effect = new Fixed(new Color(255, 255, 255)); // Create effect object
   hue.ApplyEffect(hue.Both, effect); // Apply the effect
 
-
-.. toctree:: 
-   :maxdepth: 1
-
-   Examples/Getting-Started
-   SDK-Docs/Supported
-   
-.. toctree:: 
-   :maxdepth: 2
-   :caption: Protocols
-
-   Protocols/Hue+
-   
 .. toctree::
-   :maxdepth: 2
-   :caption: SDK-Docs
+  :maxdepth: 2
+  :caption: SDK-Docs
 
-   SDK-Docs/NZXTSharp
-   SDK-Docs/Devices
-   SDK-Docs/Effects
-   SDK-Docs/Params
-   SDK-Docs/Exceptions
-   SDK-Docs/COM
+  SDK-Docs/NZXTSharp
+  SDK-Docs/NZXTSharp.COM  
+  SDK-Docs/NZXTSharp.Devices
+  SDK-Docs/NZXTSharp.Effects
+  SDK-Docs/NZXTSharp.Params
+  SDK-Docs/NZXTSharp.Exceptions
+  
+.. toctree::
+  :maxdepth: 1
+  :caption: Examples
+
+  Examples/Getting-Started
+  
+.. toctree:: 
+  :maxdepth: 2
+  :caption: Protocols
+
+  Protocols/Hue+
+
+.. toctree:: 
+  :maxdepth: 1
+
+  Supported Devices and Features <Supported>
+  Support
