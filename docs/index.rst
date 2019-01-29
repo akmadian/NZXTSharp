@@ -20,12 +20,10 @@ A basic getting started example with the Hue+:
   using NZXTSharp;
   using NZXTSharp.Devices;
   using NZXTSharp.Effects;
-  using NZXTSharp.Params;
   
   HuePlus hue = new HuePlus();
-  hue.OnLogMessage += HandlerMethod; // Subscribe to OnLogMessage event.
   
-  Fixed effect = new Fixed(new HexColor(255, 255, 255)); // Create effect object
+  Fixed effect = new Fixed(new Color(255, 255, 255)); // Create effect object
   hue.ApplyEffect(hue.Both, effect); // Apply the effect
 
 .. toctree::
