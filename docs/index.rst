@@ -45,8 +45,8 @@ A basic getting started example with the Hue+:
   :maxdepth: 1
   :caption: Examples
 
-  Examples/Getting Started <Getting-Started>
-
+  Examples/Getting-Started
+  
 .. toctree::
   :maxdepth: 2
   :caption: SDK-Docs
