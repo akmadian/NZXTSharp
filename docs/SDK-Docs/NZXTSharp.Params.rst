@@ -10,6 +10,8 @@ Direction, speed, and LED size values match what is available in CAM.
 
 .. contents:: Table Of Contents
 
+----------
+
 *****
 Interfaces
 *****
