@@ -28,10 +28,10 @@ Hue+ unit reponds with 0x01.
 
 There is no trick to a "GoodBye" handshake, just close the serial connection.
 
-******************
-Channel Handshakes
-******************
-To get information about what is connected to a channel, send an :code:`8d ChannelByte` command to the Hue+. For example, a channel handshake for channel 1 would be :code:`8d 01`.
+****************************************
+Channel Handshakes/ Getting Channel Info
+****************************************
+To get information about what is connected to a channel, send an :code:`8d ChannelByte` command to the Hue+. Ex: To get channel info for channel 1, send :code:`8d 01`. For channel 2, :code:`8d 02`. The response structure is still being worked out, some of the values are still unclear.
 
 The response should be 5 bytes long, and follows this schema:
     - ? : ? Consistent between devices
@@ -131,32 +131,7 @@ To find the desired byte composite, use the table below:
 | Fastest              | 04 | 0c | 14 | 1c |
 +----------------------+----+----+----+----+ 
 
-********************
-Getting Channel Info
-********************
-Information about channels can be aquired by issuing the following command:
 
-**Structure: 8d ChannelByte**
-
-Ex: To get channel info for channel 1, send :code:`8d 01`. For channel 2, :code:`8d 02`
-
-The response structure is still being worked out, some of the values are still unclear, but I am working to figure it out. Here is what I have now: The response should be five or six bytes. The following schema is just what I've found in testing, and is a work in progress; take it with a grain:
-
-+-------+---------------------------------------------+
-| Value | Explanation                                 |
-+=======+=============================================+
-| C0    | ?                                           |
-+-------+---------------------------------------------+
-| 5A    | ?                                           |
-+-------+---------------------------------------------+
-| 8A    | ?                                           |
-+-------+---------------------------------------------+
-| XX    | Maybe whether fans or strips are connected? |
-+-------+---------------------------------------------+
-| XX    | Number of fans/ strips connected            |
-+-------+---------------------------------------------+
-
-The last byte seems to be completely absent when nothing is connected to a given channel. Sometimes, there is a 01 or 02 byte before the rest of the message, but this seems to be inconsistent.
 
 ******************
 Unit LED Protocols
