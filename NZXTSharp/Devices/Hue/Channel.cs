@@ -7,6 +7,10 @@ using NZXTSharp.Devices;
 using NZXTSharp.Effects;
 
 namespace NZXTSharp.Devices {
+    
+    /// <summary>
+    /// Represents a channel on an NZXT device.
+    /// </summary>
     public class Channel {
         
         private readonly int _ChannelByte;
@@ -19,29 +23,66 @@ namespace NZXTSharp.Devices {
         #pragma warning restore IDE0044 // Add readonly modifier
 
         #region Properties
+        /// <summary>
+        /// The channelbyte of the <see cref="Channel"/>.
+        /// </summary>
         public int ChannelByte { get; }
+
+        /// <summary>
+        /// The <see cref="IEffect"/> currently applied to the <see cref="Channel"/>.
+        /// </summary>
         public IEffect Effect { get => _Effect; }
+
+        /// <summary>
+        /// Whether or not the current <see cref="Channel"/> is active (on).
+        /// </summary>
         public bool State { get => _State; }
+        
+        /// <summary>
+        /// The <see cref="Channel"/>'s <see cref="ChannelInfo"/> object.
+        /// </summary>
         public ChannelInfo ChannelInfo { get => _ChannelInfo; }
+
+        /// <summary>
+        /// The device that owns the <see cref="Channel"/>.
+        /// </summary>
         public IHueDevice Parent { get => _Parent; }
+
+        /// <summary>
+        /// A list of <see cref="ISubDevice"/>s owned by the <see cref="Channel"/>.
+        /// </summary>
         public List<ISubDevice> SubDevices { get => _SubDevices; }
         #endregion
-
-        public Channel() {
-
+        
+        /// <summary>
+        /// Constructs a <see cref="Channel"/> object with a given <paramref name="ChannelByte"/>.
+        /// </summary>
+        /// <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
+        public Channel(int ChannelByte) {
+            this._ChannelByte = ChannelByte;
         }
 
-        public Channel(int _ChannelByte) {
-            this._ChannelByte = _ChannelByte;
-        }
-
-        public Channel(int _ChannelByte, IHueDevice Parent) {
-            this.ChannelByte = _ChannelByte;
+        /// <summary>
+        /// Constructs a <see cref="Channel"/> object with a given <paramref name="ChannelByte"/>, 
+        /// owned by a given <paramref name="Parent"/> <see cref="IHueDevice"/>.
+        /// </summary>
+        /// <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
+        /// <param name="Parent">The <see cref="IHueDevice"/> that will own the <see cref="Channel"/></param>
+        public Channel(int ChannelByte, IHueDevice Parent) {
+            this.ChannelByte = ChannelByte;
             this._Parent = Parent;
         }
 
-        public Channel(int _ChannelByte, IHueDevice Parent, ChannelInfo Info) {
-            this.ChannelByte = _ChannelByte;
+        /// <summary>
+        /// Constructs a <see cref="Channel"/> object with a given <paramref name="ChannelByte"/>, 
+        /// owned by a given <paramref name="Parent"/> <see cref="IHueDevice"/>, 
+        /// with a given <see cref="ChannelInfo"/>.
+        /// </summary>
+        /// <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
+        /// <param name="Parent">The <see cref="IHueDevice"/> that owns the <see cref="Channel"/></param>
+        /// <param name="Info">The <see cref="ChannelInfo"/> owned by the <see cref="Channel"/>.</param>
+        public Channel(int ChannelByte, IHueDevice Parent, ChannelInfo Info) {
+            this.ChannelByte = ChannelByte;
             this._Parent = Parent;
             this._ChannelInfo = Info;
         }
@@ -64,17 +105,25 @@ namespace NZXTSharp.Devices {
             this._Effect = newOne;
         }
 
-
+        /// <summary>
+        /// Refreshes all <see cref="ISubDevice"/>s in the <see cref="Channel"/>'s <see cref="SubDevices"/> list.
+        /// </summary>
         public void RefreshSubDevices()
         {
             BuildSubDevices();
         }
 
+        /// <summary>
+        /// Turns the <see cref="Channel"/> on.
+        /// </summary>
         public void On() {
             this._State = true;
             _Parent.ApplyEffect(this, _Effect);
         }
 
+        /// <summary>
+        /// Turns the <see cref="Channel"/> off.
+        /// </summary>
         public void Off() {
             this._State = false;
             _Parent.ApplyEffect(this, new Fixed(this, new Color(0, 0, 0)), false);
@@ -114,14 +163,25 @@ namespace NZXTSharp.Devices {
             return outList.ToArray();
         }
 
+        /// <summary>
+        /// Updates the <see cref="Channel"/>'s <see cref="ChannelInfo"/>.
+        /// </summary>
         public void UpdateChannelInfo() {
             Parent.UpdateChannelInfo(this);
         }
 
+        /// <summary>
+        /// Sets the <see cref="Channel"/>'s <see cref="ChannelInfo"/> to the given <paramref name="info"/>.
+        /// </summary>
+        /// <param name="info"></param>
         public void SetChannelInfo(ChannelInfo info) {
             this._ChannelInfo = info;
         }
 
+        /// <summary>
+        /// Returns the <see cref="Channel"/>'s ChannelByte.
+        /// </summary>
+        /// <param name="channel"></param>
         public static explicit operator byte(Channel channel) {
             return (byte)channel.ChannelByte;
         }

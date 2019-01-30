@@ -11,22 +11,53 @@ namespace NZXTSharp.COM {
     /// </summary>
     internal class SerialCOMData {
 
-        private Parity _Parity;
-        private StopBits _StopBits;
-        private int _WriteTimeout;
-        private int _ReadTimeout;
-        private int _Baud;
-        private int _DataBits;
-        private string _Name;
+        #region Properties and Fields
+        private readonly Parity _Parity;
+        private readonly StopBits _StopBits;
+        private readonly int _WriteTimeout;
+        private readonly int _ReadTimeout;
+        private readonly int _Baud;
+        private readonly int _DataBits;
+        private readonly string _Name;
 
+        /// <summary>
+        /// The <see cref="System.IO.Ports.Parity"/> setting of the <see cref="SerialCOMData"/> instance.
+        /// </summary>
         public Parity Parity { get => _Parity; }
-        public StopBits StopBits { get => _StopBits; }
-        public int WriteTimeout { get => _WriteTimeout; }
-        public int ReadTimeout { get => _ReadTimeout; }
-        public int Baud { get => _Baud; }
-        public int DataBits { get => _DataBits; }
-        public string Name { get => _Name; }
 
+        /// <summary>
+        /// The <see cref="System.IO.Ports.StopBits"/> setting of the <see cref="SerialCOMData"/> instance.
+        /// </summary>
+        public StopBits StopBits { get => _StopBits; }
+
+        /// <summary>
+        /// The write timeout setting of the <see cref="SerialCOMData"/> instance (ms).
+        /// </summary>
+        public int WriteTimeout { get => _WriteTimeout; }
+
+        /// <summary>
+        /// The read timeout setting of the <see cref="SerialCOMData"/> instance (ms).
+        /// </summary>
+        public int ReadTimeout { get => _ReadTimeout; }
+
+        /// <summary>
+        /// The baud setting of the <see cref="SerialCOMData"/> instance.
+        /// </summary>
+        public int Baud { get => _Baud; }
+
+        /// <summary>
+        /// The databits setting of the <see cref="SerialCOMData"/> instance.
+        /// </summary>
+        public int DataBits { get => _DataBits; }
+
+        /// <summary>
+        /// The custom name of the <see cref="SerialCOMData"/> instance.
+        /// </summary>
+        public string Name { get => _Name; }
+        #endregion
+
+
+        #region Methods
         /// <summary>
         /// Constructs a <see cref="SerialCOMData"/> object.
         /// </summary>
@@ -36,6 +67,7 @@ namespace NZXTSharp.COM {
         /// <param name="ReadTimeout"> The ReadTimeout in ms.</param>
         /// <param name="Baud"> The baud to use.</param>
         /// <param name="DataBits"> The number of DataBits to use.</param>
+        /// <param name="Name">A custom name for the <see cref="SerialCOMData"/>.</param>
         public SerialCOMData(Parity Parity, StopBits StopBits, int WriteTimeout, int ReadTimeout, int Baud, int DataBits, string Name = "") {
             this._Parity = Parity;
             this._StopBits = StopBits;
@@ -58,5 +90,6 @@ namespace NZXTSharp.COM {
                 this.Name
             );
         }
+        #endregion
     }
 }

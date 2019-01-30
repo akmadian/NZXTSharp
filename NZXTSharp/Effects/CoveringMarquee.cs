@@ -6,35 +6,55 @@ using NZXTSharp.Devices;
 using NZXTSharp.Params;
 using NZXTSharp.Exceptions;
 
-// TOTEST
 namespace NZXTSharp.Effects {
+
+    /// <summary>
+    /// Represents an RGB CoveringMarquee effect.
+    /// </summary>
     public class CoveringMarquee : IEffect {
 
         private int _EffectByte = 0x04;
         private string _EffectName = "CoveringMarquee";
-        public readonly List<string> CompatibleWith = new List<string>() { "HuePlus" };
+
+        /// <inheritdoc/>
+        public readonly List<NZXTDeviceType> CompatibleWith = new List<NZXTDeviceType>() { NZXTDeviceType.HuePlus };
 
         private Color[] _Colors;
         private Direction Param1;
         private CISS Param2;
         private Channel _Channel;
-        private IHueDevice Parent;
         private int _Speed;
-        
+
+        /// <inheritdoc/>
         public int EffectByte { get; }
+
+        /// <inheritdoc/>
         public Channel Channel { get; set; }
+
+        /// <inheritdoc/>
         public string EffectName { get; }
 
-        public CoveringMarquee(IHueDevice Parent, Color Color1, Color Color2, Direction Direction, int speed = 2) {
-            this.Parent = Parent;
+        /// <summary>
+        /// Constructs a <see cref="CoveringMarquee"/> effect.
+        /// </summary>
+        /// <param name="Color1">The first <see cref="Color"/> in the effect.</param>
+        /// <param name="Color2">The second <see cref="Color"/> in the effect.</param>
+        /// <param name="Direction">The <see cref="Direction"/> the effect will go in.</param>
+        /// <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
+        public CoveringMarquee(Color Color1, Color Color2, Direction Direction, int speed = 2) {
             this._Colors = new Color[] { Color1, Color2 };
             this.Param1 = Direction;
             this._Speed = speed;
             ValidateParams();
         }
 
-        public CoveringMarquee(IHueDevice Parent, Color[] Colors, Direction Direction, int speed = 2) {
-            this.Parent = Parent;
+        /// <summary>
+        /// Constructs a <see cref="CoveringMarquee"/> effect.
+        /// </summary>
+        /// <param name="Colors"></param>
+        /// <param name="Direction">The <see cref="Direction"/> the effect will go in.</param>
+        /// <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
+        public CoveringMarquee(Color[] Colors, Direction Direction, int speed = 2) {
             this._Colors = Colors;
             this.Param1 = Direction;
             this._Speed = speed;
@@ -51,10 +71,13 @@ namespace NZXTSharp.Effects {
             }
         }
 
-        public bool IsCompatibleWith(string Device) {
-            return CompatibleWith.Contains(Device) ? true : false;
+        /// <inheritdoc/>
+        public bool IsCompatibleWith(NZXTDeviceType Type)
+        {
+            return CompatibleWith.Contains(Type) ? true : false;
         }
 
+        /// <inheritdoc/>
         public List<byte[]> BuildBytes(Channel Channel) {
             List<byte[]> outList = new List<byte[]>();
             for (int colorIndex = 0; colorIndex < _Colors.Length; colorIndex++)

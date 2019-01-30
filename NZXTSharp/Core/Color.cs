@@ -1,40 +1,90 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
+using System.Text.RegularExpressions;
+
+using NZXTSharp.Exceptions;
 
 namespace NZXTSharp {
+
+    /// <summary>
+    /// Represents a color.
+    /// </summary>
     public class Color
     {
+        #region Properties and Fields
+        private readonly int _R;
+        private readonly int _G;
+        private readonly int _B;
 
-        private int R;
-        private int G;
-        private int B;
+        /// <summary>
+        /// The R value of the color.
+        /// </summary>
+        public int R { get => _R; }
 
+        /// <summary>
+        /// The G value of the color.
+        /// </summary>
+        public int G { get => _G; }
+
+        /// <summary>
+        /// The B value of the color.
+        /// </summary>
+        public int B { get => _B; }
+        #endregion
+
+        #region Constructors
+        /// <summary>
+        /// Constructs an empty <see cref="Color"/>.
+        /// </summary>
         public Color()
         {
 
         }
 
+        /// <summary>
+        /// Creates a Color instance from a hex color code.
+        /// </summary>
+        /// <param name="hexColor">The color code. Supports codes with a leading #, and without.</param>
         public Color(string hexColor)
         {
+            if (!Regex.IsMatch(hexColor, "#?([a-f]|[A-F]|[0-9]){6}")) // Validate input
+            {
+                throw new InvalidParamException("Invalid color format. The color must be of the form #FFFFFF or FFFFFF");
+            }
+
             if (hexColor.StartsWith("#")) // Strip leading # if it exists
                 hexColor = hexColor.Substring(1);
+            
 
             string[] splitHex = hexColor.SplitEveryN(2);
-            this.R = Convert.ToInt32(splitHex[0]);
-            this.G = Convert.ToInt32(splitHex[1]);
-            this.B = Convert.ToInt32(splitHex[2]);
+
+            this._R = int.Parse(splitHex[0], System.Globalization.NumberStyles.HexNumber);
+            this._G = int.Parse(splitHex[1], System.Globalization.NumberStyles.HexNumber);
+            this._B = int.Parse(splitHex[2], System.Globalization.NumberStyles.HexNumber);
         }
 
+        /// <summary>
+        /// Creates a Color instance from R, G, B values.
+        /// </summary>
+        /// <param name="R">The color's R value. Must be 0-255 (inclusive).</param>
+        /// <param name="G">The color's G value. Must be 0-255 (inclusive).</param>
+        /// <param name="B">The color's B value. Must be 0-255 (inclusive).</param>
         public Color(int R, int G, int B)
         {
-            this.R = R;
-            this.G = G;
-            this.B = B;
-        }
+            if ((_R > 255 || _R < 0) || (_G > 255 || _G < 0) || (_B > 255 || _B < 0))
+                throw new InvalidParamException("RGB Values must be between 0-255 (inclusive).");
 
+            this._R = R;
+            this._G = G;
+            this._B = B;
+        }
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// Returns a list of 40 "#ffffff" color codes in G, R, B format.
+        /// </summary>
+        /// <returns></returns>
         public byte[] AllOff()
         {
             List<int> outBytes = new List<int>();
@@ -55,14 +105,18 @@ namespace NZXTSharp {
             return outB.ToArray();
         }
 
-        public byte[] Expanded()
+        /// <summary>
+        /// Expands the <see cref="Color"/> instance into a byte array.
+        /// </summary>
+        /// <returns></returns>
+        internal byte[] Expanded()
         {
             List<byte> outBytes = new List<byte>();
             for (int i = 0; i < 40; i++)
             {
-                outBytes.Add(Convert.ToByte(G));
-                outBytes.Add(Convert.ToByte(R));
-                outBytes.Add(Convert.ToByte(B));
+                outBytes.Add(Convert.ToByte(_G));
+                outBytes.Add(Convert.ToByte(_R));
+                outBytes.Add(Convert.ToByte(_B));
             }
 
             return outBytes.ToArray();
@@ -71,21 +125,24 @@ namespace NZXTSharp {
         /// <summary>
         /// Expands the <see cref="Color"/> instance into an array of byte arrays. Each sub array contains the RGB values for each LED.
         /// </summary>
-        /// <param name="NumLeds"></param>
+        /// <param name="NumLeds">The number of LED triplets to create in the array.</param>
         /// <returns></returns>
-        public byte[][] ExpandedChunks(int NumLeds)
+        internal byte[][] ExpandedChunks(int NumLeds)
         {
             List<byte[]> outBytes = new List<byte[]>();
             for (int i = 0; i < NumLeds; i++)
             {
-                List<byte> arr = new List<byte>();
-                arr.Add(Convert.ToByte(G));
-                arr.Add(Convert.ToByte(R));
-                arr.Add(Convert.ToByte(B));
-                outBytes.Add(arr.ToArray());
+                byte[] arr = new byte[3]
+                {
+                    Convert.ToByte(_G),
+                    Convert.ToByte(_R),
+                    Convert.ToByte(_B)
+                };
+                outBytes.Add(arr);
             }
             return outBytes.ToArray();
         }
+        #endregion
     }
 }
 
