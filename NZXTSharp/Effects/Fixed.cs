@@ -4,6 +4,7 @@ using System.Text;
 
 using NZXTSharp.Devices;
 using NZXTSharp.Params;
+using NZXTSharp.Exceptions;
 
 namespace NZXTSharp.Effects {
 
@@ -18,9 +19,10 @@ namespace NZXTSharp.Effects {
         public readonly List<NZXTDeviceType> CompatibleWith = new List<NZXTDeviceType>() { NZXTDeviceType.HuePlus };
 
         private Color _Color;
-        private _03Param _Param1 = new _03Param();
-        private _02Param _Param2 = new _02Param();
         private Channel _Channel;
+
+        private byte[] CustomBytes;
+        private bool IsCustom;
 
         /// <inheritdoc/>
         public int EffectByte { get; }
@@ -50,6 +52,29 @@ namespace NZXTSharp.Effects {
             this._Color = color;
         }
 
+        /// <summary>
+        /// Constructs an RGB Fixed effect from custom LED colors.
+        /// </summary>
+        /// <param name="Colors">A byte[] of RGB color values in G, R, B format. 
+        /// Length must be less than 120 and greater than 0. 
+        /// RGB values must be 0-255 (inclusive).</param>
+        public Fixed(byte[] Colors)
+        {
+            if (Colors.Length > 120 || Colors.Length < 0) 
+                throw new InvalidParamException("Invalid RGB color array size. Must have at least one element, and fewer than 120 elements."); 
+
+            foreach (byte color in Colors)
+            {
+                int value = Convert.ToInt32(color);
+                if (value > 255 || value < 0)
+                {
+                    throw new InvalidParamException("Invalid RGB color found in array. All RGB color values must be 0-255 (inclusive).");
+                }
+            }
+            this.CustomBytes = Colors.PadColorArr();
+            this.IsCustom = true;
+        }
+
         /// <inheritdoc/>
         public bool IsCompatibleWith(NZXTDeviceType Type)
         {
@@ -60,7 +85,14 @@ namespace NZXTSharp.Effects {
         public List<byte[]> BuildBytes(Channel Channel) {
             this._Channel = Channel;
             byte[] SettingsBytes = new byte[] { 0x4b, (byte)_Channel, 0x00, 0x02, 0x03 };
-            byte[] final = SettingsBytes.ConcatenateByteArr(_Channel.BuildColorBytes(_Color));
+            byte[] final;
+            if (IsCustom)
+            {
+                final = SettingsBytes.ConcatenateByteArr(_Channel.BuildColorBytes(CustomBytes));
+            } else
+            {
+                final = SettingsBytes.ConcatenateByteArr(_Channel.BuildColorBytes(_Color));
+            }
             return new List<byte[]>() { final };
         }
     }

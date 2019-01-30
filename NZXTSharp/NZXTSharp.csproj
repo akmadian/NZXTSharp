@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.1</Version>
+    <Version>1.2.0</Version>
     <Description>The one-stop C# sdk that facilitates interaction with NZXT devices.</Description>
     <Authors>Ari Madian</Authors>
     <Company>Ari Madian</Company>
@@ -15,19 +15,25 @@
     <PackageIconUrl>https://i.imgur.com/4GAobyk.jpg</PackageIconUrl>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <AssemblyVersion>1.1</AssemblyVersion>
-    <FileVersion>1.1</FileVersion>
-    <PackageReleaseNotes>(1.1)
+    <AssemblyVersion>1.2.0</AssemblyVersion>
+    <FileVersion>1.2.0</FileVersion>
+    <PackageReleaseNotes>(1.2) 
+Added ability to create Fixed effect with custom RGB values for all LEDs. 
+This feature offers great versatility for allowing users to create their own effects.
+
+No breaking changes, docs will be updated soon.
+
+(1.1)
 All systems are working! This release is actually v1.0, but because of the way NuGet handles versions, it is 1.1.
 
 This update includes full support for the Hue+ controller.
 
 There are no breaking changes in this update.
 New Things!
- - Bug fixes 
- - Input validation on more constructors
- - The addition of XML docs to all methods, properties, constructors, and classes
- - Little things here and there; cleanup, bits of refactoring, some performance improvements
+- Bug fixes 
+- Input validation on more constructors
+- The addition of XML docs to all methods, properties, constructors, and classes
+- Little things here and there; cleanup, bits of refactoring, some performance improvements
 
 (1.0.3-beta)
 All effects are now working! Subdevices should also be working. 

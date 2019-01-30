@@ -988,6 +988,14 @@
             <param name="Channel">The <see cref="P:NZXTSharp.Effects.Fixed.Channel"/> the effect will be applied to.</param>
             <param name="color">The <see cref="T:NZXTSharp.Color"/> to display.</param>
         </member>
+        <member name="M:NZXTSharp.Effects.Fixed.#ctor(System.Byte[])">
+            <summary>
+            Constructs an RGB Fixed effect from custom LED colors.
+            </summary>
+            <param name="Colors">A byte[] of RGB color values in G, R, B format. 
+            Length must be less than 120 and greater than 0. 
+            RGB values must be 0-255 (inclusive).</param>
+        </member>
         <member name="M:NZXTSharp.Effects.Fixed.IsCompatibleWith(NZXTSharp.Devices.NZXTDeviceType)">
             <inheritdoc/>
         </member>

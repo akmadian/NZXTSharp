@@ -49,6 +49,20 @@ namespace NZXTSharp {
             return sb.ToString();
         }
 
+        public static byte[] PadColorArr(this byte[] thisone)
+        {
+            int numToPad = 120 - thisone.Length;
+            List<byte> temp = new List<byte>();
+
+            foreach (byte thing in thisone) { temp.Add(thing); }
+
+            for (int curr = 0; curr < numToPad; curr++)
+            {
+                temp.Add(0x00);
+            }
+            return temp.ToArray();
+        }
+
         // TOFIX
         public static string ColorArrToString(this byte[] thisone)
         {

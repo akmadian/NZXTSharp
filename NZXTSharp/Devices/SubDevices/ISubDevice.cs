@@ -28,7 +28,7 @@ namespace NZXTSharp.Devices {
         /// A list containing the power states of the <see cref="ISubDevice"/>'s LEDs.
         /// </summary>
         // TODO : Change to array?
-        List<bool> Leds { get; }
+        bool[] Leds { get; }
 
         /// <summary>
         /// Toggles the <see cref="ISubDevice"/>'s state.
