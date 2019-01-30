@@ -87,5 +87,37 @@ Building on the Boilerplate example:
   
   Ch1Devices[1].ToggleLedRange(1, 5); // Or, toggle ranges of LEDs
   hue.ApplyEffect(hue.Channel1, effect); // Apply changes
+ 
+Custom RGB values for a Fixed Effect
+------------------------------------
+The fixed effect, being the most versatile, allows the user of NZXTSharp to construct a fixed effect with custom RGB values for each LED. This is done by passing a byte array to a Fixed effect constructor.
+
+**Byte array schema:** The byte array must have at least 1 RGB value, and at most 120 RGB values. If the length is not within this range, an InvalidParamException will be thrown.
+
+**RGB Value formatting:** For the effect to display properly, all RGB values MUST be passed in G, R, B format. RGB Values, like all other RGB values in NZXTSharp must be between 0-255 (inclusive).
+
+Building on the Boilerplate example:
+
+.. code-block:: csharp
+  
+  using NZXTSharp;
+  using NZXTSharp.Devices;
+  using NZXTSharp.Effects;
+  
+  HuePlus hue = new HuePlus();
+  
+  // Create RGB array, this will have two LEDs lit: one white, one red.
+  byte[] colors = new byte[] { 255, 255, 255, 0, 255, 0 };
+  Fixed effect = new Fixed(colors); // Create Effect
+  
+  hue.ApplyEffect(hue.Both, effect); // And apply it!
+  
+  // Also supports subdevice and LED toggling.
+  hue.Channel1.SubDevices[1].ToggleState(); // Toggle device
+  hue.ApplyEffect(hue.Both, effect); // Apply changes
+  
+  
+  
+  
   
   
