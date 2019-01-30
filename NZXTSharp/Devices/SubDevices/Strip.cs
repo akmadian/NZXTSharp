@@ -14,7 +14,7 @@ namespace NZXTSharp.Devices {
 
         private bool _IsActive = true;
 
-        private List<bool> _Leds = new List<bool>()
+        private bool[] _Leds = new bool[]
         {
             true, true, true, true, true,
             true, true, true, true, true
@@ -38,7 +38,7 @@ namespace NZXTSharp.Devices {
         /// <summary>
         /// A list containing the power states of the <see cref="Strip"/>'s LEDs.
         /// </summary>
-        public List<bool> Leds { get => _Leds; }
+        public bool[] Leds { get => _Leds; }
 
         /// <summary>
         /// Constructs a <see cref="Strip"/> instance.
@@ -116,7 +116,10 @@ namespace NZXTSharp.Devices {
         /// <returns></returns>
         public string LedsToString() {
             StringBuilder sb = new StringBuilder();
-            _Leds.ForEach(c => sb.Append(c + " "));
+            foreach (bool LED in _Leds)
+            {
+                sb.Append(LED + " ");
+            }
             return sb.ToString();
         }
     }

@@ -163,6 +163,36 @@ namespace NZXTSharp.Devices {
             return outList.ToArray();
         }
 
+        internal byte[] BuildColorBytes(byte[] buffer)
+        {
+            for (int deviceN = 0; deviceN < SubDevices.Count; deviceN++)
+            {
+                ISubDevice device = SubDevices[deviceN];
+                if (!device.IsActive) // If device is not active, account for device
+                {
+                    for (int LED = 0; LED < device.NumLeds; LED++)
+                    {
+                        buffer[(deviceN * device.NumLeds * 3) + (LED * 3)] = 0x00;
+                        buffer[(deviceN * device.NumLeds * 3) + (LED * 3) + 1] = 0x00;
+                        buffer[(deviceN * device.NumLeds * 3) + (LED * 3) + 2] = 0x00;
+                    }
+                    
+                } else // If device IS active, account for device's LEDs
+                {
+                    for (int LED = 0; LED < device.Leds.Length; LED++)
+                    {
+                        if (!device.Leds[LED])
+                        {
+                            buffer[(deviceN * device.NumLeds) + (LED * 3)] = 0x00;
+                            buffer[(deviceN * device.NumLeds) + (LED * 3) + 1] = 0x00;
+                            buffer[(deviceN * device.NumLeds) + (LED * 3) + 2] = 0x00;
+                        }
+                    }
+                }
+            }
+            return buffer;
+        }
+
         /// <summary>
         /// Updates the <see cref="Channel"/>'s <see cref="ChannelInfo"/>.
         /// </summary>
