@@ -6,7 +6,7 @@
 
 NZXTSharp is a C# package that allows interaction with NZXT's Hue+. Support for other devices will be coming.
 
-You can find NZXTSharp on NuGet [here][0]. If you are adding through Visual Studio, please be sure to check `Include Prereleases`.
+You can find NZXTSharp on NuGet [here][0].
 
 **Please keep in mind that NZXTSharp is in development, and will have breaking changes in the future.**
 
@@ -31,7 +31,7 @@ hue.ApplyEffect(hue.Both, effect); // Apply effect
 <br>**A:** As of yet, no. I am focusing on support for the .NET framework. Python is most likely next.
 
 **Q:** Is XX device supported? 
-<br>**A:** Right now, I am working on support for the Hue+. Once that is complete, I plan to move into the Krakens and the Hue 2.
+<br>**A:** Next up on the list are KrakenX devices, after that, the Hue 2 will most likely be next.
 
 
 ### Disclaimer
