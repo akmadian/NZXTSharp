@@ -1,8 +1,8 @@
 # NZXTSharp
 
 [![Documentation Status](https://readthedocs.org/projects/nzxtsharp/badge/?version=latest)](https://nzxtsharp.readthedocs.io/en/latest/?badge=latest) 
-[![Nuget](https://img.shields.io/nuget/v/NZXTSharp.svg)
-![Discord](https://img.shields.io/badge/%20-Discord%20Server-blue.svg)](https://discord.gg/yK8m2CU)
+[![Nuget](https://img.shields.io/nuget/v/NZXTSharp.svg)](https://www.nuget.org/packages/NZXTSharp)
+[![Discord](https://img.shields.io/badge/%20-Discord%20Server-blue.svg)](https://discord.gg/yK8m2CU)
 
 NZXTSharp is a C# package that allows interaction with NZXT's Hue+. Support for other devices will be coming.
 
