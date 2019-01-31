@@ -5,7 +5,7 @@ using System.Text;
 namespace NZXTSharp.Devices {
     internal interface IUSBDevice : INZXTDevice {
 
-        int DeviceID { get; }
+        SerialDeviceID DeviceID { get; }
 
     }
 }

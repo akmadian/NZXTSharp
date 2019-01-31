@@ -2,32 +2,40 @@
 using System.Collections.Generic;
 using System.Text;
 
+using HidLibrary;
 
 using NZXTSharp.Devices;
 using NZXTSharp.Exceptions;
 
 namespace NZXTSharp.COM {
-    internal class USBController : ICOMController {
+    internal class USBController : IUSBDevice { 
 
         private NZXTDeviceType _Type;
         private SerialDeviceID _ID;
+        private SerialDeviceID _VendorID = SerialDeviceID.ManufacturerID;
+
+        private HidDevice _Device;
 
         public NZXTDeviceType Type { get => _Type; }
-        public SerialDeviceID ID { get => _ID; }
+        public SerialDeviceID DeviceID { get => _ID; }
 
         public USBController(NZXTDeviceType Type) {
             this._Type = Type;
             ResolveDeviceID();
         }
 
+        public USBController(HidDevice Device)
+        {
+            this._Device = Device;
+        }
+        
         public void Initialize()
         {
-
         }
 
-        public void Write()
+        public void Write(byte[] Buffer)
         {
-
+            _Device.Write(Buffer);
         }
 
         private void ResolveDeviceID()
@@ -90,6 +98,7 @@ namespace NZXTSharp.COM {
                     throw new IncompatibleDeviceTypeException();
             }
         }
+        
 
         public string[] ScanForDevices()
         {
