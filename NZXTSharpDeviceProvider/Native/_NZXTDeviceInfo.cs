@@ -22,13 +22,17 @@ namespace RGB.NET.Devices.NZXT {
             this.ChannelByte = ChannelByte;
             this.type = Type;
 
+            Console.WriteLine("\tFields Set");
+
             switch(this.type) {
                 case NZXTDeviceType.Strip:
+                    Console.WriteLine("\tStrip Set");
                     this.DeviceName = "NZXT Fan";
                     this.Model = "Strip";
                     this.ledsCount = 10;
                     break;
                 case NZXTDeviceType.Fan:
+                    Console.WriteLine("\tFan Set");
                     this.DeviceName = "NZXT Fan";
                     this.Model = "Fan";
                     this.ledsCount = 8;
@@ -39,6 +43,7 @@ namespace RGB.NET.Devices.NZXT {
                     this.ledsCount = 7;
                     break;
             }
+            Console.WriteLine("    Finished Initializing");
         }
     }
 }

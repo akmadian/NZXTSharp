@@ -9,6 +9,8 @@ namespace RGB.NET.Devices.NZXT {
     public class NZXTDeviceProvider : IRGBDeviceProvider {
         #region Properties & Fields
 
+        private IEnumerable<IRGBDevice> _Devices;
+
         private static NZXTDeviceProvider _instance;
         /// <summary>
         /// Gets the singleton <see cref="NZXTDeviceProvider"/> instance.
@@ -33,7 +35,11 @@ namespace RGB.NET.Devices.NZXT {
         public bool HasExclusiveAccess { get; private set; }
 
         /// <inheritdoc />
-        public IEnumerable<IRGBDevice> Devices { get; private set; }
+        public IEnumerable<IRGBDevice> Devices 
+            {
+                get { return _Devices; }
+            private set {; }
+        }
 
         /// <summary>
         /// The <see cref="DeviceUpdateTrigger"/> used to trigger the updates for corsair devices. 
@@ -49,9 +55,10 @@ namespace RGB.NET.Devices.NZXT {
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown if this constructor is called even if there is already an instance of this class.</exception>
         public NZXTDeviceProvider() {
+            Console.WriteLine("Creating New DeviceProvider");
             if (_instance != null) throw new InvalidOperationException($"There can be only one instance of type {nameof(NZXTDeviceProvider)}");
             _instance = this;
-
+            
             UpdateTrigger = new DeviceUpdateTrigger();
         }
 
@@ -71,18 +78,24 @@ namespace RGB.NET.Devices.NZXT {
                 UpdateTrigger?.Stop();
 
                 IList<IRGBDevice> devices = new List<IRGBDevice>();
+                Console.WriteLine("Devices List Initialized");
                 _NZXTDeviceProvider provider = new _NZXTDeviceProvider(throwExceptions);
+                Console.WriteLine("Native Provider Initialized");
                 int deviceCount = provider.Devices.Length;
+                Console.WriteLine("Devices Count - " + deviceCount);
 
                 for(int i = 0; i < deviceCount; i++) 
                 {
+                    Console.WriteLine("Processing Device");
                     try 
                     {
                         NZXTRGBDeviceInfo Info = new NZXTRGBDeviceInfo(i, RGBDeviceType.Unknown, provider.Devices[i]);
-
+                        Console.WriteLine("    DeviceInfo Initialized");
                         foreach (INZXTRGBDevice device in GetRGBDevice(Info, i, provider.Devices[i])) 
                         {
+                            Console.WriteLine("    Adding Device");
                             devices.Add(device);
+                            Console.WriteLine("    Native Device Added to Provider Devices List");
                         }
                     }
                     catch { if (throwExceptions) throw; }
@@ -90,7 +103,9 @@ namespace RGB.NET.Devices.NZXT {
                 
                 UpdateTrigger?.Start();
 
+                Console.WriteLine("Setting Devices List to Readonly Collection");
                 Devices = new ReadOnlyCollection<IRGBDevice>(devices);
+                Console.WriteLine("Done");
                 IsInitialized = true;
             }
             catch { if (throwExceptions) throw; }

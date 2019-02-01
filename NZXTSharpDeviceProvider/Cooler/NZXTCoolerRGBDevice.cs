@@ -13,5 +13,10 @@ namespace RGB.NET.Devices.NZXT {
         protected override void InitializeLayout() {
 
         }
+
+        protected override void UpdateLeds(IEnumerable<Led> ledsToUpdate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

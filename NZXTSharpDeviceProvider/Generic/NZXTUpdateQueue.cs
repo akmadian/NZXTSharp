@@ -37,8 +37,7 @@ namespace RGB.NET.Devices.NZXT {
                     data.Value.G,
                     data.Value.B
                 );
-
-                _NZXTDeviceProvider.
+                
             }
         }
 
