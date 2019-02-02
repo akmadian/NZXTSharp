@@ -4,7 +4,8 @@ using System.Text;
 
 using NZXTSharp.Effects;
 
-namespace NZXTSharp.Devices {
+namespace NZXTSharp.Devices.HuePlus
+{
 
     /// <summary>
     /// Represents a generic NZXT Hue device.

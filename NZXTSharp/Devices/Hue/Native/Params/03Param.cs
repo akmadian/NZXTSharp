@@ -4,7 +4,8 @@ using System.Text;
 
 using NZXTSharp;
 
-namespace NZXTSharp.Params {
+namespace NZXTSharp.Devices.Common
+{
 
     /// <summary>
     /// Represents an 03 effect param.

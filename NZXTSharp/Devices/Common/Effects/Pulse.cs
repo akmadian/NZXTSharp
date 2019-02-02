@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 
 using NZXTSharp.Devices;
-using NZXTSharp.Params;
 using NZXTSharp.Exceptions;
 
-// TOTEST
-namespace NZXTSharp.Effects {
+
+namespace NZXTSharp.Devices.Common
+{
 
     /// <summary>
     /// Represents an RGB pulse effect.
@@ -24,7 +24,7 @@ namespace NZXTSharp.Effects {
         /// The array of colors used by the effect.
         /// </summary>
         public Color[] Colors;
-        private Channel _Channel;
+        private IChannel _Channel;
         private CISS _Param2;
         private int speed = 2;
         #pragma warning restore IDE0044 // Add readonly modifier
@@ -33,7 +33,7 @@ namespace NZXTSharp.Effects {
         public int EffectByte { get; }
 
         /// <inheritdoc/>
-        public Channel Channel { get; set; }
+        public IChannel Channel { get; set; }
 
         /// <inheritdoc/>
         public string EffectName { get; }
@@ -62,14 +62,21 @@ namespace NZXTSharp.Effects {
         }
 
         /// <inheritdoc/>
-        public List<byte[]> BuildBytes(Channel Channel) {
-            List<byte[]> outList = new List<byte[]>();
-            for (int colorIndex = 0; colorIndex < Colors.Length; colorIndex++) {
-                byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x06, 0x03, new CISS(colorIndex, this.speed) };
-                byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Colors[colorIndex]));
-                outList.Add(final);
+        public List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel) {
+            switch (Type) {
+                case NZXTDeviceType.HuePlus:
+                    List<byte[]> outList = new List<byte[]>();
+                    for (int colorIndex = 0; colorIndex < Colors.Length; colorIndex++) {
+                        byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x06, 0x03, new CISS(colorIndex, this.speed) };
+                        byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Colors[colorIndex]));
+                        outList.Add(final);
+                    }
+                    return outList;
+                case NZXTDeviceType.KrakenX:
+                    // TODO
+                default:
+                    return null;
             }
-            return outList;
         }
     }
 }

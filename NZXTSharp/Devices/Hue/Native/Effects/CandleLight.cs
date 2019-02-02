@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-using NZXTSharp.Devices;
-using NZXTSharp.Params;
+using NZXTSharp.Devices.Common;
 
-namespace NZXTSharp.Effects {
+namespace NZXTSharp.Devices.HuePlus
+{
 
     /// <summary>
     /// Represents an RGB Candle Light effect.
@@ -19,7 +19,7 @@ namespace NZXTSharp.Effects {
 
         /// <inheritdoc/>
         public Color Color;
-        private Channel _Channel;
+        private IChannel _Channel;
         private _03Param _Param1;
         private _02Param _Param2;
 
@@ -27,7 +27,7 @@ namespace NZXTSharp.Effects {
         public int EffectByte { get; }
 
         /// <inheritdoc/>
-        public Channel Channel { get; set; }
+        public IChannel Channel { get; set; }
 
         /// <inheritdoc/>
         public string EffectName { get; }
@@ -47,10 +47,17 @@ namespace NZXTSharp.Effects {
         }
 
         /// <inheritdoc/>
-        public List<byte[]> BuildBytes(Channel Channel) {
-            byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x09, _Param1, _Param2 };
-            byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Color));
-            return new List<byte[]>() { final };
+        public List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel) {
+            switch (Type) {
+                case NZXTDeviceType.HuePlus:
+                    byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x09, _Param1, _Param2 };
+                    byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Color));
+                    return new List<byte[]>() { final };
+                case NZXTDeviceType.KrakenX:
+                    // TODO
+                default:
+                    return null;
+            }
         }
     }
 }

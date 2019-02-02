@@ -1,4 +1,5 @@
-﻿namespace NZXTSharp.Devices {
+﻿namespace NZXTSharp.Devices.HuePlus
+{
 
     /// <summary>
     /// Represents information about a <see cref="Channel"/>.

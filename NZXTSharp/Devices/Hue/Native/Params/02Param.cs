@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NZXTSharp.Params {
+namespace NZXTSharp.Devices.Common
+{
 
     /// <summary>
     /// Represents an 02 effect Param

@@ -6,7 +6,7 @@ using System.Linq;
 using HidLibrary;
 
 using NZXTSharp.COM;
-using NZXTSharp.Effects.Kraken;
+using NZXTSharp.Effects;
 
 namespace NZXTSharp.Devices.KrakenX
 {
@@ -56,9 +56,10 @@ namespace NZXTSharp.Devices.KrakenX
             _COMController.Write(Buffer);
         }
 
-        public void ApplyEffect(KrakenRGBChannel Channel, IKrakenEffect Effect)
+        public void ApplyEffect(KrakenRGBChannel Channel, IEffect Effect)
         {
-            _COMController.Write(Effect.BuildBytes(Channel));
+            // TODO
+            //_COMController.Write(Effect.BuildBytes(Type, Channel));
         }
 
         public int GetPumpSpeed()

@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Text;
 
 using NZXTSharp.Devices;
-using NZXTSharp.Effects;
+using NZXTSharp.Devices.Common;
 
-namespace NZXTSharp.Devices {
+namespace NZXTSharp.Devices.HuePlus
+{
     
     /// <summary>
     /// Represents a channel on an NZXT device.

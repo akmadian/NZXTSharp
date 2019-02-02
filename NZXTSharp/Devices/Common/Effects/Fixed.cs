@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-using NZXTSharp.Devices;
-using NZXTSharp.Params;
 using NZXTSharp.Exceptions;
 
-namespace NZXTSharp.Effects {
+namespace NZXTSharp.Devices.Common
+{
 
     /// <summary>
     /// Represents an RGB fixed effect.
@@ -19,7 +18,7 @@ namespace NZXTSharp.Effects {
         public readonly List<NZXTDeviceType> CompatibleWith = new List<NZXTDeviceType>() { NZXTDeviceType.HuePlus };
 
         private Color _Color;
-        private Channel _Channel;
+        private IChannel _Channel;
 
         private byte[] CustomBytes;
         private bool IsCustom;
@@ -28,7 +27,7 @@ namespace NZXTSharp.Effects {
         public int EffectByte { get; }
 
         /// <inheritdoc/>
-        public Channel Channel { get; set; }
+        public IChannel Channel { get; set; }
 
         /// <inheritdoc/>
         public string EffectName { get; }
@@ -46,7 +45,7 @@ namespace NZXTSharp.Effects {
         /// </summary>
         /// <param name="Channel">The <see cref="Channel"/> the effect will be applied to.</param>
         /// <param name="color">The <see cref="Color"/> to display.</param>
-        public Fixed(Channel Channel, Color color)
+        public Fixed(IChannel Channel, Color color)
         {
             this._Channel = Channel;
             this._Color = color;
@@ -82,18 +81,27 @@ namespace NZXTSharp.Effects {
         }
 
         /// <inheritdoc/>
-        public List<byte[]> BuildBytes(Channel Channel) {
-            this._Channel = Channel;
-            byte[] SettingsBytes = new byte[] { 0x4b, (byte)_Channel, 0x00, 0x02, 0x03 };
-            byte[] final;
-            if (IsCustom)
+        public List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel) {
+            switch (Type)
             {
-                final = SettingsBytes.ConcatenateByteArr(_Channel.BuildColorBytes(CustomBytes));
-            } else
-            {
-                final = SettingsBytes.ConcatenateByteArr(_Channel.BuildColorBytes(_Color));
+                case NZXTDeviceType.HuePlus:
+                    this._Channel = Channel;
+                    byte[] SettingsBytes = new byte[] { 0x4b, (byte)_Channel.ChannelByte, 0x00, 0x02, 0x03 };
+                    byte[] final;
+                    if (IsCustom)
+                    {
+                        final = SettingsBytes.ConcatenateByteArr(_Channel.BuildColorBytes(CustomBytes));
+                    }
+                    else
+                    {
+                        final = SettingsBytes.ConcatenateByteArr(_Channel.BuildColorBytes(_Color));
+                    }
+                    return new List<byte[]>() { final };
+                case NZXTDeviceType.KrakenX:
+                    // TODO
+                default:
+                    return null;
             }
-            return new List<byte[]>() { final };
         }
     }
 }

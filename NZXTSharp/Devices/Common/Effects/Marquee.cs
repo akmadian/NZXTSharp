@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 
 using NZXTSharp;
-using NZXTSharp.Params;
 using NZXTSharp.Devices;
+using NZXTSharp.Devices.HuePlus;
 
-// TOTEST
-namespace NZXTSharp.Effects {
+// TODO: Add DeviceType constructors.
+namespace NZXTSharp.Devices.Common
+{
 
     /// <summary>
     /// Represents an RGB marquee effect.
@@ -23,14 +24,14 @@ namespace NZXTSharp.Effects {
         private Color _Color;
         private Direction Param1;
         private LSS Param2;
-        private Channel _Channel;
+        private IChannel _Channel;
 
         #region Properties
         /// <inheritdoc/>
         public int EffectByte { get; }
 
         /// <inheritdoc/>
-        public Channel Channel { get; set; }
+        public IChannel Channel { get; set; }
 
         /// <inheritdoc/>
         public string EffectName { get; }
@@ -55,13 +56,21 @@ namespace NZXTSharp.Effects {
         }
 
         /// <inheritdoc/>
-        public List<byte[]> BuildBytes(Channel Channel) {
-            List<byte[]> outList = new List<byte[]>();
-            byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x03, Param1, Param2 };
-            byte[] final = SettingsBytes.ConcatenateByteArr(Channel.State == false ? new Color().AllOff() : Channel.BuildColorBytes(_Color));
-            outList.Add(final);
+        public List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel) {
+            switch (Type)
+            {
+                case NZXTDeviceType.HuePlus:
+                    List<byte[]> outList = new List<byte[]>();
+                    byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x03, Param1, Param2 };
+                    byte[] final = SettingsBytes.ConcatenateByteArr(Channel.State == false ? new Color().AllOff() : Channel.BuildColorBytes(_Color));
+                    outList.Add(final);
 
-            return outList;
+                    return outList;
+                case NZXTDeviceType.KrakenX:
+                // TODO
+                default:
+                    return null;
+            }
         }
     }
 }

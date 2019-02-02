@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 
 using NZXTSharp.Devices;
-using NZXTSharp.Params;
+using NZXTSharp.Devices.HuePlus;
 
-// TOTEST
-namespace NZXTSharp.Effects {
+// TODO: Add DeviceType constructors
+namespace NZXTSharp.Devices.Common
+{
 
     /// <summary>
     /// Represents an RGB Spectrum Wave effect.
@@ -21,13 +22,13 @@ namespace NZXTSharp.Effects {
         private int speed;
         private Direction Param1;
         private CISS Param2;
-        private Channel _Channel;
+        private IChannel _Channel;
 
         /// <inheritdoc/>
         public int EffectByte { get; }
 
         /// <inheritdoc/>
-        public Channel Channel { get; set; }
+        public IChannel Channel { get; set; }
 
         /// <inheritdoc/>
         public string EffectName { get; }
@@ -49,10 +50,17 @@ namespace NZXTSharp.Effects {
         }
 
         /// <inheritdoc/>
-        public List<byte[]> BuildBytes(Channel Channel) {
-            byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x02, Param1, Param2 };
-            byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(new Color(0, 0, 255)));
-            return new List<byte[]>() { final };
+        public List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel) {
+            switch (Type) {
+                case NZXTDeviceType.HuePlus:
+                    byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x02, Param1, Param2 };
+                    byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(new Color(0, 0, 255)));
+                    return new List<byte[]>() { final };
+                case NZXTDeviceType.KrakenX:
+                    // TODO
+                default:
+                    return null;
+            }
         }
     }
 }

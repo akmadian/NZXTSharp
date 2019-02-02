@@ -4,10 +4,11 @@ using System.Text;
 
 using NZXTSharp.Devices;
 using NZXTSharp.Exceptions;
-using NZXTSharp.Params;
 
-// TOTEST
-namespace NZXTSharp.Effects {
+using NZXTSharp.Devices.HuePlus;
+
+// TODO: Add DeviceType constructors
+namespace NZXTSharp.Devices.Common {
 
     /// <summary>
     /// Represents an RGB alternating effect.
@@ -32,7 +33,7 @@ namespace NZXTSharp.Effects {
         public int EffectByte { get; }
 
         /// <inheritdoc/>
-        public Channel Channel { get; set; }
+        public IChannel Channel { get; set; }
 
         /// <inheritdoc/>
         public string EffectName { get; }
@@ -85,14 +86,21 @@ namespace NZXTSharp.Effects {
         }
 
         /// <inheritdoc/>
-        public List<byte[]> BuildBytes(Channel Channel) {
-            List<byte[]> outList = new List<byte[]>();
-            for (int colorIndex = 0; colorIndex < Colors.Length; colorIndex++) {
-                byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x05, _Param1, new CISS(colorIndex, this.speed) };
-                byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Colors[colorIndex]));
-                outList.Add(final);
+        public List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel) {
+            switch (Type) {
+                case NZXTDeviceType.HuePlus:
+                    List<byte[]> outList = new List<byte[]>();
+                    for (int colorIndex = 0; colorIndex < Colors.Length; colorIndex++) {
+                        byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x05, _Param1, new CISS(colorIndex, this.speed) };
+                        byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Colors[colorIndex]));
+                        outList.Add(final);
+                    }
+                    return outList;
+                case NZXTDeviceType.KrakenX:
+                    // TODO
+                default:
+                    return null;
             }
-            return outList;
         }
     }
 }

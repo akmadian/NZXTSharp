@@ -4,12 +4,7 @@ using System.Text;
 
 namespace NZXTSharp.Devices.KrakenX
 {
-    public enum CommandType
+    public class Loading
     {
-        Control = 0x02,
-        SpeedControl = 0x4d,
-
-        SetEffect = 0x02,
-        
     }
 }

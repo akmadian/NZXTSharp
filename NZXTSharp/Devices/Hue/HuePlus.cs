@@ -31,7 +31,7 @@ using NZXTSharp.COM;
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnassignedGetOnlyAutoProperty
 
-namespace NZXTSharp.Devices
+namespace NZXTSharp.Devices.HuePlus
 {
 
     /// <summary>

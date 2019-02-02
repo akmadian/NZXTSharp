@@ -2,29 +2,37 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-using NZXTSharp.Devices.Common;
+using NZXTSharp.Params;
 using NZXTSharp.Exceptions;
 
 namespace NZXTSharp.Devices.KrakenX
 {
-    public class DCB : IParam
+    public class DCBWM : IParam
     {
-        public int Value => GetValue();
+        int?[][] DCBWMArr = new int?[][] 
+        {
+            new int?[] {null, null},
+            new int?[] {null, null},
+            new int?[] {0x0A, 0x02}
+        };
 
         private bool _IsForward = true;
         private int ChannelByte;
         private KrakenRGBChannel Channel;
 
-        public DCB(int ChannelByte, bool IsForward)
+        public int Value => throw new NotImplementedException();
+
+        public DCBWM(int ChannelByte, bool IsForward)
         {
-            if (ChannelByte != 0x00 || ChannelByte != 0x02) {
-                throw new InvalidParamException("ChannelBytes for DCB param must be 0x00 or 0x02.");
+            if (ChannelByte != 0x02)
+            {
+                throw new InvalidParamException("ChannelByte for DCBWM or 0x02.");
             }
             this.ChannelByte = ChannelByte;
             this._IsForward = IsForward;
         }
 
-        public DCB(string Channel, bool IsForward)
+        public DCBWM(string Channel, bool IsForward)
         {
             if (!Regex.IsMatch(Channel, @"(0?(x|X)?)\d+"))
             {
@@ -35,7 +43,7 @@ namespace NZXTSharp.Devices.KrakenX
             this._IsForward = IsForward;
         }
 
-        public DCB(KrakenRGBChannel Channel, bool IsForward)
+        public DCBWM(KrakenRGBChannel Channel, bool IsForward)
         {
             this.Channel = Channel;
             this._IsForward = IsForward;
@@ -43,9 +51,9 @@ namespace NZXTSharp.Devices.KrakenX
 
         public int GetValue()
         {
-            string Dir = _IsForward ? "0" : "1";
-            string CB = Channel != null ? Channel.ChannelByte.ToString() : ChannelByte.ToString();
-            return Convert.ToInt32(Dir + CB);
+            int CB = Channel != null ? Channel.ChannelByte : ChannelByte;
+            int? outInt = DCBWMArr[CB][_IsForward ? 0 : 1];
+            return outInt ?? 0x0A;
         }
     }
 }

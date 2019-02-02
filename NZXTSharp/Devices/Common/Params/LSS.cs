@@ -4,7 +4,8 @@ using System.Text;
 
 using NZXTSharp.Exceptions;
 
-namespace NZXTSharp.Params {
+namespace NZXTSharp.Devices.Common
+{
 
     /// <summary>
     /// Represents an LSS param.
