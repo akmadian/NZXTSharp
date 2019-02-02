@@ -13,9 +13,9 @@ namespace NZXTSharp.Devices.KrakenX
     public class KrakenX : IUSBDevice
     {
 
-        private RGBChannel _Both;
-        private RGBChannel _Logo;
-        private RGBChannel _Ring;
+        private KrakenRGBChannel _Both;
+        private KrakenRGBChannel _Logo;
+        private KrakenRGBChannel _Ring;
 
         private USBController _COMController;
 
@@ -56,7 +56,7 @@ namespace NZXTSharp.Devices.KrakenX
             _COMController.Write(Buffer);
         }
 
-        public void ApplyEffect(RGBChannel Channel, IKrakenEffect Effect)
+        public void ApplyEffect(KrakenRGBChannel Channel, IKrakenEffect Effect)
         {
             _COMController.Write(Effect.BuildBytes(Channel));
         }

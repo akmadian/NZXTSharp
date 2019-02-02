@@ -4,7 +4,9 @@ using System.Text;
 
 namespace NZXTSharp.Devices
 {
-    public class RGBChannel
+    public class KrakenRGBChannel
     {
+
+        public int ChannelByte;
     }
 }

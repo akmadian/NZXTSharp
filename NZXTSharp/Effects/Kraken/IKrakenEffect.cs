@@ -6,6 +6,6 @@ namespace NZXTSharp.Effects.Kraken
 {
     public interface IKrakenEffect
     {
-        byte[] BuildBytes(Devices.RGBChannel Channel);
+        byte[] BuildBytes(Devices.KrakenRGBChannel Channel);
     }
 }
