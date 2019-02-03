@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NZXTSharp.Params {
+namespace NZXTSharp.HuePlus {
 
     /// <summary>
     /// Represents a <see cref="Direction"/> effect param.

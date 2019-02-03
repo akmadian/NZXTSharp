@@ -5,7 +5,8 @@ using System.Text;
 using NZXTSharp.Exceptions;
 using System.Linq;
 
-namespace NZXTSharp.Devices {
+namespace NZXTSharp
+{
 
     /// <summary>
     /// Represents an RGB Strip subdevice.

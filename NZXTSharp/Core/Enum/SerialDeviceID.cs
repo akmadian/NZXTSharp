@@ -4,7 +4,8 @@ using System.Text;
 
 using NZXTSharp.Devices;
 
-namespace NZXTSharp.Devices {
+namespace NZXTSharp
+{
 
     /// <summary>
     /// Contains the Manufacturer and Product IDs of NZXT devices.

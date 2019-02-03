@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NZXTSharp.Devices {
+namespace NZXTSharp
+{
 
     /// <summary>
     /// Represents a sub device.

@@ -4,7 +4,8 @@ using System.Text;
 
 using NZXTSharp.Devices;
 
-namespace NZXTSharp.Core {
+namespace NZXTSharp
+{
 
     /// <summary>
     /// Represents a generic RGB effect.
@@ -24,14 +25,14 @@ namespace NZXTSharp.Core {
         /// <summary>
         /// The <see cref="Channel"/> to set the <see cref="IEffect"/> on.
         /// </summary>
-        Channel Channel { get; set; }
+        IChannel Channel { get; set; }
 
         /// <summary>
         /// Builds and returns the buffer queue needed to set the <see cref="IEffect"/>.
         /// </summary>
         /// <param name="Channel"></param>
         /// <returns></returns>
-        List<byte[]> BuildBytes(Channel Channel);
+        List<byte[]> BuildBytes(IChannel Channel);
 
         /// <summary>
         /// Checks to see if the <see cref="IEffect"/> is compatible with a given <see cref="NZXTDeviceType"/> <paramref name="Type"/>.

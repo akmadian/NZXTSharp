@@ -4,7 +4,8 @@ using System.Text;
 
 using NZXTSharp.Devices;
 
-namespace NZXTSharp.Params {
+namespace NZXTSharp
+{
 
     /// <summary>
     /// An effect parameter.

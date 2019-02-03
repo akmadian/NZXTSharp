@@ -6,8 +6,8 @@ using NZXTSharp;
 using NZXTSharp.Params;
 using NZXTSharp.Devices;
 
-// TOTEST
-namespace NZXTSharp.Effects {
+namespace NZXTSharp
+{
 
     /// <summary>
     /// Represents an RGB marquee effect.
@@ -23,14 +23,14 @@ namespace NZXTSharp.Effects {
         private Color _Color;
         private Direction Param1;
         private LSS Param2;
-        private Channel _Channel;
+        private HuePlusChannel _Channel;
 
         #region Properties
         /// <inheritdoc/>
         public int EffectByte { get; }
 
         /// <inheritdoc/>
-        public Channel Channel { get; set; }
+        public HuePlusChannel Channel { get; set; }
 
         /// <inheritdoc/>
         public string EffectName { get; }
@@ -55,7 +55,7 @@ namespace NZXTSharp.Effects {
         }
 
         /// <inheritdoc/>
-        public List<byte[]> BuildBytes(Channel Channel) {
+        public List<byte[]> BuildBytes(HuePlusChannel Channel) {
             List<byte[]> outList = new List<byte[]>();
             byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x03, Param1, Param2 };
             byte[] final = SettingsBytes.ConcatenateByteArr(Channel.State == false ? new Color().AllOff() : Channel.BuildColorBytes(_Color));

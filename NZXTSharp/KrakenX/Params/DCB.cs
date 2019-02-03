@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using System.Text;
 
-using NZXTSharp.Params;
+using NZXTSharp;
 
-namespace NZXTSharp.Devices.KrakenX
+namespace NZXTSharp.KrakenX
 {
     public class DCB : IParam
     {
         public int Value => throw new NotImplementedException();
 
         private bool _IsForward;
-        private KrakenRGBChannel Channel;
+        private KrakenXChannel Channel;
 
         public DCB() { }
 
-        public DCB(KrakenRGBChannel Channel, bool IsForward)
+        public DCB(KrakenXChannel Channel, bool IsForward)
         {
             this.Channel = Channel;
             this._IsForward = IsForward;

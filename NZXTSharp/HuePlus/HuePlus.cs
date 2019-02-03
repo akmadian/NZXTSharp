@@ -24,14 +24,13 @@ using System.IO.Ports;
 using System.Linq;
 
 using NZXTSharp.Exceptions;
-using NZXTSharp.Effects;
 
 using NZXTSharp.COM;
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnassignedGetOnlyAutoProperty
 
-namespace NZXTSharp.Devices
+namespace NZXTSharp.HuePlus
 {
 
     /// <summary>
@@ -56,10 +55,10 @@ namespace NZXTSharp.Devices
 
         private SerialController _COMController;
 
-        private Channel _Both;
-        private Channel _Channel1;
-        private Channel _Channel2;
-        private List<Channel> _Channels;
+        private HuePlusChannel _Both;
+        private HuePlusChannel _Channel1;
+        private HuePlusChannel _Channel2;
+        private List<HuePlusChannel> _Channels;
         #endregion
 
         #region Properties
@@ -69,24 +68,24 @@ namespace NZXTSharp.Devices
         public string Name { get; }
 
         /// <summary>
-        /// A <see cref="Channel"/> object representing both channels on the <see cref="HuePlus"/>.
+        /// A <see cref="HuePlusChannel"/> object representing both channels on the <see cref="HuePlus"/>.
         /// </summary>
-        public Channel Both { get => _Both; }
+        public HuePlusChannel Both { get => _Both; }
 
         /// <summary>
-        /// A <see cref="Channel"/> object representing the Channel 1 of the <see cref="HuePlus"/> device.
+        /// A <see cref="HuePlusChannel"/> object representing the Channel 1 of the <see cref="HuePlus"/> device.
         /// </summary>
-        public Channel Channel1 { get => _Channel1; }
+        public HuePlusChannel Channel1 { get => _Channel1; }
 
         /// <summary>
-        /// A <see cref="Channel"/> object representing the Channel 2 of the <see cref="HuePlus"/> device.
+        /// A <see cref="HuePlusChannel"/> object representing the Channel 2 of the <see cref="HuePlus"/> device.
         /// </summary>
-        public Channel Channel2 { get => _Channel2; }
+        public HuePlusChannel Channel2 { get => _Channel2; }
 
         /// <summary>
-        /// A <see cref="List{T}"/> containing all <see cref="Channel"/> objects owned by the <see cref="HuePlus"/> device.
+        /// A <see cref="List{T}"/> containing all <see cref="HuePlusChannel"/> objects owned by the <see cref="HuePlus"/> device.
         /// </summary>
-        public List<Channel> Channels { get => _Channels; }
+        public List<HuePlusChannel> Channels { get => _Channels; }
         
         /// <summary>
         /// A custom name for the <see cref="HuePlus"/> instance.
@@ -188,10 +187,10 @@ namespace NZXTSharp.Devices
         private void InitializeChannels()
         {
             SendLogEvent("Initializing Channels");
-            this._Both = new Channel(0x00, Parent: this);
-            this._Channel1 = new Channel(0x01, Parent: this);
-            this._Channel2 = new Channel(0x02, Parent: this);
-            this._Channels = new List<Channel>() { _Both, _Channel1, _Channel2 };
+            this._Both = new HuePlusChannel(0x00, Parent: this);
+            this._Channel1 = new HuePlusChannel(0x01, Parent: this);
+            this._Channel2 = new HuePlusChannel(0x02, Parent: this);
+            this._Channels = new List<HuePlusChannel>() { _Both, _Channel1, _Channel2 };
         }
 
         private void InitializeChannelInfo()
@@ -222,10 +221,10 @@ namespace NZXTSharp.Devices
         /// <summary>
         /// Applies the given <paramref name="effect"/> to the given <paramref name="channel"/>.
         /// </summary>
-        /// <param name="channel">The <see cref="Channel"/> to apply the effect to.</param>
+        /// <param name="channel">The <see cref="HuePlusChannel"/> to apply the effect to.</param>
         /// <param name="effect">The <see cref="IEffect"/> to apply.</param>
         /// <param name="SaveToChannel">Whether or not to save the given effect to the given channel.</param>
-        public void ApplyEffect(Channel channel, IEffect effect, bool SaveToChannel = true)
+        public void ApplyEffect(HuePlusChannel channel, IEffect effect, bool SaveToChannel = true)
         {
             if (!effect.IsCompatibleWith(Type))
                 throw new IncompatibleEffectException(_Name, effect.EffectName);
@@ -325,20 +324,20 @@ namespace NZXTSharp.Devices
         }
 
         /// <summary>
-        /// Updates the given <see cref="Channel"/>'s <see cref="ChannelInfo"/>.
+        /// Updates the given <see cref="HuePlusChannel"/>'s <see cref="HuePlusChannelInfo"/>.
         /// </summary>
         /// <param name="Channel"></param>
-        public void UpdateChannelInfo(Channel Channel)
+        public void UpdateChannelInfo(HuePlusChannel Channel)
         {
             UpdateChannelInfoOp(this._Channel1);
             UpdateChannelInfoOp(this._Channel2);
         }
 
-        private void UpdateChannelInfoOp(Channel channel)
+        private void UpdateChannelInfoOp(HuePlusChannel channel)
         {
             _COMController.Port.DiscardInBuffer(); //This will have to be removed later
             _COMController.Port.DiscardOutBuffer(); //This will have to be removed later
-            channel.SetChannelInfo(new ChannelInfo(channel, _COMController.Write(new byte[] { 0x8d, (byte)channel }, 5)));
+            channel.SetChannelInfo(new HuePlusChannelInfo(channel, _COMController.Write(new byte[] { 0x8d, (byte)channel }, 5)));
         }
     }
 }

@@ -5,17 +5,17 @@ using System.Linq;
 
 using HidLibrary;
 
+using NZXTSharp;
 using NZXTSharp.COM;
-using NZXTSharp.Effects.Kraken;
 
-namespace NZXTSharp.Devices.KrakenX
+namespace NZXTSharp.KrakenX
 {
-    public class KrakenX : IUSBDevice
+    public class KrakenX
     {
 
-        private KrakenRGBChannel _Both;
-        private KrakenRGBChannel _Logo;
-        private KrakenRGBChannel _Ring;
+        private KrakenXChannel _Both;
+        private KrakenXChannel _Logo;
+        private KrakenXChannel _Ring;
 
         private USBController _COMController;
 
@@ -56,7 +56,7 @@ namespace NZXTSharp.Devices.KrakenX
             _COMController.Write(Buffer);
         }
 
-        public void ApplyEffect(KrakenRGBChannel Channel, IKrakenEffect Effect)
+        public void ApplyEffect(KrakenXChannel Channel, IEffect Effect)
         {
             _COMController.Write(Effect.BuildBytes(Channel));
         }

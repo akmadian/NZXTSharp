@@ -5,8 +5,8 @@ using System.Text;
 using NZXTSharp.Devices;
 using NZXTSharp.Params;
 
-// TOTEST
-namespace NZXTSharp.Effects {
+namespace NZXTSharp
+{
 
     /// <summary>
     /// Represents an RGB Spectrum Wave effect.
@@ -21,13 +21,13 @@ namespace NZXTSharp.Effects {
         private int speed;
         private Direction Param1;
         private CISS Param2;
-        private Channel _Channel;
+        private HuePlusChannel _Channel;
 
         /// <inheritdoc/>
         public int EffectByte { get; }
 
         /// <inheritdoc/>
-        public Channel Channel { get; set; }
+        public HuePlusChannel Channel { get; set; }
 
         /// <inheritdoc/>
         public string EffectName { get; }
@@ -49,7 +49,7 @@ namespace NZXTSharp.Effects {
         }
 
         /// <inheritdoc/>
-        public List<byte[]> BuildBytes(Channel Channel) {
+        public List<byte[]> BuildBytes(HuePlusChannel Channel) {
             byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x02, Param1, Param2 };
             byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(new Color(0, 0, 255)));
             return new List<byte[]>() { final };

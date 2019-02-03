@@ -3,85 +3,86 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
+using NZXTSharp;
 using NZXTSharp.Devices;
-using NZXTSharp.Effects;
 
-namespace NZXTSharp.Devices {
+namespace NZXTSharp.HuePlus {
     
     /// <summary>
     /// Represents a channel on an NZXT device.
     /// </summary>
-    public class Channel {
+    public class HuePlusChannel : IChannel
+    {
         
         private readonly int _ChannelByte;
         private IEffect _Effect = new Fixed(new Color(255, 255, 255));
-        private IHueDevice _Parent;
         private bool _State = true;
-        private ChannelInfo _ChannelInfo;
+        private HuePlus _Parent;
+        private HuePlusChannelInfo _ChannelInfo;
         #pragma warning disable IDE0044 // Add readonly modifier
         private List<ISubDevice> _SubDevices = new List<ISubDevice>();
         #pragma warning restore IDE0044 // Add readonly modifier
 
         #region Properties
         /// <summary>
-        /// The channelbyte of the <see cref="Channel"/>.
+        /// The channelbyte of the <see cref="HuePlusChannel"/>.
         /// </summary>
         public int ChannelByte { get; }
 
         /// <summary>
-        /// The <see cref="IEffect"/> currently applied to the <see cref="Channel"/>.
+        /// The <see cref="IEffect"/> currently applied to the <see cref="HuePlusChannel"/>.
         /// </summary>
         public IEffect Effect { get => _Effect; }
 
         /// <summary>
-        /// Whether or not the current <see cref="Channel"/> is active (on).
+        /// Whether or not the current <see cref="HuePlusChannel"/> is active (on).
         /// </summary>
         public bool State { get => _State; }
         
         /// <summary>
-        /// The <see cref="Channel"/>'s <see cref="ChannelInfo"/> object.
+        /// The <see cref="HuePlusChannel"/>'s <see cref="ChannelInfo"/> object.
         /// </summary>
-        public ChannelInfo ChannelInfo { get => _ChannelInfo; }
+        public HuePlusChannelInfo ChannelInfo { get => _ChannelInfo; }
 
         /// <summary>
-        /// The device that owns the <see cref="Channel"/>.
+        /// The device that owns the <see cref="HuePlusChannel"/>.
         /// </summary>
-        public IHueDevice Parent { get => _Parent; }
+        public HuePlus Parent { get => _Parent; }
 
         /// <summary>
-        /// A list of <see cref="ISubDevice"/>s owned by the <see cref="Channel"/>.
+        /// A list of <see cref="ISubDevice"/>s owned by the <see cref="HuePlusChannel"/>.
         /// </summary>
         public List<ISubDevice> SubDevices { get => _SubDevices; }
         #endregion
         
         /// <summary>
-        /// Constructs a <see cref="Channel"/> object with a given <paramref name="ChannelByte"/>.
+        /// Constructs a <see cref="HuePlusChannel"/> object with a given <paramref name="ChannelByte"/>.
         /// </summary>
         /// <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
-        public Channel(int ChannelByte) {
+        public HuePlusChannel(int ChannelByte) {
             this._ChannelByte = ChannelByte;
         }
 
         /// <summary>
-        /// Constructs a <see cref="Channel"/> object with a given <paramref name="ChannelByte"/>, 
+        /// Constructs a <see cref="HuePlusChannel"/> object with a given <paramref name="ChannelByte"/>, 
         /// owned by a given <paramref name="Parent"/> <see cref="IHueDevice"/>.
         /// </summary>
         /// <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
-        /// <param name="Parent">The <see cref="IHueDevice"/> that will own the <see cref="Channel"/></param>
-        public Channel(int ChannelByte, IHueDevice Parent) {
+        /// <param name="Parent">The <see cref="IHueDevice"/> that will own the <see cref="HuePlusChannel"/></param>
+        public HuePlusChannel(int ChannelByte, HuePlus Parent) {
             this.ChannelByte = ChannelByte;
             this._Parent = Parent;
         }
 
         /// <summary>
-        /// Constructs a <see cref="Channel"/> object with a given <paramref name="ChannelByte"/>, 
+        /// Constructs a <see cref="HuePlusChannel"/> object with a given <paramref name="ChannelByte"/>, 
         /// owned by a given <paramref name="Parent"/> <see cref="IHueDevice"/>, 
         /// with a given <see cref="ChannelInfo"/>.
         /// </summary>
         /// <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
-        /// <param name="Parent">The <see cref="IHueDevice"/> that owns the <see cref="Channel"/></param>
-        /// <param name="Info">The <see cref="ChannelInfo"/> owned by the <see cref="Channel"/>.</param>
-        public Channel(int ChannelByte, IHueDevice Parent, ChannelInfo Info) {
+        /// <param name="Parent">The <see cref="IHueDevice"/> that owns the <see cref="HuePlusChannel"/></param>
+        /// <param name="Info">The <see cref="ChannelInfo"/> owned by the <see cref="HuePlusChannel"/>.</param>
+        public HuePlusChannel(int ChannelByte, HuePlus Parent, HuePlusChannelInfo Info) {
             this.ChannelByte = ChannelByte;
             this._Parent = Parent;
             this._ChannelInfo = Info;
@@ -106,7 +107,7 @@ namespace NZXTSharp.Devices {
         }
 
         /// <summary>
-        /// Refreshes all <see cref="ISubDevice"/>s in the <see cref="Channel"/>'s <see cref="SubDevices"/> list.
+        /// Refreshes all <see cref="ISubDevice"/>s in the <see cref="HuePlusChannel"/>'s <see cref="SubDevices"/> list.
         /// </summary>
         public void RefreshSubDevices()
         {
@@ -114,7 +115,7 @@ namespace NZXTSharp.Devices {
         }
 
         /// <summary>
-        /// Turns the <see cref="Channel"/> on.
+        /// Turns the <see cref="HuePlusChannel"/> on.
         /// </summary>
         public void On() {
             this._State = true;
@@ -122,14 +123,14 @@ namespace NZXTSharp.Devices {
         }
 
         /// <summary>
-        /// Turns the <see cref="Channel"/> off.
+        /// Turns the <see cref="HuePlusChannel"/> off.
         /// </summary>
         public void Off() {
             this._State = false;
             _Parent.ApplyEffect(this, new Fixed(this, new Color(0, 0, 0)), false);
         }
         
-        internal byte[] BuildColorBytes(Color color) {
+        public byte[] BuildColorBytes(Color color) {
             List<byte> outList = new List<byte>();
             foreach (ISubDevice device in _SubDevices)
             {
@@ -163,7 +164,7 @@ namespace NZXTSharp.Devices {
             return outList.ToArray();
         }
 
-        internal byte[] BuildColorBytes(byte[] buffer)
+        public byte[] BuildColorBytes(byte[] buffer)
         {
             for (int deviceN = 0; deviceN < SubDevices.Count; deviceN++)
             {
@@ -194,25 +195,25 @@ namespace NZXTSharp.Devices {
         }
 
         /// <summary>
-        /// Updates the <see cref="Channel"/>'s <see cref="ChannelInfo"/>.
+        /// Updates the <see cref="HuePlusChannel"/>'s <see cref="ChannelInfo"/>.
         /// </summary>
         public void UpdateChannelInfo() {
             Parent.UpdateChannelInfo(this);
         }
 
         /// <summary>
-        /// Sets the <see cref="Channel"/>'s <see cref="ChannelInfo"/> to the given <paramref name="info"/>.
+        /// Sets the <see cref="HuePlusChannel"/>'s <see cref="ChannelInfo"/> to the given <paramref name="info"/>.
         /// </summary>
         /// <param name="info"></param>
-        public void SetChannelInfo(ChannelInfo info) {
+        public void SetChannelInfo(HuePlusChannelInfo info) {
             this._ChannelInfo = info;
         }
 
         /// <summary>
-        /// Returns the <see cref="Channel"/>'s ChannelByte.
+        /// Returns the <see cref="HuePlusChannel"/>'s ChannelByte.
         /// </summary>
         /// <param name="channel"></param>
-        public static explicit operator byte(Channel channel) {
+        public static explicit operator byte(HuePlusChannel channel) {
             return (byte)channel.ChannelByte;
         }
     }

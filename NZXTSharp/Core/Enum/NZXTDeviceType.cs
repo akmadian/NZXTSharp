@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NZXTSharp.Devices {
+namespace NZXTSharp
+{
 
     /// <summary>
     /// Definitions of unique IDs for all NZXT devices.

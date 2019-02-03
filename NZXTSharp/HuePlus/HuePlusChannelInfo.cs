@@ -1,29 +1,29 @@
-﻿namespace NZXTSharp.Devices {
+﻿namespace NZXTSharp.HuePlus {
 
     /// <summary>
-    /// Represents information about a <see cref="Channel"/>.
+    /// Represents information about a <see cref="HuePlusChannel"/>.
     /// </summary>
-    public class ChannelInfo {
+    public class HuePlusChannelInfo {
         #pragma warning disable IDE0044 // Add readonly modifier
         private int _NumLeds;
         private NZXTDeviceType _Type;
         private int _NumSubDevices;
         private bool _IsActive;
-        private Channel _Parent;
+        private HuePlusChannel _Parent;
         #pragma warning restore IDE0044 // Add readonly modifier
 
         /// <summary>
-        /// Represents the total number of LEDs available on a <see cref="Channel"/>.
+        /// Represents the total number of LEDs available on a <see cref="HuePlusChannel"/>.
         /// </summary>
         public int NumLeds { get => _NumLeds; }
 
         /// <summary>
-        /// The number of SubDevices available on a <see cref="Channel"/>.
+        /// The number of SubDevices available on a <see cref="HuePlusChannel"/>.
         /// </summary>
         public int NumSubDevices { get => _NumSubDevices; }
 
         /// <summary>
-        /// Type of <see cref="ISubDevice"/>s available on a <see cref="Channel"/>.
+        /// Type of <see cref="ISubDevice"/>s available on a <see cref="HuePlusChannel"/>.
         /// </summary>
         public NZXTDeviceType Type { get => _Type; }
 
@@ -31,27 +31,27 @@
         /// 
         /// </summary>
         public bool IsActive { get => _IsActive; }
-        private Channel Parent { get; }
+        private HuePlusChannel Parent { get; }
 
         /// <summary>
-        /// Constructs a <see cref="ChannelInfo"/> with a given <paramref name="Parent"/> as its parent, from some given channel handshake <paramref name="data"/>.
+        /// Constructs a <see cref="HuePlusChannelInfo"/> with a given <paramref name="Parent"/> as its parent, from some given channel handshake <paramref name="data"/>.
         /// </summary>
         /// <param name="Parent"></param>
         /// <param name="data"></param>
-        public ChannelInfo(Channel Parent, byte[] data) {
+        public HuePlusChannelInfo(HuePlusChannel Parent, byte[] data) {
             ParseData(data);    
         }
 
         /// <summary>
-        /// Constructs a <see cref="ChannelInfo"/> object from some given channel handshake <paramref name="data"/>.
+        /// Constructs a <see cref="HuePlusChannelInfo"/> object from some given channel handshake <paramref name="data"/>.
         /// </summary>
         /// <param name="data"></param>
-        public ChannelInfo(byte[] data) {
+        public HuePlusChannelInfo(byte[] data) {
             ParseData(data);
         }
 
         /// <summary>
-        /// Updates the parent <see cref="Channel"/>'s <see cref="ChannelInfo"/>.
+        /// Updates the parent <see cref="HuePlusChannel"/>'s <see cref="HuePlusChannelInfo"/>.
         /// </summary>
         public void Update() {
             Parent.Parent.UpdateChannelInfo(Parent);

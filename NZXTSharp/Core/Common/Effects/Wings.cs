@@ -6,7 +6,8 @@ using NZXTSharp.Params;
 using NZXTSharp.Exceptions;
 using NZXTSharp.Devices;
 
-namespace NZXTSharp.Effects {
+namespace NZXTSharp
+{
 
     /// <summary>
     /// Represents an RGB wings effect.
@@ -22,7 +23,7 @@ namespace NZXTSharp.Effects {
         /// The array of colors used by the effect.
         /// </summary>
         public Color[] Colors;
-        private Channel _Channel;
+        private HuePlusChannel _Channel;
         private _03Param _Param1;
         private CISS _Param2;
         private int speed = 2;
@@ -31,7 +32,7 @@ namespace NZXTSharp.Effects {
         public int EffectByte { get; }
 
         /// <inheritdoc/>
-        public Channel Channel { get; set; }
+        public HuePlusChannel Channel { get; set; }
 
         /// <inheritdoc/>
         public string EffectName { get; }
@@ -63,7 +64,7 @@ namespace NZXTSharp.Effects {
         }
 
         /// <inheritdoc/>
-        public List<byte[]> BuildBytes(Channel Channel) {
+        public List<byte[]> BuildBytes(HuePlusChannel Channel) {
             List<byte[]> outList = new List<byte[]>();
             for (int colorIndex = 0; colorIndex < Colors.Length; colorIndex++) {
                 byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x0c, _Param1, new CISS(colorIndex, this.speed) };

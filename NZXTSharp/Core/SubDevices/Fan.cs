@@ -4,7 +4,8 @@ using System.Text;
 
 using NZXTSharp.Exceptions;
 
-namespace NZXTSharp.Devices {
+namespace NZXTSharp
+{
 
     /// <summary>
     /// Represents a fan.

@@ -4,7 +4,7 @@ using System.Text;
 
 using NZXTSharp;
 
-namespace NZXTSharp.Params {
+namespace NZXTSharp.HuePlus {
 
     /// <summary>
     /// Represents an 03 effect param.

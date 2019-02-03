@@ -6,8 +6,8 @@ using NZXTSharp.Devices;
 using NZXTSharp.Exceptions;
 using NZXTSharp.Params;
 
-// TOTEST
-namespace NZXTSharp.Effects {
+namespace NZXTSharp
+{
 
     /// <summary>
     /// Represents an RGB Fading effect.
@@ -25,14 +25,14 @@ namespace NZXTSharp.Effects {
         public Color[] Colors;
         private _03Param Param1 = new _03Param();
         private CISS Param2;
-        private Channel _Channel;
+        private HuePlusChannel _Channel;
         private int _Speed = 2;
 
         /// <inheritdoc/>
         public int EffectByte { get; }
 
         /// <inheritdoc/>
-        public Channel Channel { get; set; }
+        public HuePlusChannel Channel { get; set; }
 
         /// <inheritdoc/>
         public string EffectName { get; }
@@ -61,7 +61,7 @@ namespace NZXTSharp.Effects {
         }
 
         /// <inheritdoc/>
-        public List<byte[]> BuildBytes(Channel Channel) {
+        public List<byte[]> BuildBytes(HuePlusChannel Channel) {
             List<byte[]> outList = new List<byte[]>();
             for (int colorIndex = 0; colorIndex < Colors.Length; colorIndex++) {
                 byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x01, Param1, new CISS(colorIndex, this._Speed) };
