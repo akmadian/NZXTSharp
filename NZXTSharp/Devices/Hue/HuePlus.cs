@@ -24,7 +24,7 @@ using System.IO.Ports;
 using System.Linq;
 
 using NZXTSharp.Exceptions;
-using NZXTSharp.Effects;
+using NZXTSharp.Devices.Common;
 
 using NZXTSharp.COM;
 
@@ -238,12 +238,12 @@ namespace NZXTSharp.Devices.HuePlus
             // TODO : Improve this, not elegant.
             if (channel == this._Both) // If both channels, build and send bytes for both individually
             {
-                foreach (byte[] arr in effect.BuildBytes(this._Channel1))
+                foreach (byte[] arr in effect.BuildBytes(Type, this._Channel1))
                 {
                     commandQueue.Add(arr);
                 }
 
-                foreach (byte[] arr in effect.BuildBytes(this._Channel2))
+                foreach (byte[] arr in effect.BuildBytes(Type, this._Channel2))
                 {
                     commandQueue.Add(arr);
                 }
@@ -256,7 +256,7 @@ namespace NZXTSharp.Devices.HuePlus
             }
             else // Otherwise, just build for the selected channel
             {
-                commandQueue = effect.BuildBytes(channel);
+                commandQueue = effect.BuildBytes(Type, channel);
             }
 
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-using NZXTSharp.Effects;
+using NZXTSharp.Devices.Common;
 
 namespace NZXTSharp.Devices.HuePlus
 {

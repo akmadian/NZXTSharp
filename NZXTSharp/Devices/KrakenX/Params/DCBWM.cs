@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-using NZXTSharp.Params;
+using NZXTSharp.Devices.Common;
 using NZXTSharp.Exceptions;
 
 namespace NZXTSharp.Devices.KrakenX

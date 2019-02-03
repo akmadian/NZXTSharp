@@ -12,7 +12,8 @@ namespace NZXTSharp.Devices.HuePlus
     /// <summary>
     /// Represents a channel on an NZXT device.
     /// </summary>
-    public class Channel {
+    public class Channel : IChannel
+    {
         
         private readonly int _ChannelByte;
         private IEffect _Effect = new Fixed(new Color(255, 255, 255));
@@ -119,7 +120,7 @@ namespace NZXTSharp.Devices.HuePlus
         /// </summary>
         public void On() {
             this._State = true;
-            _Parent.ApplyEffect(this, _Effect);
+            //_Parent.ApplyEffect(this, _Effect);
         }
 
         /// <summary>
@@ -127,10 +128,10 @@ namespace NZXTSharp.Devices.HuePlus
         /// </summary>
         public void Off() {
             this._State = false;
-            _Parent.ApplyEffect(this, new Fixed(this, new Color(0, 0, 0)), false);
+            //_Parent.ApplyEffect(this, new Fixed(this, new Color(0, 0, 0)), false);
         }
         
-        internal byte[] BuildColorBytes(Color color) {
+        public byte[] BuildColorBytes(Color color) {
             List<byte> outList = new List<byte>();
             foreach (ISubDevice device in _SubDevices)
             {
@@ -164,7 +165,7 @@ namespace NZXTSharp.Devices.HuePlus
             return outList.ToArray();
         }
 
-        internal byte[] BuildColorBytes(byte[] buffer)
+        public byte[] BuildColorBytes(byte[] buffer)
         {
             for (int deviceN = 0; deviceN < SubDevices.Count; deviceN++)
             {
