@@ -23,7 +23,7 @@ namespace NZXTSharp
         private readonly int _Value;
 
         /// <inheritdoc/>
-        private readonly List<Devices.NZXTDeviceType> _CompatibleWith = new List<Devices.NZXTDeviceType>() { Devices.NZXTDeviceType.HuePlus };
+        private readonly List<NZXTDeviceType> _CompatibleWith = new List<NZXTDeviceType>() { NZXTDeviceType.HuePlus };
 
         /// <inheritdoc/>
         public int Value { get => GetValue(); }

@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-using NZXTSharp.Devices;
+using NZXTSharp;
 using NZXTSharp.Exceptions;
-using NZXTSharp.Params;
 
 namespace NZXTSharp
 {
@@ -23,16 +22,15 @@ namespace NZXTSharp
         /// The array of colors used by the effect.
         /// </summary>
         public Color[] Colors;
-        private _03Param Param1 = new _03Param();
         private CISS Param2;
-        private HuePlusChannel _Channel;
+        private IChannel _Channel;
         private int _Speed = 2;
 
         /// <inheritdoc/>
         public int EffectByte { get; }
 
         /// <inheritdoc/>
-        public HuePlusChannel Channel { get; set; }
+        public IChannel Channel { get; set; }
 
         /// <inheritdoc/>
         public string EffectName { get; }
@@ -61,10 +59,10 @@ namespace NZXTSharp
         }
 
         /// <inheritdoc/>
-        public List<byte[]> BuildBytes(HuePlusChannel Channel) {
+        public List<byte[]> BuildBytes(IChannel Channel) {
             List<byte[]> outList = new List<byte[]>();
             for (int colorIndex = 0; colorIndex < Colors.Length; colorIndex++) {
-                byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x01, Param1, new CISS(colorIndex, this._Speed) };
+                byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x01, 0x03, new CISS(colorIndex, this._Speed) };
                 byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Colors[colorIndex]));
                 outList.Add(final);
             }

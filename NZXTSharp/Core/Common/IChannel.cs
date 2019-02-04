@@ -6,6 +6,7 @@ namespace NZXTSharp
 {
     public interface IChannel
     {
+        bool State { get; }
 
         int ChannelByte { get; }
 

@@ -58,7 +58,9 @@ namespace NZXTSharp.KrakenX
 
         public void ApplyEffect(KrakenXChannel Channel, IEffect Effect)
         {
-            _COMController.Write(Effect.BuildBytes(Channel));
+            List<byte[]> CommandQueue = Effect.BuildBytes(Channel);
+            foreach (byte[] Command in CommandQueue)
+                _COMController.Write(Command);
         }
 
         public int GetPumpSpeed()

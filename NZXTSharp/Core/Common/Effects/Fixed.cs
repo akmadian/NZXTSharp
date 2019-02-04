@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 
-using NZXTSharp.Devices;
 using NZXTSharp.Exceptions;
 
 namespace NZXTSharp

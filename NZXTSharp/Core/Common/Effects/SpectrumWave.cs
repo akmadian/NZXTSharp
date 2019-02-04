@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-using NZXTSharp.Devices;
-using NZXTSharp.Params;
+using NZXTSharp;
+using NZXTSharp.HuePlus;
 
 namespace NZXTSharp
 {
@@ -21,13 +21,13 @@ namespace NZXTSharp
         private int speed;
         private Direction Param1;
         private CISS Param2;
-        private HuePlusChannel _Channel;
+        private IChannel _Channel;
 
         /// <inheritdoc/>
         public int EffectByte { get; }
 
         /// <inheritdoc/>
-        public HuePlusChannel Channel { get; set; }
+        public IChannel Channel { get; set; }
 
         /// <inheritdoc/>
         public string EffectName { get; }
@@ -49,8 +49,8 @@ namespace NZXTSharp
         }
 
         /// <inheritdoc/>
-        public List<byte[]> BuildBytes(HuePlusChannel Channel) {
-            byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel, 0x02, Param1, Param2 };
+        public List<byte[]> BuildBytes(IChannel Channel) {
+            byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x02, Param1, Param2 };
             byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(new Color(0, 0, 255)));
             return new List<byte[]>() { final };
         }
