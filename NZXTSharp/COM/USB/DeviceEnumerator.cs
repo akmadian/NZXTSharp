@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 
-using HidLibrary;
 
 namespace NZXTSharp.COM
 {
@@ -11,6 +10,7 @@ namespace NZXTSharp.COM
     /// </summary>
     class DeviceEnumerator
     {
+        /*
         public static IEnumerable<HidDevice> EnumAllDevices()
         {
             return HidDevices.Enumerate();
@@ -41,6 +41,6 @@ namespace NZXTSharp.COM
                     yield return device;
                 }
             }
-        }
+        }*/
     }
 }

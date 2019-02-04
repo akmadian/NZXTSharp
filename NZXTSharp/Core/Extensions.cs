@@ -10,6 +10,27 @@ namespace NZXTSharp {
         public static int DecimalToByte(this int toConvert) {
             return Convert.ToInt32(toConvert.ToString("X"));
         }
+
+        public static int ConcatenateInt(this int thisone, int other)
+        {
+            return Convert.ToInt32(thisone.ToString() + other.ToString());
+        }
+    }
+
+    internal static class DoubleExtensions
+    {
+        public static int? Round(this double thisone)
+        {
+            double part = thisone - Math.Truncate(thisone);
+            if (part < 0.5)
+            {
+                return (int)thisone;
+            } else if (part >= 0.5)
+            {
+                return (int)(thisone + (1.0 - part));
+            }
+            return null;
+        }
     }
     
     internal static class StringExtensions {

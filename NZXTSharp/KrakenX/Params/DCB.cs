@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 using NZXTSharp;
+using NZXTSharp.Exceptions;
 
 namespace NZXTSharp.KrakenX
 {
@@ -12,7 +13,7 @@ namespace NZXTSharp.KrakenX
 
         private bool _IsForward = true;
         private int ChannelByte;
-        private KrakenRGBChannel Channel;
+        private KrakenXChannel Channel;
 
         public DCB(int ChannelByte, bool IsForward)
         {

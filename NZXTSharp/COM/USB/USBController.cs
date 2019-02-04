@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 using HidLibrary;
 
@@ -12,30 +13,67 @@ namespace NZXTSharp.COM {
 
         private NZXTDeviceType _Type;
         private SerialDeviceID _ID;
+        private int CurrProductID;
         private SerialDeviceID _VendorID = SerialDeviceID.ManufacturerID;
-
+        private HidReport _LastReport;
+        private bool _IsAttached = false;
         private HidDevice _Device;
 
         public NZXTDeviceType Type { get => _Type; }
+        public int CurrentProductID { get => CurrProductID; }
         public SerialDeviceID DeviceID { get => _ID; }
+        public HidReport LastReport { get => _LastReport; }
+        public bool IsAttached { get => IsAttached; }
 
         public USBController(NZXTDeviceType Type) {
             this._Type = Type;
             ResolveDeviceID();
+            Console.WriteLine("DeviceID Resolved, Initializing...");
+            Initialize();
+            Console.WriteLine("Initialization Complete");
         }
 
         public USBController(HidDevice Device)
         {
-            this._Device = Device;
+            Initialize();
         }
         
         public void Initialize()
         {
+            HidDevice _device = HidDevices.Enumerate((int)_VendorID, (int)_ID).FirstOrDefault();
+            _Device = _device;
+            _Device.OpenDevice();
+
+            _Device.Inserted += DeviceAttachedHandler;
+            _Device.Removed += DeviceRemovedHandler;
+
+            _Device.ReadReport(OnReport);
+        }
+
+        internal void OnReport(HidReport Report)
+        {
+            this._LastReport = Report;
+            _Device.ReadReport(OnReport);
+        }
+
+        public void Dispose()
+        {
+            _Device.CloseDevice();
         }
 
         public void Write(byte[] Buffer)
         {
             _Device.Write(Buffer);
+        }
+
+        internal void DeviceAttachedHandler()
+        {
+            this._IsAttached = true;
+        }
+
+        internal void DeviceRemovedHandler()
+        {
+            this._IsAttached = false;
         }
 
         private void ResolveDeviceID()
