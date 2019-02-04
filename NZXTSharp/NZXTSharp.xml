@@ -176,267 +176,174 @@
             <param name="NumLeds">The number of LED triplets to create in the array.</param>
             <returns></returns>
         </member>
-        <member name="T:NZXTSharp.Devices.Common.Alternating">
+        <member name="T:NZXTSharp.Alternating">
             <summary>
             Represents an RGB alternating effect.
             </summary>
         </member>
-        <member name="F:NZXTSharp.Devices.Common.Alternating.CompatibleWith">
+        <member name="F:NZXTSharp.Alternating.CompatibleWith">
             <inheritdoc/>
         </member>
-        <member name="F:NZXTSharp.Devices.Common.Alternating.Colors">
+        <member name="F:NZXTSharp.Alternating.Colors">
             <inheritdoc/>
         </member>
-        <member name="P:NZXTSharp.Devices.Common.Alternating.EffectByte">
+        <member name="P:NZXTSharp.Alternating.EffectByte">
             <inheritdoc/>
         </member>
-        <member name="P:NZXTSharp.Devices.Common.Alternating.Channel">
+        <member name="P:NZXTSharp.Alternating.Channel">
             <inheritdoc/>
         </member>
-        <member name="P:NZXTSharp.Devices.Common.Alternating.EffectName">
+        <member name="P:NZXTSharp.Alternating.EffectName">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Devices.Common.Alternating.#ctor(NZXTSharp.Color[])">
+        <member name="M:NZXTSharp.Alternating.#ctor(NZXTSharp.Color[])">
             <summary>
-            Creates an <see cref="T:NZXTSharp.Devices.Common.Alternating"/> effect with the given <paramref name="Colors"/>.
+            Creates an <see cref="T:NZXTSharp.Alternating"/> effect with the given <paramref name="Colors"/>.
             </summary>
             <param name="Colors">The <see cref="T:NZXTSharp.Color"/>s to display. Must be of length (2).</param>
         </member>
-        <member name="M:NZXTSharp.Devices.Common.Alternating.#ctor(NZXTSharp.Color[],NZXTSharp.Devices.HuePlus.Direction,System.Int32)">
+        <member name="M:NZXTSharp.Alternating.#ctor(NZXTSharp.Color[],NZXTSharp.HuePlus.Direction,System.Int32)">
             <summary>
-            Constructs an <see cref="T:NZXTSharp.Devices.Common.Alternating"/> effect.
+            Constructs an <see cref="T:NZXTSharp.Alternating"/> effect.
             </summary>
             <param name="Colors">The <see cref="T:NZXTSharp.Color"/> to display.</param>
-            <param name="Direction">The <see cref="T:NZXTSharp.Devices.HuePlus.Direction"/> the effect will move in.</param>
+            <param name="Direction">The <see cref="T:NZXTSharp.HuePlus.Direction"/> the effect will move in.</param>
             <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.Common.Alternating.#ctor(NZXTSharp.Color,NZXTSharp.Color,NZXTSharp.Devices.HuePlus.Direction,System.Int32)">
+        <member name="M:NZXTSharp.Alternating.#ctor(NZXTSharp.Color,NZXTSharp.Color,NZXTSharp.HuePlus.Direction,System.Int32)">
             <summary>
-            Constructs an <see cref="T:NZXTSharp.Devices.Common.Alternating"/> effect.
+            Constructs an <see cref="T:NZXTSharp.Alternating"/> effect.
             </summary>
             <param name="Color1">The first <see cref="T:NZXTSharp.Color"/> to display.</param>
             <param name="Color2">The second <see cref="T:NZXTSharp.Color"/> to display.</param>
-            <param name="Direction">The <see cref="T:NZXTSharp.Devices.HuePlus.Direction"/> the effect will move in.</param>
+            <param name="Direction">The <see cref="T:NZXTSharp.HuePlus.Direction"/> the effect will move in.</param>
             <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.Common.Alternating.IsCompatibleWith(NZXTSharp.Devices.NZXTDeviceType)">
+        <member name="M:NZXTSharp.Alternating.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Devices.Common.Alternating.BuildBytes(NZXTSharp.Devices.NZXTDeviceType,NZXTSharp.Devices.IChannel)">
+        <member name="M:NZXTSharp.Alternating.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <inheritdoc/>
         </member>
-        <member name="T:NZXTSharp.Devices.Common.Breathing">
+        <member name="T:NZXTSharp.Breathing">
             <summary>
             Represents an RGB breathing effect.
             </summary>
         </member>
-        <member name="F:NZXTSharp.Devices.Common.Breathing.CompatibleWith">
+        <member name="F:NZXTSharp.Breathing.CompatibleWith">
             <inheritdoc/>
         </member>
-        <member name="F:NZXTSharp.Devices.Common.Breathing.Colors">
+        <member name="F:NZXTSharp.Breathing.Colors">
             <inheritdoc/>
         </member>
-        <member name="P:NZXTSharp.Devices.Common.Breathing.EffectByte">
+        <member name="P:NZXTSharp.Breathing.EffectByte">
             <inheritdoc/>
         </member>
-        <member name="P:NZXTSharp.Devices.Common.Breathing.Channel">
+        <member name="P:NZXTSharp.Breathing.Channel">
             <inheritdoc/>
         </member>
-        <member name="P:NZXTSharp.Devices.Common.Breathing.EffectName">
+        <member name="P:NZXTSharp.Breathing.EffectName">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Devices.Common.Breathing.#ctor(NZXTSharp.Color[])">
+        <member name="M:NZXTSharp.Breathing.#ctor(NZXTSharp.Color[])">
             <summary>
-            Constructs a <see cref="T:NZXTSharp.Devices.Common.Breathing"/> effect.
+            Constructs a <see cref="T:NZXTSharp.Breathing"/> effect.
             </summary>
             <param name="Colors">A <see cref="T:NZXTSharp.Color"/> array of colors to display.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.Common.Breathing.#ctor(NZXTSharp.Color[],System.Int32)">
+        <member name="M:NZXTSharp.Breathing.#ctor(NZXTSharp.Color[],System.Int32)">
             <summary>
-            Constructs a <see cref="T:NZXTSharp.Devices.Common.Breathing"/> effect.
+            Constructs a <see cref="T:NZXTSharp.Breathing"/> effect.
             </summary>
             <param name="Colors">A <see cref="T:NZXTSharp.Color"/> array of colors to display.</param>
             <param name="Speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.Common.Breathing.IsCompatibleWith(NZXTSharp.Devices.NZXTDeviceType)">
+        <member name="M:NZXTSharp.Breathing.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Devices.Common.Breathing.BuildBytes(NZXTSharp.Devices.NZXTDeviceType,NZXTSharp.Devices.IChannel)">
+        <member name="M:NZXTSharp.Breathing.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <inheritdoc/>
         </member>
-        <member name="T:NZXTSharp.Devices.Common.CoveringMarquee">
+        <member name="T:NZXTSharp.CoveringMarquee">
             <summary>
             Represents an RGB CoveringMarquee effect.
             </summary>
         </member>
-        <member name="F:NZXTSharp.Devices.Common.CoveringMarquee.CompatibleWith">
+        <member name="F:NZXTSharp.CoveringMarquee.CompatibleWith">
             <inheritdoc/>
         </member>
-        <member name="P:NZXTSharp.Devices.Common.CoveringMarquee.EffectByte">
+        <member name="P:NZXTSharp.CoveringMarquee.EffectByte">
             <inheritdoc/>
         </member>
-        <member name="P:NZXTSharp.Devices.Common.CoveringMarquee.Channel">
+        <member name="P:NZXTSharp.CoveringMarquee.Channel">
             <inheritdoc/>
         </member>
-        <member name="P:NZXTSharp.Devices.Common.CoveringMarquee.EffectName">
+        <member name="P:NZXTSharp.CoveringMarquee.EffectName">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Devices.Common.CoveringMarquee.#ctor(NZXTSharp.Color,NZXTSharp.Color,NZXTSharp.Devices.HuePlus.Direction,System.Int32)">
+        <member name="M:NZXTSharp.CoveringMarquee.#ctor(NZXTSharp.Color,NZXTSharp.Color,NZXTSharp.HuePlus.Direction,System.Int32)">
             <summary>
-            Constructs a <see cref="T:NZXTSharp.Devices.Common.CoveringMarquee"/> effect.
+            Constructs a <see cref="T:NZXTSharp.CoveringMarquee"/> effect.
             </summary>
             <param name="Color1">The first <see cref="T:NZXTSharp.Color"/> in the effect.</param>
             <param name="Color2">The second <see cref="T:NZXTSharp.Color"/> in the effect.</param>
-            <param name="Direction">The <see cref="T:NZXTSharp.Devices.HuePlus.Direction"/> the effect will go in.</param>
+            <param name="Direction">The <see cref="T:NZXTSharp.HuePlus.Direction"/> the effect will go in.</param>
             <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.Common.CoveringMarquee.#ctor(NZXTSharp.Color[],NZXTSharp.Devices.HuePlus.Direction,System.Int32)">
+        <member name="M:NZXTSharp.CoveringMarquee.#ctor(NZXTSharp.Color[],NZXTSharp.HuePlus.Direction,System.Int32)">
             <summary>
-            Constructs a <see cref="T:NZXTSharp.Devices.Common.CoveringMarquee"/> effect.
+            Constructs a <see cref="T:NZXTSharp.CoveringMarquee"/> effect.
             </summary>
             <param name="Colors"></param>
-            <param name="Direction">The <see cref="T:NZXTSharp.Devices.HuePlus.Direction"/> the effect will go in.</param>
+            <param name="Direction">The <see cref="T:NZXTSharp.HuePlus.Direction"/> the effect will go in.</param>
             <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.Common.CoveringMarquee.IsCompatibleWith(NZXTSharp.Devices.NZXTDeviceType)">
+        <member name="M:NZXTSharp.CoveringMarquee.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Devices.Common.CoveringMarquee.BuildBytes(NZXTSharp.Devices.NZXTDeviceType,NZXTSharp.Devices.IChannel)">
+        <member name="M:NZXTSharp.CoveringMarquee.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <inheritdoc/>
         </member>
-        <member name="T:NZXTSharp.Devices.Common.Fading">
+        <member name="T:NZXTSharp.Fading">
             <summary>
             Represents an RGB Fading effect.
             </summary>
         </member>
-        <member name="F:NZXTSharp.Devices.Common.Fading.CompatibleWith">
+        <member name="F:NZXTSharp.Fading.CompatibleWith">
             <inheritdoc/>
         </member>
-        <member name="F:NZXTSharp.Devices.Common.Fading.Colors">
+        <member name="F:NZXTSharp.Fading.Colors">
             <summary>
             The array of colors used by the effect.
-            </summary>
-        </member>
-        <member name="P:NZXTSharp.Devices.Common.Fading.EffectByte">
-            <inheritdoc/>
-        </member>
-        <member name="P:NZXTSharp.Devices.Common.Fading.Channel">
-            <inheritdoc/>
-        </member>
-        <member name="P:NZXTSharp.Devices.Common.Fading.EffectName">
-            <inheritdoc/>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.Fading.#ctor(NZXTSharp.Color[],System.Int32)">
-            <summary>
-            Constructs a <see cref="T:NZXTSharp.Devices.Common.Fading"/> effect.
-            </summary>
-            <param name="Colors">The <see cref="T:NZXTSharp.Color"/>s to display.</param>
-            /// <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.Fading.IsCompatibleWith(NZXTSharp.Devices.NZXTDeviceType)">
-            <inheritdoc/>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.Fading.BuildBytes(NZXTSharp.Devices.NZXTDeviceType,NZXTSharp.Devices.IChannel)">
-            <inheritdoc/>
-        </member>
-        <member name="T:NZXTSharp.Devices.Common.Fixed">
-            <summary>
-            Represents an RGB fixed effect.
-            </summary>
-        </member>
-        <member name="F:NZXTSharp.Devices.Common.Fixed.CompatibleWith">
-            <inheritdoc/>
-        </member>
-        <member name="P:NZXTSharp.Devices.Common.Fixed.EffectByte">
-            <inheritdoc/>
-        </member>
-        <member name="P:NZXTSharp.Devices.Common.Fixed.Channel">
-            <inheritdoc/>
-        </member>
-        <member name="P:NZXTSharp.Devices.Common.Fixed.EffectName">
-            <inheritdoc/>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.Fixed.#ctor(NZXTSharp.Color)">
-            <summary>
-            Constructs an RGB Fixed effect.
-            </summary>
-            <param name="color">The <see cref="T:NZXTSharp.Color"/> to display.</param>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.Fixed.#ctor(NZXTSharp.Devices.IChannel,NZXTSharp.Color)">
-            <summary>
-            Constructs an RGB Fixed effect.
-            </summary>
-            <param name="Channel">The <see cref="P:NZXTSharp.Devices.Common.Fixed.Channel"/> the effect will be applied to.</param>
-            <param name="color">The <see cref="T:NZXTSharp.Color"/> to display.</param>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.Fixed.#ctor(System.Byte[])">
-            <summary>
-            Constructs an RGB Fixed effect from custom LED colors.
-            </summary>
-            <param name="Colors">A byte[] of RGB color values in G, R, B format. 
-            Length must be less than 120 and greater than 0. 
-            RGB values must be 0-255 (inclusive).</param>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.Fixed.IsCompatibleWith(NZXTSharp.Devices.NZXTDeviceType)">
-            <inheritdoc/>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.Fixed.BuildBytes(NZXTSharp.Devices.NZXTDeviceType,NZXTSharp.Devices.IChannel)">
-            <inheritdoc/>
-        </member>
-        <member name="T:NZXTSharp.Devices.Common.IEffect">
-            <summary>
-            Represents a generic RGB effect.
-            </summary>
-        </member>
-        <member name="P:NZXTSharp.Devices.Common.IEffect.EffectByte">
-            <summary>
-            The <see cref="T:NZXTSharp.Devices.Common.IEffect"/>'s EffectByte.
-            </summary>
-        </member>
-        <member name="P:NZXTSharp.Devices.Common.IEffect.EffectName">
-            <summary>
-            The name of the <see cref="T:NZXTSharp.Devices.Common.IEffect"/>.
-            </summary>
-        </member>
-        <member name="P:NZXTSharp.Devices.Common.IEffect.Channel">
-            <summary>
-            The <see cref="P:NZXTSharp.Devices.Common.IEffect.Channel"/> to set the <see cref="T:NZXTSharp.Devices.Common.IEffect"/> on.
-            </summary>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.IEffect.BuildBytes(NZXTSharp.Devices.NZXTDeviceType,NZXTSharp.Devices.IChannel)">
-            <summary>
-            Builds and returns the buffer queue needed to set the <see cref="T:NZXTSharp.Devices.Common.IEffect"/>.
-            </summary>
-            <param name="Channel"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.IEffect.IsCompatibleWith(NZXTSharp.Devices.NZXTDeviceType)">
-            <summary>
-            Checks to see if the <see cref="T:NZXTSharp.Devices.Common.IEffect"/> is compatible with a given <see cref="T:NZXTSharp.Devices.NZXTDeviceType"/> <paramref name="Type"/>.
             </summary>
             <param name="Type"></param>
             <returns></returns>
         </member>
-        <member name="T:NZXTSharp.Devices.Common.Marquee">
+        <member name="P:NZXTSharp.Fading.EffectByte">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.Fading.Channel">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.Fading.EffectName">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.Fading.#ctor(NZXTSharp.Color[],System.Int32)">
             <summary>
-            Represents an RGB marquee effect.
+            Constructs a <see cref="T:NZXTSharp.Fading"/> effect.
             </summary>
+            <param name="Colors">The <see cref="T:NZXTSharp.Color"/>s to display.</param>
+            /// <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
         </member>
-        <member name="F:NZXTSharp.Devices.Common.Marquee.CompatibleWith">
+        <member name="M:NZXTSharp.Fading.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <inheritdoc/>
         </member>
-        <member name="P:NZXTSharp.Devices.Common.Marquee.EffectByte">
+        <member name="M:NZXTSharp.Fading.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <inheritdoc/>
         </member>
-        <member name="P:NZXTSharp.Devices.Common.Marquee.Channel">
-            <inheritdoc/>
-        </member>
-        <member name="P:NZXTSharp.Devices.Common.Marquee.EffectName">
-            <inheritdoc/>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.Marquee.#ctor(NZXTSharp.Color,NZXTSharp.Devices.HuePlus.Direction,NZXTSharp.Devices.Common.LSS)">
+        <member name="T:NZXTSharp.Fixed">
             <summary>
-            Constructs a <see cref="T:NZXTSharp.Devices.Common.Marquee"/> effect.
+            Represents an RGB fixed effect.
             </summary>
             <param name="Color">The <see cref="T:NZXTSharp.Color"/> of the effect.</param>
             <param name="Direction">The <see cref="T:NZXTSharp.Devices.HuePlus.Direction"/> of the effect.</param>
@@ -448,166 +355,181 @@
         <member name="M:NZXTSharp.Devices.Common.Marquee.BuildBytes(NZXTSharp.Devices.NZXTDeviceType,NZXTSharp.Devices.IChannel)">
             <inheritdoc/>
         </member>
-        <member name="T:NZXTSharp.Devices.Common.Pulse">
+        <member name="F:NZXTSharp.Fixed.CompatibleWith">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.Fixed.EffectByte">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.Fixed.Channel">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.Fixed.EffectName">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.Fixed.#ctor(NZXTSharp.Color)">
             <summary>
-            Represents an RGB pulse effect.
+            Constructs an RGB Fixed effect.
+            </summary>
+            <param name="color">The <see cref="T:NZXTSharp.Color"/> to display.</param>
+        </member>
+        <member name="M:NZXTSharp.Fixed.#ctor(NZXTSharp.IChannel,NZXTSharp.Color)">
+            <summary>
+            Constructs an RGB Fixed effect.
+            </summary>
+            <param name="Channel">The <see cref="P:NZXTSharp.Fixed.Channel"/> the effect will be applied to.</param>
+            <param name="color">The <see cref="T:NZXTSharp.Color"/> to display.</param>
+        </member>
+        <member name="M:NZXTSharp.Fixed.#ctor(System.Byte[])">
+            <summary>
+            Constructs an RGB Fixed effect from custom LED colors.
+            </summary>
+            <param name="Colors">A byte[] of RGB color values in G, R, B format.
+            Length must be less than 120 and greater than 0.
+            RGB values must be 0-255 (inclusive).</param>
+        </member>
+        <member name="M:NZXTSharp.Fixed.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.Fixed.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
+            <inheritdoc/>
+        </member>
+        <member name="T:NZXTSharp.IEffect">
+            <summary>
+            Represents a generic RGB effect.
             </summary>
         </member>
-        <member name="F:NZXTSharp.Devices.Common.Pulse.CompatibleWith">
-            <inheritdoc/>
-        </member>
-        <member name="F:NZXTSharp.Devices.Common.Pulse.Colors">
+        <member name="P:NZXTSharp.IEffect.EffectByte">
             <summary>
-            The array of colors used by the effect.
-            </summary>
-        </member>
-        <member name="P:NZXTSharp.Devices.Common.Pulse.EffectByte">
-            <inheritdoc/>
-        </member>
-        <member name="P:NZXTSharp.Devices.Common.Pulse.Channel">
-            <inheritdoc/>
-        </member>
-        <member name="P:NZXTSharp.Devices.Common.Pulse.EffectName">
-            <inheritdoc/>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.Pulse.#ctor(NZXTSharp.Color[],System.Int32)">
-            <summary>
-            Constructs a <see cref="T:NZXTSharp.Devices.Common.Pulse"/> effect with the given <see cref="T:NZXTSharp.Color"/> array and speed.
-            </summary>
-            <param name="Colors"></param>
-            <param name="Speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.Pulse.IsCompatibleWith(NZXTSharp.Devices.NZXTDeviceType)">
-            <inheritdoc/>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.Pulse.BuildBytes(NZXTSharp.Devices.NZXTDeviceType,NZXTSharp.Devices.IChannel)">
-            <inheritdoc/>
-        </member>
-        <member name="T:NZXTSharp.Devices.Common.SpectrumWave">
-            <summary>
-            Represents an RGB Spectrum Wave effect.
-            </summary>
-        </member>
-        <member name="F:NZXTSharp.Devices.Common.SpectrumWave.CompatibleWith">
-            <inheritdoc/>
-        </member>
-        <member name="P:NZXTSharp.Devices.Common.SpectrumWave.EffectByte">
-            <inheritdoc/>
-        </member>
-        <member name="P:NZXTSharp.Devices.Common.SpectrumWave.Channel">
-            <inheritdoc/>
-        </member>
-        <member name="P:NZXTSharp.Devices.Common.SpectrumWave.EffectName">
-            <inheritdoc/>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.SpectrumWave.#ctor(NZXTSharp.Devices.HuePlus.Direction,System.Int32)">
-            <summary>
-            Constructs a <see cref="T:NZXTSharp.Devices.Common.SpectrumWave"/> effect with the given <see cref="T:NZXTSharp.Devices.HuePlus.Direction"/>.
+            The <see cref="T:NZXTSharp.IEffect"/>'s EffectByte.
             </summary>
             <param name="Direction"></param>
             <param name="Speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.Common.SpectrumWave.IsCompatibleWith(NZXTSharp.Devices.NZXTDeviceType)">
-            <inheritdoc/>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.SpectrumWave.BuildBytes(NZXTSharp.Devices.NZXTDeviceType,NZXTSharp.Devices.IChannel)">
-            <inheritdoc/>
-        </member>
-        <member name="T:NZXTSharp.Devices.Common.Wings">
+        <member name="P:NZXTSharp.IEffect.EffectName">
             <summary>
-            Represents an RGB wings effect.
+            The name of the <see cref="T:NZXTSharp.IEffect"/>.
             </summary>
         </member>
-        <member name="F:NZXTSharp.Devices.Common.Wings.CompatibleWith">
+        <member name="P:NZXTSharp.IEffect.Channel">
+            <summary>
+            The <see cref="P:NZXTSharp.IEffect.Channel"/> to set the <see cref="T:NZXTSharp.IEffect"/> on.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.IEffect.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
+            <summary>
+            Builds and returns the buffer queue needed to set the <see cref="T:NZXTSharp.IEffect"/>.
+            </summary>
+            <param name="Channel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NZXTSharp.IEffect.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
+            <summary>
+            Checks to see if the <see cref="T:NZXTSharp.IEffect"/> is compatible with a given <see cref="T:NZXTSharp.NZXTDeviceType"/> <paramref name="Type"/>.
+            </summary>
+            <param name="Type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NZXTSharp.Marquee">
+            <summary>
+            Represents an RGB marquee effect.
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.Marquee.CompatibleWith">
             <inheritdoc/>
         </member>
-        <member name="F:NZXTSharp.Devices.Common.Wings.Colors">
+        <member name="P:NZXTSharp.Marquee.EffectByte">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.Marquee.Channel">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.Marquee.EffectName">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.Marquee.#ctor(NZXTSharp.Color,NZXTSharp.HuePlus.Direction,NZXTSharp.LSS)">
+            <summary>
+            Constructs a <see cref="T:NZXTSharp.Marquee"/> effect.
+            </summary>
+            <param name="Color">The <see cref="T:NZXTSharp.Color"/> of the effect.</param>
+            <param name="Direction">The <see cref="T:NZXTSharp.HuePlus.Direction"/> of the effect.</param>
+            <param name="LSS">The <see cref="T:NZXTSharp.LSS"/> param to apply.</param>
+        </member>
+        <member name="M:NZXTSharp.Marquee.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.Marquee.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
+            <inheritdoc/>
+        </member>
+        <member name="T:NZXTSharp.Pulse">
+            <summary>
+            Represents an RGB pulse effect.
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.Pulse.CompatibleWith">
+            <inheritdoc/>
+        </member>
+        <member name="F:NZXTSharp.Pulse.Colors">
             <summary>
             The array of colors used by the effect.
             </summary>
         </member>
-        <member name="P:NZXTSharp.Devices.Common.Wings.EffectByte">
+        <member name="P:NZXTSharp.Pulse.EffectByte">
             <inheritdoc/>
         </member>
-        <member name="P:NZXTSharp.Devices.Common.Wings.Channel">
+        <member name="P:NZXTSharp.Pulse.Channel">
             <inheritdoc/>
         </member>
-        <member name="P:NZXTSharp.Devices.Common.Wings.EffectName">
+        <member name="P:NZXTSharp.Pulse.EffectName">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Devices.Common.Wings.#ctor(NZXTSharp.Color[],System.Int32)">
+        <member name="M:NZXTSharp.Pulse.#ctor(NZXTSharp.Color[],System.Int32)">
             <summary>
-            Constructs a <see cref="T:NZXTSharp.Devices.Common.Wings"/> effect with the given <see cref="T:NZXTSharp.Color"/> array and speed.
+            Constructs a <see cref="T:NZXTSharp.Pulse"/> effect with the given <see cref="T:NZXTSharp.Color"/> array and speed.
             </summary>
             <param name="Colors"></param>
             <param name="Speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.Common.Wings.IsCompatibleWith(NZXTSharp.Devices.NZXTDeviceType)">
+        <member name="M:NZXTSharp.Pulse.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Devices.Common.Wings.BuildBytes(NZXTSharp.Devices.NZXTDeviceType,NZXTSharp.Devices.IChannel)">
+        <member name="M:NZXTSharp.Pulse.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <inheritdoc/>
         </member>
-        <member name="T:NZXTSharp.Devices.Common.CISS">
+        <member name="T:NZXTSharp.SpectrumWave">
             <summary>
-            Represents a CISS effect param.
-            </summary>
-        </member>
-        <member name="P:NZXTSharp.Devices.Common.CISS.Value">
-            <inheritdoc/>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.CISS.#ctor(System.Int32)">
-            <summary>
-            Constructs a <see cref="T:NZXTSharp.Devices.Common.CISS"/> instance.
-            </summary>
-            <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.CISS.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Constructs a <see cref="T:NZXTSharp.Devices.Common.CISS"/> instance.
-            </summary>
-            <param name="colorIndex">The index of the color in the list.</param>
-            <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.CISS.GetValue">
-            <inheritdoc/>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.CISS.op_Implicit(NZXTSharp.Devices.Common.CISS)~System.Byte">
-            <summary>
-            
-            </summary>
-            <param name="param"></param>
-        </member>
-        <member name="T:NZXTSharp.Devices.Common.IParam">
-            <summary>
-            An effect parameter.
-            </summary>
-        </member>
-        <member name="P:NZXTSharp.Devices.Common.IParam.Value">
-            <summary>
-            The int representation of the effect's byte value.
-            </summary>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common.IParam.GetValue">
-            <summary>
-            Gets the int representation of the effect's byte value.
+            Represents an RGB Spectrum Wave effect.
             </summary>
             <returns></returns>
         </member>
-        <member name="T:NZXTSharp.Devices.Common.LSS">
+        <member name="F:NZXTSharp.SpectrumWave.CompatibleWith">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.SpectrumWave.EffectByte">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.SpectrumWave.Channel">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.SpectrumWave.EffectName">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.SpectrumWave.#ctor(NZXTSharp.HuePlus.Direction,System.Int32)">
             <summary>
-            Represents an LSS param.
+            Constructs a <see cref="T:NZXTSharp.SpectrumWave"/> effect with the given <see cref="T:NZXTSharp.HuePlus.Direction"/>.
             </summary>
+            <param name="Direction"></param>
+            <param name="Speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
         </member>
-        <member name="F:NZXTSharp.Devices.Common.LSS._CompatibleWith">
+        <member name="M:NZXTSharp.SpectrumWave.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <inheritdoc/>
         </member>
-        <member name="P:NZXTSharp.Devices.Common.LSS.Value">
+        <member name="M:NZXTSharp.SpectrumWave.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Devices.Common.LSS.#ctor(System.Int32,System.Int32)">
+        <member name="T:NZXTSharp.Wings">
             <summary>
-            Constructs an <see cref="T:NZXTSharp.Devices.Common.LSS"/> param.
+            Represents an RGB wings effect.
             </summary>
             <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
             <param name="LEDSize">The LED group size, LEDSizes must be between 3-6 (inclusive).</param>
@@ -615,713 +537,806 @@
         <member name="M:NZXTSharp.Devices.Common.LSS.GetValue">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Devices.Common.LSS.op_Implicit(NZXTSharp.Devices.Common.LSS)~System.Byte">
+        <member name="F:NZXTSharp.Wings.CompatibleWith">
+            <inheritdoc/>
+        </member>
+        <member name="F:NZXTSharp.Wings.Colors">
             <summary>
-            
+            The array of colors used by the effect.
             </summary>
             <param name="param"></param>
         </member>
-        <member name="T:NZXTSharp.Devices.Common._02Param">
+        <member name="P:NZXTSharp.Wings.EffectByte">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.Wings.Channel">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.Wings.EffectName">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.Wings.#ctor(NZXTSharp.Color[],System.Int32)">
             <summary>
-            Represents an 02 effect Param
+            Constructs a <see cref="T:NZXTSharp.Wings"/> effect with the given <see cref="T:NZXTSharp.Color"/> array and speed.
             </summary>
+            <param name="Colors"></param>
+            <param name="Speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
         </member>
-        <member name="P:NZXTSharp.Devices.Common._02Param.Value">
+        <member name="M:NZXTSharp.Wings.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Devices.Common._02Param.GetValue">
+        <member name="M:NZXTSharp.Wings.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Devices.Common._02Param.op_Implicit(NZXTSharp.Devices.Common._02Param)~System.Byte">
+        <member name="T:NZXTSharp.CISS">
             <summary>
-            
-            </summary>
-            <param name="param"></param>
-        </member>
-        <member name="T:NZXTSharp.Devices.Common._03Param">
-            <summary>
-            Represents an 03 effect param.
-            </summary>
-        </member>
-        <member name="P:NZXTSharp.Devices.Common._03Param.Value">
-            <inheritdoc/>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common._03Param.GetValue">
-            <inheritdoc/>
-        </member>
-        <member name="M:NZXTSharp.Devices.Common._03Param.op_Implicit(NZXTSharp.Devices.Common._03Param)~System.Byte">
-            <summary>
-            
+            Represents a CISS effect param.
             </summary>
             <param name="param"></param>
         </member>
-        <member name="T:NZXTSharp.Devices.NZXTDeviceType">
+        <member name="P:NZXTSharp.CISS.Value">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.CISS.#ctor(System.Int32)">
+            <summary>
+            Constructs a <see cref="T:NZXTSharp.CISS"/> instance.
+            </summary>
+            <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
+        </member>
+        <member name="M:NZXTSharp.CISS.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Constructs a <see cref="T:NZXTSharp.CISS"/> instance.
+            </summary>
+            <param name="colorIndex">The index of the color in the list.</param>
+            <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
+        </member>
+        <member name="M:NZXTSharp.CISS.GetValue">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.CISS.op_Implicit(NZXTSharp.CISS)~System.Byte">
+            <summary>
+
+            </summary>
+            <param name="param"></param>
+        </member>
+        <member name="T:NZXTSharp.IParam">
+            <summary>
+            An effect parameter.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.IParam.Value">
+            <summary>
+            The int representation of the effect's byte value.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.IParam.GetValue">
+            <summary>
+            Gets the int representation of the effect's byte value.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NZXTSharp.LSS">
+            <summary>
+            Represents an LSS param.
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.LSS._CompatibleWith">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.LSS.Value">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.LSS.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Constructs an <see cref="T:NZXTSharp.LSS"/> param.
+            </summary>
+            <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
+            <param name="LEDSize">The LED group size, LEDSizes must be between 3-6 (inclusive).</param>
+        </member>
+        <member name="M:NZXTSharp.LSS.GetValue">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.LSS.op_Implicit(NZXTSharp.LSS)~System.Byte">
+            <summary>
+
+            </summary>
+            <param name="param"></param>
+        </member>
+        <member name="T:NZXTSharp.NZXTDeviceType">
             <summary>
             Definitions of unique IDs for all NZXT devices.
             </summary>
         </member>
-        <member name="F:NZXTSharp.Devices.NZXTDeviceType.Unknown">
+        <member name="F:NZXTSharp.NZXTDeviceType.Unknown">
             <summary>
             If device type is unknown.
             </summary>
         </member>
-        <member name="F:NZXTSharp.Devices.NZXTDeviceType.NotActive">
+        <member name="F:NZXTSharp.NZXTDeviceType.NotActive">
             <summary>
-            
+
             </summary>
         </member>
-        <member name="F:NZXTSharp.Devices.NZXTDeviceType.Fan">
+        <member name="F:NZXTSharp.NZXTDeviceType.Fan">
             <summary>
             Any fan, RGB or otherwise.
             </summary>
         </member>
-        <member name="F:NZXTSharp.Devices.NZXTDeviceType.Strip">
+        <member name="F:NZXTSharp.NZXTDeviceType.Strip">
             <summary>
             An RGB strip.
             </summary>
         </member>
-        <member name="F:NZXTSharp.Devices.NZXTDeviceType.Kraken">
+        <member name="F:NZXTSharp.NZXTDeviceType.Kraken">
             <summary>
             A generic Kraken device.
             </summary>
         </member>
-        <member name="F:NZXTSharp.Devices.NZXTDeviceType.KrakenX">
+        <member name="F:NZXTSharp.NZXTDeviceType.KrakenX">
             <summary>
             A generic KrakenX device.
             </summary>
         </member>
-        <member name="F:NZXTSharp.Devices.NZXTDeviceType.KrakenM">
+        <member name="F:NZXTSharp.NZXTDeviceType.KrakenM">
             <summary>
             A generic KrakenM device.
             </summary>
         </member>
-        <member name="F:NZXTSharp.Devices.NZXTDeviceType.Hue">
+        <member name="F:NZXTSharp.NZXTDeviceType.Hue">
             <summary>
             A generic Hue device.
             </summary>
         </member>
-        <member name="F:NZXTSharp.Devices.NZXTDeviceType.Motherboard">
+        <member name="F:NZXTSharp.NZXTDeviceType.Motherboard">
             <summary>
             A generic motherboard device.
             </summary>
         </member>
-        <member name="F:NZXTSharp.Devices.NZXTDeviceType.Grid">
+        <member name="F:NZXTSharp.NZXTDeviceType.Grid">
             <summary>
             A generic Grid device.
             </summary>
         </member>
-        <member name="T:NZXTSharp.Devices.SerialDeviceID">
+        <member name="T:NZXTSharp.SerialDeviceID">
             <summary>
             Contains the Manufacturer and Product IDs of NZXT devices.
             </summary>
         </member>
-        <member name="F:NZXTSharp.Devices.SerialDeviceID.Unknown">
+        <member name="F:NZXTSharp.SerialDeviceID.Unknown">
             <summary>
             An unknown ID.
             </summary>
         </member>
-        <member name="T:NZXTSharp.Devices.HuePlus.Channel">
-            <summary>
-            Represents a channel on an NZXT device.
-            </summary>
-        </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.Channel.ChannelByte">
-            <summary>
-            The channelbyte of the <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/>.
-            </summary>
-        </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.Channel.Effect">
-            <summary>
-            The <see cref="T:NZXTSharp.Devices.Common.IEffect"/> currently applied to the <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/>.
-            </summary>
-        </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.Channel.State">
-            <summary>
-            Whether or not the current <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/> is active (on).
-            </summary>
-        </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.Channel.ChannelInfo">
-            <summary>
-            The <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/>'s <see cref="P:NZXTSharp.Devices.HuePlus.Channel.ChannelInfo"/> object.
-            </summary>
-        </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.Channel.Parent">
-            <summary>
-            The device that owns the <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/>.
-            </summary>
-        </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.Channel.SubDevices">
-            <summary>
-            A list of <see cref="T:NZXTSharp.Devices.ISubDevice"/>s owned by the <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/>.
-            </summary>
-        </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.Channel.#ctor(System.Int32)">
+        <member name="T:NZXTSharp.Fan">
             <summary>
             Constructs a <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/> object with a given <paramref name="ChannelByte"/>.
             </summary>
             <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.Channel.#ctor(System.Int32,NZXTSharp.Devices.HuePlus.IHueDevice)">
+        <member name="P:NZXTSharp.Fan.IsActive">
             <summary>
-            Constructs a <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/> object with a given <paramref name="ChannelByte"/>, 
-            owned by a given <paramref name="Parent"/> <see cref="T:NZXTSharp.Devices.HuePlus.IHueDevice"/>.
+            Whether or not the current <see cref="T:NZXTSharp.Fan"/> instance is active (on).
             </summary>
             <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
             <param name="Parent">The <see cref="T:NZXTSharp.Devices.HuePlus.IHueDevice"/> that will own the <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/></param>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.Channel.#ctor(System.Int32,NZXTSharp.Devices.HuePlus.IHueDevice,NZXTSharp.Devices.HuePlus.ChannelInfo)">
+        <member name="P:NZXTSharp.Fan.Type">
             <summary>
-            Constructs a <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/> object with a given <paramref name="ChannelByte"/>, 
-            owned by a given <paramref name="Parent"/> <see cref="T:NZXTSharp.Devices.HuePlus.IHueDevice"/>, 
-            with a given <see cref="P:NZXTSharp.Devices.HuePlus.Channel.ChannelInfo"/>.
+            Returns the <see cref="T:NZXTSharp.NZXTDeviceType"/> of the fan.
             </summary>
             <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
             <param name="Parent">The <see cref="T:NZXTSharp.Devices.HuePlus.IHueDevice"/> that owns the <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/></param>
             <param name="Info">The <see cref="P:NZXTSharp.Devices.HuePlus.Channel.ChannelInfo"/> owned by the <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/>.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.Channel.RefreshSubDevices">
+        <member name="P:NZXTSharp.Fan.NumLeds">
             <summary>
-            Refreshes all <see cref="T:NZXTSharp.Devices.ISubDevice"/>s in the <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/>'s <see cref="P:NZXTSharp.Devices.HuePlus.Channel.SubDevices"/> list.
+            Returns the number of LEDs available on the <see cref="T:NZXTSharp.Fan"/>.
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.Channel.On">
+        <member name="P:NZXTSharp.Fan.Leds">
             <summary>
-            Turns the <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/> on.
+            A list containing the power states of the <see cref="T:NZXTSharp.Fan"/>'s LEDs.
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.Channel.Off">
+        <member name="M:NZXTSharp.Fan.#ctor">
             <summary>
-            Turns the <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/> off.
+            Constructs a <see cref="T:NZXTSharp.Fan"/> instance.
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.Channel.UpdateChannelInfo">
+        <member name="M:NZXTSharp.Fan.ToggleState">
             <summary>
-            Updates the <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/>'s <see cref="P:NZXTSharp.Devices.HuePlus.Channel.ChannelInfo"/>.
+            Toggles the <see cref="T:NZXTSharp.Fan"/>'s state.
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.Channel.SetChannelInfo(NZXTSharp.Devices.HuePlus.ChannelInfo)">
-            <summary>
-            Sets the <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/>'s <see cref="P:NZXTSharp.Devices.HuePlus.Channel.ChannelInfo"/> to the given <paramref name="info"/>.
-            </summary>
-            <param name="info"></param>
+        <member name="M:NZXTSharp.Fan.SetState(System.Boolean)">
+            <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.Channel.op_Explicit(NZXTSharp.Devices.HuePlus.Channel)~System.Byte">
+        <member name="M:NZXTSharp.Fan.ToggleLed(System.Int32)">
+            <summary>
+            Toggles a specific LED owned by the <see cref="T:NZXTSharp.Fan"/> device.
+            </summary>
+            <param name="Index">The index in the <see cref="T:NZXTSharp.Fan"/>'s <see cref="P:NZXTSharp.Fan.Leds"/> list to toggle.</param>
+        </member>
+        <member name="M:NZXTSharp.Fan.ToggleLedRange(System.Int32,System.Int32)">
             <summary>
             Returns the <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/>'s ChannelByte.
             </summary>
-            <param name="channel"></param>
+            <param name="Start">The index in the <see cref="T:NZXTSharp.Fan"/>'s <see cref="P:NZXTSharp.Fan.Leds"/> list to start at.</param>
+            <param name="End">The index in the <see cref="T:NZXTSharp.Fan"/>'s <see cref="P:NZXTSharp.Fan.Leds"/> list to end at.</param>
         </member>
-        <member name="T:NZXTSharp.Devices.HuePlus.ChannelInfo">
+        <member name="M:NZXTSharp.Fan.SetLedRange(System.Int32,System.Int32,System.Boolean)">
             <summary>
             Represents information about a <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/>.
             </summary>
+            <param name="Start">The index in the <see cref="T:NZXTSharp.Fan"/>'s <see cref="P:NZXTSharp.Fan.Leds"/> list to start at.</param>
+            <param name="End">The index in the <see cref="T:NZXTSharp.Fan"/>'s <see cref="P:NZXTSharp.Fan.Leds"/> list to end at.</param>
+            <param name="Value">The value to set each LED to.</param>
         </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.ChannelInfo.NumLeds">
+        <member name="M:NZXTSharp.Fan.AllLedOn">
             <summary>
-            Represents the total number of LEDs available on a <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/>.
+            Sets all LEDs in the <see cref="T:NZXTSharp.Fan"/>'s <see cref="P:NZXTSharp.Fan.Leds"/> list to true.
             </summary>
         </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.ChannelInfo.NumSubDevices">
+        <member name="M:NZXTSharp.Fan.AllLedOff">
             <summary>
-            The number of SubDevices available on a <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/>.
+            Sets all LEDs in the <see cref="T:NZXTSharp.Fan"/>'s <see cref="P:NZXTSharp.Fan.Leds"/> list to false.
             </summary>
         </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.ChannelInfo.Type">
+        <member name="M:NZXTSharp.Fan.LedsToString">
             <summary>
             Type of <see cref="T:NZXTSharp.Devices.ISubDevice"/>s available on a <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/>.
             </summary>
         </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.ChannelInfo.IsActive">
+        <member name="T:NZXTSharp.ISubDevice">
             <summary>
-            
+
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.ChannelInfo.#ctor(NZXTSharp.Devices.HuePlus.Channel,System.Byte[])">
+        <member name="P:NZXTSharp.ISubDevice.Type">
             <summary>
-            Constructs a <see cref="T:NZXTSharp.Devices.HuePlus.ChannelInfo"/> with a given <paramref name="Parent"/> as its parent, from some given channel handshake <paramref name="data"/>.
+            The <see cref="T:NZXTSharp.ISubDevice"/>'s <see cref="T:NZXTSharp.NZXTDeviceType"/>.
             </summary>
             <param name="Parent"></param>
             <param name="data"></param>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.ChannelInfo.#ctor(System.Byte[])">
+        <member name="P:NZXTSharp.ISubDevice.IsActive">
             <summary>
-            Constructs a <see cref="T:NZXTSharp.Devices.HuePlus.ChannelInfo"/> object from some given channel handshake <paramref name="data"/>.
+            Whether or not the current <see cref="T:NZXTSharp.ISubDevice"/> instance is active (on).
             </summary>
             <param name="data"></param>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.ChannelInfo.Update">
+        <member name="P:NZXTSharp.ISubDevice.NumLeds">
             <summary>
-            Updates the parent <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/>'s <see cref="T:NZXTSharp.Devices.HuePlus.ChannelInfo"/>.
+            Returns the number of LEDs available on the <see cref="T:NZXTSharp.ISubDevice"/>.
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.ChannelInfo.ToString">
+        <member name="P:NZXTSharp.ISubDevice.Leds">
             <summary>
-            
+            A list containing the power states of the <see cref="T:NZXTSharp.ISubDevice"/>'s LEDs.
             </summary>
             <returns></returns>
         </member>
-        <member name="T:NZXTSharp.Devices.HuePlus.LogHandler">
+        <member name="M:NZXTSharp.ISubDevice.ToggleState">
             <summary>
-            Triggers when a generic log message is sent.
+            Toggles the <see cref="T:NZXTSharp.ISubDevice"/>'s state.
             </summary>
         </member>
-        <member name="T:NZXTSharp.Devices.HuePlus.DataRecieved">
+        <member name="M:NZXTSharp.ISubDevice.SetState(System.Boolean)">
             <summary>
-            Triggers when data is received from the COM port.
+            Sets the <see cref="T:NZXTSharp.ISubDevice"/>'s state.
             </summary>
+            <param name="State">The state to set the <see cref="T:NZXTSharp.ISubDevice"/> to. true: on, false: off.</param>
         </member>
-        <member name="T:NZXTSharp.Devices.HuePlus.HuePlus">
+        <member name="M:NZXTSharp.ISubDevice.ToggleLed(System.Int32)">
             <summary>
-            Represents an NZXT Hue+ lighting controller.
+            Toggles a specific LED owned by the <see cref="T:NZXTSharp.ISubDevice"/>.
             </summary>
+            <param name="Index">The index in the <see cref="T:NZXTSharp.ISubDevice"/>'s <see cref="P:NZXTSharp.ISubDevice.Leds"/> list to toggle.</param>
         </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.HuePlus.Name">
+        <member name="M:NZXTSharp.ISubDevice.ToggleLedRange(System.Int32,System.Int32)">
             <summary>
             The device's product name.
             </summary>
+            <param name="Start">The index in the <see cref="T:NZXTSharp.ISubDevice"/>'s <see cref="P:NZXTSharp.ISubDevice.Leds"/> list to start at.</param>
+            <param name="End">The index in the <see cref="T:NZXTSharp.ISubDevice"/>'s <see cref="P:NZXTSharp.ISubDevice.Leds"/> list to end at.</param>
         </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.HuePlus.Both">
+        <member name="M:NZXTSharp.ISubDevice.SetLedRange(System.Int32,System.Int32,System.Boolean)">
             <summary>
             A <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/> object representing both channels on the <see cref="T:NZXTSharp.Devices.HuePlus.HuePlus"/>.
             </summary>
+            <param name="Start">The index in the <see cref="T:NZXTSharp.ISubDevice"/>'s <see cref="P:NZXTSharp.ISubDevice.Leds"/> list to start at.</param>
+            <param name="End">The index in the <see cref="T:NZXTSharp.ISubDevice"/>'s <see cref="P:NZXTSharp.ISubDevice.Leds"/> list to end at.</param>
+            <param name="Value">The value to set each LED to.</param>
         </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.HuePlus.Channel1">
+        <member name="M:NZXTSharp.ISubDevice.AllLedOn">
             <summary>
-            A <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/> object representing the Channel 1 of the <see cref="T:NZXTSharp.Devices.HuePlus.HuePlus"/> device.
+            Sets all LEDs in the <see cref="T:NZXTSharp.ISubDevice"/>'s <see cref="P:NZXTSharp.ISubDevice.Leds"/> list to true.
             </summary>
         </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.HuePlus.Channel2">
+        <member name="M:NZXTSharp.ISubDevice.AllLedOff">
             <summary>
-            A <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/> object representing the Channel 2 of the <see cref="T:NZXTSharp.Devices.HuePlus.HuePlus"/> device.
+            Sets all LEDs in the <see cref="T:NZXTSharp.ISubDevice"/>'s <see cref="P:NZXTSharp.ISubDevice.Leds"/> list to false.
             </summary>
         </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.HuePlus.Channels">
+        <member name="M:NZXTSharp.ISubDevice.LedsToString">
             <summary>
             A <see cref="T:System.Collections.Generic.List`1"/> containing all <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/> objects owned by the <see cref="T:NZXTSharp.Devices.HuePlus.HuePlus"/> device.
             </summary>
         </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.HuePlus.CustomName">
+        <member name="T:NZXTSharp.Strip">
             <summary>
             A custom name for the <see cref="T:NZXTSharp.Devices.HuePlus.HuePlus"/> instance.
             </summary>
         </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.HuePlus.Type">
+        <member name="P:NZXTSharp.Strip.IsActive">
             <summary>
-            The <see cref="T:NZXTSharp.Devices.NZXTDeviceType"/> of the <see cref="T:NZXTSharp.Devices.HuePlus.HuePlus"/> object.
+            Whether or not the current <see cref="T:NZXTSharp.Strip"/> instance is active (on).
             </summary>
         </member>
-        <member name="E:NZXTSharp.Devices.HuePlus.HuePlus.OnLogMessage">
+        <member name="P:NZXTSharp.Strip.Type">
             <summary>
-            Triggers when a generic log message is sent.
+            Returns the <see cref="T:NZXTSharp.NZXTDeviceType"/> of the fan.
             </summary>
         </member>
-        <member name="E:NZXTSharp.Devices.HuePlus.HuePlus.OnDataReceived">
+        <member name="P:NZXTSharp.Strip.NumLeds">
             <summary>
-            Triggers when data is received from the COM port.
+            Returns the number of LEDs available on the <see cref="T:NZXTSharp.Strip"/>.
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.HuePlus.#ctor">
+        <member name="P:NZXTSharp.Strip.Leds">
             <summary>
-            Constructs a <see cref="T:NZXTSharp.Devices.HuePlus.HuePlus"/> instance.
+            A list containing the power states of the <see cref="T:NZXTSharp.Strip"/>'s LEDs.
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.HuePlus.#ctor(System.Int32,System.String)">
+        <member name="M:NZXTSharp.Strip.#ctor">
             <summary>
-            Constructs a <see cref="T:NZXTSharp.Devices.HuePlus.HuePlus"/> instance with a custom <paramref name="MaxHandshakeRetry"/> count, 
-            and a custom name <paramref name="CustomName"/>.
+            Constructs a <see cref="T:NZXTSharp.Strip"/> instance.
             </summary>
             <param name="MaxHandshakeRetry"></param>
             <param name="CustomName">A custom name for the <see cref="T:NZXTSharp.Devices.HuePlus.HuePlus"/> instance.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.HuePlus.Reconnect">
+        <member name="M:NZXTSharp.Strip.ToggleState">
             <summary>
-            Disposes of and reconnects to the device's <see cref="T:NZXTSharp.COM.SerialController"/>.
+            Toggles the <see cref="T:NZXTSharp.Strip"/>'s state.
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.HuePlus.Dispose">
-            <summary>
-            Disposes of the device's <see cref="T:NZXTSharp.COM.SerialController"/>.
-            </summary>
+        <member name="M:NZXTSharp.Strip.SetState(System.Boolean)">
+            <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.HuePlus.ApplyEffect(NZXTSharp.Devices.HuePlus.Channel,NZXTSharp.Devices.Common.IEffect,System.Boolean)">
+        <member name="M:NZXTSharp.Strip.ToggleLed(System.Int32)">
+            <summary>
+            Toggles a specific LED owned by the <see cref="T:NZXTSharp.Strip"/> device.
+            </summary>
+            <param name="Index">The index in the <see cref="T:NZXTSharp.Strip"/>'s <see cref="P:NZXTSharp.Strip.Leds"/> list to toggle.</param>
+        </member>
+        <member name="M:NZXTSharp.Strip.ToggleLedRange(System.Int32,System.Int32)">
             <summary>
             Applies the given <paramref name="effect"/> to the given <paramref name="channel"/>.
             </summary>
-            <param name="channel">The <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/> to apply the effect to.</param>
-            <param name="effect">The <see cref="T:NZXTSharp.Devices.Common.IEffect"/> to apply.</param>
-            <param name="SaveToChannel">Whether or not to save the given effect to the given channel.</param>
+            <param name="Start">The index in the <see cref="T:NZXTSharp.Strip"/>'s <see cref="P:NZXTSharp.Strip.Leds"/> list to start at.</param>
+            <param name="End">The index in the <see cref="T:NZXTSharp.Strip"/>'s <see cref="P:NZXTSharp.Strip.Leds"/> list to end at.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.HuePlus.ApplyCustom(System.Byte[])">
+        <member name="M:NZXTSharp.Strip.SetLedRange(System.Int32,System.Int32,System.Boolean)">
             <summary>
             Writes a custom <paramref name="Buffer"/> to the device's <see cref="T:NZXTSharp.COM.SerialController"/>.
             </summary>
-            <param name="Buffer">The buffer to write to the device.</param>
+            <param name="Start">The index in the <see cref="T:NZXTSharp.Strip"/>'s <see cref="P:NZXTSharp.Strip.Leds"/> list to start at.</param>
+            <param name="End">The index in the <see cref="T:NZXTSharp.Strip"/>'s <see cref="P:NZXTSharp.Strip.Leds"/> list to end at.</param>
+            <param name="Value">The value to set each LED to.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.HuePlus.UnitLedOn">
+        <member name="M:NZXTSharp.Strip.AllLedOn">
             <summary>
-            Turns the device's unit led on.
+            Sets all LEDs in the <see cref="T:NZXTSharp.Strip"/>'s <see cref="P:NZXTSharp.Strip.Leds"/> list to true.
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.HuePlus.UnitLedOff">
+        <member name="M:NZXTSharp.Strip.AllLedOff">
             <summary>
-            Turns the device's unit led off.
+            Sets all LEDs in the <see cref="T:NZXTSharp.Strip"/>'s <see cref="P:NZXTSharp.Strip.Leds"/> list to false.
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.HuePlus.SetUnitLed(System.Boolean)">
+        <member name="M:NZXTSharp.Strip.LedsToString">
             <summary>
             Sets the device's unit led state. true: on, false: off.
             </summary>
             <param name="State">Which state to set the LED to; true: on, false: off.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.HuePlus.UpdateChannelInfo(NZXTSharp.Devices.HuePlus.Channel)">
-            <summary>
-            Updates the given <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/>'s <see cref="T:NZXTSharp.Devices.HuePlus.ChannelInfo"/>.
-            </summary>
-            <param name="Channel"></param>
-        </member>
-        <member name="T:NZXTSharp.Devices.HuePlus.IHueDevice">
-            <summary>
-            Represents a generic NZXT Hue device.
-            </summary>
-        </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.IHueDevice.ApplyEffect(NZXTSharp.Devices.HuePlus.Channel,NZXTSharp.Devices.Common.IEffect,System.Boolean)">
-            <summary>
-            Applies a given <see cref="T:NZXTSharp.Devices.Common.IEffect"/> to the given <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/>.
-            </summary>
-            <param name="channel"></param>
-            <param name="effect"></param>
-            <param name="ApplyToChannel"></param>
-        </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.IHueDevice.ApplyCustom(System.Byte[])">
-            <summary>
-            Sends a given <paramref name="Buffer"/> to the <see cref="T:NZXTSharp.Devices.HuePlus.IHueDevice"/>'s <see cref="T:NZXTSharp.COM.ICOMController"/>.
-            </summary>
-            <param name="Buffer">The buffer to send.</param>
-        </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.IHueDevice.UpdateChannelInfo(NZXTSharp.Devices.HuePlus.Channel)">
-            <summary>
-            Updates the <see cref="T:NZXTSharp.Devices.HuePlus.ChannelInfo"/> object owned by the given <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/>.
-            </summary>
-            <param name="Channel"></param>
-        </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.IHueDevice.Both">
-            <summary>
-            Represents both channels owned by a Hue device.
-            </summary>
-        </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.IHueDevice.Channel1">
-            <summary>
-            Represents Channel 1 of a Hue device.
-            </summary>
-        </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.IHueDevice.Channel2">
-            <summary>
-            Represents Channel 2 of a hue device.
-            </summary>
-        </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.IHueDevice.Channels">
-            <summary>
-            A list of all <see cref="T:NZXTSharp.Devices.HuePlus.Channel"/>s owned by a hue device.
-            </summary>
-        </member>
-        <member name="T:NZXTSharp.Devices.HuePlus.CandleLight">
+        <member name="T:NZXTSharp.HuePlus.CandleLight">
             <summary>
             Represents an RGB Candle Light effect.
             </summary>
+            <param name="Channel"></param>
         </member>
-        <member name="F:NZXTSharp.Devices.HuePlus.CandleLight.CompatibleWith">
+        <member name="F:NZXTSharp.HuePlus.CandleLight.CompatibleWith">
             <inheritdoc/>
         </member>
-        <member name="F:NZXTSharp.Devices.HuePlus.CandleLight.Color">
+        <member name="F:NZXTSharp.HuePlus.CandleLight.Color">
             <inheritdoc/>
         </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.CandleLight.EffectByte">
+        <member name="P:NZXTSharp.HuePlus.CandleLight.EffectByte">
             <inheritdoc/>
         </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.CandleLight.Channel">
+        <member name="P:NZXTSharp.HuePlus.CandleLight.Channel">
             <inheritdoc/>
         </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.CandleLight.EffectName">
+        <member name="P:NZXTSharp.HuePlus.CandleLight.EffectName">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.CandleLight.#ctor(NZXTSharp.Color)">
+        <member name="M:NZXTSharp.HuePlus.CandleLight.#ctor(NZXTSharp.Color)">
             <summary>
-            Constructs a <see cref="T:NZXTSharp.Devices.HuePlus.CandleLight"/> effect with a given <paramref name="Color"/>.
+            Constructs a <see cref="T:NZXTSharp.HuePlus.CandleLight"/> effect with a given <paramref name="Color"/>.
             </summary>
-            <param name="Color">The <see cref="F:NZXTSharp.Devices.HuePlus.CandleLight.Color"/> to display.</param>
+            <param name="Color">The <see cref="F:NZXTSharp.HuePlus.CandleLight.Color"/> to display.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.CandleLight.IsCompatibleWith(NZXTSharp.Devices.NZXTDeviceType)">
+        <member name="M:NZXTSharp.HuePlus.CandleLight.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.CandleLight.BuildBytes(NZXTSharp.Devices.NZXTDeviceType,NZXTSharp.Devices.IChannel)">
+        <member name="M:NZXTSharp.HuePlus.CandleLight.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <inheritdoc/>
         </member>
-        <member name="T:NZXTSharp.Devices.HuePlus.Direction">
+        <member name="T:NZXTSharp.HuePlus.LogHandler">
             <summary>
-            Represents a <see cref="T:NZXTSharp.Devices.HuePlus.Direction"/> effect param.
+            Triggers when a generic log message is sent.
             </summary>
+            <param name="Channel"></param>
         </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.Direction.WithMovement">
+        <member name="T:NZXTSharp.HuePlus.DataRecieved">
             <summary>
-            Whether or not the effect will move.
-            </summary>
-        </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.Direction.IsForward">
-            <summary>
-            Whether or not the effect will move forward or backward.
+            Triggers when data is received from the COM port.
             </summary>
         </member>
-        <member name="P:NZXTSharp.Devices.HuePlus.Direction.Value">
-            <inheritdoc/>
-        </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.Direction.#ctor(System.Boolean,System.Boolean)">
+        <member name="T:NZXTSharp.HuePlus.HuePlus">
             <summary>
-            Constructs a <see cref="T:NZXTSharp.Devices.HuePlus.Direction"/> param.
+            Represents an NZXT Hue+ lighting controller.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.HuePlus.HuePlus.Name">
+            <summary>
+            The device's product name.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.HuePlus.HuePlus.Both">
+            <summary>
+            A <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/> object representing both channels on the <see cref="T:NZXTSharp.HuePlus.HuePlus"/>.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.HuePlus.HuePlus.Channel1">
+            <summary>
+            A <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/> object representing the Channel 1 of the <see cref="T:NZXTSharp.HuePlus.HuePlus"/> device.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.HuePlus.HuePlus.Channel2">
+            <summary>
+            A <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/> object representing the Channel 2 of the <see cref="T:NZXTSharp.HuePlus.HuePlus"/> device.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.HuePlus.HuePlus.Channels">
+            <summary>
+            A <see cref="T:System.Collections.Generic.List`1"/> containing all <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/> objects owned by the <see cref="T:NZXTSharp.HuePlus.HuePlus"/> device.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.HuePlus.HuePlus.CustomName">
+            <summary>
+            A custom name for the <see cref="T:NZXTSharp.HuePlus.HuePlus"/> instance.
             </summary>
             <param name="isForward">Whether or not the param moves forward or backward.</param>
             <param name="withMovement">Whether or not the effect will move smoothly.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.Direction.GetValue">
-            <inheritdoc/>
-        </member>
-        <member name="M:NZXTSharp.Devices.HuePlus.Direction.op_Implicit(NZXTSharp.Devices.HuePlus.Direction)~System.Byte">
+        <member name="P:NZXTSharp.HuePlus.HuePlus.Type">
             <summary>
-            
+            The <see cref="T:NZXTSharp.NZXTDeviceType"/> of the <see cref="T:NZXTSharp.HuePlus.HuePlus"/> object.
             </summary>
             <param name="param"></param>
         </member>
-        <member name="T:NZXTSharp.Devices.Fan">
+        <member name="E:NZXTSharp.HuePlus.HuePlus.OnLogMessage">
             <summary>
-            Represents a fan.
+            Triggers when a generic log message is sent.
             </summary>
         </member>
-        <member name="P:NZXTSharp.Devices.Fan.IsActive">
+        <member name="E:NZXTSharp.HuePlus.HuePlus.OnDataReceived">
             <summary>
-            Whether or not the current <see cref="T:NZXTSharp.Devices.Fan"/> instance is active (on).
+            Triggers when data is received from the COM port.
             </summary>
         </member>
-        <member name="P:NZXTSharp.Devices.Fan.Type">
+        <member name="M:NZXTSharp.HuePlus.HuePlus.#ctor">
             <summary>
-            Returns the <see cref="T:NZXTSharp.Devices.NZXTDeviceType"/> of the fan.
+            Constructs a <see cref="T:NZXTSharp.HuePlus.HuePlus"/> instance.
             </summary>
         </member>
-        <member name="P:NZXTSharp.Devices.Fan.NumLeds">
+        <member name="M:NZXTSharp.HuePlus.HuePlus.#ctor(System.Int32,System.String)">
             <summary>
-            Returns the number of LEDs available on the <see cref="T:NZXTSharp.Devices.Fan"/>.
+            Constructs a <see cref="T:NZXTSharp.HuePlus.HuePlus"/> instance with a custom <paramref name="MaxHandshakeRetry"/> count,
+            and a custom name <paramref name="CustomName"/>.
+            </summary>
+            <param name="MaxHandshakeRetry"></param>
+            <param name="CustomName">A custom name for the <see cref="T:NZXTSharp.HuePlus.HuePlus"/> instance.</param>
+        </member>
+        <member name="M:NZXTSharp.HuePlus.HuePlus.Reconnect">
+            <summary>
+            Disposes of and reconnects to the device's <see cref="T:NZXTSharp.COM.SerialController"/>.
             </summary>
         </member>
-        <member name="P:NZXTSharp.Devices.Fan.Leds">
+        <member name="M:NZXTSharp.HuePlus.HuePlus.Dispose">
             <summary>
-            A list containing the power states of the <see cref="T:NZXTSharp.Devices.Fan"/>'s LEDs.
+            Disposes of the device's <see cref="T:NZXTSharp.COM.SerialController"/>.
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.Fan.#ctor">
+        <member name="M:NZXTSharp.HuePlus.HuePlus.ApplyEffect(NZXTSharp.HuePlus.HuePlusChannel,NZXTSharp.IEffect,System.Boolean)">
             <summary>
-            Constructs a <see cref="T:NZXTSharp.Devices.Fan"/> instance.
+            Applies the given <paramref name="effect"/> to the given <paramref name="channel"/>.
+            </summary>
+            <param name="channel">The <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/> to apply the effect to.</param>
+            <param name="effect">The <see cref="T:NZXTSharp.IEffect"/> to apply.</param>
+            <param name="SaveToChannel">Whether or not to save the given effect to the given channel.</param>
+        </member>
+        <member name="M:NZXTSharp.HuePlus.HuePlus.ApplyCustom(System.Byte[])">
+            <summary>
+            Writes a custom <paramref name="Buffer"/> to the device's <see cref="T:NZXTSharp.COM.SerialController"/>.
+            </summary>
+            <param name="Buffer">The buffer to write to the device.</param>
+        </member>
+        <member name="M:NZXTSharp.HuePlus.HuePlus.UnitLedOn">
+            <summary>
+            Turns the device's unit led on.
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.Fan.ToggleState">
+        <member name="M:NZXTSharp.HuePlus.HuePlus.UnitLedOff">
             <summary>
-            Toggles the <see cref="T:NZXTSharp.Devices.Fan"/>'s state.
+            Turns the device's unit led off.
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.Fan.SetState(System.Boolean)">
-            <inheritdoc/>
-        </member>
-        <member name="M:NZXTSharp.Devices.Fan.ToggleLed(System.Int32)">
+        <member name="M:NZXTSharp.HuePlus.HuePlus.SetUnitLed(System.Boolean)">
             <summary>
-            Toggles a specific LED owned by the <see cref="T:NZXTSharp.Devices.Fan"/> device.
+            Sets the device's unit led state. true: on, false: off.
             </summary>
-            <param name="Index">The index in the <see cref="T:NZXTSharp.Devices.Fan"/>'s <see cref="P:NZXTSharp.Devices.Fan.Leds"/> list to toggle.</param>
+            <param name="State">Which state to set the LED to; true: on, false: off.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.Fan.ToggleLedRange(System.Int32,System.Int32)">
+        <member name="M:NZXTSharp.HuePlus.HuePlus.UpdateChannelInfo(NZXTSharp.HuePlus.HuePlusChannel)">
             <summary>
-            Toggles all LEDs between a given <paramref name="Start"/> and <paramref name="End"/> index.
+            Updates the given <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/>'s <see cref="T:NZXTSharp.HuePlus.HuePlusChannelInfo"/>.
             </summary>
-            <param name="Start">The index in the <see cref="T:NZXTSharp.Devices.Fan"/>'s <see cref="P:NZXTSharp.Devices.Fan.Leds"/> list to start at.</param>
-            <param name="End">The index in the <see cref="T:NZXTSharp.Devices.Fan"/>'s <see cref="P:NZXTSharp.Devices.Fan.Leds"/> list to end at.</param>
+            <param name="Channel"></param>
         </member>
-        <member name="M:NZXTSharp.Devices.Fan.SetLedRange(System.Int32,System.Int32,System.Boolean)">
+        <member name="T:NZXTSharp.HuePlus.HuePlusChannel">
             <summary>
-            Sets all LEDs between a given <paramref name="Start"/> index and an <paramref name="End"/> index to a given <paramref name="Value"/>.
-            </summary>
-            <param name="Start">The index in the <see cref="T:NZXTSharp.Devices.Fan"/>'s <see cref="P:NZXTSharp.Devices.Fan.Leds"/> list to start at.</param>
-            <param name="End">The index in the <see cref="T:NZXTSharp.Devices.Fan"/>'s <see cref="P:NZXTSharp.Devices.Fan.Leds"/> list to end at.</param>
-            <param name="Value">The value to set each LED to.</param>
-        </member>
-        <member name="M:NZXTSharp.Devices.Fan.AllLedOn">
-            <summary>
-            Sets all LEDs in the <see cref="T:NZXTSharp.Devices.Fan"/>'s <see cref="P:NZXTSharp.Devices.Fan.Leds"/> list to true.
+            Represents a channel on an NZXT device.
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.Fan.AllLedOff">
+        <member name="P:NZXTSharp.HuePlus.HuePlusChannel.ChannelByte">
             <summary>
-            Sets all LEDs in the <see cref="T:NZXTSharp.Devices.Fan"/>'s <see cref="P:NZXTSharp.Devices.Fan.Leds"/> list to false.
+            The channelbyte of the <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/>.
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.Fan.LedsToString">
+        <member name="P:NZXTSharp.HuePlus.HuePlusChannel.Effect">
             <summary>
-            Returns a string with all LED states.
+            The <see cref="T:NZXTSharp.IEffect"/> currently applied to the <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/>.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.HuePlus.HuePlusChannel.State">
+            <summary>
+            Whether or not the current <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/> is active (on).
             </summary>
             <returns></returns>
         </member>
-        <member name="T:NZXTSharp.Devices.ISubDevice">
+        <member name="P:NZXTSharp.HuePlus.HuePlusChannel.ChannelInfo">
             <summary>
-            Represents a sub device.
+            The <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/>'s <see cref="P:NZXTSharp.HuePlus.HuePlusChannel.ChannelInfo"/> object.
             </summary>
         </member>
-        <member name="P:NZXTSharp.Devices.ISubDevice.Type">
+        <member name="P:NZXTSharp.HuePlus.HuePlusChannel.Parent">
             <summary>
-            The <see cref="T:NZXTSharp.Devices.ISubDevice"/>'s <see cref="T:NZXTSharp.Devices.NZXTDeviceType"/>.
+            The device that owns the <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/>.
             </summary>
         </member>
-        <member name="P:NZXTSharp.Devices.ISubDevice.IsActive">
+        <member name="P:NZXTSharp.HuePlus.HuePlusChannel.SubDevices">
             <summary>
-            Whether or not the current <see cref="T:NZXTSharp.Devices.ISubDevice"/> instance is active (on).
+            A list of <see cref="T:NZXTSharp.ISubDevice"/>s owned by the <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/>.
             </summary>
         </member>
-        <member name="P:NZXTSharp.Devices.ISubDevice.NumLeds">
+        <member name="M:NZXTSharp.HuePlus.HuePlusChannel.#ctor(System.Int32)">
             <summary>
-            Returns the number of LEDs available on the <see cref="T:NZXTSharp.Devices.ISubDevice"/>.
+            Constructs a <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/> object with a given <paramref name="ChannelByte"/>.
+            </summary>
+            <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
+        </member>
+        <member name="M:NZXTSharp.HuePlus.HuePlusChannel.#ctor(System.Int32,NZXTSharp.HuePlus.HuePlus)">
+            <summary>
+            Constructs a <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/> object with a given <paramref name="ChannelByte"/>,
+            owned by a given <paramref name="Parent"/> <see cref="!:IHueDevice"/>.
+            </summary>
+            <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
+            <param name="Parent">The <see cref="!:IHueDevice"/> that will own the <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/></param>
+        </member>
+        <member name="M:NZXTSharp.HuePlus.HuePlusChannel.#ctor(System.Int32,NZXTSharp.HuePlus.HuePlus,NZXTSharp.HuePlus.HuePlusChannelInfo)">
+            <summary>
+            Constructs a <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/> object with a given <paramref name="ChannelByte"/>,
+            owned by a given <paramref name="Parent"/> <see cref="!:IHueDevice"/>,
+            with a given <see cref="P:NZXTSharp.HuePlus.HuePlusChannel.ChannelInfo"/>.
+            </summary>
+            <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
+            <param name="Parent">The <see cref="!:IHueDevice"/> that owns the <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/></param>
+            <param name="Info">The <see cref="P:NZXTSharp.HuePlus.HuePlusChannel.ChannelInfo"/> owned by the <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/>.</param>
+        </member>
+        <member name="M:NZXTSharp.HuePlus.HuePlusChannel.RefreshSubDevices">
+            <summary>
+            Refreshes all <see cref="T:NZXTSharp.ISubDevice"/>s in the <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/>'s <see cref="P:NZXTSharp.HuePlus.HuePlusChannel.SubDevices"/> list.
             </summary>
         </member>
-        <member name="P:NZXTSharp.Devices.ISubDevice.Leds">
+        <member name="M:NZXTSharp.HuePlus.HuePlusChannel.On">
             <summary>
-            A list containing the power states of the <see cref="T:NZXTSharp.Devices.ISubDevice"/>'s LEDs.
+            Turns the <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/> on.
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.ISubDevice.ToggleState">
+        <member name="M:NZXTSharp.HuePlus.HuePlusChannel.Off">
             <summary>
-            Toggles the <see cref="T:NZXTSharp.Devices.ISubDevice"/>'s state.
+            Turns the <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/> off.
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.ISubDevice.SetState(System.Boolean)">
+        <member name="M:NZXTSharp.HuePlus.HuePlusChannel.UpdateChannelInfo">
             <summary>
-            Sets the <see cref="T:NZXTSharp.Devices.ISubDevice"/>'s state.
+            Updates the <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/>'s <see cref="P:NZXTSharp.HuePlus.HuePlusChannel.ChannelInfo"/>.
             </summary>
-            <param name="State">The state to set the <see cref="T:NZXTSharp.Devices.ISubDevice"/> to. true: on, false: off.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.ISubDevice.ToggleLed(System.Int32)">
+        <member name="M:NZXTSharp.HuePlus.HuePlusChannel.SetChannelInfo(NZXTSharp.HuePlus.HuePlusChannelInfo)">
             <summary>
-            Toggles a specific LED owned by the <see cref="T:NZXTSharp.Devices.ISubDevice"/>.
+            Sets the <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/>'s <see cref="P:NZXTSharp.HuePlus.HuePlusChannel.ChannelInfo"/> to the given <paramref name="info"/>.
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="M:NZXTSharp.HuePlus.HuePlusChannel.op_Explicit(NZXTSharp.HuePlus.HuePlusChannel)~System.Byte">
+            <summary>
+            Returns the <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/>'s ChannelByte.
+            </summary>
+            <param name="channel"></param>
+        </member>
+        <member name="T:NZXTSharp.HuePlus.HuePlusChannelInfo">
+            <summary>
+            Represents information about a <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/>.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.HuePlus.HuePlusChannelInfo.NumLeds">
+            <summary>
+            Represents the total number of LEDs available on a <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/>.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.HuePlus.HuePlusChannelInfo.NumSubDevices">
+            <summary>
+            The number of SubDevices available on a <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/>.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.HuePlus.HuePlusChannelInfo.Type">
+            <summary>
+            Type of <see cref="T:NZXTSharp.ISubDevice"/>s available on a <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/>.
             </summary>
             <param name="Index">The index in the <see cref="T:NZXTSharp.Devices.ISubDevice"/>'s <see cref="P:NZXTSharp.Devices.ISubDevice.Leds"/> list to toggle.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.ISubDevice.ToggleLedRange(System.Int32,System.Int32)">
+        <member name="P:NZXTSharp.HuePlus.HuePlusChannelInfo.IsActive">
             <summary>
-            Toggles all LEDs between a given <paramref name="Start"/> and <paramref name="End"/> index.
+
             </summary>
             <param name="Start">The index in the <see cref="T:NZXTSharp.Devices.ISubDevice"/>'s <see cref="P:NZXTSharp.Devices.ISubDevice.Leds"/> list to start at.</param>
             <param name="End">The index in the <see cref="T:NZXTSharp.Devices.ISubDevice"/>'s <see cref="P:NZXTSharp.Devices.ISubDevice.Leds"/> list to end at.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.ISubDevice.SetLedRange(System.Int32,System.Int32,System.Boolean)">
+        <member name="M:NZXTSharp.HuePlus.HuePlusChannelInfo.#ctor(NZXTSharp.HuePlus.HuePlusChannel,System.Byte[])">
             <summary>
-            Sets all LEDs between a given <paramref name="Start"/> index and an <paramref name="End"/> index to a given <paramref name="Value"/>.
+            Constructs a <see cref="T:NZXTSharp.HuePlus.HuePlusChannelInfo"/> with a given <paramref name="Parent"/> as its parent, from some given channel handshake <paramref name="data"/>.
             </summary>
-            <param name="Start">The index in the <see cref="T:NZXTSharp.Devices.ISubDevice"/>'s <see cref="P:NZXTSharp.Devices.ISubDevice.Leds"/> list to start at.</param>
-            <param name="End">The index in the <see cref="T:NZXTSharp.Devices.ISubDevice"/>'s <see cref="P:NZXTSharp.Devices.ISubDevice.Leds"/> list to end at.</param>
-            <param name="Value">The value to set each LED to.</param>
+            <param name="Parent"></param>
+            <param name="data"></param>
         </member>
-        <member name="M:NZXTSharp.Devices.ISubDevice.AllLedOn">
+        <member name="M:NZXTSharp.HuePlus.HuePlusChannelInfo.#ctor(System.Byte[])">
+            <summary>
+            Constructs a <see cref="T:NZXTSharp.HuePlus.HuePlusChannelInfo"/> object from some given channel handshake <paramref name="data"/>.
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:NZXTSharp.HuePlus.HuePlusChannelInfo.Update">
+            <summary>
+            Updates the parent <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/>'s <see cref="T:NZXTSharp.HuePlus.HuePlusChannelInfo"/>.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.HuePlus.HuePlusChannelInfo.ToString">
             <summary>
             Sets all LEDs in the <see cref="T:NZXTSharp.Devices.ISubDevice"/>'s <see cref="P:NZXTSharp.Devices.ISubDevice.Leds"/> list to true.
             </summary>
+            <returns></returns>
         </member>
-        <member name="M:NZXTSharp.Devices.ISubDevice.AllLedOff">
+        <member name="T:NZXTSharp.HuePlus._02Param">
             <summary>
-            Sets all LEDs in the <see cref="T:NZXTSharp.Devices.ISubDevice"/>'s <see cref="P:NZXTSharp.Devices.ISubDevice.Leds"/> list to false.
+            Represents an 02 effect Param
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.ISubDevice.LedsToString">
+        <member name="P:NZXTSharp.HuePlus._02Param.Value">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.HuePlus._02Param.GetValue">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.HuePlus._02Param.op_Implicit(NZXTSharp.HuePlus._02Param)~System.Byte">
             <summary>
             Returns a string with all LED states.
             </summary>
             <returns></returns>
         </member>
-        <member name="T:NZXTSharp.Devices.Strip">
+        <member name="T:NZXTSharp.HuePlus._03Param">
             <summary>
-            Represents an RGB Strip subdevice.
+            Represents an 03 effect param.
             </summary>
         </member>
-        <member name="P:NZXTSharp.Devices.Strip.IsActive">
-            <summary>
-            Whether or not the current <see cref="T:NZXTSharp.Devices.Strip"/> instance is active (on).
-            </summary>
+        <member name="P:NZXTSharp.HuePlus._03Param.Value">
+            <inheritdoc/>
         </member>
-        <member name="P:NZXTSharp.Devices.Strip.Type">
-            <summary>
-            Returns the <see cref="T:NZXTSharp.Devices.NZXTDeviceType"/> of the fan.
-            </summary>
+        <member name="M:NZXTSharp.HuePlus._03Param.GetValue">
+            <inheritdoc/>
         </member>
-        <member name="P:NZXTSharp.Devices.Strip.NumLeds">
+        <member name="M:NZXTSharp.HuePlus._03Param.op_Implicit(NZXTSharp.HuePlus._03Param)~System.Byte">
             <summary>
             Returns the number of LEDs available on the <see cref="T:NZXTSharp.Devices.Strip"/>.
             </summary>
         </member>
-        <member name="P:NZXTSharp.Devices.Strip.Leds">
+        <member name="T:NZXTSharp.HuePlus.Direction">
             <summary>
-            A list containing the power states of the <see cref="T:NZXTSharp.Devices.Strip"/>'s LEDs.
+            Represents a <see cref="T:NZXTSharp.HuePlus.Direction"/> effect param.
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.Strip.#ctor">
+        <member name="P:NZXTSharp.HuePlus.Direction.WithMovement">
             <summary>
             Constructs a <see cref="T:NZXTSharp.Devices.Strip"/> instance.
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.Strip.ToggleState">
+        <member name="P:NZXTSharp.HuePlus.Direction.IsForward">
             <summary>
             Toggles the <see cref="T:NZXTSharp.Devices.Strip"/>'s state.
             </summary>
         </member>
-        <member name="M:NZXTSharp.Devices.Strip.SetState(System.Boolean)">
+        <member name="P:NZXTSharp.HuePlus.Direction.Value">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Devices.Strip.ToggleLed(System.Int32)">
+        <member name="M:NZXTSharp.HuePlus.Direction.#ctor(System.Boolean,System.Boolean)">
             <summary>
-            Toggles a specific LED owned by the <see cref="T:NZXTSharp.Devices.Strip"/> device.
+            Constructs a <see cref="T:NZXTSharp.HuePlus.Direction"/> param.
             </summary>
-            <param name="Index">The index in the <see cref="T:NZXTSharp.Devices.Strip"/>'s <see cref="P:NZXTSharp.Devices.Strip.Leds"/> list to toggle.</param>
+            <param name="isForward">Whether or not the param moves forward or backward.</param>
+            <param name="withMovement">Whether or not the effect will move smoothly.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.Strip.ToggleLedRange(System.Int32,System.Int32)">
+        <member name="M:NZXTSharp.HuePlus.Direction.GetValue">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.HuePlus.Direction.op_Implicit(NZXTSharp.HuePlus.Direction)~System.Byte">
             <summary>
             Toggles all LEDs between a given <paramref name="Start"/> and <paramref name="End"/> index.
             </summary>
             <param name="Start">The index in the <see cref="T:NZXTSharp.Devices.Strip"/>'s <see cref="P:NZXTSharp.Devices.Strip.Leds"/> list to start at.</param>
             <param name="End">The index in the <see cref="T:NZXTSharp.Devices.Strip"/>'s <see cref="P:NZXTSharp.Devices.Strip.Leds"/> list to end at.</param>
         </member>
-        <member name="M:NZXTSharp.Devices.Strip.SetLedRange(System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Sets all LEDs between a given <paramref name="Start"/> index and an <paramref name="End"/> index to a given <paramref name="Value"/>.
-            </summary>
-            <param name="Start">The index in the <see cref="T:NZXTSharp.Devices.Strip"/>'s <see cref="P:NZXTSharp.Devices.Strip.Leds"/> list to start at.</param>
-            <param name="End">The index in the <see cref="T:NZXTSharp.Devices.Strip"/>'s <see cref="P:NZXTSharp.Devices.Strip.Leds"/> list to end at.</param>
-            <param name="Value">The value to set each LED to.</param>
+        <member name="P:NZXTSharp.KrakenX.Loading.EffectByte">
+            <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Devices.Strip.AllLedOn">
-            <summary>
-            Sets all LEDs in the <see cref="T:NZXTSharp.Devices.Strip"/>'s <see cref="P:NZXTSharp.Devices.Strip.Leds"/> list to true.
-            </summary>
+        <member name="P:NZXTSharp.KrakenX.Loading.EffectName">
+            <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Devices.Strip.AllLedOff">
-            <summary>
-            Sets all LEDs in the <see cref="T:NZXTSharp.Devices.Strip"/>'s <see cref="P:NZXTSharp.Devices.Strip.Leds"/> list to false.
-            </summary>
+        <member name="P:NZXTSharp.KrakenX.Loading.Channel">
+            <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Devices.Strip.LedsToString">
-            <summary>
-            Returns a string with all LED states.
-            </summary>
-            <returns></returns>
+        <member name="M:NZXTSharp.KrakenX.Loading.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
+            <inheritdoc/>
         </member>
-        <member name="T:NZXTSharp.INZXTDevice">
-            <summary>
-            Represents a generic NZXT device.
-            </summary>
+        <member name="M:NZXTSharp.KrakenX.Loading.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
+            <inheritdoc/>
         </member>
-        <member name="P:NZXTSharp.INZXTDevice.Type">
-            <summary>
-            The <see cref="T:NZXTSharp.Devices.NZXTDeviceType"/> of the <see cref="T:NZXTSharp.INZXTDevice"/>.
-            </summary>
+        <member name="P:NZXTSharp.KrakenX.TaiChi.EffectByte">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.TaiChi.EffectName">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.TaiChi.Channel">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.TaiChi.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.TaiChi.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
+            <inheritdoc/>
         </member>
     </members>
 </doc>

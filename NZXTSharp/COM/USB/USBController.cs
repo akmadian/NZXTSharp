@@ -4,11 +4,11 @@ using System.Text;
 
 using HidLibrary;
 
-using NZXTSharp.Devices;
 using NZXTSharp.Exceptions;
 
 namespace NZXTSharp.COM {
-    internal class USBController : IUSBDevice { 
+    internal class USBController
+    { 
 
         private NZXTDeviceType _Type;
         private SerialDeviceID _ID;

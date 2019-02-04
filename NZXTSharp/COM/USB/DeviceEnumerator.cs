@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 
 using HidLibrary;
-using NZXTSharp.Devices;
 
 namespace NZXTSharp.COM
 {
