@@ -39,6 +39,6 @@ namespace NZXTSharp
         /// <param name="Type"></param>
         /// <returns></returns>
         bool IsCompatibleWith(NZXTDeviceType Type);
-        
+
     }
 }

@@ -34,7 +34,7 @@ namespace NZXTSharp
 
         /// <inheritdoc/>
         public string EffectName { get; }
-        
+
         /// <summary>
         /// Constructs an RGB Fixed effect.
         /// </summary>
@@ -57,13 +57,13 @@ namespace NZXTSharp
         /// <summary>
         /// Constructs an RGB Fixed effect from custom LED colors.
         /// </summary>
-        /// <param name="Colors">A byte[] of RGB color values in G, R, B format. 
-        /// Length must be less than 120 and greater than 0. 
+        /// <param name="Colors">A byte[] of RGB color values in G, R, B format.
+        /// Length must be less than 120 and greater than 0.
         /// RGB values must be 0-255 (inclusive).</param>
         public Fixed(byte[] Colors)
         {
-            if (Colors.Length > 120 || Colors.Length < 0) 
-                throw new InvalidParamException("Invalid RGB color array size. Must have at least one element, and fewer than 120 elements."); 
+            if (Colors.Length > 120 || Colors.Length < 0)
+                throw new InvalidParamException("Invalid RGB color array size. Must have at least one element, and fewer than 120 elements.");
 
             foreach (byte color in Colors)
             {
@@ -101,7 +101,7 @@ namespace NZXTSharp
                     }
                     return new List<byte[]>() { final };
                 case NZXTDeviceType.KrakenX:
-                // TODO
+                    // TODO
                 default:
                     return null;
             }

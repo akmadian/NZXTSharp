@@ -5,6 +5,7 @@ using System.Text;
 using NZXTSharp;
 using NZXTSharp.HuePlus;
 using NZXTSharp.Exceptions;
+using NZXTSharp.Devices.HuePlus;
 
 namespace NZXTSharp
 {
@@ -96,7 +97,7 @@ namespace NZXTSharp
 
                     return outList;
                 case NZXTDeviceType.KrakenX:
-                // TODO
+                    // TODO
                 default:
                     return null;
             }

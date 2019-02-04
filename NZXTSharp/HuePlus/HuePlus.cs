@@ -86,7 +86,7 @@ namespace NZXTSharp.HuePlus
         /// A <see cref="List{T}"/> containing all <see cref="HuePlusChannel"/> objects owned by the <see cref="HuePlus"/> device.
         /// </summary>
         public List<HuePlusChannel> Channels { get => _Channels; }
-        
+
         /// <summary>
         /// A custom name for the <see cref="HuePlus"/> instance.
         /// </summary>
@@ -118,7 +118,7 @@ namespace NZXTSharp.HuePlus
         }
 
         /// <summary>
-        /// Constructs a <see cref="HuePlus"/> instance with a custom <paramref name="MaxHandshakeRetry"/> count, 
+        /// Constructs a <see cref="HuePlus"/> instance with a custom <paramref name="MaxHandshakeRetry"/> count,
         /// and a custom name <paramref name="CustomName"/>.
         /// </summary>
         /// <param name="MaxHandshakeRetry"></param>
@@ -144,13 +144,13 @@ namespace NZXTSharp.HuePlus
                 8,
                 "HuePlus"
             );
-            
+
             _COMController = new SerialController
             (
                 SerialPort.GetPortNames(),
                 data
             );
-            
+
             if (_COMController.IsOpen)
             {
                 int Retries = 0;
@@ -178,7 +178,7 @@ namespace NZXTSharp.HuePlus
 
                 Channel1.BuildSubDevices();
                 Channel2.BuildSubDevices();
-                
+
                 return true;
             }
             else { /*Logger.Error("Could not connect to serial port");*/ return false; }
@@ -341,4 +341,3 @@ namespace NZXTSharp.HuePlus
         }
     }
 }
-

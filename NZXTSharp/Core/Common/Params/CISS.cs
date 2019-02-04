@@ -57,7 +57,7 @@ namespace NZXTSharp
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="param"></param>
         public static implicit operator byte(CISS param) {

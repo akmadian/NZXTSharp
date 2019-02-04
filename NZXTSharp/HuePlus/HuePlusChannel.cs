@@ -6,13 +6,13 @@ using System.Text;
 using NZXTSharp;
 
 namespace NZXTSharp.HuePlus {
-    
+
     /// <summary>
     /// Represents a channel on an NZXT device.
     /// </summary>
     public class HuePlusChannel : IChannel
     {
-        
+
         private readonly int _ChannelByte;
         private IEffect _Effect = new Fixed(new Color(255, 255, 255));
         private bool _State = true;
@@ -37,7 +37,7 @@ namespace NZXTSharp.HuePlus {
         /// Whether or not the current <see cref="HuePlusChannel"/> is active (on).
         /// </summary>
         public bool State { get => _State; }
-        
+
         /// <summary>
         /// The <see cref="HuePlusChannel"/>'s <see cref="ChannelInfo"/> object.
         /// </summary>
@@ -53,7 +53,7 @@ namespace NZXTSharp.HuePlus {
         /// </summary>
         public List<ISubDevice> SubDevices { get => _SubDevices; }
         #endregion
-        
+
         /// <summary>
         /// Constructs a <see cref="HuePlusChannel"/> object with a given <paramref name="ChannelByte"/>.
         /// </summary>
@@ -63,7 +63,7 @@ namespace NZXTSharp.HuePlus {
         }
 
         /// <summary>
-        /// Constructs a <see cref="HuePlusChannel"/> object with a given <paramref name="ChannelByte"/>, 
+        /// Constructs a <see cref="HuePlusChannel"/> object with a given <paramref name="ChannelByte"/>,
         /// owned by a given <paramref name="Parent"/> <see cref="IHueDevice"/>.
         /// </summary>
         /// <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
@@ -74,8 +74,8 @@ namespace NZXTSharp.HuePlus {
         }
 
         /// <summary>
-        /// Constructs a <see cref="HuePlusChannel"/> object with a given <paramref name="ChannelByte"/>, 
-        /// owned by a given <paramref name="Parent"/> <see cref="IHueDevice"/>, 
+        /// Constructs a <see cref="HuePlusChannel"/> object with a given <paramref name="ChannelByte"/>,
+        /// owned by a given <paramref name="Parent"/> <see cref="IHueDevice"/>,
         /// with a given <see cref="ChannelInfo"/>.
         /// </summary>
         /// <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
@@ -118,7 +118,7 @@ namespace NZXTSharp.HuePlus {
         /// </summary>
         public void On() {
             this._State = true;
-            _Parent.ApplyEffect(this, _Effect);
+            //_Parent.ApplyEffect(this, _Effect);
         }
 
         /// <summary>
@@ -126,9 +126,9 @@ namespace NZXTSharp.HuePlus {
         /// </summary>
         public void Off() {
             this._State = false;
-            _Parent.ApplyEffect(this, new Fixed(this, new Color(0, 0, 0)), false);
+            //_Parent.ApplyEffect(this, new Fixed(this, new Color(0, 0, 0)), false);
         }
-        
+
         public byte[] BuildColorBytes(Color color) {
             List<byte> outList = new List<byte>();
             foreach (ISubDevice device in _SubDevices)
@@ -176,7 +176,7 @@ namespace NZXTSharp.HuePlus {
                         buffer[(deviceN * device.NumLeds * 3) + (LED * 3) + 1] = 0x00;
                         buffer[(deviceN * device.NumLeds * 3) + (LED * 3) + 2] = 0x00;
                     }
-                    
+
                 } else // If device IS active, account for device's LEDs
                 {
                     for (int LED = 0; LED < device.Leds.Length; LED++)

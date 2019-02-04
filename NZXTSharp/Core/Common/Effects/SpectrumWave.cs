@@ -60,7 +60,7 @@ namespace NZXTSharp
                     byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(new Color(0, 0, 255)));
                     return new List<byte[]>() { final };
                 case NZXTDeviceType.KrakenX:
-                // TODO
+                    // TODO
                 default:
                     return null;
             }

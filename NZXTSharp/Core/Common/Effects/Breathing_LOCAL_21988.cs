@@ -9,12 +9,13 @@ namespace NZXTSharp
 {
 
     /// <summary>
-    /// Represents an RGB pulse effect.
+    /// Represents an RGB breathing effect.
     /// </summary>
-    public class Pulse : IEffect {
-        #pragma warning disable IDE0044 // Add readonly modifier
-        private int _EffectByte = 0x06;
-        private string _EffectName = "Pulse";
+    public class Breathing : IEffect {
+
+        // Per Effect Fields
+        private int _EffectByte = 0x07;
+        private string _EffectName = "Breathing";
 
         /// <inheritdoc/>
         public readonly List<NZXTDeviceType> CompatibleWith = new List<NZXTDeviceType>() {
@@ -22,14 +23,11 @@ namespace NZXTSharp
             NZXTDeviceType.KrakenX
         };
 
-        /// <summary>
-        /// The array of colors used by the effect.
-        /// </summary>
+        /// <inheritdoc/>
         public Color[] Colors;
         private IChannel _Channel;
         private CISS _Param2;
         private int speed = 2;
-        #pragma warning restore IDE0044 // Add readonly modifier
 
         /// <inheritdoc/>
         public int EffectByte { get; }
@@ -41,11 +39,20 @@ namespace NZXTSharp
         public string EffectName { get; }
 
         /// <summary>
-        /// Constructs a <see cref="Pulse"/> effect with the given <see cref="Color"/> array and speed.
+        /// Constructs a <see cref="Breathing"/> effect.
         /// </summary>
-        /// <param name="Colors"></param>
+        /// <param name="Colors">A <see cref="Color"/> array of colors to display.</param>
+        public Breathing(Color[] Colors) {
+            this.Colors = Colors;
+            ValidateParams();
+        }
+
+        /// <summary>
+        /// Constructs a <see cref="Breathing"/> effect.
+        /// </summary>
+        /// <param name="Colors">A <see cref="Color"/> array of colors to display.</param>
         /// <param name="Speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
-        public Pulse(Color[] Colors, int Speed = 2) {
+        public Breathing(Color[] Colors, int Speed = 2) {
             this.Colors = Colors;
             this.speed = Speed;
             ValidateParams();
@@ -54,6 +61,10 @@ namespace NZXTSharp
         private void ValidateParams() {
             if (this.Colors.Length > 15) {
                 throw new TooManyColorsProvidedException();
+            }
+
+            if (speed > 4 || speed < 0) {
+                throw new InvalidEffectSpeedException();
             }
         }
 
@@ -71,13 +82,13 @@ namespace NZXTSharp
                     List<byte[]> outList = new List<byte[]>();
                     for (int colorIndex = 0; colorIndex < Colors.Length; colorIndex++)
                     {
-                        byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x06, 0x03, new CISS(colorIndex, this.speed) };
+                        byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x07, 0x03, new CISS(colorIndex, this.speed) };
                         byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Colors[colorIndex]));
                         outList.Add(final);
                     }
                     return outList;
                 case NZXTDeviceType.KrakenX:
-                    // TODO
+                // TODO
                 default:
                     return null;
             }

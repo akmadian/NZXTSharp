@@ -28,7 +28,7 @@
         public NZXTDeviceType Type { get => _Type; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool IsActive { get => _IsActive; }
         private HuePlusChannel Parent { get; }
@@ -39,7 +39,7 @@
         /// <param name="Parent"></param>
         /// <param name="data"></param>
         public HuePlusChannelInfo(HuePlusChannel Parent, byte[] data) {
-            ParseData(data);    
+            ParseData(data);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString() {
