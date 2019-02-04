@@ -58,7 +58,7 @@ namespace NZXTSharp.KrakenX
 
         public void ApplyEffect(KrakenXChannel Channel, IEffect Effect)
         {
-            List<byte[]> CommandQueue = Effect.BuildBytes(Channel);
+            List<byte[]> CommandQueue = Effect.BuildBytes(Type, Channel);
             foreach (byte[] Command in CommandQueue)
                 _COMController.Write(Command);
         }

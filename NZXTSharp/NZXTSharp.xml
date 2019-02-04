@@ -222,7 +222,7 @@
         <member name="M:NZXTSharp.Alternating.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Alternating.BuildBytes(NZXTSharp.IChannel)">
+        <member name="M:NZXTSharp.Alternating.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <inheritdoc/>
         </member>
         <member name="T:NZXTSharp.Breathing">
@@ -261,7 +261,7 @@
         <member name="M:NZXTSharp.Breathing.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Breathing.BuildBytes(NZXTSharp.IChannel)">
+        <member name="M:NZXTSharp.Breathing.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <inheritdoc/>
         </member>
         <member name="T:NZXTSharp.CoveringMarquee">
@@ -301,7 +301,7 @@
         <member name="M:NZXTSharp.CoveringMarquee.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.CoveringMarquee.BuildBytes(NZXTSharp.IChannel)">
+        <member name="M:NZXTSharp.CoveringMarquee.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <inheritdoc/>
         </member>
         <member name="T:NZXTSharp.Fading">
@@ -336,7 +336,7 @@
         <member name="M:NZXTSharp.Fading.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Fading.BuildBytes(NZXTSharp.IChannel)">
+        <member name="M:NZXTSharp.Fading.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <inheritdoc/>
         </member>
         <member name="T:NZXTSharp.Fixed">
@@ -380,7 +380,7 @@
         <member name="M:NZXTSharp.Fixed.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Fixed.BuildBytes(NZXTSharp.IChannel)">
+        <member name="M:NZXTSharp.Fixed.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <inheritdoc/>
         </member>
         <member name="T:NZXTSharp.IEffect">
@@ -403,7 +403,7 @@
             The <see cref="P:NZXTSharp.IEffect.Channel"/> to set the <see cref="T:NZXTSharp.IEffect"/> on.
             </summary>
         </member>
-        <member name="M:NZXTSharp.IEffect.BuildBytes(NZXTSharp.IChannel)">
+        <member name="M:NZXTSharp.IEffect.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <summary>
             Builds and returns the buffer queue needed to set the <see cref="T:NZXTSharp.IEffect"/>.
             </summary>
@@ -445,7 +445,7 @@
         <member name="M:NZXTSharp.Marquee.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Marquee.BuildBytes(NZXTSharp.IChannel)">
+        <member name="M:NZXTSharp.Marquee.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <inheritdoc/>
         </member>
         <member name="T:NZXTSharp.Pulse">
@@ -480,7 +480,7 @@
         <member name="M:NZXTSharp.Pulse.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Pulse.BuildBytes(NZXTSharp.IChannel)">
+        <member name="M:NZXTSharp.Pulse.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <inheritdoc/>
         </member>
         <member name="T:NZXTSharp.SpectrumWave">
@@ -510,7 +510,7 @@
         <member name="M:NZXTSharp.SpectrumWave.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.SpectrumWave.BuildBytes(NZXTSharp.IChannel)">
+        <member name="M:NZXTSharp.SpectrumWave.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <inheritdoc/>
         </member>
         <member name="T:NZXTSharp.Wings">
@@ -545,7 +545,7 @@
         <member name="M:NZXTSharp.Wings.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Wings.BuildBytes(NZXTSharp.IChannel)">
+        <member name="M:NZXTSharp.Wings.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <inheritdoc/>
         </member>
         <member name="T:NZXTSharp.CISS">
@@ -938,7 +938,7 @@
         <member name="M:NZXTSharp.HuePlus.CandleLight.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.HuePlus.CandleLight.BuildBytes(NZXTSharp.IChannel)">
+        <member name="M:NZXTSharp.HuePlus.CandleLight.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <inheritdoc/>
         </member>
         <member name="T:NZXTSharp.HuePlus.LogHandler">
@@ -1267,6 +1267,36 @@
             
             </summary>
             <param name="param"></param>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.Loading.EffectByte">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.Loading.EffectName">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.Loading.Channel">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.Loading.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.Loading.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.TaiChi.EffectByte">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.TaiChi.EffectName">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.TaiChi.Channel">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.TaiChi.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.TaiChi.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
+            <inheritdoc/>
         </member>
     </members>
 </doc>

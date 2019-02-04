@@ -8,18 +8,26 @@ namespace NZXTSharp.KrakenX
 {
     public class Loading : IEffect
     {
-        public int EffectByte => throw new NotImplementedException();
+        private int _EffectByte = 0x0a;
+        private readonly List<NZXTDeviceType> CompatibleWith = new List<NZXTDeviceType> { NZXTDeviceType.KrakenX };
 
+        /// <inheritdoc/>
+        public int EffectByte { get; }
+
+        /// <inheritdoc/>
         public string EffectName => throw new NotImplementedException();
 
+        /// <inheritdoc/>
         public IChannel Channel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public List<byte[]> BuildBytes(IChannel Channel)
+        /// <inheritdoc/>
+        public bool IsCompatibleWith(NZXTDeviceType Type)
         {
-            throw new NotImplementedException();
+            return CompatibleWith.Contains(Type) ? true : false;
         }
 
-        public bool IsCompatibleWith(NZXTDeviceType Type)
+        /// <inheritdoc/>
+        public List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel)
         {
             throw new NotImplementedException();
         }

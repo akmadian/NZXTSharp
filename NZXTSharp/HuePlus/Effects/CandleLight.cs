@@ -46,10 +46,18 @@ namespace NZXTSharp.HuePlus
         }
 
         /// <inheritdoc/>
-        public List<byte[]> BuildBytes(IChannel Channel) {
-            byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x09, 0x03, 0x02 };
-            byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Color));
-            return new List<byte[]>() { final };
+        public List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel) {
+            switch (Type)
+            {
+                case NZXTDeviceType.HuePlus:
+                    byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x09, 0x03, 0x02 };
+                    byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Color));
+                    return new List<byte[]>() { final };
+                case NZXTDeviceType.KrakenX:
+                // TODO
+                default:
+                    return null;
+            }
         }
     }
 }

@@ -16,7 +16,10 @@ namespace NZXTSharp
         private string _EffectName = "SpectrumWave";
 
         /// <inheritdoc/>
-        public readonly List<NZXTDeviceType> CompatibleWith = new List<NZXTDeviceType>() { NZXTDeviceType.HuePlus };
+        public readonly List<NZXTDeviceType> CompatibleWith = new List<NZXTDeviceType>() {
+            NZXTDeviceType.HuePlus,
+            NZXTDeviceType.KrakenX
+        };
 
         private int speed;
         private Direction Param1;
@@ -49,10 +52,18 @@ namespace NZXTSharp
         }
 
         /// <inheritdoc/>
-        public List<byte[]> BuildBytes(IChannel Channel) {
-            byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x02, Param1, Param2 };
-            byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(new Color(0, 0, 255)));
-            return new List<byte[]>() { final };
+        public List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel) {
+            switch (Type)
+            {
+                case NZXTDeviceType.HuePlus:
+                    byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x02, Param1, Param2 };
+                    byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(new Color(0, 0, 255)));
+                    return new List<byte[]>() { final };
+                case NZXTDeviceType.KrakenX:
+                // TODO
+                default:
+                    return null;
+            }
         }
     }
 }

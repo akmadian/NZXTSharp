@@ -18,7 +18,10 @@ namespace NZXTSharp
         private string _EffectName = "Alternating";
 
         /// <inheritdoc/>
-        public readonly List<NZXTDeviceType> CompatibleWith = new List<NZXTDeviceType>() { NZXTDeviceType.HuePlus };
+        public readonly List<NZXTDeviceType> CompatibleWith = new List<NZXTDeviceType>() {
+            NZXTDeviceType.HuePlus,
+            NZXTDeviceType.KrakenX
+        };
 
         /// <inheritdoc/>
         public Color[] Colors;
@@ -85,14 +88,23 @@ namespace NZXTSharp
         }
 
         /// <inheritdoc/>
-        public List<byte[]> BuildBytes(IChannel Channel) {
-            List<byte[]> outList = new List<byte[]>();
-            for (int colorIndex = 0; colorIndex < Colors.Length; colorIndex++) {
-                byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x05, _Param1, new CISS(colorIndex, this.speed) };
-                byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Colors[colorIndex]));
-                outList.Add(final);
+        public List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel) {
+            switch (Type)
+            {
+                case NZXTDeviceType.HuePlus:
+                    List<byte[]> outList = new List<byte[]>();
+                    for (int colorIndex = 0; colorIndex < Colors.Length; colorIndex++)
+                    {
+                        byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x05, _Param1, new CISS(colorIndex, this.speed) };
+                        byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Colors[colorIndex]));
+                        outList.Add(final);
+                    }
+                    return outList;
+                case NZXTDeviceType.KrakenX:
+                // TODO
+                default:
+                    return null;
             }
-            return outList;
         }
     }
 }

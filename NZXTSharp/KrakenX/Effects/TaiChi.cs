@@ -8,18 +8,29 @@ namespace NZXTSharp.KrakenX
 {
     public class TaiChi : IEffect
     {
-        public int EffectByte => throw new NotImplementedException();
+        private readonly List<NZXTDeviceType> CompatibleWith = new List<NZXTDeviceType> { NZXTDeviceType.KrakenX };
 
-        public string EffectName => throw new NotImplementedException();
+        private int _EffectByte = 0x08;
 
-        public IChannel Channel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        private IChannel _Channel;
+        
+        /// <inheritdoc/>
+        public int EffectByte { get; }
 
-        public List<byte[]> BuildBytes(IChannel Channel)
+        /// <inheritdoc/>
+        public string EffectName => "TaiChi";
+
+        /// <inheritdoc/>
+        public IChannel Channel { get; set; }
+
+        /// <inheritdoc/>
+        public bool IsCompatibleWith(NZXTDeviceType Type)
         {
-            throw new NotImplementedException();
+            return CompatibleWith.Contains(Type) ? true : false;
         }
 
-        public bool IsCompatibleWith(NZXTDeviceType Type)
+        /// <inheritdoc/>
+        public List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel)
         {
             throw new NotImplementedException();
         }

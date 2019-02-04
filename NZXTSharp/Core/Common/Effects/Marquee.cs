@@ -17,7 +17,10 @@ namespace NZXTSharp
         private string _EffectName = "Marquee";
 
         /// <inheritdoc/>
-        public readonly List<NZXTDeviceType> CompatibleWith = new List<NZXTDeviceType>() { NZXTDeviceType.HuePlus };
+        public readonly List<NZXTDeviceType> CompatibleWith = new List<NZXTDeviceType>() {
+            NZXTDeviceType.HuePlus,
+            NZXTDeviceType.KrakenX
+        };
 
         private Color _Color;
         private Direction Param1;
@@ -54,13 +57,21 @@ namespace NZXTSharp
         }
 
         /// <inheritdoc/>
-        public List<byte[]> BuildBytes(IChannel Channel) {
-            List<byte[]> outList = new List<byte[]>();
-            byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x03, Param1, Param2 };
-            byte[] final = SettingsBytes.ConcatenateByteArr(Channel.State == false ? new Color().AllOff() : Channel.BuildColorBytes(_Color));
-            outList.Add(final);
+        public List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel) {
+            switch (Type)
+            {
+                case NZXTDeviceType.HuePlus:
+                    List<byte[]> outList = new List<byte[]>();
+                    byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x03, Param1, Param2 };
+                    byte[] final = SettingsBytes.ConcatenateByteArr(Channel.State == false ? new Color().AllOff() : Channel.BuildColorBytes(_Color));
+                    outList.Add(final);
 
-            return outList;
+                    return outList;
+                case NZXTDeviceType.KrakenX:
+                // TODO
+                default:
+                    return null;
+            }
         }
     }
 }

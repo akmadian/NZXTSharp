@@ -31,7 +31,7 @@ namespace NZXTSharp
         /// </summary>
         /// <param name="Channel"></param>
         /// <returns></returns>
-        List<byte[]> BuildBytes(IChannel Channel);
+        List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel);
 
         /// <summary>
         /// Checks to see if the <see cref="IEffect"/> is compatible with a given <see cref="NZXTDeviceType"/> <paramref name="Type"/>.
