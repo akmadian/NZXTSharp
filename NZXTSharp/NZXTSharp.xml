@@ -1300,28 +1300,107 @@
         </member>
         <member name="T:NZXTSharp.KrakenX.KrakenXCurves">
             <summary>
-            Default fan and pump curves.
+            Default fan and pump curves. Copied from a decompiled version of CAM.
             </summary>
         </member>
-        <member name="F:NZXTSharp.KrakenX.KrakenXCurves.FanSilentCurve">
+        <member name="F:NZXTSharp.KrakenX.KrakenXCurves._FanSilentCurve">
             <summary>
             The silent curve for fans.
             </summary>
         </member>
-        <member name="F:NZXTSharp.KrakenX.KrakenXCurves.FanPerformanceCurve">
+        <member name="F:NZXTSharp.KrakenX.KrakenXCurves._FanPerformanceCurve">
             <summary>
             The performance curve for fans.
             </summary>
         </member>
-        <member name="F:NZXTSharp.KrakenX.KrakenXCurves.PumpSilentCurve">
+        <member name="F:NZXTSharp.KrakenX.KrakenXCurves._PumpSilentCurve">
             <summary>
             The silent curve for pumps.
             </summary>
         </member>
-        <member name="F:NZXTSharp.KrakenX.KrakenXCurves.PumpPerformanceCurve">
+        <member name="F:NZXTSharp.KrakenX.KrakenXCurves._PumpPerformanceCurve">
             <summary>
             The performance curve for pumps.
             </summary>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.KrakenXCurves.FanSilentCurve">
+            <summary>
+            The silent curve for fans.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.KrakenXCurves.FanPerformanceCurve">
+            <summary>
+            The performance curve for fans.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.KrakenXCurves.PumpSilentCurve">
+            <summary>
+            The silent curve for pumps.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.KrakenXCurves.PumpPerformanceCurve">
+            <summary>
+            The performance curve for pumps.
+            </summary>
+        </member>
+        <member name="T:NZXTSharp.KrakenX.KrakenX">
+            <summary>
+            Represents an NZXT KrakenX device.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenX.WriteCustom(System.Byte[])">
+            <summary>
+            Writes a custom <paramref name="Buffer"/> to the <see cref="T:NZXTSharp.KrakenX.KrakenX"/> device.
+            </summary>
+            <param name="Buffer"></param>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenX.ApplyEffect(NZXTSharp.KrakenX.KrakenXChannel,NZXTSharp.IEffect)">
+            <summary>
+            Applies a given <see cref="T:NZXTSharp.IEffect"/> <paramref name="Effect"/> to a given <see cref="T:NZXTSharp.KrakenX.KrakenXChannel"/> <paramref name="Channel"/>.
+            </summary>
+            <param name="Channel"></param>
+            <param name="Effect"></param>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenX.GetPumpSpeed">
+            <summary>
+            Gets the pump speed last reported by the <see cref="T:NZXTSharp.KrakenX.KrakenX"/> device.
+            </summary>
+            <returns>The last reported pump speed in RPM.</returns>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenX.SetPumpSpeed(System.Int32,System.Boolean)">
+            <summary>
+            Sets the <see cref="T:NZXTSharp.KrakenX.KrakenX"/>'s pump speed to a given percent or RPM.
+            </summary>
+            <param name="Speed">
+            The speed value to set.
+                Percentage values must be 50-100 (inclusive).
+                RPM values must be 2050-2750 (inclusive).
+            </param>
+            <param name="isPercent">Whether or not the speed value being set is a percentage or an RPM value. Defaults to true.</param>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenX.GetFanSpeed">
+            <summary>
+            Gets the last fan speed reported by the <see cref="T:NZXTSharp.KrakenX.KrakenX"/> device.
+            </summary>
+            <returns>The last reported fan speed in RPM.</returns>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenX.SetFanSpeed(System.Int32)">
+            <summary>
+            Sets all fans connected to the <see cref="T:NZXTSharp.KrakenX.KrakenX"/> device to a given <paramref name="Percent"/>.
+            </summary>
+            <param name="Percent">The percentage to set the fans to. Must be 25-100 (inclusive).</param>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenX.GetLiquidTemp">
+            <summary>
+            Gets the last reported liquid temp.
+            </summary>
+            <returns>The last reported liquid temp as a rounded integer, in degrees C.</returns>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenX.GetLastReport">
+            <summary>
+            Gets the last HID report received from the KrakenX device.
+            </summary>
+            <returns>An <see cref="T:HidLibrary.HidReport"/>.</returns>
         </member>
         <member name="M:NZXTSharp.KrakenX.KrakenX.GetFirmwareVersion">
             <summary>

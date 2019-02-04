@@ -8,7 +8,7 @@ namespace NZXTSharp
     /// <summary>
     /// Contains the Manufacturer and Product IDs of NZXT devices.
     /// </summary>
-    public enum SerialDeviceID {
+    public enum HIDDeviceID {
 
         /// <summary>
         /// An unknown ID.

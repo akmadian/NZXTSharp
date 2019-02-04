@@ -21,17 +21,41 @@ namespace NZXTSharp.KrakenX
 
         private USBController _COMController;
 
-        public SerialDeviceID DeviceID { get => SerialDeviceID.KrakenX; }
+        /// <summary>
+        /// The <see cref="HIDDeviceID"/> of the <see cref="KrakenX"/> device. Will always be <see cref="HIDDeviceID.KrakenX"/>.
+        /// </summary>
+        public HIDDeviceID DeviceID { get => HIDDeviceID.KrakenX; }
+
+        /// <summary>
+        /// The <see cref="NZXTDeviceType"/> of the <see cref="KrakenX"/> device. Will always be <see cref="NZXTDeviceType.KrakenX"/>.
+        /// </summary>
         public NZXTDeviceType Type { get => NZXTDeviceType.KrakenX; }
 
+        /// <summary>
+        /// Represents both the <see cref="Logo"/>, and <see cref="Ring"/> channels.
+        /// </summary>
+        public KrakenXChannel Both { get; }
 
+        /// <summary>
+        /// Represents the <see cref="KrakenX"/>'s logo RGB channel.
+        /// </summary>
+        public KrakenXChannel Logo { get; }
+        
+        /// <summary>
+        /// Represents the <see cref="KrakenX"/>'s ring RGB channel.
+        /// </summary>
+        public KrakenXChannel Ring { get; }
+        
 
-        public KrakenX(NZXTDeviceType Type)
+        /// <summary>
+        /// Constructs an instance of a <see cref="KrakenX"/> device.
+        /// </summary>
+        public KrakenX()
         {
-            Initialize(Type);
+            Initialize();
         }
 
-        private void Initialize(NZXTDeviceType Type)
+        private void Initialize()
         {
 
             _COMController = new USBController(Type);
