@@ -19,6 +19,8 @@ namespace NZXTSharp.KrakenX
         private KrakenXChannel _Both;
         private KrakenXChannel _Logo;
         private KrakenXChannel _Ring;
+        private Thread OverrideLoop;
+        private bool StopOverrideLoop = false;
 
         private USBController _COMController;
 
@@ -72,12 +74,6 @@ namespace NZXTSharp.KrakenX
 
         private void InitializeDeviceInfo()
         {
-
-        }
-
-        public void StopOverrideLoop()
-        {
-            this.OverrideLoop.Abort();
         }
 
         /// <summary>
@@ -89,8 +85,14 @@ namespace NZXTSharp.KrakenX
             _COMController.Write(Buffer);
         }
 
+        public void StopOverrideThread()
+        {
+            this.StopOverrideLoop = true;
+        }
+
         /// <summary>
-        /// Applies a given <see cref="IEffect"/> <paramref name="Effect"/> to a given <see cref="KrakenXChannel"/> <paramref name="Channel"/>.
+        /// Applies a given <see cref="IEffect"/> <paramref name="Effect"/> to a given 
+        /// <see cref="KrakenXChannel"/> <paramref name="Channel"/>.
         /// </summary>
         /// <param name="Channel"></param>
         /// <param name="Effect"></param>
@@ -153,6 +155,9 @@ namespace NZXTSharp.KrakenX
         /// <param name="isPercent">Whether or not the speed value being set is a percentage or an RPM value. Defaults to true.</param>
         public void SetPumpSpeed(int Speed, bool isPercent = true)
         {
+            if (OverrideLoop != null)
+                OverrideLoop.Abort(); // I know it's bad code, but no other safe method works properly :/
+
             if (isPercent)
             {
                 if (Speed > 100 || Speed < 50) {
@@ -160,18 +165,25 @@ namespace NZXTSharp.KrakenX
                 }
             } else
             {
-                if (Speed > 2750 || Speed < 2050) {
+                if (Speed > 2750 || Speed < 1375) {
                     throw new InvalidParamException("Pump speed RPM must be between 2050-2750 (inclusive).");
+                }
+                else
+                {
+                    int diff = Speed - 2050;    // Convert RPM to percentage
+                    Speed = (diff * 100) / 700;
                 }
             }
             byte[] command = new byte[] { 0x02, 0x4d, 0x40, 0x00, Convert.ToByte(Speed) };
-            
-            //TODO
+            this.StopOverrideLoop = false;
+            OverrideLoop = new Thread(new ParameterizedThreadStart(PumpSpeedOverrideLoop));
+
+            OverrideLoop.Start(command);
         }
 
-        public void SetPumpProfile(int[] Curve)
+        public void SetPumpProfile()
         {
-            
+
         }
 
         /// <summary>
@@ -243,6 +255,15 @@ namespace NZXTSharp.KrakenX
             } else
             {
                 return null;
+            }
+        }
+
+        internal void PumpSpeedOverrideLoop(object Buffer)
+        {
+            while (!this.StopOverrideLoop)
+            {
+                _COMController.Write((byte[])Buffer);
+                Thread.Sleep(5000);
             }
         }
     }

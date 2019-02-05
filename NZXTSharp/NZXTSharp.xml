@@ -1461,7 +1461,8 @@
         </member>
         <member name="M:NZXTSharp.KrakenX.KrakenX.ApplyEffect(NZXTSharp.KrakenX.KrakenXChannel,NZXTSharp.IEffect,System.Boolean)">
             <summary>
-            Applies a given <see cref="T:NZXTSharp.IEffect"/> <paramref name="Effect"/> to a given <see cref="T:NZXTSharp.KrakenX.KrakenXChannel"/> <paramref name="Channel"/>.
+            Applies a given <see cref="T:NZXTSharp.IEffect"/> <paramref name="Effect"/> to a given 
+            <see cref="T:NZXTSharp.KrakenX.KrakenXChannel"/> <paramref name="Channel"/>.
             </summary>
             <param name="Channel"></param>
             <param name="Effect"></param>
