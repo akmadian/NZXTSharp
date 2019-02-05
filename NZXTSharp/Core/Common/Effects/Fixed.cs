@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
+using NZXTSharp;
 using NZXTSharp.Exceptions;
 
 namespace NZXTSharp
@@ -84,24 +85,35 @@ namespace NZXTSharp
         }
 
         /// <inheritdoc/>
-        public List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel) {
+        public List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel_) {
             switch (Type)
             {
                 case NZXTDeviceType.HuePlus:
-                    this._Channel = Channel;
-                    byte[] SettingsBytes = new byte[] { 0x4b, (byte)_Channel.ChannelByte, 0x00, 0x02, 0x03 };
+                    this._Channel = Channel_;
+                    byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel_.ChannelByte, 0x00, 0x02, 0x03 };
                     byte[] final;
                     if (IsCustom)
                     {
-                        final = SettingsBytes.ConcatenateByteArr(_Channel.BuildColorBytes(CustomBytes));
+                        final = SettingsBytes.ConcatenateByteArr(Channel_.BuildColorBytes(CustomBytes));
                     }
                     else
                     {
-                        final = SettingsBytes.ConcatenateByteArr(_Channel.BuildColorBytes(_Color));
+                        final = SettingsBytes.ConcatenateByteArr(Channel_.BuildColorBytes(_Color));
                     }
                     return new List<byte[]>() { final };
                 case NZXTDeviceType.KrakenX:
-                    // TODO
+                    this._Channel = Channel_;
+                    byte[] KrakenSettingsBytes = new byte[] { 0x02, 0x4c, (byte)Channel_.ChannelByte, 0x00, 0x02 };
+                    byte[] KrakenFinal;
+                    if (IsCustom)
+                    {
+                        KrakenFinal = KrakenSettingsBytes.ConcatenateByteArr(Channel_.BuildColorBytes(CustomBytes));
+                    } else
+                    {
+                        KrakenFinal = KrakenSettingsBytes.ConcatenateByteArr(Channel_.BuildColorBytes(_Color));
+                    }
+                    byte[] TrueFinal = KrakenFinal.ConcatenateByteArr(new byte[] { 0x00 });
+                    return new List<byte[]> { TrueFinal };
                 default:
                     return null;
             }

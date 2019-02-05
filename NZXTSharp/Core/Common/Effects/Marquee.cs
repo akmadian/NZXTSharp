@@ -42,6 +42,17 @@ namespace NZXTSharp
         /// Constructs a <see cref="Marquee"/> effect.
         /// </summary>
         /// <param name="Color">The <see cref="Color"/> of the effect.</param>
+        /// <param name="LSS">The <see cref="LSS"/> param to apply.</param>
+        public Marquee(Color Color, LSS LSS)
+        {
+            this._Color = Color;
+            this.Param2 = LSS;
+        }
+
+        /// <summary>
+        /// Constructs a <see cref="Marquee"/> effect.
+        /// </summary>
+        /// <param name="Color">The <see cref="Color"/> of the effect.</param>
         /// <param name="Direction">The <see cref="Direction"/> of the effect.</param>
         /// <param name="LSS">The <see cref="LSS"/> param to apply.</param>
         public Marquee(Color Color, Direction Direction, LSS LSS) {
@@ -68,7 +79,11 @@ namespace NZXTSharp
 
                     return outList;
                 case NZXTDeviceType.KrakenX:
-                // TODO
+                    List<byte[]> KrakenXOutList = new List<byte[]>();
+                    byte[] KrakenXSettingsBytes = new byte[] { 0x02, 0x4c, 0x02, 0x03, Param2 };
+                    byte[] KrakenXfinal = KrakenXSettingsBytes.ConcatenateByteArr(Channel.State == false ? new Color().AllOff() : Channel.BuildColorBytes(_Color));
+                    KrakenXOutList.Add(KrakenXfinal);
+                    return KrakenXOutList;
                 default:
                     return null;
             }

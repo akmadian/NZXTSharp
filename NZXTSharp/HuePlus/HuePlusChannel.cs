@@ -118,7 +118,7 @@ namespace NZXTSharp.HuePlus {
         /// </summary>
         public void On() {
             this._State = true;
-            //_Parent.ApplyEffect(this, _Effect);
+            _Parent.ApplyEffect(this, _Effect);
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace NZXTSharp.HuePlus {
         /// </summary>
         public void Off() {
             this._State = false;
-            //_Parent.ApplyEffect(this, new Fixed(this, new Color(0, 0, 0)), false);
+            _Parent.ApplyEffect(this, new Fixed(this, new Color(0, 0, 0)), false);
         }
 
         public byte[] BuildColorBytes(Color color) {
@@ -181,7 +181,7 @@ namespace NZXTSharp.HuePlus {
                 {
                     for (int LED = 0; LED < device.Leds.Length; LED++)
                     {
-                        if (!device.Leds[LED])
+                        if (!device.Leds[LED]) // If LED is not on
                         {
                             buffer[(deviceN * device.NumLeds) + (LED * 3)] = 0x00;
                             buffer[(deviceN * device.NumLeds) + (LED * 3) + 1] = 0x00;

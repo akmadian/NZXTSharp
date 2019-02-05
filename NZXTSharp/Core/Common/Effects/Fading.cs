@@ -62,20 +62,27 @@ namespace NZXTSharp
         }
 
         /// <inheritdoc/>
-        public List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel) {
+        public List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel_) {
             switch (Type)
             {
                 case NZXTDeviceType.HuePlus:
                     List<byte[]> outList = new List<byte[]>();
                     for (int colorIndex = 0; colorIndex < Colors.Length; colorIndex++)
                     {
-                        byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x01, 0x03, new CISS(colorIndex, this._Speed) };
-                        byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Colors[colorIndex]));
+                        byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel_.ChannelByte, 0x01, 0x03, new CISS(colorIndex, this._Speed) };
+                        byte[] final = SettingsBytes.ConcatenateByteArr(Channel_.BuildColorBytes(Colors[colorIndex]));
                         outList.Add(final);
                     }
                     return outList;
                 case NZXTDeviceType.KrakenX:
-                // TODO
+                    List<byte[]> KrakenXOutList = new List<byte[]>();
+                    for (int colorIndex = 0; colorIndex < Colors.Length; colorIndex++)
+                    {
+                        byte[] SettingsBytes = new byte[] { 0x02, 0x4c, (byte)Channel_.ChannelByte, 0x01, new CISS(colorIndex, this._Speed) };
+                        byte[] KrakenXfinal = SettingsBytes.ConcatenateByteArr(Channel_.BuildColorBytes(Colors[colorIndex]));
+                        KrakenXOutList.Add(KrakenXfinal);
+                    }
+                    return KrakenXOutList;
                 default:
                     return null;
             }

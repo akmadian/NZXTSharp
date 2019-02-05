@@ -118,6 +118,74 @@
             Copied from https://github.com/DarkMio/Octopode with modifications.
             </summary>
         </member>
+        <member name="P:NZXTSharp.COM.USBController.Type">
+            <summary>
+            The type of device the <see cref="T:NZXTSharp.COM.USBController"/> is connected to.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.COM.USBController.CurrentProductID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.COM.USBController.DeviceID">
+            <summary>
+            The <see cref="T:NZXTSharp.HIDDeviceID"/> of the <see cref="T:HidLibrary.HidDevice"/> the <see cref="T:NZXTSharp.COM.USBController"/> is connected to.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.COM.USBController.LastReport">
+            <summary>
+            The last <see cref="T:HidLibrary.HidReport"/> received from the connected <see cref="T:HidLibrary.HidDevice"/>.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.COM.USBController.IsAttached">
+            <summary>
+            Whether or not the <see cref="T:NZXTSharp.COM.USBController"/> is currently connected to its <see cref="T:HidLibrary.HidDevice"/>.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.COM.USBController.#ctor(NZXTSharp.NZXTDeviceType)">
+            <summary>
+            Constructs a <see cref="T:NZXTSharp.COM.USBController"/> and attempts to connect to a given <see cref="T:NZXTSharp.NZXTDeviceType"/>.
+            </summary>
+            <param name="Type"></param>
+        </member>
+        <member name="M:NZXTSharp.COM.USBController.Initialize">
+            <summary>
+            Initializes the connection to a <see cref="T:HidLibrary.HidDevice"/>.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.COM.USBController.OnReport(HidLibrary.HidReport)">
+            <summary>
+            
+            </summary>
+            <param name="Report"></param>
+        </member>
+        <member name="M:NZXTSharp.COM.USBController.Dispose">
+            <summary>
+            Disposes of the current <see cref="T:NZXTSharp.COM.USBController"/> instance.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.COM.USBController.Write(System.Byte[])">
+            <summary>
+            Writes a given <paramref name="Buffer"/> to the <see cref="T:HidLibrary.HidDevice"/> the <see cref="T:NZXTSharp.COM.USBController"/> is connected to.
+            </summary>
+            <param name="Buffer"></param>
+        </member>
+        <member name="M:NZXTSharp.COM.USBController.DeviceAttachedHandler">
+            <summary>
+            Triggers when the <see cref="T:NZXTSharp.COM.USBController"/> connects to a new device.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.COM.USBController.DeviceRemovedHandler">
+            <summary>
+            Triggers when the <see cref="T:HidLibrary.HidDevice"/> the <see cref="T:NZXTSharp.COM.USBController"/> is connected to disconnects.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.COM.USBController.ResolveDeviceID">
+            <summary>
+            Resolves the <see cref="T:NZXTSharp.HIDDeviceID"/> matching a <see cref="T:NZXTSharp.NZXTDeviceType"/>.
+            </summary>
+        </member>
         <member name="T:NZXTSharp.Color">
             <summary>
             Represents a color.
@@ -434,6 +502,13 @@
         <member name="P:NZXTSharp.Marquee.EffectName">
             <inheritdoc/>
         </member>
+        <member name="M:NZXTSharp.Marquee.#ctor(NZXTSharp.Color,NZXTSharp.LSS)">
+            <summary>
+            Constructs a <see cref="T:NZXTSharp.Marquee"/> effect.
+            </summary>
+            <param name="Color">The <see cref="T:NZXTSharp.Color"/> of the effect.</param>
+            <param name="LSS">The <see cref="T:NZXTSharp.LSS"/> param to apply.</param>
+        </member>
         <member name="M:NZXTSharp.Marquee.#ctor(NZXTSharp.Color,NZXTSharp.HuePlus.Direction,NZXTSharp.LSS)">
             <summary>
             Constructs a <see cref="T:NZXTSharp.Marquee"/> effect.
@@ -621,6 +696,16 @@
              </summary>
              <param name="param"></param>
         </member>
+        <member name="T:NZXTSharp.HIDDeviceID">
+            <summary>
+            Contains the Manufacturer and Product IDs of NZXT devices.
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.HIDDeviceID.Unknown">
+            <summary>
+            An unknown ID.
+            </summary>
+        </member>
         <member name="T:NZXTSharp.NZXTDeviceType">
             <summary>
             Definitions of unique IDs for all NZXT devices.
@@ -674,16 +759,6 @@
         <member name="F:NZXTSharp.NZXTDeviceType.Grid">
             <summary>
             A generic Grid device.
-            </summary>
-        </member>
-        <member name="T:NZXTSharp.SerialDeviceID">
-            <summary>
-            Contains the Manufacturer and Product IDs of NZXT devices.
-            </summary>
-        </member>
-        <member name="F:NZXTSharp.SerialDeviceID.Unknown">
-            <summary>
-            An unknown ID.
             </summary>
         </member>
         <member name="T:NZXTSharp.Fan">
@@ -1348,13 +1423,43 @@
             Represents an NZXT KrakenX device.
             </summary>
         </member>
+        <member name="P:NZXTSharp.KrakenX.KrakenX.DeviceID">
+            <summary>
+            The <see cref="T:NZXTSharp.HIDDeviceID"/> of the <see cref="T:NZXTSharp.KrakenX.KrakenX"/> device. Will always be <see cref="F:NZXTSharp.HIDDeviceID.KrakenX"/>.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.KrakenX.Type">
+            <summary>
+            The <see cref="T:NZXTSharp.NZXTDeviceType"/> of the <see cref="T:NZXTSharp.KrakenX.KrakenX"/> device. Will always be <see cref="F:NZXTSharp.NZXTDeviceType.KrakenX"/>.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.KrakenX.Both">
+            <summary>
+            Represents both the <see cref="P:NZXTSharp.KrakenX.KrakenX.Logo"/>, and <see cref="P:NZXTSharp.KrakenX.KrakenX.Ring"/> channels.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.KrakenX.Logo">
+            <summary>
+            Represents the <see cref="T:NZXTSharp.KrakenX.KrakenX"/>'s logo RGB channel.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.KrakenX.Ring">
+            <summary>
+            Represents the <see cref="T:NZXTSharp.KrakenX.KrakenX"/>'s ring RGB channel.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenX.#ctor">
+            <summary>
+            Constructs an instance of a <see cref="T:NZXTSharp.KrakenX.KrakenX"/> device.
+            </summary>
+        </member>
         <member name="M:NZXTSharp.KrakenX.KrakenX.WriteCustom(System.Byte[])">
             <summary>
             Writes a custom <paramref name="Buffer"/> to the <see cref="T:NZXTSharp.KrakenX.KrakenX"/> device.
             </summary>
             <param name="Buffer"></param>
         </member>
-        <member name="M:NZXTSharp.KrakenX.KrakenX.ApplyEffect(NZXTSharp.KrakenX.KrakenXChannel,NZXTSharp.IEffect)">
+        <member name="M:NZXTSharp.KrakenX.KrakenX.ApplyEffect(NZXTSharp.KrakenX.KrakenXChannel,NZXTSharp.IEffect,System.Boolean)">
             <summary>
             Applies a given <see cref="T:NZXTSharp.IEffect"/> <paramref name="Effect"/> to a given <see cref="T:NZXTSharp.KrakenX.KrakenXChannel"/> <paramref name="Channel"/>.
             </summary>

@@ -52,6 +52,19 @@ namespace NZXTSharp {
         }
     }
 
+    internal static class ListTExtensions
+    {
+        public static List<byte> PadList(this List<byte> thisone, int ToLength)
+        {
+            int numToPad = ToLength - thisone.Count;
+            for (int i = 0; i < numToPad; i++)
+            {
+                thisone.Add(0x00);
+            }
+            return thisone;
+        }
+    }
+
     internal static class ByteArrExtensions {
 
         public static byte[] ConcatenateByteArr(this byte[] thisone, byte[] other) {

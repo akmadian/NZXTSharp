@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Threading;
 
 using NZXTSharp;
 using NZXTSharp.COM;
@@ -12,7 +13,7 @@ namespace NZXTSharp.KrakenX
     /// <summary>
     /// Represents an NZXT KrakenX device.
     /// </summary>
-    public class KrakenX
+    public class KrakenX : INZXTDevice
     {
 
         private KrakenXChannel _Both;
@@ -34,17 +35,17 @@ namespace NZXTSharp.KrakenX
         /// <summary>
         /// Represents both the <see cref="Logo"/>, and <see cref="Ring"/> channels.
         /// </summary>
-        public KrakenXChannel Both { get; }
+        public KrakenXChannel Both { get => _Both; }
 
         /// <summary>
         /// Represents the <see cref="KrakenX"/>'s logo RGB channel.
         /// </summary>
-        public KrakenXChannel Logo { get; }
+        public KrakenXChannel Logo { get => _Logo; }
         
         /// <summary>
         /// Represents the <see cref="KrakenX"/>'s ring RGB channel.
         /// </summary>
-        public KrakenXChannel Ring { get; }
+        public KrakenXChannel Ring { get => _Ring; }
         
 
         /// <summary>
@@ -52,18 +53,21 @@ namespace NZXTSharp.KrakenX
         /// </summary>
         public KrakenX()
         {
+            InitializeChannels();
             Initialize();
         }
 
         private void Initialize()
         {
-
             _COMController = new USBController(Type);
         }
 
         private void InitializeChannels()
         {
-
+            _Both = new KrakenXChannel(0x00, this);
+            _Logo = new KrakenXChannel(0x01, this);
+            _Ring = new KrakenXChannel(0x02, this);
+            Console.WriteLine("Channels Initialized");
         }
 
         private void InitializeDeviceInfo()
@@ -71,9 +75,9 @@ namespace NZXTSharp.KrakenX
 
         }
 
-        internal void USBWrite()
+        public void StopOverrideLoop()
         {
-
+            this.OverrideLoop.Abort();
         }
 
         /// <summary>
@@ -90,10 +94,31 @@ namespace NZXTSharp.KrakenX
         /// </summary>
         /// <param name="Channel"></param>
         /// <param name="Effect"></param>
-        public void ApplyEffect(KrakenXChannel Channel, IEffect Effect)
+        public void ApplyEffect(KrakenXChannel Channel, IEffect Effect, bool ApplyToChannel = true)
         {
+
+            Console.WriteLine("Applying Effect");
+            Console.WriteLine(Channel.ChannelByte);
             if (!Effect.IsCompatibleWith(Type))
                 throw new IncompatibleEffectException("KrakenX", Effect.EffectName);
+
+            if (ApplyToChannel)
+            {
+                if (Channel.ChannelByte == 0x00)
+                {
+                    this._Both.UpdateEffect(Effect);
+                    this._Logo.UpdateEffect(Effect);
+                    this._Ring.UpdateEffect(Effect);
+                }
+                else if (Channel.ChannelByte == 0x01)
+                {
+                    this.Logo.UpdateEffect(Effect);
+                }
+                else if (Channel.ChannelByte == 0x02)
+                {
+                    this.Ring.UpdateEffect(Effect);
+                }
+            }
 
             List<byte[]> CommandQueue = Effect.BuildBytes(Type, Channel);
             foreach (byte[] Command in CommandQueue)
@@ -139,9 +164,14 @@ namespace NZXTSharp.KrakenX
                     throw new InvalidParamException("Pump speed RPM must be between 2050-2750 (inclusive).");
                 }
             }
-            // TODO
+            byte[] command = new byte[] { 0x02, 0x4d, 0x40, 0x00, Convert.ToByte(Speed) };
+            
+            //TODO
+        }
 
-            //_COMController.Write();
+        public void SetPumpProfile(int[] Curve)
+        {
+            
         }
 
         /// <summary>

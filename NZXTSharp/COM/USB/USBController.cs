@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Threading;
+
 using HidLibrary;
 
 using NZXTSharp.Exceptions;
@@ -96,7 +102,7 @@ namespace NZXTSharp.COM {
         /// <param name="Buffer"></param>
         public void Write(byte[] Buffer)
         {
-            _Device.Write(Buffer);
+            _Device.WriteAsync(Buffer);
         }
 
         /// <summary>

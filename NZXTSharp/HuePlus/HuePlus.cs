@@ -46,7 +46,7 @@ namespace NZXTSharp.HuePlus
     /// <summary>
     /// Represents an NZXT Hue+ lighting controller.
     /// </summary>
-    public class HuePlus
+    public class HuePlus : INZXTDevice
     {
         #region Fields
         private readonly string _Name = "HuePlus";
