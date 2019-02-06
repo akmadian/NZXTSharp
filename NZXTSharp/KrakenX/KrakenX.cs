@@ -10,17 +10,33 @@ using NZXTSharp.Exceptions;
 
 namespace NZXTSharp.KrakenX
 {
+    public enum OverrideThread
+    {
+        Fan = 0,
+        Pump = 1,
+    }
+
+    public enum ThreadStopType
+    {
+        Abort = 0,
+        Flag = 1,
+    }
+
+
     /// <summary>
     /// Represents an NZXT KrakenX device.
     /// </summary>
     public class KrakenX : INZXTDevice
     {
-
+        #region Fields and Properties
         private KrakenXChannel _Both;
         private KrakenXChannel _Logo;
         private KrakenXChannel _Ring;
-        private Thread OverrideLoop;
-        private bool StopOverrideLoop = false;
+        private Thread PumpOverrideThread;
+        private bool StopPumpOverrideLoop = false;
+
+        private Thread FanOverrideThread;
+        private bool StopFanOverrideLoop = false;
 
         private USBController _COMController;
 
@@ -48,7 +64,7 @@ namespace NZXTSharp.KrakenX
         /// Represents the <see cref="KrakenX"/>'s ring RGB channel.
         /// </summary>
         public KrakenXChannel Ring { get => _Ring; }
-        
+        #endregion
 
         /// <summary>
         /// Constructs an instance of a <see cref="KrakenX"/> device.
@@ -59,6 +75,7 @@ namespace NZXTSharp.KrakenX
             Initialize();
         }
 
+        #region Methods
         private void Initialize()
         {
             _COMController = new USBController(Type);
@@ -85,10 +102,34 @@ namespace NZXTSharp.KrakenX
             _COMController.Write(Buffer);
         }
 
-        public void StopOverrideThread()
+        /// <summary>
+        /// Stops the thread overriding a given <paramref name="Thread"/>, using a given <paramref name="StopType"/>.
+        /// </summary>
+        /// <param name="Thread">Which <see cref="OverrideThread"/> to stop.</param>
+        /// <param name="StopType">How to stop the given <paramref name="Thread"/>.</param>
+        public void StopOverrideThread(OverrideThread Thread, ThreadStopType StopType = ThreadStopType.Flag)
         {
-            this.StopOverrideLoop = true;
+            switch (Thread)
+            {
+                case OverrideThread.Fan:
+                    if (StopType == ThreadStopType.Abort) {
+                        FanOverrideThread.Abort();
+                    }
+                    else if (StopType == ThreadStopType.Flag) {
+                        StopFanOverrideLoop = true;
+                    }
+                    break;
+                case OverrideThread.Pump:
+                    if (StopType == ThreadStopType.Abort){
+                        PumpOverrideThread.Abort();
+                    }
+                    else if (StopType == ThreadStopType.Flag){
+                        StopPumpOverrideLoop = true;
+                    }
+                    break;
+            }
         }
+
 
         /// <summary>
         /// Applies a given <see cref="IEffect"/> <paramref name="Effect"/> to a given 
@@ -152,13 +193,12 @@ namespace NZXTSharp.KrakenX
         ///     Percentage values must be 50-100 (inclusive).
         ///     RPM values must be 2050-2750 (inclusive).
         /// </param>
-        /// <param name="isPercent">Whether or not the speed value being set is a percentage or an RPM value. Defaults to true.</param>
-        public void SetPumpSpeed(int Speed, bool isPercent = true)
+        public void SetPumpSpeed(int Speed)
         {
-            if (OverrideLoop != null)
-                OverrideLoop.Abort(); // I know it's bad code, but no other safe method works properly :/
+            if (PumpOverrideThread != null)
+                PumpOverrideThread.Abort(); // I know it's bad code, but no other safe method works properly :/
 
-            if (isPercent)
+            if (true)
             {
                 if (Speed > 100 || Speed < 50) {
                     throw new InvalidParamException("Pump speed percentages must be between 50-100 (inclusive).");
@@ -175,15 +215,10 @@ namespace NZXTSharp.KrakenX
                 }
             }
             byte[] command = new byte[] { 0x02, 0x4d, 0x40, 0x00, Convert.ToByte(Speed) };
-            this.StopOverrideLoop = false;
-            OverrideLoop = new Thread(new ParameterizedThreadStart(PumpSpeedOverrideLoop));
+            this.StopPumpOverrideLoop = false;
+            PumpOverrideThread = new Thread(new ParameterizedThreadStart(PumpSpeedOverrideLoop));
 
-            OverrideLoop.Start(command);
-        }
-
-        public void SetPumpProfile()
-        {
-
+            PumpOverrideThread.Start(command);
         }
 
         /// <summary>
@@ -209,10 +244,18 @@ namespace NZXTSharp.KrakenX
         /// <param name="Percent">The percentage to set the fans to. Must be 25-100 (inclusive).</param>
         public void SetFanSpeed(int Percent)
         {
+            if (FanOverrideThread != null)
+                FanOverrideThread.Abort(); // I know it's bad code, but no other safe method works properly :/
+
             if (Percent > 100 || Percent < 25) {
                 throw new InvalidParamException("Fan speed percentage must be between 25-100 (inclusive).");
             }
-            // TODO
+
+            byte[] command = new byte[] { 0x02, 0x4d, 0x00, 0x00, Convert.ToByte(Percent) };
+            this.StopFanOverrideLoop = false;
+            FanOverrideThread = new Thread(new ParameterizedThreadStart(FanSpeedOverrideLoop));
+
+            FanOverrideThread.Start(command);
         }
 
         /// <summary>
@@ -260,11 +303,21 @@ namespace NZXTSharp.KrakenX
 
         internal void PumpSpeedOverrideLoop(object Buffer)
         {
-            while (!this.StopOverrideLoop)
+            while (!this.StopPumpOverrideLoop)
             {
                 _COMController.Write((byte[])Buffer);
                 Thread.Sleep(5000);
             }
         }
+
+        internal void FanSpeedOverrideLoop(object Buffer)
+        {
+            while (!this.StopFanOverrideLoop)
+            {
+                _COMController.Write((byte[])Buffer);
+                Thread.Sleep(5000);
+            }
+        }
+        #endregion
     }
 }

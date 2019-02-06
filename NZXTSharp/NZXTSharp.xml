@@ -1459,6 +1459,13 @@
             </summary>
             <param name="Buffer"></param>
         </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenX.StopOverrideThread(NZXTSharp.KrakenX.OverrideThread,NZXTSharp.KrakenX.ThreadStopType)">
+            <summary>
+            Stops the thread overriding a given <paramref name="Thread"/>, using a given <paramref name="StopType"/>.
+            </summary>
+            <param name="Thread">Which <see cref="T:NZXTSharp.KrakenX.OverrideThread"/> to stop.</param>
+            <param name="StopType">How to stop the given <paramref name="Thread"/>.</param>
+        </member>
         <member name="M:NZXTSharp.KrakenX.KrakenX.ApplyEffect(NZXTSharp.KrakenX.KrakenXChannel,NZXTSharp.IEffect,System.Boolean)">
             <summary>
             Applies a given <see cref="T:NZXTSharp.IEffect"/> <paramref name="Effect"/> to a given 
@@ -1473,7 +1480,7 @@
             </summary>
             <returns>The last reported pump speed in RPM.</returns>
         </member>
-        <member name="M:NZXTSharp.KrakenX.KrakenX.SetPumpSpeed(System.Int32,System.Boolean)">
+        <member name="M:NZXTSharp.KrakenX.KrakenX.SetPumpSpeed(System.Int32)">
             <summary>
             Sets the <see cref="T:NZXTSharp.KrakenX.KrakenX"/>'s pump speed to a given percent or RPM.
             </summary>
@@ -1482,7 +1489,6 @@
                 Percentage values must be 50-100 (inclusive).
                 RPM values must be 2050-2750 (inclusive).
             </param>
-            <param name="isPercent">Whether or not the speed value being set is a percentage or an RPM value. Defaults to true.</param>
         </member>
         <member name="M:NZXTSharp.KrakenX.KrakenX.GetFanSpeed">
             <summary>
