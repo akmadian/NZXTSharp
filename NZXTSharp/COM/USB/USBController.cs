@@ -78,6 +78,15 @@ namespace NZXTSharp.COM {
             _Device.ReadReport(OnReport);
         }
 
+        public void SimulWrite(byte[][] Buffer)
+        {
+            foreach (byte[] command in Buffer)
+            {
+                _Device.Write(command);
+            }
+
+        }
+
         /// <summary>
         /// 
         /// </summary>

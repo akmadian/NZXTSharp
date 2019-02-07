@@ -4,6 +4,7 @@ using System.Text;
 
 using NZXTSharp;
 using NZXTSharp.HuePlus;
+using NZXTSharp.KrakenX;
 
 namespace NZXTSharp
 {
@@ -40,8 +41,9 @@ namespace NZXTSharp
         /// </summary>
         /// <param name="Direction"></param>
         /// <param name="Speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
-        public SpectrumWave(Direction Direction, int Speed = 2) {
-            this.Param1 = Direction;
+        public SpectrumWave(Direction Direction = null, int Speed = 2) {
+            this.speed = Speed;
+            this.Param1 = Direction ?? new Direction();
             this.Param2 = new CISS(0, Speed);
         }
 
@@ -60,7 +62,10 @@ namespace NZXTSharp
                     byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(new Color(0, 0, 255)));
                     return new List<byte[]>() { final };
                 case NZXTDeviceType.KrakenX:
-                    // TODO
+                    DCB param = new DCB(Channel.ChannelByte, Param1.IsForward);
+                    byte[] KrakenSettingsBytes = new byte[] { 0x42, 0x4c, param, 0x02, (byte)speed };
+                    byte[] KrakenFinal = KrakenSettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(new Color(0, 0, 255)));
+                    return new List<byte[]>() { KrakenFinal };
                 default:
                     return null;
             }

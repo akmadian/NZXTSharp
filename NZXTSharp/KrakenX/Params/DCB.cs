@@ -18,7 +18,7 @@ namespace NZXTSharp.KrakenX
         public DCB(int ChannelByte, bool IsForward)
         {
             if (ChannelByte != 0x00 || ChannelByte != 0x02) {
-                throw new InvalidParamException("ChannelBytes for DCB param must be 0x00 or 0x02.");
+                //throw new InvalidParamException("ChannelBytes for DCB param must be 0x00 or 0x02.");
             }
             this.ChannelByte = ChannelByte;
             this._IsForward = IsForward;
@@ -46,6 +46,15 @@ namespace NZXTSharp.KrakenX
             string Dir = _IsForward ? "0" : "1";
             string CB = Channel != null ? Channel.ChannelByte.ToString() : ChannelByte.ToString();
             return Convert.ToInt32(Dir + CB);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="param"></param>
+        public static implicit operator byte(DCB param)
+        {
+            return (byte)param.GetValue();
         }
     }
 }

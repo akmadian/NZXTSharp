@@ -77,7 +77,16 @@ namespace NZXTSharp
                     }
                     return outList;
                 case NZXTDeviceType.KrakenX:
-                    // TODO
+                    List<byte[]> KrakenOutList = new List<byte[]>();
+                    Console.WriteLine("ColorsLength - " + Colors.Length);
+                    for (int colorIndex = 0; colorIndex < Colors.Length; colorIndex++)
+                    {
+                        byte[] KrakenSettingsBytes = new byte[] { 0x02, 0x4c, (byte)Channel.ChannelByte, 0x07, new CISS(colorIndex, this.speed) };
+                        byte[] KrakenFinal = KrakenSettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Colors[colorIndex]));
+                        KrakenOutList.Add(KrakenFinal);
+                    }
+                    Console.WriteLine("OutList Length - " + KrakenOutList.Count);
+                    return KrakenOutList;
                 default:
                     return null;
             }

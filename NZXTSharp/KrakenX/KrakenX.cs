@@ -91,6 +91,7 @@ namespace NZXTSharp.KrakenX
 
         private void InitializeDeviceInfo()
         {
+
         }
 
         /// <summary>
@@ -162,10 +163,12 @@ namespace NZXTSharp.KrakenX
                     this.Ring.UpdateEffect(Effect);
                 }
             }
-
+            
             List<byte[]> CommandQueue = Effect.BuildBytes(Type, Channel);
+            _COMController.SimulWrite(CommandQueue.ToArray());
+            /*
             foreach (byte[] Command in CommandQueue)
-                _COMController.Write(Command);
+                _COMController.SimulWrite(Command);*/
         }
 
         /// <summary>

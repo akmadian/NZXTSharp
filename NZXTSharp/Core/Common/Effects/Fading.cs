@@ -24,7 +24,9 @@ namespace NZXTSharp
         /// <summary>
         /// The array of colors used by the effect.
         /// </summary>
+        private Color[] DefaultColors = new Color[] { new Color(255, 0, 0), new Color(0, 255, 0), new Color(0, 0, 255) };
         public Color[] Colors;
+
         private CISS Param2;
         private IChannel _Channel;
         private int _Speed = 2;
@@ -43,8 +45,8 @@ namespace NZXTSharp
         /// </summary>
         /// <param name="Colors">The <see cref="Color"/>s to display.</param>
         /// /// <param name="speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
-        public Fading(Color[] Colors, int speed = 2) {
-            this.Colors = Colors;
+        public Fading(Color[] Colors = null, int speed = 2) {
+            this.Colors = Colors ?? DefaultColors;
             this._Speed = speed;
             ValidateParams();
         }

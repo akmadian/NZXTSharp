@@ -76,7 +76,7 @@ namespace NZXTSharp
 
         /// <inheritdoc/>
         public List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel) {
-            switch (Type)
+            switch (Type) // Filter by device type
             {
                 case NZXTDeviceType.HuePlus:
                     List<byte[]> outList = new List<byte[]>();
@@ -88,7 +88,14 @@ namespace NZXTSharp
                     }
                     return outList;
                 case NZXTDeviceType.KrakenX:
-                // TODO
+                    List<byte[]> KrakenOutList = new List<byte[]>();
+                    for (int colorIndex = 0; colorIndex < Colors.Length; colorIndex++)
+                    {
+                        byte[] KrakenSettingsBytes = new byte[] { 0x02, 0x4c, (byte)Channel.ChannelByte, 0x06, new CISS(colorIndex, this.speed) };
+                        byte[] KrakenFinal = KrakenSettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Colors[colorIndex]));
+                        KrakenOutList.Add(KrakenFinal);
+                    }
+                    return KrakenOutList;
                 default:
                     return null;
             }

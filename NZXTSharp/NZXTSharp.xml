@@ -380,7 +380,7 @@
         <member name="F:NZXTSharp.Fading.CompatibleWith">
             <inheritdoc/>
         </member>
-        <member name="F:NZXTSharp.Fading.Colors">
+        <member name="F:NZXTSharp.Fading.DefaultColors">
             <summary>
             The array of colors used by the effect.
             </summary>
@@ -471,18 +471,18 @@
             The <see cref="P:NZXTSharp.IEffect.Channel"/> to set the <see cref="T:NZXTSharp.IEffect"/> on.
             </summary>
         </member>
-        <member name="M:NZXTSharp.IEffect.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
-            <summary>
-            Builds and returns the buffer queue needed to set the <see cref="T:NZXTSharp.IEffect"/>.
-            </summary>
-            <param name="Channel"></param>
-            <returns></returns>
-        </member>
         <member name="M:NZXTSharp.IEffect.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <summary>
             Checks to see if the <see cref="T:NZXTSharp.IEffect"/> is compatible with a given <see cref="T:NZXTSharp.NZXTDeviceType"/> <paramref name="Type"/>.
             </summary>
             <param name="Type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NZXTSharp.IEffect.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
+            <summary>
+            Builds and returns the buffer queue needed to set the <see cref="T:NZXTSharp.IEffect"/>.
+            </summary>
+            <param name="Channel"></param>
             <returns></returns>
         </member>
         <member name="T:NZXTSharp.Marquee">
@@ -1519,6 +1519,12 @@
             Gets the KrakenX device's firmware version
             </summary>
             <returns>An int[]; int[0] is Major version, int[1] is Minor version.</returns>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.DCB.op_Implicit(NZXTSharp.KrakenX.DCB)~System.Byte">
+            <summary>
+            
+            </summary>
+            <param name="param"></param>
         </member>
     </members>
 </doc>

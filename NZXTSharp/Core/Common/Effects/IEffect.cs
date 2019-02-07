@@ -27,18 +27,17 @@ namespace NZXTSharp
         IChannel Channel { get; set; }
 
         /// <summary>
-        /// Builds and returns the buffer queue needed to set the <see cref="IEffect"/>.
-        /// </summary>
-        /// <param name="Channel"></param>
-        /// <returns></returns>
-        List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel);
-
-        /// <summary>
         /// Checks to see if the <see cref="IEffect"/> is compatible with a given <see cref="NZXTDeviceType"/> <paramref name="Type"/>.
         /// </summary>
         /// <param name="Type"></param>
         /// <returns></returns>
         bool IsCompatibleWith(NZXTDeviceType Type);
 
+        /// <summary>
+        /// Builds and returns the buffer queue needed to set the <see cref="IEffect"/>.
+        /// </summary>
+        /// <param name="Channel"></param>
+        /// <returns></returns>
+        List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel);
     }
 }
