@@ -3,21 +3,29 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.2.0</Version>
+    <Version>2.0.0-preview1</Version>
     <Description>The one-stop C# sdk that facilitates interaction with NZXT devices.</Description>
     <Authors>Ari Madian</Authors>
     <Company>Ari Madian</Company>
     <PackageProjectUrl>https://github.com/akmadian/NZXTSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/akmadian/NZXTSharp</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
-    <PackageTags>NZXT, Hue+, Hue_Plus, Hue, Plus, SDK, NZXT_SDK, RGB, RGB_SDK</PackageTags>
+    <PackageTags>NZXT, Hue+, Kraken, KrakenX, NZXT_Kraken, Hue_Plus, Hue, Plus, SDK, NZXT_SDK, RGB, RGB_SDK</PackageTags>
     <PackageLicenseUrl>https://github.com/akmadian/NZXTSharp/blob/master/LICENSE</PackageLicenseUrl>
     <PackageIconUrl>https://i.imgur.com/4GAobyk.jpg</PackageIconUrl>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <AssemblyVersion>1.2.0</AssemblyVersion>
-    <FileVersion>1.2.0</FileVersion>
-    <PackageReleaseNotes>(1.2) 
+    <AssemblyVersion>2.0.0</AssemblyVersion>
+    <FileVersion>2.0.0</FileVersion>
+    <PackageReleaseNotes>(2.0.0-preview1)
+Partial Kraken Support
+ - Get Pump, Fan Speeds, Liquid Temp, Firmware Version
+ - Set Pump, Fan Speeds
+ - Some effects working, some partially working, some not implemented/ not working.
+
+Major breaking changes because of a total refactor, docs will be updated with the release of v2.0.0
+
+(1.2) 
 Added ability to create Fixed effect with custom RGB values for all LEDs. 
 This feature offers great versatility for allowing users to create their own effects.
 
@@ -62,7 +70,8 @@ Most effects still not working.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.IO.Ports" Version="4.6.0-preview.18571.3" />
+    <PackageReference Include="hidlibrary" Version="3.2.46" />
+    <PackageReference Include="System.IO.Ports" Version="4.5.0" />
   </ItemGroup>
 
 </Project>
