@@ -28,7 +28,6 @@ namespace NZXTSharp
         /// <summary>
         /// A list containing the power states of the <see cref="ISubDevice"/>'s LEDs.
         /// </summary>
-        // TODO : Change to array?
         bool[] Leds { get; }
 
         /// <summary>
