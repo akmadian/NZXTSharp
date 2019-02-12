@@ -50,7 +50,7 @@ NZXTSharp is provided under the GNU GPLv3 license, but I want to re-iterate thes
 [1]: https://github.com/akmadian/NZXTSharp/issues/new
 [2]: https://github.com/Pet0203
 [3]: https://nzxtsharp.readthedocs.io/en/latest/
-[4]: https://github.com/akmadian/NZXTSharp/tree/docs
+[4]: https://github.com/akmadian/NZXTSharp/tree/docs-develop
 [5]: https://github.com/antonpup/Aurora
 [6]: https://github.com/DarthAffe/RGB.NET
 [7]: https://discord.gg/yK8m2CU
