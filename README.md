@@ -19,8 +19,7 @@ NZXTSharp's syntax is lightweight, only taking a few lines to get started.
 
 ```C#
 using NZXTSharp;
-using NZXTSharp.Devices;
-using NZXTSharp.Effects;
+using NZXTSharp.HuePlus;
 
 HuePlus hue = new HuePlus(); // Create device
 Fixed effect = new Fixed(new Color(255, 255, 255)); // Make fixed effect
