@@ -1526,5 +1526,11 @@
             </summary>
             <param name="param"></param>
         </member>
+        <member name="M:NZXTSharp.KrakenX.DCBWM.op_Implicit(NZXTSharp.KrakenX.DCBWM)~System.Byte">
+            <summary>
+            
+            </summary>
+            <param name="param"></param>
+        </member>
     </members>
 </doc>

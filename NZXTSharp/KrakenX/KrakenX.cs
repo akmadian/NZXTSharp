@@ -165,10 +165,9 @@ namespace NZXTSharp.KrakenX
             }
             
             List<byte[]> CommandQueue = Effect.BuildBytes(Type, Channel);
-            _COMController.SimulWrite(CommandQueue.ToArray());
-            /*
+            //_COMController.SimulWrite(CommandQueue.ToArray());
             foreach (byte[] Command in CommandQueue)
-                _COMController.SimulWrite(Command);*/
+                _COMController.Write(Command);
         }
 
         /// <summary>
