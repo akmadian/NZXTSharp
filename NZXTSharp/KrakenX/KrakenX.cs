@@ -29,6 +29,14 @@ namespace NZXTSharp.KrakenX
     public class KrakenX : INZXTDevice
     {
         #region Fields and Properties
+        internal DeviceLoadFilter[] LoadFilters = new DeviceLoadFilter[]
+        {
+            DeviceLoadFilter.All,
+            DeviceLoadFilter.Coolers,
+            DeviceLoadFilter.Kraken,
+            DeviceLoadFilter.KrakenX
+        };
+
         private KrakenXChannel _Both;
         private KrakenXChannel _Logo;
         private KrakenXChannel _Ring;

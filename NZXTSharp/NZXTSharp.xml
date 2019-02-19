@@ -696,6 +696,77 @@
              </summary>
              <param name="param"></param>
         </member>
+        <member name="T:NZXTSharp.DeviceLoadFilter">
+            <summary>
+            Defines filters for getting loaded devices.
+            Ex. DeviceLoadFilter.Coolers will return ONLY coolers.
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.DeviceLoadFilter.All">
+            <summary>
+            All Devices
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.DeviceLoadFilter.Coolers">
+            <summary>
+            Any Cooler
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.DeviceLoadFilter.LightingControllers">
+            <summary>
+            Any Lighting Controller
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.DeviceLoadFilter.FanControllers">
+            <summary>
+            Any Fan Controller
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.DeviceLoadFilter.Kraken">
+            <summary>
+            Any Kraken Device
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.DeviceLoadFilter.KrakenM">
+            <summary>
+            Any KrakenM Device
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.DeviceLoadFilter.KrakenX">
+            <summary>
+            Any KrakenX Device
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.DeviceLoadFilter.Grid">
+            <summary>
+            Any Grid Device
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.DeviceLoadFilter.Gridv3">
+            <summary>
+            Any Gridv3 Device
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.DeviceLoadFilter.Hue">
+            <summary>
+            Any Hue Device
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.DeviceLoadFilter.HuePlus">
+            <summary>
+            Any Hue+ Device
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.DeviceLoadFilter.Hue2">
+            <summary>
+            Any Hue2 Device
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.DeviceLoadFilter.HueAmbient">
+            <summary>
+            Any Hue Ambient Devices
+            </summary>
+        </member>
         <member name="T:NZXTSharp.HIDDeviceID">
             <summary>
             Contains the Manufacturer and Product IDs of NZXT devices.

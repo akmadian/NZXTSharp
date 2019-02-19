@@ -49,7 +49,13 @@ namespace NZXTSharp.HuePlus
     public class HuePlus : INZXTDevice
     {
         #region Fields
-        private readonly string _Name = "HuePlus";
+        internal DeviceLoadFilter[] LoadFilters = new DeviceLoadFilter[]
+        {
+            DeviceLoadFilter.All,
+            DeviceLoadFilter.LightingControllers,
+            DeviceLoadFilter.Hue,
+            DeviceLoadFilter.HuePlus
+        };
         private readonly string _CustomName = null;
         private readonly int _MaxHandshakeRetry = 5;
 
@@ -227,7 +233,7 @@ namespace NZXTSharp.HuePlus
         public void ApplyEffect(HuePlusChannel channel, IEffect effect, bool SaveToChannel = true)
         {
             if (!effect.IsCompatibleWith(Type))
-                throw new IncompatibleEffectException(_Name, effect.EffectName);
+                throw new IncompatibleEffectException(Type.ToString(), effect.EffectName);
 
 
 
