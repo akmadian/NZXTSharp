@@ -225,6 +225,15 @@ namespace NZXTSharp.HuePlus
         }
 
         /// <summary>
+        /// Applies an <paramref name="Effect"/> to both channels.
+        /// </summary>
+        /// <param name="Effect">An <see cref="IEffect"/>.</param>
+        public void ApplyEffect(IEffect Effect)
+        {
+            ApplyEffect(this.Both, Effect);
+        }
+
+        /// <summary>
         /// Applies the given <paramref name="effect"/> to the given <paramref name="channel"/>.
         /// </summary>
         /// <param name="channel">The <see cref="HuePlusChannel"/> to apply the effect to.</param>

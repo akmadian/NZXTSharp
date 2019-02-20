@@ -139,6 +139,14 @@ namespace NZXTSharp.KrakenX
             }
         }
 
+        /// <summary>
+        /// Applies an <paramref name="Effect"/> to both channels.
+        /// </summary>
+        /// <param name="Effect">An <see cref="IEffect"/>.</param>
+        public void ApplyEffect(IEffect Effect)
+        {
+            ApplyEffect(this.Both, Effect);
+        }
 
         /// <summary>
         /// Applies a given <see cref="IEffect"/> <paramref name="Effect"/> to a given 

@@ -22,5 +22,10 @@ namespace NZXTSharp.Exceptions {
                 EffectName, DeviceName)){
 
         }
+
+        public IncompatibleEffectException(string message, Exception innerException) 
+            : base(message, innerException)
+        {
+        }
     }
 }

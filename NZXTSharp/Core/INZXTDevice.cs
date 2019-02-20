@@ -6,5 +6,8 @@ namespace NZXTSharp
 {
     public interface INZXTDevice
     {
+        NZXTDeviceType Type { get; }
+
+        void ApplyEffect(IEffect Effect);
     }
 }
