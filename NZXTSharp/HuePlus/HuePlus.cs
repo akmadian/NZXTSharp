@@ -56,6 +56,7 @@ namespace NZXTSharp.HuePlus
             DeviceLoadFilter.Hue,
             DeviceLoadFilter.HuePlus
         };
+
         private readonly string _CustomName = null;
         private readonly int _MaxHandshakeRetry = 5;
 
@@ -102,6 +103,7 @@ namespace NZXTSharp.HuePlus
         /// The <see cref="NZXTDeviceType"/> of the <see cref="HuePlus"/> object.
         /// </summary>
         public NZXTDeviceType Type { get => NZXTDeviceType.HuePlus; }
+        
         #endregion
 
 
@@ -164,7 +166,7 @@ namespace NZXTSharp.HuePlus
                 while (true)
                 {
 
-                    if (_COMController.Write(new byte[1] {0xc0}, 1).FirstOrDefault() == 1)
+                    if (_COMController.Write(new byte[1] { 0xc0 }, 1).FirstOrDefault() == 1)
                     {
                         SendLogEvent("Handshake Response Good");
                         break;

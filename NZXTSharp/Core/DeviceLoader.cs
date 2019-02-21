@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO.Ports;
 using System.Linq;
 using System.Threading;
@@ -23,7 +24,7 @@ namespace NZXTSharp
         private static readonly SerialCOMData HuePlusCOMData = new SerialCOMData(Parity.None, StopBits.One, 1000, 1000, 256000, 8);
         #endregion
 
-        private INZXTDevice[] _Devices;
+        private List<INZXTDevice> _Devices;
 
         private DeviceLoadFilter _Filter;
 
@@ -42,12 +43,12 @@ namespace NZXTSharp
         /// <summary>
         /// All <see cref="INZXTDevice"/>s owned by the <see cref="DeviceLoader"/> object.
         /// </summary>
-        public INZXTDevice[] Devices { get; }
+        public IEnumerable<INZXTDevice> Devices { get => new ReadOnlyCollection<INZXTDevice>(_Devices); }
 
         /// <summary>
         /// Gets the number of <see cref="INZXTDevice"/>s owned by the <see cref="DeviceLoader"/>.
         /// </summary>
-        public int NumDevices { get => _Devices.Length; }
+        public int NumDevices { get => _Devices.Count; }
         
         /// <summary>
         /// The <see cref="DeviceLoader"/> instance's <see cref="DeviceLoadFilter"/>.
@@ -93,7 +94,6 @@ namespace NZXTSharp
         /// <summary>
         /// Initializes and loads all NZXT devices found on the system.
         /// </summary>
-        /// <param name="Filter">A <see cref="DeviceLoadFilter"/>. Defaults to <see cref="DeviceLoadFilter.All"/>.</param>
         public void Initialize()
         {
             _Devices = GetDevices(_Filter);
@@ -113,7 +113,7 @@ namespace NZXTSharp
                 {
                     Device.ApplyEffect(Effect);
                 }
-                catch (InvalidOperationException e) {}
+                catch (InvalidOperationException) {}
                 catch (IncompatibleEffectException e)
                 {
                     if (ThrowExceptions)
@@ -138,7 +138,7 @@ namespace NZXTSharp
 
             Devices.Add(Device);
 
-            _Devices = Devices.ToArray();
+            _Devices = Devices;
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace NZXTSharp
         /// <param name="Type">The <see cref="NZXTDeviceType"/> to remove.</param>
         public void RemoveDevice(NZXTDeviceType Type)
         {
-            if (_Devices.Length == 0) return;
+            if (_Devices.Count == 0) return;
             List<INZXTDevice> Devices = new List<INZXTDevice>(_Devices);
 
             foreach (INZXTDevice Device in Devices)
@@ -159,7 +159,7 @@ namespace NZXTSharp
                 }
             }
 
-            _Devices = Devices.ToArray();
+            _Devices = Devices;
         }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace NZXTSharp
         /// <param name="Device">The <see cref="INZXTDevice"/> to remove.</param>
         public void RemoveDevice(INZXTDevice Device)
         {
-            if (_Devices.Length == 0) return;
+            if (_Devices.Count == 0) return;
             List<INZXTDevice> Devices = new List<INZXTDevice>(_Devices);
 
             foreach (INZXTDevice _Device in Devices)
@@ -180,7 +180,7 @@ namespace NZXTSharp
                 }
             }
 
-            _Devices = Devices.ToArray();
+            _Devices = Devices;
         }
 
         /// <summary>
@@ -193,7 +193,7 @@ namespace NZXTSharp
                 Device.Dispose();
             }
 
-            _Devices = Array.Empty<INZXTDevice>();
+            _Devices = new List<INZXTDevice>();
         }
 
         /// <summary>
@@ -227,18 +227,63 @@ namespace NZXTSharp
             this._Filter = Filter;
         }
 
+        /// <summary>
+        /// Sets all fans owned by all <see cref="INZXTDevice"/>s owned by the
+        /// <see cref="DeviceLoader"/> to a given <paramref name="Speed"/>.
+        /// </summary>
+        /// <param name="Speed">The speed to set (percentage).</param>
+        public void SetFanSpeed(int Speed)
+        {
+            KrakenX.SetFanSpeed(Speed);
+        }
 
+        /// <summary>
+        /// Sets pumps owned by <see cref="INZXTDevice"/>s owned by the
+        /// <see cref="DeviceLoader"/> to a given <paramref name="Speed"/>.
+        /// </summary>
+        /// <param name="Speed">The speed to set (percentage).</param>
+        public void SetPumpSpeed(int Speed)
+        {
+            KrakenX.SetPumpSpeed(Speed);
+        }
 
-        #endregion Non Static
+        /// <summary>
+        /// Turns all RGB lighting channels of all <see cref="INZXTDevice"/>s 
+        /// owned by the <see cref="DeviceLoader"/> instance on.
+        /// </summary>
+        public void LightingOn()
+        {
+            HuePlus.Channel1.On();
+            HuePlus.Channel2.On();
+
+            KrakenX.Ring.On();
+            KrakenX.Logo.On();
+        }
+
+        /// <summary>
+        /// Turns all RGB lighting channels of all <see cref="INZXTDevice"/>s 
+        /// owned by the <see cref="DeviceLoader"/> instance off.
+        /// </summary>
+        public void LightingOff()
+        {
+            HuePlus.Channel1.Off();
+            HuePlus.Channel2.Off();
+
+            KrakenX.Ring.Off();
+            KrakenX.Logo.Off();
+        }
+
+        #endregion
+        #endregion
+
         #region Static
-
         /// <summary>
         /// Gets and returns all connected devices.
         /// </summary>
         /// <param name="Filter">A <see cref="DeviceLoadFilter"/>, returned devices will only include
         /// devices that fit into categories as defined by the filter.</param>
         /// <returns>An array of all NZXT devices connected to the system.</returns>
-        public static INZXTDevice[] GetDevices(DeviceLoadFilter Filter = DeviceLoadFilter.All)
+        public static List<INZXTDevice> GetDevices(DeviceLoadFilter Filter = DeviceLoadFilter.All)
         {
             int[] SupportedHIDIDs = new int[] { 0x170e };
             List<INZXTDevice> devices = new List<INZXTDevice>();
@@ -246,7 +291,7 @@ namespace NZXTSharp
             devices.AddRange(TryGetHIDDevices(Filter));
             devices.AddRange(TryGetSerialDevices(Filter));
 
-            return devices.ToArray();
+            return devices;
         }
 
         /// <summary>
@@ -320,8 +365,6 @@ namespace NZXTSharp
                             outDevices.Add(new HuePlus.HuePlus());
                         }
                         break;
-                    default:
-                        break;
                 }
             }
 
@@ -363,7 +406,6 @@ namespace NZXTSharp
 
             return null;
         }
-        #endregion Methods
         #endregion
     }
 
@@ -427,7 +469,7 @@ namespace NZXTSharp
                 case DeviceLoadFilter.KrakenM: return new int[] { 0x1715 };
                 case DeviceLoadFilter.KrakenX: return new int[] { 0x170e };
                 default:
-                    return new int[] { };
+                    return Array.Empty<int>();
             }
         }
     }

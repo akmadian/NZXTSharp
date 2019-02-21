@@ -36,7 +36,8 @@ namespace NZXTSharp
         /// <summary>
         /// Builds and returns the buffer queue needed to set the <see cref="IEffect"/>.
         /// </summary>
-        /// <param name="Channel"></param>
+        /// <param name="Type">The <see cref="NZXTDeviceType"/> to build effect bytes for.</param>
+        /// <param name="Channel">The <see cref="IChannel"/> to build effect bytes for.</param>
         /// <returns></returns>
         List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel);
     }

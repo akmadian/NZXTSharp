@@ -7,14 +7,26 @@ using NZXTSharp.Exceptions;
 
 namespace NZXTSharp.KrakenX
 {
+    /// <summary>
+    /// Represents a DCB param.
+    /// </summary>
     public class DCB : IParam
     {
+        /// <summary>
+        /// The <see cref="DCB"/> param's value.
+        /// </summary>
         public int Value => GetValue();
 
         private bool _IsForward = true;
         private int ChannelByte;
         private KrakenXChannel Channel;
 
+
+        /// <summary>
+        /// Constructs a <see cref="DCB"/> instance.
+        /// </summary>
+        /// <param name="ChannelByte">The ChannelByte to construct with.</param>
+        /// <param name="IsForward">Whether or not the effect is moving forward.</param>
         public DCB(int ChannelByte, bool IsForward)
         {
             if (ChannelByte != 0x00 || ChannelByte != 0x02) {
@@ -24,6 +36,11 @@ namespace NZXTSharp.KrakenX
             this._IsForward = IsForward;
         }
 
+        /// <summary>
+        /// Constructs a <see cref="DCB"/> instance.
+        /// </summary>
+        /// <param name="Channel">A string representation of the ChannelByte to construct with.</param>
+        /// <param name="IsForward">Whether or not the effect os moving forward.</param>
         public DCB(string Channel, bool IsForward)
         {
             if (!Regex.IsMatch(Channel, @"(0?(x|X)?)\d+"))
@@ -35,12 +52,21 @@ namespace NZXTSharp.KrakenX
             this._IsForward = IsForward;
         }
 
+        /// <summary>
+        /// Constructs a <see cref="DCB"/> instance.
+        /// </summary>
+        /// <param name="Channel">The <see cref="KrakenXChannel"/> to construct the param for.</param>
+        /// <param name="IsForward">Whether or not the effect is moving forward.</param>
         public DCB(KrakenXChannel Channel, bool IsForward)
         {
             this.Channel = Channel;
             this._IsForward = IsForward;
         }
 
+        /// <summary>
+        /// Gets the <see cref="DCB"/> param's value.
+        /// </summary>
+        /// <returns></returns>
         public int GetValue()
         {
             string Dir = _IsForward ? "0" : "1";

@@ -7,6 +7,9 @@ using NZXTSharp.Exceptions;
 
 namespace NZXTSharp.KrakenX
 {
+    /// <summary>
+    /// Represents a TaiChi RGB effect.
+    /// </summary>
     public class TaiChi : IEffect
     {
         private readonly List<NZXTDeviceType> CompatibleWith = new List<NZXTDeviceType> { NZXTDeviceType.KrakenX };
@@ -26,6 +29,11 @@ namespace NZXTSharp.KrakenX
         /// <inheritdoc/>
         public IChannel Channel { get; set; }
 
+        /// <summary>
+        /// Constructs a <see cref="TaiChi"/> effect.
+        /// </summary>
+        /// <param name="Colors">The <see cref="Color"/>s to display.</param>
+        /// <param name="Speed">The speed for the effect to move at.</param>
         public TaiChi(Color[] Colors, int Speed = 2)
         {
             if (Colors.Length < 2)

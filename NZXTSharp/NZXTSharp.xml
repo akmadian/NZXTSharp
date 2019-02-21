@@ -385,6 +385,11 @@
             The array of colors used by the effect.
             </summary>
         </member>
+        <member name="F:NZXTSharp.Fading.Colors">
+            <summary>
+            The colors that the effect will apply.
+            </summary>
+        </member>
         <member name="P:NZXTSharp.Fading.EffectByte">
             <inheritdoc/>
         </member>
@@ -482,7 +487,8 @@
             <summary>
             Builds and returns the buffer queue needed to set the <see cref="T:NZXTSharp.IEffect"/>.
             </summary>
-            <param name="Channel"></param>
+            <param name="Type">The <see cref="T:NZXTSharp.NZXTDeviceType"/> to build effect bytes for.</param>
+            <param name="Channel">The <see cref="T:NZXTSharp.IChannel"/> to build effect bytes for.</param>
             <returns></returns>
         </member>
         <member name="T:NZXTSharp.Marquee">
@@ -696,6 +702,11 @@
              </summary>
              <param name="param"></param>
         </member>
+        <member name="T:NZXTSharp.DeviceLoader">
+            <summary>
+            A convenient interface for loading and interacting with <see cref="T:NZXTSharp.INZXTDevice"/>s.
+            </summary>
+        </member>
         <member name="P:NZXTSharp.DeviceLoader.KrakenX">
             <summary>
             Returns the first <see cref="T:NZXTSharp.KrakenX.KrakenX"/> instance owned 
@@ -711,6 +722,35 @@
         <member name="P:NZXTSharp.DeviceLoader.Devices">
             <summary>
             All <see cref="T:NZXTSharp.INZXTDevice"/>s owned by the <see cref="T:NZXTSharp.DeviceLoader"/> object.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.DeviceLoader.NumDevices">
+            <summary>
+            Gets the number of <see cref="T:NZXTSharp.INZXTDevice"/>s owned by the <see cref="T:NZXTSharp.DeviceLoader"/>.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.DeviceLoader.Filter">
+            <summary>
+            The <see cref="T:NZXTSharp.DeviceLoader"/> instance's <see cref="T:NZXTSharp.DeviceLoadFilter"/>.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.#ctor(NZXTSharp.DeviceLoadFilter)">
+            <summary>
+            Creates a <see cref="T:NZXTSharp.DeviceLoader"/> instance with a given <see cref="T:NZXTSharp.DeviceLoadFilter"/>.
+            </summary>
+            <param name="Filter">A <see cref="T:NZXTSharp.DeviceLoadFilter"/>. Defaults to <see cref="F:NZXTSharp.DeviceLoadFilter.All"/>.</param>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.#ctor(System.Boolean,NZXTSharp.DeviceLoadFilter)">
+            <summary>
+            Creates a <see cref="T:NZXTSharp.DeviceLoader"/> instance with a given <see cref="T:NZXTSharp.DeviceLoadFilter"/>.
+            </summary>
+            <param name="InitializeDevices">Whether or not to automatically initialize and load devices. 
+            Defaults to true.</param>
+            <param name="Filter">A <see cref="T:NZXTSharp.DeviceLoadFilter"/>. Defaults to <see cref="F:NZXTSharp.DeviceLoadFilter.All"/></param>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.Initialize">
+            <summary>
+            Initializes and loads all NZXT devices found on the system.
             </summary>
         </member>
         <member name="M:NZXTSharp.DeviceLoader.ApplyEffectToDevices(NZXTSharp.IEffect,System.Boolean)">
@@ -739,6 +779,43 @@
             </summary>
             <param name="Device">The <see cref="T:NZXTSharp.INZXTDevice"/> to remove.</param>
         </member>
+        <member name="M:NZXTSharp.DeviceLoader.Dispose">
+            <summary>
+            Disposes of all <see cref="T:NZXTSharp.INZXTDevice"/> instances owned by the <see cref="T:NZXTSharp.DeviceLoader"/>.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.Reconnect">
+            <summary>
+            Reconnects to all <see cref="T:NZXTSharp.INZXTDevice"/> instances owned by the <see cref="T:NZXTSharp.DeviceLoader"/>.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.ReInitialize">
+            <summary>
+            Disposes of all <see cref="T:NZXTSharp.INZXTDevice"/> instances owned by the <see cref="T:NZXTSharp.DeviceLoader"/>,
+            and re-initializes the <see cref="T:NZXTSharp.DeviceLoader"/>.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.ModifyFilter(NZXTSharp.DeviceLoadFilter)">
+            <summary>
+            Changes the <see cref="T:NZXTSharp.DeviceLoader"/> instance's filter to a new 
+            <see cref="T:NZXTSharp.DeviceLoadFilter"/> <paramref name="Filter"/>
+            </summary>
+            <param name="Filter">The new <see cref="T:NZXTSharp.DeviceLoadFilter"/></param>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.SetFanSpeed(System.Int32)">
+            <summary>
+            Sets all fans owned by all <see cref="T:NZXTSharp.INZXTDevice"/>s owned by the
+            <see cref="T:NZXTSharp.DeviceLoader"/> to a given <paramref name="Speed"/>.
+            </summary>
+            <param name="Speed">The speed to set (percentage).</param>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.SetPumpSpeed(System.Int32)">
+            <summary>
+            Sets pumps owned by <see cref="T:NZXTSharp.INZXTDevice"/>s owned by the
+            <see cref="T:NZXTSharp.DeviceLoader"/> to a given <paramref name="Speed"/>.
+            </summary>
+            <param name="Speed">The speed to set (percentage).</param>
+        </member>
         <member name="M:NZXTSharp.DeviceLoader.GetDevices(NZXTSharp.DeviceLoadFilter)">
             <summary>
             Gets and returns all connected devices.
@@ -746,6 +823,50 @@
             <param name="Filter">A <see cref="T:NZXTSharp.DeviceLoadFilter"/>, returned devices will only include
             devices that fit into categories as defined by the filter.</param>
             <returns>An array of all NZXT devices connected to the system.</returns>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.TryGetHIDDevices(NZXTSharp.DeviceLoadFilter)">
+            <summary>
+            Tries to get all NZXT HID devices connected to the system.
+            </summary>
+            <param name="Filter"></param>
+            <returns>An array of <see cref="T:NZXTSharp.INZXTDevice"/>s.</returns>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.TryGetSerialDevices(NZXTSharp.DeviceLoadFilter)">
+            <summary>
+            Tries to get all NZXT Serial devices connected to the system.
+            </summary>
+            <param name="Filter"></param>
+            <returns>An array of <see cref="T:NZXTSharp.INZXTDevice"/>s.</returns>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.InstantiateSerialDevices(System.Collections.Generic.List{NZXTSharp.NZXTDeviceType},NZXTSharp.DeviceLoadFilter)">
+            <summary>
+            Creates instances of found <see cref="T:NZXTSharp.INZXTDevice"/>s that operate
+            on a serial protocol.
+            </summary>
+            <param name="Devices">A List of <see cref="T:NZXTSharp.INZXTDevice"/>s found by 
+            <see cref="M:NZXTSharp.DeviceLoader.TryGetSerialDevices(NZXTSharp.DeviceLoadFilter)"/></param>
+            <param name="Filter"></param>
+            <returns>An array containing instances of found <see cref="T:NZXTSharp.INZXTDevice"/>s.</returns>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.InstantiateHIDDevices(System.Collections.Generic.List{HidLibrary.HidDevice},NZXTSharp.DeviceLoadFilter)">
+            <summary>
+            Creates instances of found <see cref="T:NZXTSharp.INZXTDevice"/>s that operate
+            on an HID protocol.
+            </summary>
+            <param name="Devices">A list of <see cref="T:NZXTSharp.INZXTDevice"/>s found by
+            <see cref="M:NZXTSharp.DeviceLoader.TryGetHIDDevices(NZXTSharp.DeviceLoadFilter)"/></param>
+            <param name="Filter"></param>
+            <returns>An array containing instances of found HID devices.</returns>
+        </member>
+        <member name="T:NZXTSharp.MapFilterToSupportedIDs">
+            <summary>
+            Maps a <see cref="T:NZXTSharp.DeviceLoadFilter"/> to the HID IDs of devices included in that filter.
+            </summary>
+        </member>
+        <member name="T:NZXTSharp.MapIDtoInstance">
+            <summary>
+            Maps an HID device ID to an instance of that device's corresponding <see cref="T:NZXTSharp.INZXTDevice"/>.
+            </summary>
         </member>
         <member name="T:NZXTSharp.DeviceLoadFilter">
             <summary>
@@ -828,6 +949,61 @@
             An unknown ID.
             </summary>
         </member>
+        <member name="F:NZXTSharp.HIDDeviceID.VendorID">
+            <summary>
+            The NZXT vendor ID.
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.HIDDeviceID.KrakenM">
+            <summary>
+            A KrakenM Device.
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.HIDDeviceID.KrakenX">
+            <summary>
+            A KrakenX Device.
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.HIDDeviceID.Hue2">
+            <summary>
+            A Hue 2 Device
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.HIDDeviceID.HueAmbient">
+            <summary>
+            A Hue Ambient Device.
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.HIDDeviceID.GridV2">
+            <summary>
+            A Grid v2 Device.
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.HIDDeviceID.GridV3">
+            <summary>
+            A Grid v3 Device.
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.HIDDeviceID.N7">
+            <summary>
+            An N7 Z370 Device.
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.HIDDeviceID.N7_Z390">
+            <summary>
+            An N7 Z390 Device.
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.HIDDeviceID.H7Lumi">
+            <summary>
+            A Cryorig H7 Quad Lumi Device.
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.HIDDeviceID.SmartDevice">
+            <summary>
+            An NZXT smart device.
+            </summary>
+        </member>
         <member name="T:NZXTSharp.NZXTDeviceType">
             <summary>
             Definitions of unique IDs for all NZXT devices.
@@ -881,6 +1057,61 @@
         <member name="F:NZXTSharp.NZXTDeviceType.Grid">
             <summary>
             A generic Grid device.
+            </summary>
+        </member>
+        <member name="T:NZXTSharp.IChannel">
+            <summary>
+            Represents an RGB or Fan channel on an <see cref="T:NZXTSharp.INZXTDevice"/>.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.IChannel.ChannelByte">
+            <summary>
+            The ChannelByte of the <see cref="T:NZXTSharp.IChannel"/>.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.IChannel.State">
+            <summary>
+            Whether or not the <see cref="T:NZXTSharp.IChannel"/> is on.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.IChannel.BuildColorBytes(NZXTSharp.Color)">
+            <summary>
+            Builds color bytes for an RGB effect for a given <see cref="T:NZXTSharp.Color"/>.
+            </summary>
+            <param name="Color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NZXTSharp.IChannel.BuildColorBytes(System.Byte[])">
+            <summary>
+            Builds color bytes for an RGB effect for a given custom color set.
+            </summary>
+            <param name="Custom"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NZXTSharp.INZXTDevice">
+            <summary>
+            Represents an NZXT device.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.INZXTDevice.Type">
+            <summary>
+            The <see cref="T:NZXTSharp.NZXTDeviceType"/> of the <see cref="T:NZXTSharp.INZXTDevice"/>.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.INZXTDevice.ApplyEffect(NZXTSharp.IEffect)">
+            <summary>
+            Applies an <see cref="T:NZXTSharp.IEffect"/> to the <see cref="T:NZXTSharp.INZXTDevice"/>.
+            </summary>
+            <param name="Effect">The <see cref="T:NZXTSharp.IEffect"/> to apply.</param>
+        </member>
+        <member name="M:NZXTSharp.INZXTDevice.Dispose">
+            <summary>
+            Disposes of the <see cref="T:NZXTSharp.INZXTDevice"/> instance.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.INZXTDevice.Reconnect">
+            <summary>
+            Attempts to reconnect to the <see cref="T:NZXTSharp.INZXTDevice"/>.
             </summary>
         </member>
         <member name="T:NZXTSharp.Fan">
@@ -1307,19 +1538,19 @@
         <member name="M:NZXTSharp.HuePlus.HuePlusChannel.#ctor(System.Int32,NZXTSharp.HuePlus.HuePlus)">
             <summary>
             Constructs a <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/> object with a given <paramref name="ChannelByte"/>,
-            owned by a given <paramref name="Parent"/> <see cref="!:IHueDevice"/>.
+            owned by a given <paramref name="Parent"/> <see cref="T:NZXTSharp.HuePlus.HuePlus"/>.
             </summary>
             <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
-            <param name="Parent">The <see cref="!:IHueDevice"/> that will own the <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/></param>
+            <param name="Parent">The <see cref="T:NZXTSharp.HuePlus.HuePlus"/> that will own the <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/></param>
         </member>
         <member name="M:NZXTSharp.HuePlus.HuePlusChannel.#ctor(System.Int32,NZXTSharp.HuePlus.HuePlus,NZXTSharp.HuePlus.HuePlusChannelInfo)">
             <summary>
             Constructs a <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/> object with a given <paramref name="ChannelByte"/>,
-            owned by a given <paramref name="Parent"/> <see cref="!:IHueDevice"/>,
+            owned by a given <paramref name="Parent"/> <see cref="T:NZXTSharp.HuePlus.HuePlus"/>,
             with a given <see cref="P:NZXTSharp.HuePlus.HuePlusChannel.ChannelInfo"/>.
             </summary>
             <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
-            <param name="Parent">The <see cref="!:IHueDevice"/> that owns the <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/></param>
+            <param name="Parent">The <see cref="T:NZXTSharp.HuePlus.HuePlus"/> that owns the <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/></param>
             <param name="Info">The <see cref="P:NZXTSharp.HuePlus.HuePlusChannel.ChannelInfo"/> owned by the <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/>.</param>
         </member>
         <member name="M:NZXTSharp.HuePlus.HuePlusChannel.RefreshSubDevices">
@@ -1336,6 +1567,20 @@
             <summary>
             Turns the <see cref="T:NZXTSharp.HuePlus.HuePlusChannel"/> off.
             </summary>
+        </member>
+        <member name="M:NZXTSharp.HuePlus.HuePlusChannel.BuildColorBytes(NZXTSharp.Color)">
+            <summary>
+            Build color bytes for an effect based on the given <see cref="T:NZXTSharp.Color"/>.
+            </summary>
+            <param name="color"></param>
+            <returns>A byte array with 140 elements; G, R, B color codes.</returns>
+        </member>
+        <member name="M:NZXTSharp.HuePlus.HuePlusChannel.BuildColorBytes(System.Byte[])">
+            <summary>
+            Builds the color bytes for an effect.
+            </summary>
+            <param name="buffer"></param>
+            <returns></returns>
         </member>
         <member name="M:NZXTSharp.HuePlus.HuePlusChannel.UpdateChannelInfo">
             <summary>
@@ -1471,6 +1716,11 @@
             </summary>
             <param name="param"></param>
         </member>
+        <member name="T:NZXTSharp.KrakenX.Loading">
+            <summary>
+            Represents a loading RGB effect.
+            </summary>
+        </member>
         <member name="P:NZXTSharp.KrakenX.Loading.EffectByte">
             <inheritdoc/>
         </member>
@@ -1480,11 +1730,23 @@
         <member name="P:NZXTSharp.KrakenX.Loading.Channel">
             <inheritdoc/>
         </member>
+        <member name="M:NZXTSharp.KrakenX.Loading.#ctor(NZXTSharp.Color,System.Int32)">
+            <summary>
+            Constructs a <see cref="T:NZXTSharp.KrakenX.Loading"/> effect.
+            </summary>
+            <param name="Color">The <see cref="T:NZXTSharp.Color"/> of the effect to display.</param>
+            <param name="Speed">The speed the effect will move at.</param>
+        </member>
         <member name="M:NZXTSharp.KrakenX.Loading.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <inheritdoc/>
         </member>
         <member name="M:NZXTSharp.KrakenX.Loading.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <inheritdoc/>
+        </member>
+        <member name="T:NZXTSharp.KrakenX.TaiChi">
+            <summary>
+            Represents a TaiChi RGB effect.
+            </summary>
         </member>
         <member name="P:NZXTSharp.KrakenX.TaiChi.EffectByte">
             <inheritdoc/>
@@ -1495,10 +1757,49 @@
         <member name="P:NZXTSharp.KrakenX.TaiChi.Channel">
             <inheritdoc/>
         </member>
+        <member name="M:NZXTSharp.KrakenX.TaiChi.#ctor(NZXTSharp.Color[],System.Int32)">
+            <summary>
+            Constructs a <see cref="T:NZXTSharp.KrakenX.TaiChi"/> effect.
+            </summary>
+            <param name="Colors">The <see cref="T:NZXTSharp.Color"/>s to display.</param>
+            <param name="Speed">The speed for the effect to move at.</param>
+        </member>
         <member name="M:NZXTSharp.KrakenX.TaiChi.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
             <inheritdoc/>
         </member>
         <member name="M:NZXTSharp.KrakenX.TaiChi.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
+            <inheritdoc/>
+        </member>
+        <member name="T:NZXTSharp.KrakenX.WaterCooler">
+            <summary>
+            Represents a Water Cooler RGB effect.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.WaterCooler.EffectByte">
+            <summary>
+            The <see cref="T:NZXTSharp.KrakenX.WaterCooler"/> effect's ChannelByte.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.WaterCooler.EffectName">
+            <summary>
+            The <see cref="T:NZXTSharp.KrakenX.WaterCooler"/> effect's name.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.WaterCooler.Channel">
+            <summary>
+            The <see cref="T:NZXTSharp.IChannel"/> that the <see cref="T:NZXTSharp.KrakenX.WaterCooler"/> effect is applied to.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.WaterCooler.#ctor(System.Int32)">
+            <summary>
+            Constructs a <see cref="T:NZXTSharp.KrakenX.WaterCooler"/> instance.
+            </summary>
+            <param name="Speed">The speed for the effect to move at.</param>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.WaterCooler.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.WaterCooler.BuildBytes(NZXTSharp.NZXTDeviceType,NZXTSharp.IChannel)">
             <inheritdoc/>
         </member>
         <member name="T:NZXTSharp.KrakenX.KrakenXCurves">
@@ -1544,6 +1845,36 @@
         <member name="P:NZXTSharp.KrakenX.KrakenXCurves.PumpPerformanceCurve">
             <summary>
             The performance curve for pumps.
+            </summary>
+        </member>
+        <member name="T:NZXTSharp.KrakenX.OverrideThread">
+            <summary>
+            // TODO
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.KrakenX.OverrideThread.Fan">
+            <summary>
+            // TODO
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.KrakenX.OverrideThread.Pump">
+            <summary>
+            // TODO 
+            </summary>
+        </member>
+        <member name="T:NZXTSharp.KrakenX.ThreadStopType">
+            <summary>
+            // TODO
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.KrakenX.ThreadStopType.Abort">
+            <summary>
+            // TODO
+            </summary>
+        </member>
+        <member name="F:NZXTSharp.KrakenX.ThreadStopType.Flag">
+            <summary>
+            // TODO
             </summary>
         </member>
         <member name="T:NZXTSharp.KrakenX.KrakenX">
@@ -1607,6 +1938,8 @@
             </summary>
             <param name="Channel"></param>
             <param name="Effect"></param>
+            <param name="ApplyToChannel">Whether or not to apply <paramref name="Effect"/>
+            to the <paramref name="Channel"/> as its last applied effect.</param>
         </member>
         <member name="M:NZXTSharp.KrakenX.KrakenX.GetPumpSpeed">
             <summary>
@@ -1653,6 +1986,157 @@
             Gets the KrakenX device's firmware version
             </summary>
             <returns>An int[]; int[0] is Major version, int[1] is Minor version.</returns>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenX.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenX.Reconnect">
+            <inheritdoc/>
+        </member>
+        <member name="T:NZXTSharp.KrakenX.KrakenXChannel">
+            <summary>
+            Represents an RGB channel on a <see cref="T:NZXTSharp.KrakenX.KrakenX"/> device.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.KrakenXChannel.ChannelByte">
+            <summary>
+            The ChannelByte of the <see cref="T:NZXTSharp.KrakenX.KrakenXChannel"/>.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.KrakenXChannel.State">
+            <summary>
+            Whether or not the channel is on.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.KrakenXChannel.Leds">
+            <summary>
+            All LEDs owned by the <see cref="T:NZXTSharp.KrakenX.KrakenXChannel"/>.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.KrakenXChannel.NumLeds">
+            <summary>
+            The number of LEDs owned by the <see cref="T:NZXTSharp.KrakenX.KrakenXChannel"/>.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.KrakenXChannel.Effect">
+            <summary>
+            The effect last applied to the <see cref="T:NZXTSharp.KrakenX.KrakenXChannel"/>.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenXChannel.#ctor(System.Int32,NZXTSharp.KrakenX.KrakenX)">
+            <summary>
+            Constructs a <see cref="T:NZXTSharp.KrakenX.KrakenXChannel"/> instance.
+            </summary>
+            <param name="ChannelByte">The channel's ChannelByte.</param>
+            <param name="Parent">The <see cref="T:NZXTSharp.KrakenX.KrakenX"/> device that owns the channel.</param>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenXChannel.BuildLEDs">
+            <summary>
+            Builds the LEDs owned by the <see cref="T:NZXTSharp.KrakenX.KrakenXChannel"/>.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenXChannel.On">
+            <summary>
+            Turns the <see cref="T:NZXTSharp.KrakenX.KrakenXChannel"/> on and re-applies 
+            the last applied <see cref="P:NZXTSharp.KrakenX.KrakenXChannel.Effect"/>
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenXChannel.Off">
+            <summary>
+            Turns the <see cref="T:NZXTSharp.KrakenX.KrakenXChannel"/> off.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenXChannel.BuildColorBytes(System.Byte[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenXChannel.BuildColorBytes(NZXTSharp.Color)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenXChannel.ToggleLed(System.Int32)">
+            <summary>
+            Toggles an LED's state.
+            </summary>
+            <param name="Index">The index of the LED to toggle.</param>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenXChannel.SetLed(System.Boolean,System.Int32)">
+            <summary>
+            Sets the state of an LED.
+            </summary>
+            <param name="State">The state to set.</param>
+            <param name="Index">The index of the LED to set.</param>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenXChannel.ToggleLedRange(System.Int32,System.Int32)">
+            <summary>
+            Toggles all LEDs in an index range.
+            </summary>
+            <param name="Start">The start index.</param>
+            <param name="End">The end index.</param>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenXChannel.SetLedRange(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Sets all LEDs in an index range to a given state.
+            </summary>
+            <param name="Start">The start index.</param>
+            <param name="End">The end index.</param>
+            <param name="State">The state to set.</param>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenXChannel.ToggleState">
+            <summary>
+            Toggles the state of the <see cref="T:NZXTSharp.KrakenX.KrakenXChannel"/>.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenXChannel.SetState(System.Boolean)">
+            <summary>
+            Sets the state of the <see cref="T:NZXTSharp.KrakenX.KrakenXChannel"/>.
+            </summary>
+            <param name="State">The state to set.</param>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenXChannel.AllLedOn">
+            <summary>
+            Turns all LEDs on.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenXChannel.AllLedOff">
+            <summary>
+            Turns all LEDs off.
+            </summary>
+        </member>
+        <member name="T:NZXTSharp.KrakenX.DCB">
+            <summary>
+            Represents a DCB param.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.DCB.Value">
+            <summary>
+            The <see cref="T:NZXTSharp.KrakenX.DCB"/> param's value.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.DCB.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Constructs a <see cref="T:NZXTSharp.KrakenX.DCB"/> instance.
+            </summary>
+            <param name="ChannelByte">The ChannelByte to construct with.</param>
+            <param name="IsForward">Whether or not the effect is moving forward.</param>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.DCB.#ctor(System.String,System.Boolean)">
+            <summary>
+            Constructs a <see cref="T:NZXTSharp.KrakenX.DCB"/> instance.
+            </summary>
+            <param name="Channel">A string representation of the ChannelByte to construct with.</param>
+            <param name="IsForward">Whether or not the effect os moving forward.</param>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.DCB.#ctor(NZXTSharp.KrakenX.KrakenXChannel,System.Boolean)">
+            <summary>
+            Constructs a <see cref="T:NZXTSharp.KrakenX.DCB"/> instance.
+            </summary>
+            <param name="Channel">The <see cref="T:NZXTSharp.KrakenX.KrakenXChannel"/> to construct the param for.</param>
+            <param name="IsForward">Whether or not the effect is moving forward.</param>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.DCB.GetValue">
+            <summary>
+            Gets the <see cref="T:NZXTSharp.KrakenX.DCB"/> param's value.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:NZXTSharp.KrakenX.DCB.op_Implicit(NZXTSharp.KrakenX.DCB)~System.Byte">
             <summary>
