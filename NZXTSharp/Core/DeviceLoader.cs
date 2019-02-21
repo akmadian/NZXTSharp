@@ -13,10 +13,19 @@ using NZXTSharp.Exceptions;
 
 namespace NZXTSharp
 {
+    /// <summary>
+    /// A convenient interface for loading and interacting with <see cref="INZXTDevice"/>s.
+    /// </summary>
     public class DeviceLoader
     {
-        private static SerialCOMData HuePlusCOMData = new SerialCOMData(Parity.None, StopBits.One, 1000, 1000, 256000, 8);
+        #region Fields and Properties
+        #region Device Specific
+        private static readonly SerialCOMData HuePlusCOMData = new SerialCOMData(Parity.None, StopBits.One, 1000, 1000, 256000, 8);
+        #endregion
+
         private INZXTDevice[] _Devices;
+
+        private DeviceLoadFilter _Filter;
 
         /// <summary>
         /// Returns the first <see cref="KrakenX.KrakenX"/> instance owned 
@@ -35,25 +44,59 @@ namespace NZXTSharp
         /// </summary>
         public INZXTDevice[] Devices { get; }
 
+        /// <summary>
+        /// Gets the number of <see cref="INZXTDevice"/>s owned by the <see cref="DeviceLoader"/>.
+        /// </summary>
         public int NumDevices { get => _Devices.Length; }
+        
+        /// <summary>
+        /// The <see cref="DeviceLoader"/> instance's <see cref="DeviceLoadFilter"/>.
+        /// </summary>
+        public DeviceLoadFilter Filter 
+        {
+            get => _Filter;
+            set => _Filter = Filter;
+        }
+        #endregion
 
+        #region Non Static
+        #region Constructors
+        /// <summary>
+        /// Creates a <see cref="DeviceLoader"/> instance with a given <see cref="DeviceLoadFilter"/>.
+        /// </summary>
+        /// <param name="Filter">A <see cref="DeviceLoadFilter"/>. Defaults to <see cref="DeviceLoadFilter.All"/>.</param>
         public DeviceLoader(DeviceLoadFilter Filter = DeviceLoadFilter.All)
         {
-            Initialize(Filter);
+            this._Filter = Filter;
+            Initialize();
         }
 
+        /// <summary>
+        /// Creates a <see cref="DeviceLoader"/> instance with a given <see cref="DeviceLoadFilter"/>.
+        /// </summary>
+        /// <param name="InitializeDevices">Whether or not to automatically initialize and load devices. 
+        /// Defaults to true.</param>
+        /// <param name="Filter">A <see cref="DeviceLoadFilter"/>. Defaults to <see cref="DeviceLoadFilter.All"/></param>
         public DeviceLoader(bool InitializeDevices, DeviceLoadFilter Filter = DeviceLoadFilter.All)
         {
+            this._Filter = Filter;
+
             if (InitializeDevices)
             {
-                Initialize(Filter);
+                Initialize();
             }
         }
 
-        public void Initialize(DeviceLoadFilter Filter = DeviceLoadFilter.All)
+        #endregion
+        #region Methods
+
+        /// <summary>
+        /// Initializes and loads all NZXT devices found on the system.
+        /// </summary>
+        /// <param name="Filter">A <see cref="DeviceLoadFilter"/>. Defaults to <see cref="DeviceLoadFilter.All"/>.</param>
+        public void Initialize()
         {
-            Console.WriteLine("Initing");
-            _Devices = GetDevices(Filter);
+            _Devices = GetDevices(_Filter);
         }
 
         /// <summary>
@@ -141,6 +184,55 @@ namespace NZXTSharp
         }
 
         /// <summary>
+        /// Disposes of all <see cref="INZXTDevice"/> instances owned by the <see cref="DeviceLoader"/>.
+        /// </summary>
+        public void Dispose()
+        {
+            foreach (INZXTDevice Device in _Devices)
+            {
+                Device.Dispose();
+            }
+
+            _Devices = Array.Empty<INZXTDevice>();
+        }
+
+        /// <summary>
+        /// Reconnects to all <see cref="INZXTDevice"/> instances owned by the <see cref="DeviceLoader"/>.
+        /// </summary>
+        public void Reconnect()
+        {
+            foreach (INZXTDevice Device in _Devices)
+            {
+                Device.Reconnect();
+            }
+        }
+
+        /// <summary>
+        /// Disposes of all <see cref="INZXTDevice"/> instances owned by the <see cref="DeviceLoader"/>,
+        /// and re-initializes the <see cref="DeviceLoader"/>.
+        /// </summary>
+        public void ReInitialize()
+        {
+            Dispose();
+            Initialize();
+        }
+
+        /// <summary>
+        /// Changes the <see cref="DeviceLoader"/> instance's filter to a new 
+        /// <see cref="DeviceLoadFilter"/> <paramref name="Filter"/>
+        /// </summary>
+        /// <param name="Filter">The new <see cref="DeviceLoadFilter"/></param>
+        public void ModifyFilter(DeviceLoadFilter Filter)
+        {
+            this._Filter = Filter;
+        }
+
+
+
+        #endregion Non Static
+        #region Static
+
+        /// <summary>
         /// Gets and returns all connected devices.
         /// </summary>
         /// <param name="Filter">A <see cref="DeviceLoadFilter"/>, returned devices will only include
@@ -157,6 +249,11 @@ namespace NZXTSharp
             return devices.ToArray();
         }
 
+        /// <summary>
+        /// Tries to get all NZXT HID devices connected to the system.
+        /// </summary>
+        /// <param name="Filter"></param>
+        /// <returns>An array of <see cref="INZXTDevice"/>s.</returns>
         private static INZXTDevice[] TryGetHIDDevices(DeviceLoadFilter Filter)
         {
             List<HidDevice> found = DeviceEnumerator.EnumNZXTDevices().ToList();
@@ -165,6 +262,11 @@ namespace NZXTSharp
             return devices;
         }
 
+        /// <summary>
+        /// Tries to get all NZXT Serial devices connected to the system.
+        /// </summary>
+        /// <param name="Filter"></param>
+        /// <returns>An array of <see cref="INZXTDevice"/>s.</returns>
         private static INZXTDevice[] TryGetSerialDevices(DeviceLoadFilter Filter)
         {
             List<NZXTDeviceType> DevicesFound = new List<NZXTDeviceType>();
@@ -195,6 +297,14 @@ namespace NZXTSharp
             return InstantiateSerialDevices(DevicesFound, Filter);
         }
 
+        /// <summary>
+        /// Creates instances of found <see cref="INZXTDevice"/>s that operate
+        /// on a serial protocol.
+        /// </summary>
+        /// <param name="Devices">A List of <see cref="INZXTDevice"/>s found by 
+        /// <see cref="DeviceLoader.TryGetSerialDevices(DeviceLoadFilter)"/></param>
+        /// <param name="Filter"></param>
+        /// <returns>An array containing instances of found <see cref="INZXTDevice"/>s.</returns>
         private static INZXTDevice[] InstantiateSerialDevices(List<NZXTDeviceType> Devices, DeviceLoadFilter Filter)
         {
             List<INZXTDevice> outDevices = new List<INZXTDevice>();
@@ -218,6 +328,14 @@ namespace NZXTSharp
             return outDevices.ToArray();
         }
 
+        /// <summary>
+        /// Creates instances of found <see cref="INZXTDevice"/>s that operate
+        /// on an HID protocol.
+        /// </summary>
+        /// <param name="Devices">A list of <see cref="INZXTDevice"/>s found by
+        /// <see cref="DeviceLoader.TryGetHIDDevices(DeviceLoadFilter)"/></param>
+        /// <param name="Filter"></param>
+        /// <returns>An array containing instances of found HID devices.</returns>
         private static INZXTDevice[] InstantiateHIDDevices(List<HidDevice> Devices, DeviceLoadFilter Filter)
         {
             int[] SupportedHIDIDs = new int[] { 0x170e };
@@ -245,8 +363,13 @@ namespace NZXTSharp
 
             return null;
         }
+        #endregion Methods
+        #endregion
     }
 
+    /// <summary>
+    /// Maps a <see cref="DeviceLoadFilter"/> to the HID IDs of devices included in that filter.
+    /// </summary>
     internal class MapFilterToSupportedIDs
     {
         internal static int[] Map(DeviceLoadFilter Filter)
@@ -309,6 +432,9 @@ namespace NZXTSharp
         }
     }
 
+    /// <summary>
+    /// Maps an HID device ID to an instance of that device's corresponding <see cref="INZXTDevice"/>.
+    /// </summary>
     internal class MapIDtoInstance
     {
         internal static INZXTDevice Map(int ID)
