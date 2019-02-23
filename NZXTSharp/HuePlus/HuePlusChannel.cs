@@ -64,10 +64,10 @@ namespace NZXTSharp.HuePlus {
 
         /// <summary>
         /// Constructs a <see cref="HuePlusChannel"/> object with a given <paramref name="ChannelByte"/>,
-        /// owned by a given <paramref name="Parent"/> <see cref="IHueDevice"/>.
+        /// owned by a given <paramref name="Parent"/> <see cref="HuePlus"/>.
         /// </summary>
         /// <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
-        /// <param name="Parent">The <see cref="IHueDevice"/> that will own the <see cref="HuePlusChannel"/></param>
+        /// <param name="Parent">The <see cref="HuePlus"/> that will own the <see cref="HuePlusChannel"/></param>
         public HuePlusChannel(int ChannelByte, HuePlus Parent) {
             this.ChannelByte = ChannelByte;
             this._Parent = Parent;
@@ -75,11 +75,11 @@ namespace NZXTSharp.HuePlus {
 
         /// <summary>
         /// Constructs a <see cref="HuePlusChannel"/> object with a given <paramref name="ChannelByte"/>,
-        /// owned by a given <paramref name="Parent"/> <see cref="IHueDevice"/>,
+        /// owned by a given <paramref name="Parent"/> <see cref="HuePlus"/>,
         /// with a given <see cref="ChannelInfo"/>.
         /// </summary>
         /// <param name="ChannelByte">The ChannelByte to construct the channel from.</param>
-        /// <param name="Parent">The <see cref="IHueDevice"/> that owns the <see cref="HuePlusChannel"/></param>
+        /// <param name="Parent">The <see cref="HuePlus"/> that owns the <see cref="HuePlusChannel"/></param>
         /// <param name="Info">The <see cref="ChannelInfo"/> owned by the <see cref="HuePlusChannel"/>.</param>
         public HuePlusChannel(int ChannelByte, HuePlus Parent, HuePlusChannelInfo Info) {
             this.ChannelByte = ChannelByte;
@@ -129,6 +129,11 @@ namespace NZXTSharp.HuePlus {
             _Parent.ApplyEffect(this, new Fixed(this, new Color(0, 0, 0)), false);
         }
 
+        /// <summary>
+        /// Build color bytes for an effect based on the given <see cref="Color"/>.
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns>A byte array with 140 elements; G, R, B color codes.</returns>
         public byte[] BuildColorBytes(Color color) {
             List<byte> outList = new List<byte>();
             foreach (ISubDevice device in _SubDevices)
@@ -163,6 +168,11 @@ namespace NZXTSharp.HuePlus {
             return outList.ToArray();
         }
 
+        /// <summary>
+        /// Builds the color bytes for an effect.
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <returns></returns>
         public byte[] BuildColorBytes(byte[] buffer)
         {
             for (int deviceN = 0; deviceN < SubDevices.Count; deviceN++)

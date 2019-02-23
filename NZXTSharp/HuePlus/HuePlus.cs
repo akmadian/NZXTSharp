@@ -49,7 +49,14 @@ namespace NZXTSharp.HuePlus
     public class HuePlus : INZXTDevice
     {
         #region Fields
-        private readonly string _Name = "HuePlus";
+        internal DeviceLoadFilter[] LoadFilters = new DeviceLoadFilter[]
+        {
+            DeviceLoadFilter.All,
+            DeviceLoadFilter.LightingControllers,
+            DeviceLoadFilter.Hue,
+            DeviceLoadFilter.HuePlus
+        };
+
         private readonly string _CustomName = null;
         private readonly int _MaxHandshakeRetry = 5;
 
@@ -96,6 +103,7 @@ namespace NZXTSharp.HuePlus
         /// The <see cref="NZXTDeviceType"/> of the <see cref="HuePlus"/> object.
         /// </summary>
         public NZXTDeviceType Type { get => NZXTDeviceType.HuePlus; }
+        
         #endregion
 
 
@@ -158,7 +166,7 @@ namespace NZXTSharp.HuePlus
                 while (true)
                 {
 
-                    if (_COMController.Write(new byte[1] {0xc0}, 1).FirstOrDefault() == 1)
+                    if (_COMController.Write(new byte[1] { 0xc0 }, 1).FirstOrDefault() == 1)
                     {
                         SendLogEvent("Handshake Response Good");
                         break;
@@ -219,6 +227,15 @@ namespace NZXTSharp.HuePlus
         }
 
         /// <summary>
+        /// Applies an <paramref name="Effect"/> to both channels.
+        /// </summary>
+        /// <param name="Effect">An <see cref="IEffect"/>.</param>
+        public void ApplyEffect(IEffect Effect)
+        {
+            ApplyEffect(this.Both, Effect);
+        }
+
+        /// <summary>
         /// Applies the given <paramref name="effect"/> to the given <paramref name="channel"/>.
         /// </summary>
         /// <param name="channel">The <see cref="HuePlusChannel"/> to apply the effect to.</param>
@@ -227,7 +244,7 @@ namespace NZXTSharp.HuePlus
         public void ApplyEffect(HuePlusChannel channel, IEffect effect, bool SaveToChannel = true)
         {
             if (!effect.IsCompatibleWith(Type))
-                throw new IncompatibleEffectException(_Name, effect.EffectName);
+                throw new IncompatibleEffectException(Type.ToString(), effect.EffectName);
 
 
 

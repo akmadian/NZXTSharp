@@ -7,6 +7,9 @@ using NZXTSharp.Exceptions;
 
 namespace NZXTSharp.KrakenX
 {
+    /// <summary>
+    /// Represents a loading RGB effect.
+    /// </summary>
     public class Loading : IEffect
     {
         private int _EffectByte = 0x0a;
@@ -23,6 +26,11 @@ namespace NZXTSharp.KrakenX
         /// <inheritdoc/>
         public IChannel Channel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
+        /// <summary>
+        /// Constructs a <see cref="Loading"/> effect.
+        /// </summary>
+        /// <param name="Color">The <see cref="NZXTSharp.Color"/> of the effect to display.</param>
+        /// <param name="Speed">The speed the effect will move at.</param>
         public Loading(Color Color, int Speed = 2)
         {
             if (Speed < 0 || Speed > 4)

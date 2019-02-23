@@ -7,6 +7,9 @@ using NZXTSharp.Exceptions;
 
 namespace NZXTSharp.KrakenX
 {
+    /// <summary>
+    /// Represents an RGB channel on a <see cref="KrakenX"/> device.
+    /// </summary>
     public class KrakenXChannel : IChannel
     {
         private int _ChannelByte;
@@ -15,17 +18,37 @@ namespace NZXTSharp.KrakenX
         private IEffect _Effect = new Fixed(new Color(255, 255, 255));
         private KrakenX _Parent;
 
+        /// <summary>
+        /// The ChannelByte of the <see cref="KrakenXChannel"/>.
+        /// </summary>
         public int ChannelByte => _ChannelByte;
 
+        /// <summary>
+        /// Whether or not the channel is on.
+        /// </summary>
         public bool State => _IsActive;
 
+        /// <summary>
+        /// All LEDs owned by the <see cref="KrakenXChannel"/>.
+        /// </summary>
         public bool[] Leds { get => _Leds; }
         
+        /// <summary>
+        /// The number of LEDs owned by the <see cref="KrakenXChannel"/>.
+        /// </summary>
         public int NumLeds { get => _Leds.Length; }
 
+        /// <summary>
+        /// The effect last applied to the <see cref="KrakenXChannel"/>.
+        /// </summary>
         public IEffect Effect { get => _Effect; }
 
 
+        /// <summary>
+        /// Constructs a <see cref="KrakenXChannel"/> instance.
+        /// </summary>
+        /// <param name="ChannelByte">The channel's ChannelByte.</param>
+        /// <param name="Parent">The <see cref="KrakenX"/> device that owns the channel.</param>
         public KrakenXChannel(int ChannelByte, KrakenX Parent)
         {
             this._ChannelByte = ChannelByte;
@@ -33,6 +56,9 @@ namespace NZXTSharp.KrakenX
             BuildLEDs();
         }
 
+        /// <summary>
+        /// Builds the LEDs owned by the <see cref="KrakenXChannel"/>.
+        /// </summary>
         public void BuildLEDs()
         {
             switch(_ChannelByte)
@@ -63,19 +89,27 @@ namespace NZXTSharp.KrakenX
         {
             this._Effect = newOne;
         }
-
+        
+        /// <summary>
+        /// Turns the <see cref="KrakenXChannel"/> on and re-applies 
+        /// the last applied <see cref="KrakenXChannel.Effect"/>
+        /// </summary>
         public void On()
         {
             this._IsActive = true;
             _Parent.ApplyEffect(this, _Effect);
         }
 
+        /// <summary>
+        /// Turns the <see cref="KrakenXChannel"/> off.
+        /// </summary>
         public void Off()
         {
             this._IsActive = false;
             _Parent.ApplyEffect(this, new Fixed(this, new Color(0, 0, 0)), false);
         }
 
+        /// <inheritdoc/>
         public byte[] BuildColorBytes(byte[] _Buffer)
         {
             for (int LedN = 0; LedN < this._Leds.Length; LedN++)
@@ -90,6 +124,7 @@ namespace NZXTSharp.KrakenX
             return _Buffer;
         }
 
+        /// <inheritdoc/>
         public byte[] BuildColorBytes(Color Color)
         {
             List<byte> outBytes = new List<byte>();
@@ -128,16 +163,30 @@ namespace NZXTSharp.KrakenX
             }
         }
 
+        /// <summary>
+        /// Toggles an LED's state.
+        /// </summary>
+        /// <param name="Index">The index of the LED to toggle.</param>
         public void ToggleLed(int Index)
         {
             this._Leds[Index] = !this._Leds[Index];
         }
-
+        
+        /// <summary>
+        /// Sets the state of an LED.
+        /// </summary>
+        /// <param name="State">The state to set.</param>
+        /// <param name="Index">The index of the LED to set.</param>
         public void SetLed(bool State, int Index)
         {
             this._Leds[Index] = State;
         }
 
+        /// <summary>
+        /// Toggles all LEDs in an index range.
+        /// </summary>
+        /// <param name="Start">The start index.</param>
+        /// <param name="End">The end index.</param>
         public void ToggleLedRange(int Start, int End)
         {
             for (int Index = Start; Index <= End; Index++)
@@ -146,6 +195,12 @@ namespace NZXTSharp.KrakenX
             }
         }
 
+        /// <summary>
+        /// Sets all LEDs in an index range to a given state.
+        /// </summary>
+        /// <param name="Start">The start index.</param>
+        /// <param name="End">The end index.</param>
+        /// <param name="State">The state to set.</param>
         public void SetLedRange(int Start, int End, bool State)
         {
             for (int Index = Start; Index <= End; Index++)
@@ -154,16 +209,26 @@ namespace NZXTSharp.KrakenX
             }
         }
 
+        /// <summary>
+        /// Toggles the state of the <see cref="KrakenXChannel"/>.
+        /// </summary>
         public void ToggleState()
         {
             this._IsActive = !_IsActive;
         }
 
+        /// <summary>
+        /// Sets the state of the <see cref="KrakenXChannel"/>.
+        /// </summary>
+        /// <param name="State">The state to set.</param>
         public void SetState(bool State)
         {
             this._IsActive = State;
         }
 
+        /// <summary>
+        /// Turns all LEDs on.
+        /// </summary>
         public void AllLedOn()
         {
             for (int index = 0; index < _Leds.Length; index++)
@@ -172,6 +237,9 @@ namespace NZXTSharp.KrakenX
             }
         }
 
+        /// <summary>
+        /// Turns all LEDs off.
+        /// </summary>
         public void AllLedOff()
         {
             for (int index = 0; index < _Leds.Length; index++)

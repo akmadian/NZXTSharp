@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
+using HidLibrary;
+using NZXTSharp;
 
 namespace NZXTSharp.COM
 {
@@ -10,7 +12,6 @@ namespace NZXTSharp.COM
     /// </summary>
     class DeviceEnumerator
     {
-        /*
         public static IEnumerable<HidDevice> EnumAllDevices()
         {
             return HidDevices.Enumerate();
@@ -25,7 +26,7 @@ namespace NZXTSharp.COM
         {
             foreach (var device in EnumNZXTDevices())
             {
-                if (device.Attributes.ProductId == (int)SerialDeviceID.KrakenM)
+                if (device.Attributes.ProductId == (int)HIDDeviceID.KrakenM)
                 {
                     yield return device;
                 }
@@ -36,11 +37,11 @@ namespace NZXTSharp.COM
         {
             foreach (var device in EnumNZXTDevices())
             {
-                if (device.Attributes.ProductId == (int)SerialDeviceID.KrakenX)
+                if (device.Attributes.ProductId == (int)HIDDeviceID.KrakenX)
                 {
                     yield return device;
                 }
             }
-        }*/
+        }
     }
 }

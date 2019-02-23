@@ -20,7 +20,7 @@ namespace NZXTSharp.COM {
         private NZXTDeviceType _Type;
         private HIDDeviceID _ID;
         private int CurrProductID;
-        private HIDDeviceID _VendorID = HIDDeviceID.ManufacturerID;
+        private HIDDeviceID _VendorID = HIDDeviceID.VendorID;
         private HidReport _LastReport;
         private bool _IsAttached = false;
         private HidDevice _Device;

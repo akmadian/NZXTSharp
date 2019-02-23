@@ -12,5 +12,10 @@ namespace NZXTSharp.Exceptions {
             : base(message) {
 
         }
+
+        public IncompatibleParamException(string message, Exception innerException) 
+            : base(message, innerException)
+        {
+        }
     }
 }

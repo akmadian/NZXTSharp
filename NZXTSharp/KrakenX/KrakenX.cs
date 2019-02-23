@@ -10,15 +10,37 @@ using NZXTSharp.Exceptions;
 
 namespace NZXTSharp.KrakenX
 {
+    /// <summary>
+    /// Which thread to stop.
+    /// </summary>
     public enum OverrideThread
     {
+        /// <summary>
+        /// Stop the fan override thread.
+        /// </summary>
         Fan = 0,
+
+        /// <summary>
+        /// Stop the pump override thread.
+        /// </summary>
         Pump = 1,
     }
 
+    /// <summary>
+    /// Thread stop types.
+    /// </summary>
     public enum ThreadStopType
     {
+        /// <summary>
+        /// If you need the override thread to stop immediately.
+        /// Best/ safest method is to use <see cref="ThreadStopType.Flag"/>.
+        /// </summary>
         Abort = 0,
+
+        /// <summary>
+        /// Stops the override thread with a flag. This is the best/ safest method, 
+        /// but may take up to 20 seconds to take effect.
+        /// </summary>
         Flag = 1,
     }
 
@@ -29,6 +51,14 @@ namespace NZXTSharp.KrakenX
     public class KrakenX : INZXTDevice
     {
         #region Fields and Properties
+        internal DeviceLoadFilter[] LoadFilters = new DeviceLoadFilter[]
+        {
+            DeviceLoadFilter.All,
+            DeviceLoadFilter.Coolers,
+            DeviceLoadFilter.Kraken,
+            DeviceLoadFilter.KrakenX
+        };
+
         private KrakenXChannel _Both;
         private KrakenXChannel _Logo;
         private KrakenXChannel _Ring;
@@ -64,6 +94,7 @@ namespace NZXTSharp.KrakenX
         /// Represents the <see cref="KrakenX"/>'s ring RGB channel.
         /// </summary>
         public KrakenXChannel Ring { get => _Ring; }
+        
         #endregion
 
         /// <summary>
@@ -131,6 +162,14 @@ namespace NZXTSharp.KrakenX
             }
         }
 
+        /// <summary>
+        /// Applies an <paramref name="Effect"/> to both channels.
+        /// </summary>
+        /// <param name="Effect">An <see cref="IEffect"/>.</param>
+        public void ApplyEffect(IEffect Effect)
+        {
+            ApplyEffect(this.Both, Effect);
+        }
 
         /// <summary>
         /// Applies a given <see cref="IEffect"/> <paramref name="Effect"/> to a given 
@@ -138,6 +177,8 @@ namespace NZXTSharp.KrakenX
         /// </summary>
         /// <param name="Channel"></param>
         /// <param name="Effect"></param>
+        /// <param name="ApplyToChannel">Whether or not to apply <paramref name="Effect"/>
+        /// to the <paramref name="Channel"/> as its last applied effect.</param>
         public void ApplyEffect(KrakenXChannel Channel, IEffect Effect, bool ApplyToChannel = true)
         {
 
@@ -165,10 +206,9 @@ namespace NZXTSharp.KrakenX
             }
             
             List<byte[]> CommandQueue = Effect.BuildBytes(Type, Channel);
-            _COMController.SimulWrite(CommandQueue.ToArray());
-            /*
+            //_COMController.SimulWrite(CommandQueue.ToArray());
             foreach (byte[] Command in CommandQueue)
-                _COMController.SimulWrite(Command);*/
+                _COMController.Write(Command);
         }
 
         /// <summary>
@@ -192,9 +232,7 @@ namespace NZXTSharp.KrakenX
         /// Sets the <see cref="KrakenX"/>'s pump speed to a given percent or RPM.
         /// </summary>
         /// <param name="Speed">
-        /// The speed value to set.
-        ///     Percentage values must be 50-100 (inclusive).
-        ///     RPM values must be 2050-2750 (inclusive).
+        /// The speed value to set. Must be 50-100 (inclusive).
         /// </param>
         public void SetPumpSpeed(int Speed)
         {
@@ -206,17 +244,8 @@ namespace NZXTSharp.KrakenX
                 if (Speed > 100 || Speed < 50) {
                     throw new InvalidParamException("Pump speed percentages must be between 50-100 (inclusive).");
                 }
-            } else
-            {
-                if (Speed > 2750 || Speed < 1375) {
-                    throw new InvalidParamException("Pump speed RPM must be between 2050-2750 (inclusive).");
-                }
-                else
-                {
-                    int diff = Speed - 2050;    // Convert RPM to percentage
-                    Speed = (diff * 100) / 700;
-                }
             }
+
             byte[] command = new byte[] { 0x02, 0x4d, 0x40, 0x00, Convert.ToByte(Speed) };
             this.StopPumpOverrideLoop = false;
             PumpOverrideThread = new Thread(new ParameterizedThreadStart(PumpSpeedOverrideLoop));
@@ -302,6 +331,20 @@ namespace NZXTSharp.KrakenX
             {
                 return null;
             }
+        }
+
+        /// <inheritdoc/>
+        public void Dispose()
+        {
+            _COMController.Dispose();
+        }
+
+        /// <inheritdoc/>
+        public void Reconnect()
+        {
+            Dispose();
+            InitializeChannels();
+            Initialize();
         }
 
         internal void PumpSpeedOverrideLoop(object Buffer)

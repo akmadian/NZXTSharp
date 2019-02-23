@@ -7,17 +7,33 @@ using NZXTSharp.Exceptions;
 
 namespace NZXTSharp.KrakenX
 {
+    /// <summary>
+    /// Represents a Water Cooler RGB effect.
+    /// </summary>
     public class WaterCooler : IEffect
     {
         private readonly List<NZXTDeviceType> CompatibleWith = new List<NZXTDeviceType> { NZXTDeviceType.KrakenX };
         private int Speed;
 
+        /// <summary>
+        /// The <see cref="WaterCooler"/> effect's ChannelByte.
+        /// </summary>
         public int EffectByte => throw new NotImplementedException();
 
+        /// <summary>
+        /// The <see cref="WaterCooler"/> effect's name.
+        /// </summary>
         public string EffectName => throw new NotImplementedException();
 
+        /// <summary>
+        /// The <see cref="IChannel"/> that the <see cref="WaterCooler"/> effect is applied to.
+        /// </summary>
         public IChannel Channel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
+        /// <summary>
+        /// Constructs a <see cref="WaterCooler"/> instance.
+        /// </summary>
+        /// <param name="Speed">The speed for the effect to move at.</param>
         public WaterCooler(int Speed = 2)
         {
             if (Speed < 0 || Speed > 4)
@@ -28,11 +44,13 @@ namespace NZXTSharp.KrakenX
             this.Speed = Speed;
         }
 
+        /// <inheritdoc/>
         public bool IsCompatibleWith(NZXTDeviceType Type)
         {
             return CompatibleWith.Contains(Type) ? true : false;
         }
 
+        /// <inheritdoc/>
         public List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel)
         {
             if (Channel.ChannelByte == 0x00 || Channel.ChannelByte == 0x01)

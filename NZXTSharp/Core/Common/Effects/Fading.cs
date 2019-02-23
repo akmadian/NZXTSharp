@@ -25,6 +25,10 @@ namespace NZXTSharp
         /// The array of colors used by the effect.
         /// </summary>
         private Color[] DefaultColors = new Color[] { new Color(255, 0, 0), new Color(0, 255, 0), new Color(0, 0, 255) };
+
+        /// <summary>
+        /// The colors that the effect will apply.
+        /// </summary>
         public Color[] Colors;
 
         private CISS Param2;
