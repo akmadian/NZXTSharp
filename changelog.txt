@@ -1,3 +1,13 @@
+(2.0.0-preview2)
+DeviceLoader; The DeviceLoader provides a convenient interface for interacting with multiple NZXT devices at once.
+
+The DeviceLoader can:
+ - Apply RGB Effects
+ - Set Pump/ Fan Speeds
+to multiple NZXT devices with one line.
+
+More XML docs have been added, the RTD page will be updated with the release of v2.0.0
+
 (2.0.0-preview1)
 Partial Kraken Support
  - Get Pump, Fan Speeds, Liquid Temp, Firmware Version
