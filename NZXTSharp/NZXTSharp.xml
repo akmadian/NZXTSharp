@@ -816,6 +816,18 @@
             </summary>
             <param name="Speed">The speed to set (percentage).</param>
         </member>
+        <member name="M:NZXTSharp.DeviceLoader.LightingOn">
+            <summary>
+            Turns all RGB lighting channels of all <see cref="T:NZXTSharp.INZXTDevice"/>s 
+            owned by the <see cref="T:NZXTSharp.DeviceLoader"/> instance on.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.LightingOff">
+            <summary>
+            Turns all RGB lighting channels of all <see cref="T:NZXTSharp.INZXTDevice"/>s 
+            owned by the <see cref="T:NZXTSharp.DeviceLoader"/> instance off.
+            </summary>
+        </member>
         <member name="M:NZXTSharp.DeviceLoader.GetDevices(NZXTSharp.DeviceLoadFilter)">
             <summary>
             Gets and returns all connected devices.
@@ -1849,32 +1861,34 @@
         </member>
         <member name="T:NZXTSharp.KrakenX.OverrideThread">
             <summary>
-            // TODO
+            Which thread to stop.
             </summary>
         </member>
         <member name="F:NZXTSharp.KrakenX.OverrideThread.Fan">
             <summary>
-            // TODO
+            Stop the fan override thread.
             </summary>
         </member>
         <member name="F:NZXTSharp.KrakenX.OverrideThread.Pump">
             <summary>
-            // TODO 
+            Stop the pump override thread.
             </summary>
         </member>
         <member name="T:NZXTSharp.KrakenX.ThreadStopType">
             <summary>
-            // TODO
+            Thread stop types.
             </summary>
         </member>
         <member name="F:NZXTSharp.KrakenX.ThreadStopType.Abort">
             <summary>
-            // TODO
+            If you need the override thread to stop immediately.
+            Best/ safest method is to use <see cref="F:NZXTSharp.KrakenX.ThreadStopType.Flag"/>.
             </summary>
         </member>
         <member name="F:NZXTSharp.KrakenX.ThreadStopType.Flag">
             <summary>
-            // TODO
+            Stops the override thread with a flag. This is the best/ safest method, 
+            but may take up to 20 seconds to take effect.
             </summary>
         </member>
         <member name="T:NZXTSharp.KrakenX.KrakenX">
@@ -1952,9 +1966,7 @@
             Sets the <see cref="T:NZXTSharp.KrakenX.KrakenX"/>'s pump speed to a given percent or RPM.
             </summary>
             <param name="Speed">
-            The speed value to set.
-                Percentage values must be 50-100 (inclusive).
-                RPM values must be 2050-2750 (inclusive).
+            The speed value to set. Must be 50-100 (inclusive).
             </param>
         </member>
         <member name="M:NZXTSharp.KrakenX.KrakenX.GetFanSpeed">
