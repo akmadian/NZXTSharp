@@ -80,6 +80,9 @@ namespace NZXTSharp.KrakenX
         /// </summary>
         public NZXTDeviceType Type { get => NZXTDeviceType.KrakenX; }
 
+        /// <inheritdoc/>
+        public int ID { get => 0x170e; }
+
         /// <summary>
         /// Represents both the <see cref="Logo"/>, and <see cref="Ring"/> channels.
         /// </summary>

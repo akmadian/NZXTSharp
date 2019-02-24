@@ -724,6 +724,11 @@
             All <see cref="T:NZXTSharp.INZXTDevice"/>s owned by the <see cref="T:NZXTSharp.DeviceLoader"/> object.
             </summary>
         </member>
+        <member name="P:NZXTSharp.DeviceLoader.IsInitialized">
+            <summary>
+            Whether or not the <see cref="T:NZXTSharp.DeviceLoader"/> is fully initialized.
+            </summary>
+        </member>
         <member name="P:NZXTSharp.DeviceLoader.NumDevices">
             <summary>
             Gets the number of <see cref="T:NZXTSharp.INZXTDevice"/>s owned by the <see cref="T:NZXTSharp.DeviceLoader"/>.
@@ -801,6 +806,13 @@
             <see cref="T:NZXTSharp.DeviceLoadFilter"/> <paramref name="Filter"/>
             </summary>
             <param name="Filter">The new <see cref="T:NZXTSharp.DeviceLoadFilter"/></param>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.FilterDevices(NZXTSharp.DeviceLoadFilter)">
+            <summary>
+            Filters the existing devices in <see cref="P:NZXTSharp.DeviceLoader.Devices"/>
+            based on the given <see cref="T:NZXTSharp.DeviceLoadFilter"/>.
+            </summary>
+            <param name="Filter">What kinds of devices to keep.</param>
         </member>
         <member name="M:NZXTSharp.DeviceLoader.SetFanSpeed(System.Int32)">
             <summary>
@@ -1108,6 +1120,11 @@
         <member name="P:NZXTSharp.INZXTDevice.Type">
             <summary>
             The <see cref="T:NZXTSharp.NZXTDeviceType"/> of the <see cref="T:NZXTSharp.INZXTDevice"/>.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.INZXTDevice.ID">
+            <summary>
+            A unique device ID.
             </summary>
         </member>
         <member name="M:NZXTSharp.INZXTDevice.ApplyEffect(NZXTSharp.IEffect)">
@@ -1430,6 +1447,9 @@
             <summary>
             The <see cref="T:NZXTSharp.NZXTDeviceType"/> of the <see cref="T:NZXTSharp.HuePlus.HuePlus"/> object.
             </summary>
+        </member>
+        <member name="P:NZXTSharp.HuePlus.HuePlus.ID">
+            <inheritdoc/>
         </member>
         <member name="E:NZXTSharp.HuePlus.HuePlus.OnLogMessage">
             <summary>
@@ -1905,6 +1925,9 @@
             <summary>
             The <see cref="T:NZXTSharp.NZXTDeviceType"/> of the <see cref="T:NZXTSharp.KrakenX.KrakenX"/> device. Will always be <see cref="F:NZXTSharp.NZXTDeviceType.KrakenX"/>.
             </summary>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.KrakenX.ID">
+            <inheritdoc/>
         </member>
         <member name="P:NZXTSharp.KrakenX.KrakenX.Both">
             <summary>

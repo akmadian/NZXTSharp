@@ -15,6 +15,11 @@ namespace NZXTSharp
         NZXTDeviceType Type { get; }
 
         /// <summary>
+        /// A unique device ID.
+        /// </summary>
+        int ID { get; }
+
+        /// <summary>
         /// Applies an <see cref="IEffect"/> to the <see cref="INZXTDevice"/>.
         /// </summary>
         /// <param name="Effect">The <see cref="IEffect"/> to apply.</param>

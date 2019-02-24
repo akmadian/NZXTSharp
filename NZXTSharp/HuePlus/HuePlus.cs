@@ -103,6 +103,9 @@ namespace NZXTSharp.HuePlus
         /// The <see cref="NZXTDeviceType"/> of the <see cref="HuePlus"/> object.
         /// </summary>
         public NZXTDeviceType Type { get => NZXTDeviceType.HuePlus; }
+
+        /// <inheritdoc/>
+        public int ID { get => 0x11111111; }
         
         #endregion
 
