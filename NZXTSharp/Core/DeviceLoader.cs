@@ -65,7 +65,7 @@ namespace NZXTSharp
         public DeviceLoadFilter Filter 
         {
             get => _Filter;
-            set => _Filter = Filter;
+            set => _Filter = value;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace NZXTSharp
         public bool ThrowExceptions 
         {
             get => _ThrowExceptions;
-            set => _ThrowExceptions = ThrowExceptions;
+            set => _ThrowExceptions = value;
         }
         #endregion
 

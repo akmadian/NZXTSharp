@@ -739,6 +739,11 @@
             The <see cref="T:NZXTSharp.DeviceLoader"/> instance's <see cref="T:NZXTSharp.DeviceLoadFilter"/>.
             </summary>
         </member>
+        <member name="P:NZXTSharp.DeviceLoader.ThrowExceptions">
+            <summary>
+            Whether or not the <see cref="T:NZXTSharp.DeviceLoader"/> will throw exceptions.
+            </summary>
+        </member>
         <member name="M:NZXTSharp.DeviceLoader.#ctor(NZXTSharp.DeviceLoadFilter)">
             <summary>
             Creates a <see cref="T:NZXTSharp.DeviceLoader"/> instance with a given <see cref="T:NZXTSharp.DeviceLoadFilter"/>.
@@ -753,18 +758,35 @@
             Defaults to true.</param>
             <param name="Filter">A <see cref="T:NZXTSharp.DeviceLoadFilter"/>. Defaults to <see cref="F:NZXTSharp.DeviceLoadFilter.All"/></param>
         </member>
+        <member name="M:NZXTSharp.DeviceLoader.#ctor(NZXTSharp.INZXTDevice[])">
+            <summary>
+            Creates a <see cref="T:NZXTSharp.DeviceLoader"/> instance from a given array of <see cref="T:NZXTSharp.INZXTDevice"/>s.
+            </summary>
+            <param name="Devices">An array of <see cref="T:NZXTSharp.INZXTDevice"/>s.</param>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.#ctor(System.Collections.Generic.List{NZXTSharp.INZXTDevice})">
+            <summary>
+            Creates a <see cref="T:NZXTSharp.DeviceLoader"/> instance from a given list of <see cref="T:NZXTSharp.INZXTDevice"/>s.
+            </summary>
+            <param name="Devices">A <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:NZXTSharp.INZXTDevice"/>s.</param>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.#ctor(System.Collections.ObjectModel.ReadOnlyCollection{NZXTSharp.INZXTDevice})">
+            <summary>
+            Creates a <see cref="T:NZXTSharp.DeviceLoader"/> instance from a given list of <see cref="T:NZXTSharp.INZXTDevice"/>s.
+            </summary>
+            <param name="Devices">A <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1"/> of <see cref="T:NZXTSharp.INZXTDevice"/>s.</param>
+        </member>
         <member name="M:NZXTSharp.DeviceLoader.Initialize">
             <summary>
             Initializes and loads all NZXT devices found on the system.
             </summary>
         </member>
-        <member name="M:NZXTSharp.DeviceLoader.ApplyEffectToDevices(NZXTSharp.IEffect,System.Boolean)">
+        <member name="M:NZXTSharp.DeviceLoader.ApplyEffectToDevices(NZXTSharp.IEffect)">
             <summary>
             Applies a given <see cref="T:NZXTSharp.IEffect"/> to all devices owned by the 
             <see cref="T:NZXTSharp.DeviceLoader"/> instance which have RGB capabilites.
             </summary>
             <param name="Effect">An <see cref="T:NZXTSharp.IEffect"/> to apply.</param>
-            <param name="ThrowExceptions">Whether or not to throw exceptions, defaults to true.</param>
         </member>
         <member name="M:NZXTSharp.DeviceLoader.AddDevice(NZXTSharp.INZXTDevice)">
             <summary>
@@ -838,6 +860,11 @@
             <summary>
             Turns all RGB lighting channels of all <see cref="T:NZXTSharp.INZXTDevice"/>s 
             owned by the <see cref="T:NZXTSharp.DeviceLoader"/> instance off.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.ToggleThrowExceptions">
+            <summary>
+            Toggles whether or not the <see cref="T:NZXTSharp.DeviceLoader"/> throws exceptions.
             </summary>
         </member>
         <member name="M:NZXTSharp.DeviceLoader.GetDevices(NZXTSharp.DeviceLoadFilter)">
