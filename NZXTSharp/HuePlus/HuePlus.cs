@@ -66,6 +66,8 @@ namespace NZXTSharp.HuePlus
         private HuePlusChannel _Channel1;
         private HuePlusChannel _Channel2;
         private List<HuePlusChannel> _Channels;
+
+        private Version _FirmwareVersion;
         #endregion
 
         #region Properties
@@ -106,6 +108,11 @@ namespace NZXTSharp.HuePlus
 
         /// <inheritdoc/>
         public int ID { get => 0x11111111; }
+
+        /// <summary>
+        /// The firmware version of the <see cref="HuePlus"/> device.
+        /// </summary>
+        public Version FirmwareVersion { get => _FirmwareVersion; }
         
         #endregion
 
@@ -190,6 +197,8 @@ namespace NZXTSharp.HuePlus
                 Channel1.BuildSubDevices();
                 Channel2.BuildSubDevices();
 
+                InitializeDeviceInfo();
+
                 return true;
             }
             else { /*Logger.Error("Could not connect to serial port");*/ return false; }
@@ -207,6 +216,11 @@ namespace NZXTSharp.HuePlus
         private void InitializeChannelInfo()
         {
             UpdateChannelInfo(this._Both);
+        }
+
+        private void InitializeDeviceInfo()
+        {
+            this._FirmwareVersion = GetFirmwareVersion();
         }
 
         /// <summary>
@@ -329,6 +343,19 @@ namespace NZXTSharp.HuePlus
             {
                 UnitLedOff();
             }
+        }
+
+        /// <summary>
+        /// Gets the <see cref="HuePlus"/> device's firmware version.
+        /// Based on the method found in a decompile of CAM.
+        /// </summary>
+        /// <returns>A <see cref="System.Version"/> object.</returns>
+        private Version GetFirmwareVersion()
+        {
+            byte[] reply = _COMController.Write(new byte[] { 0x8c, 0 }, 5);
+            int Major = reply[0] - 0xc0;
+            int Minor = Convert.ToInt32(reply[2].ToString() + reply[3].ToString());
+            return new Version(Major, Minor);
         }
 
         private void SendLogEvent(string Message)
