@@ -8,6 +8,8 @@ using NZXTSharp;
 using NZXTSharp.COM;
 using NZXTSharp.Exceptions;
 
+using HidLibrary;
+
 namespace NZXTSharp.KrakenX
 {
     /// <summary>
@@ -62,6 +64,7 @@ namespace NZXTSharp.KrakenX
         private KrakenXChannel _Both;
         private KrakenXChannel _Logo;
         private KrakenXChannel _Ring;
+        private Version _FirmwareVersion;
         private Thread PumpOverrideThread;
         private bool StopPumpOverrideLoop = false;
 
@@ -97,6 +100,11 @@ namespace NZXTSharp.KrakenX
         /// Represents the <see cref="KrakenX"/>'s ring RGB channel.
         /// </summary>
         public KrakenXChannel Ring { get => _Ring; }
+
+        /// <summary>
+        /// The <see cref="KrakenX"/> device's firmware version.
+        /// </summary>
+        public Version FirmwareVersion { get => _FirmwareVersion; }
         
         #endregion
 
@@ -105,14 +113,15 @@ namespace NZXTSharp.KrakenX
         /// </summary>
         public KrakenX()
         {
-            InitializeChannels();
             Initialize();
         }
 
         #region Methods
         private void Initialize()
         {
+            InitializeChannels();
             _COMController = new USBController(Type);
+            InitializeDeviceInfo();
         }
 
         private void InitializeChannels()
@@ -125,7 +134,7 @@ namespace NZXTSharp.KrakenX
 
         private void InitializeDeviceInfo()
         {
-
+            this._FirmwareVersion = GetFirmwareVersion();
         }
 
         /// <summary>
@@ -314,26 +323,26 @@ namespace NZXTSharp.KrakenX
         /// Gets the last HID report received from the KrakenX device.
         /// </summary>
         /// <returns>An <see cref="HidLibrary.HidReport"/>.</returns>
-        public HidLibrary.HidReport GetLastReport()
+        public HidReport GetLastReport()
         {
             return _COMController.LastReport;
         }
-
+        
         /// <summary>
-        /// Gets the KrakenX device's firmware version
+        /// Gets the <see cref="KrakenX"/>'s firmware version.
         /// </summary>
-        /// <returns>An int[]; int[0] is Major version, int[1] is Minor version.</returns>
-        public int[] GetFirmwareVersion()
+        /// <returns>A <see cref="System.Version"/> object.</returns>
+        public Version GetFirmwareVersion()
         {
-            if (_COMController.LastReport != null)
+            while (_COMController.LastReport == null)
             {
-                HidLibrary.HidReport report = _COMController.LastReport;
-                int minor = report.Data[12];
-                return new int[] { report.Data[10], minor.ConcatenateInt(report.Data[13]) };
-            } else
-            {
-                return null;
+                Thread.Sleep(25);
             }
+
+            HidReport report = _COMController.LastReport;
+            int Major = report.Data[10];
+            int Minor = report.Data[12].ConcatenateInt(report.Data[13]);
+            return new Version(Major, Minor);
         }
 
         /// <inheritdoc/>

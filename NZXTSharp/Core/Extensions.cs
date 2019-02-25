@@ -114,4 +114,13 @@ namespace NZXTSharp {
             return sb.ToString();
         }
     }
+
+    internal static class ByteExtensions
+    {
+        public static int ConcatenateInt(this byte thisone, int other)
+        {
+            int thisByte = (int)thisone;
+            return Convert.ToInt32(thisByte.ToString() + other.ToString());
+        }
+    }
 }

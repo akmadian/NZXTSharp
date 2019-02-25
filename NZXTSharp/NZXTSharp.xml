@@ -867,6 +867,19 @@
             Toggles whether or not the <see cref="T:NZXTSharp.DeviceLoader"/> throws exceptions.
             </summary>
         </member>
+        <member name="M:NZXTSharp.DeviceLoader.op_Implicit(NZXTSharp.DeviceLoader)~NZXTSharp.INZXTDevice[]">
+            <summary>
+            Implicitly converts the <see cref="T:NZXTSharp.DeviceLoader"/> to an array of <see cref="T:NZXTSharp.INZXTDevice"/>s.
+            </summary>
+            <param name="Loader"></param>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.op_Implicit(NZXTSharp.DeviceLoader)~System.Collections.Generic.List{NZXTSharp.INZXTDevice}">
+            <summary>
+            Implicitly converts the <see cref="T:NZXTSharp.DeviceLoader"/> to a <see cref="T:System.Collections.Generic.List`1"/>
+            of <see cref="T:NZXTSharp.INZXTDevice"/>s.
+            </summary>
+            <param name="Loader"></param>
+        </member>
         <member name="M:NZXTSharp.DeviceLoader.GetDevices(NZXTSharp.DeviceLoadFilter)">
             <summary>
             Gets and returns all connected devices.
@@ -1478,6 +1491,11 @@
         <member name="P:NZXTSharp.HuePlus.HuePlus.ID">
             <inheritdoc/>
         </member>
+        <member name="P:NZXTSharp.HuePlus.HuePlus.FirmwareVersion">
+            <summary>
+            The firmware version of the <see cref="T:NZXTSharp.HuePlus.HuePlus"/> device.
+            </summary>
+        </member>
         <member name="E:NZXTSharp.HuePlus.HuePlus.OnLogMessage">
             <summary>
             Triggers when a generic log message is sent.
@@ -1546,6 +1564,13 @@
             Sets the device's unit led state. true: on, false: off.
             </summary>
             <param name="State">Which state to set the LED to; true: on, false: off.</param>
+        </member>
+        <member name="M:NZXTSharp.HuePlus.HuePlus.GetFirmwareVersion">
+            <summary>
+            Gets the <see cref="T:NZXTSharp.HuePlus.HuePlus"/> device's firmware version.
+            Based on the method found in a decompile of CAM.
+            </summary>
+            <returns>A <see cref="T:System.Version"/> object.</returns>
         </member>
         <member name="M:NZXTSharp.HuePlus.HuePlus.UpdateChannelInfo(NZXTSharp.HuePlus.HuePlusChannel)">
             <summary>
@@ -1971,6 +1996,11 @@
             Represents the <see cref="T:NZXTSharp.KrakenX.KrakenX"/>'s ring RGB channel.
             </summary>
         </member>
+        <member name="P:NZXTSharp.KrakenX.KrakenX.FirmwareVersion">
+            <summary>
+            The <see cref="T:NZXTSharp.KrakenX.KrakenX"/> device's firmware version.
+            </summary>
+        </member>
         <member name="M:NZXTSharp.KrakenX.KrakenX.#ctor">
             <summary>
             Constructs an instance of a <see cref="T:NZXTSharp.KrakenX.KrakenX"/> device.
@@ -2045,9 +2075,9 @@
         </member>
         <member name="M:NZXTSharp.KrakenX.KrakenX.GetFirmwareVersion">
             <summary>
-            Gets the KrakenX device's firmware version
+            Gets the <see cref="T:NZXTSharp.KrakenX.KrakenX"/>'s firmware version.
             </summary>
-            <returns>An int[]; int[0] is Major version, int[1] is Minor version.</returns>
+            <returns>A <see cref="T:System.Version"/> object.</returns>
         </member>
         <member name="M:NZXTSharp.KrakenX.KrakenX.Dispose">
             <inheritdoc/>

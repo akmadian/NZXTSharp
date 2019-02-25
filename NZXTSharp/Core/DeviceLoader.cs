@@ -360,11 +360,24 @@ namespace NZXTSharp
         {
             this._ThrowExceptions = this._ThrowExceptions ? false : true;
         }
-
         #endregion
         #endregion
 
         #region Static
+
+        /// <summary>
+        /// Implicitly converts the <see cref="DeviceLoader"/> to an array of <see cref="INZXTDevice"/>s.
+        /// </summary>
+        /// <param name="Loader"></param>
+        public static implicit operator INZXTDevice[] (DeviceLoader Loader) => Loader.Devices.ToArray();
+
+        /// <summary>
+        /// Implicitly converts the <see cref="DeviceLoader"/> to a <see cref="List{T}"/>
+        /// of <see cref="INZXTDevice"/>s.
+        /// </summary>
+        /// <param name="Loader"></param>
+        public static implicit operator List<INZXTDevice>(DeviceLoader Loader) => Loader.Devices.ToList();
+
         /// <summary>
         /// Gets and returns all connected devices.
         /// </summary>
@@ -528,16 +541,8 @@ namespace NZXTSharp
                         0x1715, 0x170e, 0x1712, 0x2002, 0x2001,
                         0x2005, 0x1714, 0x1713, 0x11111111
                     };
-                case DeviceLoadFilter.Grid:
-                    return new int[]
-                    {
-                        0x1711
-                    };
-                case DeviceLoadFilter.Gridv3:
-                    return new int[]
-                    {
-                        0x1711
-                    };
+                case DeviceLoadFilter.Grid: return new int[] { 0x1711 };
+                case DeviceLoadFilter.Gridv3: return new int[] { 0x1711 };
                 case DeviceLoadFilter.Hue:
                     return new int[]
                     {
