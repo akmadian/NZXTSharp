@@ -123,11 +123,6 @@ namespace NZXTSharp.HuePlus
         public event LogHandler OnLogMessage;
 
         /// <summary>
-        /// Triggers when data is received from the COM port.
-        /// </summary>
-        public event DataRecieved OnDataReceived;
-
-        /// <summary>
         /// Constructs a <see cref="HuePlus"/> instance.
         /// </summary>
         public HuePlus()

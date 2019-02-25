@@ -20,7 +20,8 @@ namespace NZXTSharp.COM {
         private NZXTDeviceType _Type;
         private HIDDeviceID _ID;
         private int CurrProductID;
-        private HIDDeviceID _VendorID = HIDDeviceID.VendorID;
+        private INZXTDevice _Parent;
+        private readonly HIDDeviceID _VendorID = HIDDeviceID.VendorID;
         private HidReport _LastReport;
         private bool _IsAttached = false;
         private HidDevice _Device;
@@ -58,9 +59,7 @@ namespace NZXTSharp.COM {
         public USBController(NZXTDeviceType Type) {
             this._Type = Type;
             ResolveDeviceID();
-            Console.WriteLine("DeviceID Resolved, Initializing...");
             Initialize();
-            Console.WriteLine("Initialization Complete");
         }
 
         /// <summary>
