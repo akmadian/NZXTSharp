@@ -602,7 +602,7 @@
         <member name="F:NZXTSharp.Wings.CompatibleWith">
             <inheritdoc/>
         </member>
-        <member name="F:NZXTSharp.Wings.Colors">
+        <member name="F:NZXTSharp.Wings.Color">
             <summary>
             The array of colors used by the effect.
             </summary>
@@ -616,11 +616,11 @@
         <member name="P:NZXTSharp.Wings.EffectName">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Wings.#ctor(NZXTSharp.Color[],System.Int32)">
+        <member name="M:NZXTSharp.Wings.#ctor(NZXTSharp.Color,System.Int32)">
             <summary>
-            Constructs a <see cref="T:NZXTSharp.Wings"/> effect with the given <see cref="T:NZXTSharp.Color"/> array and speed.
+            Constructs a <see cref="T:NZXTSharp.Wings"/> effect with the given <see cref="F:NZXTSharp.Wings.Color"/> array and speed.
             </summary>
-            <param name="Colors"></param>
+            <param name="Color"></param>
             <param name="Speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
         </member>
         <member name="M:NZXTSharp.Wings.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
@@ -1499,11 +1499,6 @@
         <member name="E:NZXTSharp.HuePlus.HuePlus.OnLogMessage">
             <summary>
             Triggers when a generic log message is sent.
-            </summary>
-        </member>
-        <member name="E:NZXTSharp.HuePlus.HuePlus.OnDataReceived">
-            <summary>
-            Triggers when data is received from the COM port.
             </summary>
         </member>
         <member name="M:NZXTSharp.HuePlus.HuePlus.#ctor">

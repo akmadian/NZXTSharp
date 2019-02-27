@@ -98,14 +98,20 @@ namespace NZXTSharp {
         }
 
         // TOFIX
-        public static string ColorArrToString(this byte[] thisone)
+        public static string ColorArrToString(this byte[] thisone, bool asHex = true)
         {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < thisone.Length; i++)
             {
                 if (!(i % 12 == 0) || i == 0)
                 {
-                    sb.Append(thisone[i] + " ");
+                    if (asHex) 
+                    {
+                        sb.Append(thisone[i].ToString("X2") + " ");
+                    } else 
+                    {
+                        sb.Append(thisone[i].ToString("X2") + " ");
+                    }
                 } else
                 {
                     sb.Append("\n");

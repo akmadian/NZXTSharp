@@ -63,7 +63,7 @@ namespace NZXTSharp
                     return new List<byte[]>() { final };
                 case NZXTDeviceType.KrakenX:
                     DCB param = new DCB(Channel.ChannelByte, Param1.IsForward);
-                    byte[] KrakenSettingsBytes = new byte[] { 0x42, 0x4c, (byte)param.GetValue(), 0x02, (byte)speed };
+                    byte[] KrakenSettingsBytes = new byte[] { 0x2, 0x4c, (byte)param.GetValue(), 0x02, (byte)speed };
                     byte[] KrakenFinal = KrakenSettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(new Color(0, 0, 255)));
                     return new List<byte[]>() { KrakenFinal };
                 default:

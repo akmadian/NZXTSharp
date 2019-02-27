@@ -24,7 +24,7 @@ namespace NZXTSharp
         /// <summary>
         /// The array of colors used by the effect.
         /// </summary>
-        public Color[] Colors;
+        public Color Color;
         private IChannel _Channel;
         private CISS _Param2;
         private int speed = 2;
@@ -41,42 +41,46 @@ namespace NZXTSharp
         /// <summary>
         /// Constructs a <see cref="Wings"/> effect with the given <see cref="Color"/> array and speed.
         /// </summary>
-        /// <param name="Colors"></param>
+        /// <param name="Color"></param>
         /// <param name="Speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
-        public Wings(Color[] Colors, int Speed = 2) {
-            this.Colors = Colors;
+        public Wings(Color Color, int Speed = 2) {
+            this.Color = Color;
             this.speed = Speed;
             ValidateParams();
         }
 
-        private void ValidateParams() {
-            if (this.Colors.Length > 15) {
-                throw new TooManyColorsProvidedException();
-            }
-
-            if (speed > 4 || speed < 0) {
+        private void ValidateParams() 
+        {
+            if (speed > 4 || speed < 0) 
+            {
                 throw new InvalidEffectSpeedException();
             }
         }
 
         /// <inheritdoc/>
-        public bool IsCompatibleWith(NZXTDeviceType Type) {
+        public bool IsCompatibleWith(NZXTDeviceType Type) 
+        {
             return CompatibleWith.Contains(Type) ? true : false;
         }
 
         /// <inheritdoc/>
-        public List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel) {
+        public List<byte[]> BuildBytes(NZXTDeviceType Type, IChannel Channel) 
+        {
             switch (Type) {
                 case NZXTDeviceType.HuePlus:
                     List<byte[]> outList = new List<byte[]>();
-                    for (int colorIndex = 0; colorIndex < Colors.Length; colorIndex++) {
-                        byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x0c, 0x03, new CISS(colorIndex, this.speed) };
-                        byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Colors[colorIndex]));
-                        outList.Add(final);
-                    }
+                    byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x0c, 0x03, new CISS(0, this.speed) };
+                    byte[] final = SettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Color));
+                    outList.Add(final);
+
                     return outList;
                 case NZXTDeviceType.KrakenX:
-                    // TODO
+                    List<byte[]> KrakenXOutBytes = new List<byte[]>();
+                    byte[] KrakenXSettingsBytes = new byte[] { 0x02, 0x4c, (byte)Channel.ChannelByte, 0x0c, (byte)speed };
+                    byte[] KrakenXFinal = KrakenXSettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Color));
+                    KrakenXOutBytes.Add(KrakenXFinal);
+
+                    return KrakenXOutBytes;
                 default:
                     return null;
             }

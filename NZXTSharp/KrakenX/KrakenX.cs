@@ -129,7 +129,6 @@ namespace NZXTSharp.KrakenX
             _Both = new KrakenXChannel(0x00, this);
             _Logo = new KrakenXChannel(0x01, this);
             _Ring = new KrakenXChannel(0x02, this);
-            Console.WriteLine("Channels Initialized");
         }
 
         private void InitializeDeviceInfo()
@@ -180,6 +179,7 @@ namespace NZXTSharp.KrakenX
         /// <param name="Effect">An <see cref="IEffect"/>.</param>
         public void ApplyEffect(IEffect Effect)
         {
+            System.Console.WriteLine("Type - " + Effect.GetType());
             ApplyEffect(this.Both, Effect);
         }
 
@@ -195,6 +195,7 @@ namespace NZXTSharp.KrakenX
         {
 
             Console.WriteLine("Applying Effect");
+            System.Console.WriteLine("Type - " + Effect.GetType());
             Console.WriteLine(Channel.ChannelByte);
             if (!Effect.IsCompatibleWith(Type))
                 throw new IncompatibleEffectException("KrakenX", Effect.EffectName);
@@ -218,9 +219,17 @@ namespace NZXTSharp.KrakenX
             }
             
             List<byte[]> CommandQueue = Effect.BuildBytes(Type, Channel);
-            //_COMController.SimulWrite(CommandQueue.ToArray());
-            foreach (byte[] Command in CommandQueue)
+            if (CommandQueue == null)
+                throw new NullReferenceException("CommandQueue for ApplyEffect returned null.");
+
+            Console.WriteLine("CQ Len - " + CommandQueue.Count);
+            foreach (byte[] Command in CommandQueue) 
+            {
+                System.Console.WriteLine("    Command Len - " + Command.Length.ToString("X2"));
+                System.Console.WriteLine(Command.ColorArrToString());
+                System.Console.WriteLine("\n");
                 _COMController.Write(Command);
+            }
         }
 
         /// <summary>

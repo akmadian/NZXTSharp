@@ -71,7 +71,7 @@ namespace NZXTSharp.KrakenX
         {
             string Dir = _IsForward ? "0" : "1";
             string CB = Channel != null ? Channel.ChannelByte.ToString() : ChannelByte.ToString();
-            return Convert.ToInt32(Dir + CB);
+            return int.Parse(Dir + CB, System.Globalization.NumberStyles.HexNumber);
         }
 
         /// <summary>

@@ -362,7 +362,7 @@ namespace NZXTSharp.HuePlus
         private void SendDataRecvd(string Message)
         {
             var baseString = "NZXTSharp HuePlus " + (this.CustomName ?? "") + " - ";
-            OnDataReceived?.Invoke(baseString + Message);
+            //OnDataReceived?.Invoke(baseString + Message);
         }
 
         /// <summary>

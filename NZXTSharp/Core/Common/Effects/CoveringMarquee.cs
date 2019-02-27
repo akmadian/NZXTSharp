@@ -4,6 +4,7 @@ using System.Text;
 
 using NZXTSharp;
 using NZXTSharp.HuePlus;
+using NZXTSharp.KrakenX;
 using NZXTSharp.Exceptions;
 
 namespace NZXTSharp
@@ -96,7 +97,15 @@ namespace NZXTSharp
 
                     return outList;
                 case NZXTDeviceType.KrakenX:
-                    // TODO
+                    List<byte[]> KrakenOutList = new List<byte[]>();
+                    DCB param = new DCB(Channel.ChannelByte, Param1.IsForward);
+                    for (int colorIndex = 0; colorIndex < _Colors.Length; colorIndex++) 
+                    {
+                        byte[] KrakenSettingsBytes = new byte[] {0x2, 0x4c, (byte)param.GetValue(), 0x04, new CISS(colorIndex, _Speed)};
+                        byte[] KrakenFinal = KrakenSettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(_Colors[colorIndex]));
+                        KrakenOutList.Add(KrakenFinal);
+                    }
+                    return KrakenOutList;
                 default:
                     return null;
             }
