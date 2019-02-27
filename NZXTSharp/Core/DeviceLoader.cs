@@ -113,7 +113,6 @@ namespace NZXTSharp
         public DeviceLoader(INZXTDevice[] Devices)
         {
             this._Devices = new List<INZXTDevice>(Devices);
-            this._Initialized = true;
         }
 
         /// <summary>
@@ -123,7 +122,6 @@ namespace NZXTSharp
         public DeviceLoader(List<INZXTDevice> Devices)
         {
             this._Devices = Devices;
-            this._Initialized = true;
         }
 
         /// <summary>
@@ -133,7 +131,6 @@ namespace NZXTSharp
         public DeviceLoader(ReadOnlyCollection<INZXTDevice> Devices)
         {
             this._Devices = new List<INZXTDevice>(Devices);
-            this._Initialized = true;
         }
 
         #endregion
