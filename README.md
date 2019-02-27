@@ -2,7 +2,7 @@
 
 This branch contains the most current docs on NZXTSharp, which can be found at [NZXTSharp's readthedocs.io page][0]. 
 
-There are no plans to ever merge the docs branch into any other NZXTSharp branches.
+There are also some powershell scripts I use when working with VS Code in the Scripts dir.
 
 ### Disclaimer
 NZXTSharp is provided under the GNU GPLv3 license, but I want to re-iterate these stipulations:
