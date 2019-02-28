@@ -2,12 +2,10 @@
 
 NZXTSharp is the one-stop C# SDK for NZXT hardware.
 
-**I am looking for people to help NZXTSharp grow by integrating NZXTSharp with [ProjectAurora][5] and/ or [RGB.NET][6]. If you are
-interested, please contact me on [Discord][7], or by email.**
-
-## Documentation
 Documentation can be found at [NZXTSharp's readthedocs.io page][3]. Docs are built from [the docs branch][4].
 There are also XML docs in the source.
+
+**I am looking for people to help NZXTSharp grow by integrating NZXTSharp with [ProjectAurora][5] and/ or [RGB.NET][6]. If you are interested, please contact me on [Discord][7], or by email.**
 
 ## Disclaimer
 NZXTSharp is provided under the GNU GPLv3 license, but I want to re-iterate these stipulations:
