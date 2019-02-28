@@ -19,7 +19,8 @@ namespace NZXTSharp.KrakenX
         {
             if (ChannelByte != 0x02)
             {
-                throw new InvalidParamException("ChannelBytes for DCBWM param must be 0x02.");
+                throw new InvalidParamException("ChannelBytes for DCBWM param must be 0x02; " +
+                    "Alternating effect can only be applied to ring.");
             }
             this.ChannelByte = ChannelByte;
             this.IsForward = IsForward;
@@ -45,7 +46,8 @@ namespace NZXTSharp.KrakenX
         {
             this.Channel = Channel;
             if (this.Channel.ChannelByte != 2)
-                throw new InvalidParamException("ChannelBytes for DCBWM param must be 0x02.");
+                throw new InvalidParamException("ChannelBytes for DCBWM param must be 0x02." +
+                    "Alternating effect can only be applied to ring.");
 
             this.IsForward = IsForward;
             this.WithMovement = WithMovement;
@@ -53,9 +55,9 @@ namespace NZXTSharp.KrakenX
 
         public int GetValue()
         {
-            string Dir = IsForward ? "0" : "1";
-            string WM = WithMovement ? "A" : "2";
-            return Convert.ToInt32(Dir + WM);
+            string Dir = IsForward ? "1" : "0";
+            string WM = WithMovement ? "2" : "A";
+            return int.Parse(Dir + WM, System.Globalization.NumberStyles.HexNumber);
         }
 
         /// <summary>
