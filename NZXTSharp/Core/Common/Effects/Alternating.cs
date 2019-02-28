@@ -106,7 +106,7 @@ namespace NZXTSharp
                     List<byte[]> KrakenXOutList = new List<byte[]>();
                     for (int colorIndex = 0; colorIndex < Colors.Length; colorIndex++)
                     {
-                        byte[] KrakenXSettingsBytes = new byte[] { 0x42, 0x4c, direction, 0x05, new CISS(colorIndex) };
+                        byte[] KrakenXSettingsBytes = new byte[] { 0x2, 0x4c, direction, 0x05, new CISS(colorIndex, this.speed) };
                         byte[] final = KrakenXSettingsBytes.ConcatenateByteArr(Channel.BuildColorBytes(Colors[colorIndex]));
                         KrakenXOutList.Add(final);
                     }

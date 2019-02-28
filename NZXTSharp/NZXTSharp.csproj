@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.0-preview2</Version>
+    <Version>2.0.0-preview3</Version>
     <Description>The one-stop C# SDK for NZXT devices.</Description>
     <Authors>Ari Madian</Authors>
     <Company>Ari Madian</Company>
@@ -17,15 +17,8 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <AssemblyVersion>2.0.0</AssemblyVersion>
     <FileVersion>2.0.0</FileVersion>
-    <PackageReleaseNotes>(2.0.0-preview2)
-DeviceLoader; The DeviceLoader provides a convenient interface for interacting with multiple NZXT devices at once.
-
-The DeviceLoader can:
- - Apply RGB Effects
- - Set Pump/ Fan Speeds
-to multiple NZXT devices with one line.
-
-More XML docs have been added, the RTD page will be updated with the release of v2.0.0</PackageReleaseNotes>
+    <PackageReleaseNotes>(2.0.0-preview3)
+All KrakenX RGB effects are now implemented, but the breathing effect still has some intermittent issues.</PackageReleaseNotes>
     <Copyright>Copyright provided under the GNU GPLv3 open source license.</Copyright>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>

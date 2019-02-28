@@ -152,9 +152,9 @@ namespace NZXTSharp.KrakenX
         /// <param name="StopType">How to stop the given <paramref name="Thread"/>.</param>
         public void StopOverrideThread(OverrideThread Thread, ThreadStopType StopType = ThreadStopType.Flag)
         {
-            switch (Thread)
+            switch (Thread) // Which thread to stop
             {
-                case OverrideThread.Fan:
+                case OverrideThread.Fan: 
                     if (StopType == ThreadStopType.Abort) {
                         FanOverrideThread.Abort();
                     }
@@ -179,7 +179,6 @@ namespace NZXTSharp.KrakenX
         /// <param name="Effect">An <see cref="IEffect"/>.</param>
         public void ApplyEffect(IEffect Effect)
         {
-            System.Console.WriteLine("Type - " + Effect.GetType());
             ApplyEffect(this.Both, Effect);
         }
 
@@ -193,42 +192,36 @@ namespace NZXTSharp.KrakenX
         /// to the <paramref name="Channel"/> as its last applied effect.</param>
         public void ApplyEffect(KrakenXChannel Channel, IEffect Effect, bool ApplyToChannel = true)
         {
-
-            Console.WriteLine("Applying Effect");
-            System.Console.WriteLine("Type - " + Effect.GetType());
-            Console.WriteLine(Channel.ChannelByte);
-            if (!Effect.IsCompatibleWith(Type))
+            if (!Effect.IsCompatibleWith(Type)) // If the effect is not compatible with a KrakenX
                 throw new IncompatibleEffectException("KrakenX", Effect.EffectName);
 
             if (ApplyToChannel)
             {
                 if (Channel.ChannelByte == 0x00)
                 {
-                    this._Both.UpdateEffect(Effect);
-                    this._Logo.UpdateEffect(Effect);
-                    this._Ring.UpdateEffect(Effect);
+                    _Both.UpdateEffect(Effect);
+                    _Logo.UpdateEffect(Effect);
+                    _Ring.UpdateEffect(Effect);
                 }
-                else if (Channel.ChannelByte == 0x01)
-                {
-                    this.Logo.UpdateEffect(Effect);
-                }
-                else if (Channel.ChannelByte == 0x02)
-                {
-                    this.Ring.UpdateEffect(Effect);
-                }
+                else if (Channel.ChannelByte == 0x01) Logo.UpdateEffect(Effect); 
+                else if (Channel.ChannelByte == 0x02) Ring.UpdateEffect(Effect);
             }
             
             List<byte[]> CommandQueue = Effect.BuildBytes(Type, Channel);
             if (CommandQueue == null)
                 throw new NullReferenceException("CommandQueue for ApplyEffect returned null.");
-
-            Console.WriteLine("CQ Len - " + CommandQueue.Count);
+            
             foreach (byte[] Command in CommandQueue) 
             {
-                System.Console.WriteLine("    Command Len - " + Command.Length.ToString("X2"));
-                System.Console.WriteLine(Command.ColorArrToString());
-                System.Console.WriteLine("\n");
-                _COMController.Write(Command);
+                if (Command.Length <= 0x41)
+                {
+                    _COMController.Write(Command);
+                } else
+                {
+                    byte[] truncCommand = new byte[0x41];
+                    Array.Copy(Command, truncCommand, truncCommand.Length);
+                    _COMController.Write(truncCommand);
+                }
             }
         }
 
@@ -240,7 +233,7 @@ namespace NZXTSharp.KrakenX
         {
             if (_COMController.LastReport != null)
             {
-                HidLibrary.HidReport report = _COMController.LastReport;
+                HidReport report = _COMController.LastReport;
                 return report.Data[4] << 8 | report.Data[5];
             }
             else
@@ -282,7 +275,7 @@ namespace NZXTSharp.KrakenX
         {
             if (_COMController.LastReport != null)
             {
-                HidLibrary.HidReport report = _COMController.LastReport;
+                HidReport report = _COMController.LastReport;
                 return report.Data[4] * 0x100 + report.Data[5];
             }
             else
@@ -319,7 +312,7 @@ namespace NZXTSharp.KrakenX
         {
             if (_COMController.LastReport != null)
             {
-                HidLibrary.HidReport report = _COMController.LastReport;
+                HidReport report = _COMController.LastReport;
                 double temp = (report.Data[0] + (report.Data[1] * 0.1));
                 return temp.Round();
             } else
@@ -331,7 +324,7 @@ namespace NZXTSharp.KrakenX
         /// <summary>
         /// Gets the last HID report received from the KrakenX device.
         /// </summary>
-        /// <returns>An <see cref="HidLibrary.HidReport"/>.</returns>
+        /// <returns>An <see cref="HidReport"/>.</returns>
         public HidReport GetLastReport()
         {
             return _COMController.LastReport;
