@@ -1,7 +1,4 @@
-# NZXTSharp
-
-[![Documentation Status](https://readthedocs.org/projects/nzxtsharp/badge/?version=latest)](https://nzxtsharp.readthedocs.io/en/latest/?badge=latest) 
-[![Discord](https://img.shields.io/badge/%20-Discord%20Server-blue.svg)](https://discord.gg/yK8m2CU)
+[![Documentation Status](https://readthedocs.org/projects/nzxtsharp/badge/?version=latest)](https://nzxtsharp.readthedocs.io/en/latest/?badge=latest) [![Discord](https://img.shields.io/badge/%20-Discord%20Server-blue.svg)](https://discord.gg/yK8m2CU)
 
 NZXTSharp is the one-stop C# SDK for NZXT hardware.
 
