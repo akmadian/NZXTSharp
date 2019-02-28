@@ -8,6 +8,8 @@ using NZXTSharp;
 using NZXTSharp.COM;
 using NZXTSharp.Exceptions;
 
+using HidLibrary;
+
 namespace NZXTSharp.KrakenX
 {
     /// <summary>
@@ -62,6 +64,7 @@ namespace NZXTSharp.KrakenX
         private KrakenXChannel _Both;
         private KrakenXChannel _Logo;
         private KrakenXChannel _Ring;
+        private Version _FirmwareVersion;
         private Thread PumpOverrideThread;
         private bool StopPumpOverrideLoop = false;
 
@@ -80,6 +83,9 @@ namespace NZXTSharp.KrakenX
         /// </summary>
         public NZXTDeviceType Type { get => NZXTDeviceType.KrakenX; }
 
+        /// <inheritdoc/>
+        public int ID { get => 0x170e; }
+
         /// <summary>
         /// Represents both the <see cref="Logo"/>, and <see cref="Ring"/> channels.
         /// </summary>
@@ -94,6 +100,11 @@ namespace NZXTSharp.KrakenX
         /// Represents the <see cref="KrakenX"/>'s ring RGB channel.
         /// </summary>
         public KrakenXChannel Ring { get => _Ring; }
+
+        /// <summary>
+        /// The <see cref="KrakenX"/> device's firmware version.
+        /// </summary>
+        public Version FirmwareVersion { get => _FirmwareVersion; }
         
         #endregion
 
@@ -102,14 +113,15 @@ namespace NZXTSharp.KrakenX
         /// </summary>
         public KrakenX()
         {
-            InitializeChannels();
             Initialize();
         }
 
         #region Methods
         private void Initialize()
         {
+            InitializeChannels();
             _COMController = new USBController(Type);
+            InitializeDeviceInfo();
         }
 
         private void InitializeChannels()
@@ -117,12 +129,11 @@ namespace NZXTSharp.KrakenX
             _Both = new KrakenXChannel(0x00, this);
             _Logo = new KrakenXChannel(0x01, this);
             _Ring = new KrakenXChannel(0x02, this);
-            Console.WriteLine("Channels Initialized");
         }
 
         private void InitializeDeviceInfo()
         {
-
+            this._FirmwareVersion = GetFirmwareVersion();
         }
 
         /// <summary>
@@ -141,9 +152,9 @@ namespace NZXTSharp.KrakenX
         /// <param name="StopType">How to stop the given <paramref name="Thread"/>.</param>
         public void StopOverrideThread(OverrideThread Thread, ThreadStopType StopType = ThreadStopType.Flag)
         {
-            switch (Thread)
+            switch (Thread) // Which thread to stop
             {
-                case OverrideThread.Fan:
+                case OverrideThread.Fan: 
                     if (StopType == ThreadStopType.Abort) {
                         FanOverrideThread.Abort();
                     }
@@ -181,34 +192,37 @@ namespace NZXTSharp.KrakenX
         /// to the <paramref name="Channel"/> as its last applied effect.</param>
         public void ApplyEffect(KrakenXChannel Channel, IEffect Effect, bool ApplyToChannel = true)
         {
-
-            Console.WriteLine("Applying Effect");
-            Console.WriteLine(Channel.ChannelByte);
-            if (!Effect.IsCompatibleWith(Type))
+            if (!Effect.IsCompatibleWith(Type)) // If the effect is not compatible with a KrakenX
                 throw new IncompatibleEffectException("KrakenX", Effect.EffectName);
 
             if (ApplyToChannel)
             {
                 if (Channel.ChannelByte == 0x00)
                 {
-                    this._Both.UpdateEffect(Effect);
-                    this._Logo.UpdateEffect(Effect);
-                    this._Ring.UpdateEffect(Effect);
+                    _Both.UpdateEffect(Effect);
+                    _Logo.UpdateEffect(Effect);
+                    _Ring.UpdateEffect(Effect);
                 }
-                else if (Channel.ChannelByte == 0x01)
-                {
-                    this.Logo.UpdateEffect(Effect);
-                }
-                else if (Channel.ChannelByte == 0x02)
-                {
-                    this.Ring.UpdateEffect(Effect);
-                }
+                else if (Channel.ChannelByte == 0x01) Logo.UpdateEffect(Effect); 
+                else if (Channel.ChannelByte == 0x02) Ring.UpdateEffect(Effect);
             }
             
             List<byte[]> CommandQueue = Effect.BuildBytes(Type, Channel);
-            //_COMController.SimulWrite(CommandQueue.ToArray());
-            foreach (byte[] Command in CommandQueue)
-                _COMController.Write(Command);
+            if (CommandQueue == null)
+                throw new NullReferenceException("CommandQueue for ApplyEffect returned null.");
+            
+            foreach (byte[] Command in CommandQueue) 
+            {
+                if (Command.Length <= 0x41)
+                {
+                    _COMController.Write(Command);
+                } else
+                {
+                    byte[] truncCommand = new byte[0x41];
+                    Array.Copy(Command, truncCommand, truncCommand.Length);
+                    _COMController.Write(truncCommand);
+                }
+            }
         }
 
         /// <summary>
@@ -219,7 +233,7 @@ namespace NZXTSharp.KrakenX
         {
             if (_COMController.LastReport != null)
             {
-                HidLibrary.HidReport report = _COMController.LastReport;
+                HidReport report = _COMController.LastReport;
                 return report.Data[4] << 8 | report.Data[5];
             }
             else
@@ -261,7 +275,7 @@ namespace NZXTSharp.KrakenX
         {
             if (_COMController.LastReport != null)
             {
-                HidLibrary.HidReport report = _COMController.LastReport;
+                HidReport report = _COMController.LastReport;
                 return report.Data[4] * 0x100 + report.Data[5];
             }
             else
@@ -298,7 +312,7 @@ namespace NZXTSharp.KrakenX
         {
             if (_COMController.LastReport != null)
             {
-                HidLibrary.HidReport report = _COMController.LastReport;
+                HidReport report = _COMController.LastReport;
                 double temp = (report.Data[0] + (report.Data[1] * 0.1));
                 return temp.Round();
             } else
@@ -310,27 +324,27 @@ namespace NZXTSharp.KrakenX
         /// <summary>
         /// Gets the last HID report received from the KrakenX device.
         /// </summary>
-        /// <returns>An <see cref="HidLibrary.HidReport"/>.</returns>
-        public HidLibrary.HidReport GetLastReport()
+        /// <returns>An <see cref="HidReport"/>.</returns>
+        public HidReport GetLastReport()
         {
             return _COMController.LastReport;
         }
-
+        
         /// <summary>
-        /// Gets the KrakenX device's firmware version
+        /// Gets the <see cref="KrakenX"/>'s firmware version.
         /// </summary>
-        /// <returns>An int[]; int[0] is Major version, int[1] is Minor version.</returns>
-        public int[] GetFirmwareVersion()
+        /// <returns>A <see cref="System.Version"/> object.</returns>
+        public Version GetFirmwareVersion()
         {
-            if (_COMController.LastReport != null)
+            while (_COMController.LastReport == null)
             {
-                HidLibrary.HidReport report = _COMController.LastReport;
-                int minor = report.Data[12];
-                return new int[] { report.Data[10], minor.ConcatenateInt(report.Data[13]) };
-            } else
-            {
-                return null;
+                Thread.Sleep(25);
             }
+
+            HidReport report = _COMController.LastReport;
+            int Major = report.Data[10];
+            int Minor = report.Data[12].ConcatenateInt(report.Data[13]);
+            return new Version(Major, Minor);
         }
 
         /// <inheritdoc/>

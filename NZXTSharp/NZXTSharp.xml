@@ -602,7 +602,7 @@
         <member name="F:NZXTSharp.Wings.CompatibleWith">
             <inheritdoc/>
         </member>
-        <member name="F:NZXTSharp.Wings.Colors">
+        <member name="F:NZXTSharp.Wings.Color">
             <summary>
             The array of colors used by the effect.
             </summary>
@@ -616,11 +616,11 @@
         <member name="P:NZXTSharp.Wings.EffectName">
             <inheritdoc/>
         </member>
-        <member name="M:NZXTSharp.Wings.#ctor(NZXTSharp.Color[],System.Int32)">
+        <member name="M:NZXTSharp.Wings.#ctor(NZXTSharp.Color,System.Int32)">
             <summary>
-            Constructs a <see cref="T:NZXTSharp.Wings"/> effect with the given <see cref="T:NZXTSharp.Color"/> array and speed.
+            Constructs a <see cref="T:NZXTSharp.Wings"/> effect with the given <see cref="F:NZXTSharp.Wings.Color"/> array and speed.
             </summary>
-            <param name="Colors"></param>
+            <param name="Color"></param>
             <param name="Speed">Speed values must be 0-4 (inclusive). 0 being slowest, 2 being normal, and 4 being fastest. Defaults to 2.</param>
         </member>
         <member name="M:NZXTSharp.Wings.IsCompatibleWith(NZXTSharp.NZXTDeviceType)">
@@ -724,6 +724,11 @@
             All <see cref="T:NZXTSharp.INZXTDevice"/>s owned by the <see cref="T:NZXTSharp.DeviceLoader"/> object.
             </summary>
         </member>
+        <member name="P:NZXTSharp.DeviceLoader.IsInitialized">
+            <summary>
+            Whether or not the <see cref="T:NZXTSharp.DeviceLoader"/> is fully initialized.
+            </summary>
+        </member>
         <member name="P:NZXTSharp.DeviceLoader.NumDevices">
             <summary>
             Gets the number of <see cref="T:NZXTSharp.INZXTDevice"/>s owned by the <see cref="T:NZXTSharp.DeviceLoader"/>.
@@ -732,6 +737,11 @@
         <member name="P:NZXTSharp.DeviceLoader.Filter">
             <summary>
             The <see cref="T:NZXTSharp.DeviceLoader"/> instance's <see cref="T:NZXTSharp.DeviceLoadFilter"/>.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.DeviceLoader.ThrowExceptions">
+            <summary>
+            Whether or not the <see cref="T:NZXTSharp.DeviceLoader"/> will throw exceptions.
             </summary>
         </member>
         <member name="M:NZXTSharp.DeviceLoader.#ctor(NZXTSharp.DeviceLoadFilter)">
@@ -748,18 +758,35 @@
             Defaults to true.</param>
             <param name="Filter">A <see cref="T:NZXTSharp.DeviceLoadFilter"/>. Defaults to <see cref="F:NZXTSharp.DeviceLoadFilter.All"/></param>
         </member>
+        <member name="M:NZXTSharp.DeviceLoader.#ctor(NZXTSharp.INZXTDevice[])">
+            <summary>
+            Creates a <see cref="T:NZXTSharp.DeviceLoader"/> instance from a given array of <see cref="T:NZXTSharp.INZXTDevice"/>s.
+            </summary>
+            <param name="Devices">An array of <see cref="T:NZXTSharp.INZXTDevice"/>s.</param>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.#ctor(System.Collections.Generic.List{NZXTSharp.INZXTDevice})">
+            <summary>
+            Creates a <see cref="T:NZXTSharp.DeviceLoader"/> instance from a given list of <see cref="T:NZXTSharp.INZXTDevice"/>s.
+            </summary>
+            <param name="Devices">A <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:NZXTSharp.INZXTDevice"/>s.</param>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.#ctor(System.Collections.ObjectModel.ReadOnlyCollection{NZXTSharp.INZXTDevice})">
+            <summary>
+            Creates a <see cref="T:NZXTSharp.DeviceLoader"/> instance from a given list of <see cref="T:NZXTSharp.INZXTDevice"/>s.
+            </summary>
+            <param name="Devices">A <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1"/> of <see cref="T:NZXTSharp.INZXTDevice"/>s.</param>
+        </member>
         <member name="M:NZXTSharp.DeviceLoader.Initialize">
             <summary>
             Initializes and loads all NZXT devices found on the system.
             </summary>
         </member>
-        <member name="M:NZXTSharp.DeviceLoader.ApplyEffectToDevices(NZXTSharp.IEffect,System.Boolean)">
+        <member name="M:NZXTSharp.DeviceLoader.ApplyEffectToDevices(NZXTSharp.IEffect)">
             <summary>
             Applies a given <see cref="T:NZXTSharp.IEffect"/> to all devices owned by the 
             <see cref="T:NZXTSharp.DeviceLoader"/> instance which have RGB capabilites.
             </summary>
             <param name="Effect">An <see cref="T:NZXTSharp.IEffect"/> to apply.</param>
-            <param name="ThrowExceptions">Whether or not to throw exceptions, defaults to true.</param>
         </member>
         <member name="M:NZXTSharp.DeviceLoader.AddDevice(NZXTSharp.INZXTDevice)">
             <summary>
@@ -802,6 +829,13 @@
             </summary>
             <param name="Filter">The new <see cref="T:NZXTSharp.DeviceLoadFilter"/></param>
         </member>
+        <member name="M:NZXTSharp.DeviceLoader.FilterDevices(NZXTSharp.DeviceLoadFilter)">
+            <summary>
+            Filters the existing devices in <see cref="P:NZXTSharp.DeviceLoader.Devices"/>
+            based on the given <see cref="T:NZXTSharp.DeviceLoadFilter"/>.
+            </summary>
+            <param name="Filter">What kinds of devices to keep.</param>
+        </member>
         <member name="M:NZXTSharp.DeviceLoader.SetFanSpeed(System.Int32)">
             <summary>
             Sets all fans owned by all <see cref="T:NZXTSharp.INZXTDevice"/>s owned by the
@@ -827,6 +861,24 @@
             Turns all RGB lighting channels of all <see cref="T:NZXTSharp.INZXTDevice"/>s 
             owned by the <see cref="T:NZXTSharp.DeviceLoader"/> instance off.
             </summary>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.ToggleThrowExceptions">
+            <summary>
+            Toggles whether or not the <see cref="T:NZXTSharp.DeviceLoader"/> throws exceptions.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.op_Implicit(NZXTSharp.DeviceLoader)~NZXTSharp.INZXTDevice[]">
+            <summary>
+            Implicitly converts the <see cref="T:NZXTSharp.DeviceLoader"/> to an array of <see cref="T:NZXTSharp.INZXTDevice"/>s.
+            </summary>
+            <param name="Loader"></param>
+        </member>
+        <member name="M:NZXTSharp.DeviceLoader.op_Implicit(NZXTSharp.DeviceLoader)~System.Collections.Generic.List{NZXTSharp.INZXTDevice}">
+            <summary>
+            Implicitly converts the <see cref="T:NZXTSharp.DeviceLoader"/> to a <see cref="T:System.Collections.Generic.List`1"/>
+            of <see cref="T:NZXTSharp.INZXTDevice"/>s.
+            </summary>
+            <param name="Loader"></param>
         </member>
         <member name="M:NZXTSharp.DeviceLoader.GetDevices(NZXTSharp.DeviceLoadFilter)">
             <summary>
@@ -1108,6 +1160,11 @@
         <member name="P:NZXTSharp.INZXTDevice.Type">
             <summary>
             The <see cref="T:NZXTSharp.NZXTDeviceType"/> of the <see cref="T:NZXTSharp.INZXTDevice"/>.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.INZXTDevice.ID">
+            <summary>
+            A unique device ID.
             </summary>
         </member>
         <member name="M:NZXTSharp.INZXTDevice.ApplyEffect(NZXTSharp.IEffect)">
@@ -1431,14 +1488,17 @@
             The <see cref="T:NZXTSharp.NZXTDeviceType"/> of the <see cref="T:NZXTSharp.HuePlus.HuePlus"/> object.
             </summary>
         </member>
+        <member name="P:NZXTSharp.HuePlus.HuePlus.ID">
+            <inheritdoc/>
+        </member>
+        <member name="P:NZXTSharp.HuePlus.HuePlus.FirmwareVersion">
+            <summary>
+            The firmware version of the <see cref="T:NZXTSharp.HuePlus.HuePlus"/> device.
+            </summary>
+        </member>
         <member name="E:NZXTSharp.HuePlus.HuePlus.OnLogMessage">
             <summary>
             Triggers when a generic log message is sent.
-            </summary>
-        </member>
-        <member name="E:NZXTSharp.HuePlus.HuePlus.OnDataReceived">
-            <summary>
-            Triggers when data is received from the COM port.
             </summary>
         </member>
         <member name="M:NZXTSharp.HuePlus.HuePlus.#ctor">
@@ -1499,6 +1559,13 @@
             Sets the device's unit led state. true: on, false: off.
             </summary>
             <param name="State">Which state to set the LED to; true: on, false: off.</param>
+        </member>
+        <member name="M:NZXTSharp.HuePlus.HuePlus.GetFirmwareVersion">
+            <summary>
+            Gets the <see cref="T:NZXTSharp.HuePlus.HuePlus"/> device's firmware version.
+            Based on the method found in a decompile of CAM.
+            </summary>
+            <returns>A <see cref="T:System.Version"/> object.</returns>
         </member>
         <member name="M:NZXTSharp.HuePlus.HuePlus.UpdateChannelInfo(NZXTSharp.HuePlus.HuePlusChannel)">
             <summary>
@@ -1906,6 +1973,9 @@
             The <see cref="T:NZXTSharp.NZXTDeviceType"/> of the <see cref="T:NZXTSharp.KrakenX.KrakenX"/> device. Will always be <see cref="F:NZXTSharp.NZXTDeviceType.KrakenX"/>.
             </summary>
         </member>
+        <member name="P:NZXTSharp.KrakenX.KrakenX.ID">
+            <inheritdoc/>
+        </member>
         <member name="P:NZXTSharp.KrakenX.KrakenX.Both">
             <summary>
             Represents both the <see cref="P:NZXTSharp.KrakenX.KrakenX.Logo"/>, and <see cref="P:NZXTSharp.KrakenX.KrakenX.Ring"/> channels.
@@ -1919,6 +1989,11 @@
         <member name="P:NZXTSharp.KrakenX.KrakenX.Ring">
             <summary>
             Represents the <see cref="T:NZXTSharp.KrakenX.KrakenX"/>'s ring RGB channel.
+            </summary>
+        </member>
+        <member name="P:NZXTSharp.KrakenX.KrakenX.FirmwareVersion">
+            <summary>
+            The <see cref="T:NZXTSharp.KrakenX.KrakenX"/> device's firmware version.
             </summary>
         </member>
         <member name="M:NZXTSharp.KrakenX.KrakenX.#ctor">
@@ -1995,9 +2070,9 @@
         </member>
         <member name="M:NZXTSharp.KrakenX.KrakenX.GetFirmwareVersion">
             <summary>
-            Gets the KrakenX device's firmware version
+            Gets the <see cref="T:NZXTSharp.KrakenX.KrakenX"/>'s firmware version.
             </summary>
-            <returns>An int[]; int[0] is Major version, int[1] is Minor version.</returns>
+            <returns>A <see cref="T:System.Version"/> object.</returns>
         </member>
         <member name="M:NZXTSharp.KrakenX.KrakenX.Dispose">
             <inheritdoc/>

@@ -28,6 +28,10 @@ namespace NZXTSharp
 
         private DeviceLoadFilter _Filter;
 
+        private bool _Initialized = false;
+
+        private bool _ThrowExceptions = true;
+
         /// <summary>
         /// Returns the first <see cref="KrakenX.KrakenX"/> instance owned 
         /// by the <see cref="DeviceLoader"/> if one exists.
@@ -46,6 +50,11 @@ namespace NZXTSharp
         public IEnumerable<INZXTDevice> Devices { get => new ReadOnlyCollection<INZXTDevice>(_Devices); }
 
         /// <summary>
+        /// Whether or not the <see cref="DeviceLoader"/> is fully initialized.
+        /// </summary>
+        public bool IsInitialized { get => _Initialized; }
+
+        /// <summary>
         /// Gets the number of <see cref="INZXTDevice"/>s owned by the <see cref="DeviceLoader"/>.
         /// </summary>
         public int NumDevices { get => _Devices.Count; }
@@ -56,7 +65,16 @@ namespace NZXTSharp
         public DeviceLoadFilter Filter 
         {
             get => _Filter;
-            set => _Filter = Filter;
+            set => _Filter = value;
+        }
+
+        /// <summary>
+        /// Whether or not the <see cref="DeviceLoader"/> will throw exceptions.
+        /// </summary>
+        public bool ThrowExceptions 
+        {
+            get => _ThrowExceptions;
+            set => _ThrowExceptions = value;
         }
         #endregion
 
@@ -88,6 +106,33 @@ namespace NZXTSharp
             }
         }
 
+        /// <summary>
+        /// Creates a <see cref="DeviceLoader"/> instance from a given array of <see cref="INZXTDevice"/>s.
+        /// </summary>
+        /// <param name="Devices">An array of <see cref="INZXTDevice"/>s.</param>
+        public DeviceLoader(INZXTDevice[] Devices)
+        {
+            this._Devices = new List<INZXTDevice>(Devices);
+        }
+
+        /// <summary>
+        /// Creates a <see cref="DeviceLoader"/> instance from a given list of <see cref="INZXTDevice"/>s.
+        /// </summary>
+        /// <param name="Devices">A <see cref="List{T}"/> of <see cref="INZXTDevice"/>s.</param>
+        public DeviceLoader(List<INZXTDevice> Devices)
+        {
+            this._Devices = Devices;
+        }
+
+        /// <summary>
+        /// Creates a <see cref="DeviceLoader"/> instance from a given list of <see cref="INZXTDevice"/>s.
+        /// </summary>
+        /// <param name="Devices">A <see cref="ReadOnlyCollection{T}"/> of <see cref="INZXTDevice"/>s.</param>
+        public DeviceLoader(ReadOnlyCollection<INZXTDevice> Devices)
+        {
+            this._Devices = new List<INZXTDevice>(Devices);
+        }
+
         #endregion
         #region Methods
 
@@ -96,7 +141,17 @@ namespace NZXTSharp
         /// </summary>
         public void Initialize()
         {
+            if (_Initialized)
+            {
+                if (_ThrowExceptions)
+                    throw new InvalidOperationException("DeviceLoader already initialized.");
+                else
+                    return;
+            }
+
+            this._Initialized = false;
             _Devices = GetDevices(_Filter);
+            this._Initialized = true;
         }
 
         /// <summary>
@@ -104,8 +159,7 @@ namespace NZXTSharp
         /// <see cref="DeviceLoader"/> instance which have RGB capabilites.
         /// </summary>
         /// <param name="Effect">An <see cref="IEffect"/> to apply.</param>
-        /// <param name="ThrowExceptions">Whether or not to throw exceptions, defaults to true.</param>
-        public void ApplyEffectToDevices(IEffect Effect, bool ThrowExceptions = true)
+        public void ApplyEffectToDevices(IEffect Effect)
         {
             foreach (INZXTDevice Device in this._Devices)
             {
@@ -116,11 +170,13 @@ namespace NZXTSharp
                 catch (InvalidOperationException) {}
                 catch (IncompatibleEffectException e)
                 {
-                    if (ThrowExceptions)
+                    if (_ThrowExceptions)
+                    {
                         throw new IncompatibleEffectException(
                             "DeviceLoader.ApplyEffectToDevices; Given effect incompatible with an owned device",
                             e
                         );
+                    }
                 }
             }
         }
@@ -228,6 +284,27 @@ namespace NZXTSharp
         }
 
         /// <summary>
+        /// Filters the existing devices in <see cref="DeviceLoader.Devices"/>
+        /// based on the given <see cref="DeviceLoadFilter"/>.
+        /// </summary>
+        /// <param name="Filter">What kinds of devices to keep.</param>
+        public void FilterDevices(DeviceLoadFilter Filter)
+        {
+            int[] allowedIDs = MapFilterToSupportedIDs.Map(Filter);
+            List<INZXTDevice> nDevices = new List<INZXTDevice>();
+
+            foreach (INZXTDevice Device in _Devices)
+            {
+                if (allowedIDs.Contains(Device.ID))
+                {
+                    nDevices.Add(Device);
+                }
+            }
+
+            _Devices = nDevices;
+        }
+
+        /// <summary>
         /// Sets all fans owned by all <see cref="INZXTDevice"/>s owned by the
         /// <see cref="DeviceLoader"/> to a given <paramref name="Speed"/>.
         /// </summary>
@@ -273,10 +350,31 @@ namespace NZXTSharp
             KrakenX.Logo.Off();
         }
 
+        /// <summary>
+        /// Toggles whether or not the <see cref="DeviceLoader"/> throws exceptions.
+        /// </summary>
+        public void ToggleThrowExceptions()
+        {
+            this._ThrowExceptions = this._ThrowExceptions ? false : true;
+        }
         #endregion
         #endregion
 
         #region Static
+
+        /// <summary>
+        /// Implicitly converts the <see cref="DeviceLoader"/> to an array of <see cref="INZXTDevice"/>s.
+        /// </summary>
+        /// <param name="Loader"></param>
+        public static implicit operator INZXTDevice[] (DeviceLoader Loader) => Loader.Devices.ToArray();
+
+        /// <summary>
+        /// Implicitly converts the <see cref="DeviceLoader"/> to a <see cref="List{T}"/>
+        /// of <see cref="INZXTDevice"/>s.
+        /// </summary>
+        /// <param name="Loader"></param>
+        public static implicit operator List<INZXTDevice>(DeviceLoader Loader) => Loader.Devices.ToList();
+
         /// <summary>
         /// Gets and returns all connected devices.
         /// </summary>
@@ -432,7 +530,7 @@ namespace NZXTSharp
                 case DeviceLoadFilter.FanControllers:
                     return new int[]
                     {
-                        0x1711, 0x1714, 0x1713, 0x2005
+                        0x1711, 0x1714, 0x1713, 0x2005, 0x170e
                     };
                 case DeviceLoadFilter.LightingControllers:
                     return new int[]
@@ -440,16 +538,8 @@ namespace NZXTSharp
                         0x1715, 0x170e, 0x1712, 0x2002, 0x2001,
                         0x2005, 0x1714, 0x1713, 0x11111111
                     };
-                case DeviceLoadFilter.Grid:
-                    return new int[]
-                    {
-                        0x1711
-                    };
-                case DeviceLoadFilter.Gridv3:
-                    return new int[]
-                    {
-                        0x1711
-                    };
+                case DeviceLoadFilter.Grid: return new int[] { 0x1711 };
+                case DeviceLoadFilter.Gridv3: return new int[] { 0x1711 };
                 case DeviceLoadFilter.Hue:
                     return new int[]
                     {
