@@ -1,3 +1,6 @@
+(2.0.0-preview3)
+All KrakenX RGB effects are now implemented, but the breathing effect still has some intermittent issues.
+
 (2.0.0-preview2)
 DeviceLoader; The DeviceLoader provides a convenient interface for interacting with multiple NZXT devices at once.
 
