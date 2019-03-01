@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Linq;
 using System.Threading;
@@ -65,9 +66,9 @@ namespace NZXTSharp.KrakenX
         private KrakenXChannel _Logo;
         private KrakenXChannel _Ring;
         private Version _FirmwareVersion;
+
         private Thread PumpOverrideThread;
         private bool StopPumpOverrideLoop = false;
-
         private Thread FanOverrideThread;
         private bool StopFanOverrideLoop = false;
 
@@ -156,7 +157,7 @@ namespace NZXTSharp.KrakenX
             {
                 case OverrideThread.Fan: 
                     if (StopType == ThreadStopType.Abort) {
-                        FanOverrideThread.Abort();
+                        FanOverrideThread?.Abort();
                     }
                     else if (StopType == ThreadStopType.Flag) {
                         StopFanOverrideLoop = true;
@@ -164,7 +165,7 @@ namespace NZXTSharp.KrakenX
                     break;
                 case OverrideThread.Pump:
                     if (StopType == ThreadStopType.Abort){
-                        PumpOverrideThread.Abort();
+                        PumpOverrideThread?.Abort();
                     }
                     else if (StopType == ThreadStopType.Flag){
                         StopPumpOverrideLoop = true;
@@ -350,7 +351,12 @@ namespace NZXTSharp.KrakenX
         /// <inheritdoc/>
         public void Dispose()
         {
-            _COMController.Dispose();
+            _COMController?.Dispose();
+
+            _Both = null;
+            _Logo = null;
+            _Ring = null;
+            _FirmwareVersion = null;
         }
 
         /// <inheritdoc/>
@@ -361,6 +367,10 @@ namespace NZXTSharp.KrakenX
             Initialize();
         }
 
+        /// <summary>
+        /// Starts a thread that sends pump speed override packets.
+        /// </summary>
+        /// <param name="Buffer"></param>
         internal void PumpSpeedOverrideLoop(object Buffer)
         {
             while (!this.StopPumpOverrideLoop)
@@ -370,6 +380,10 @@ namespace NZXTSharp.KrakenX
             }
         }
 
+        /// <summary>
+        /// Starts a thread that starts fan speed override packets.
+        /// </summary>
+        /// <param name="Buffer"></param>
         internal void FanSpeedOverrideLoop(object Buffer)
         {
             while (!this.StopFanOverrideLoop)

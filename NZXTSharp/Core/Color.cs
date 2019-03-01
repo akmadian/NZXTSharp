@@ -85,7 +85,7 @@ namespace NZXTSharp {
         /// Returns a list of 40 "#ffffff" color codes in G, R, B format.
         /// </summary>
         /// <returns></returns>
-        public byte[] AllOff()
+        public static byte[] AllOff()
         {
             List<int> outBytes = new List<int>();
             for (int i = 0; i < 40; i++)

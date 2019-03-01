@@ -702,6 +702,51 @@
              </summary>
              <param name="param"></param>
         </member>
+        <member name="T:NZXTSharp.CoolingProfile">
+            <summary>
+            Represents a cooling profile for a pump or fan.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.CoolingProfile.TestValidity(System.Int32[],System.Boolean)">
+            <summary>
+            Tests the validity of a given speed array <paramref name="Speeds"/>.
+            </summary>
+            <param name="Speeds">An array of speed percentages; 0-100% (inclusive).
+            Speeds array must be of length 10 or 21.</param>
+            <param name="ThrowExceptions">Whether or not to throw exceptions when validating the profile.</param>
+            <returns>True if speeds array is valid, otherwise false.</returns>
+        </member>
+        <member name="M:NZXTSharp.CoolingProfile.Fixed(System.Int32)">
+            <summary>
+            Creates a 
+            </summary>
+            <param name="Speed"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NZXTSharp.CoolingProfile.FanSilent">
+            <summary>
+            The CAM default fan silent profile.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NZXTSharp.CoolingProfile.FanPerformance">
+            <summary>
+            The CAM default fan performance profile.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NZXTSharp.CoolingProfile.PumpSilent">
+            <summary>
+            The CAM default pump silent profile.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NZXTSharp.CoolingProfile.PumpPerformance">
+            <summary>
+            The CAM default pump performance profile.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:NZXTSharp.DeviceLoader">
             <summary>
             A convenient interface for loading and interacting with <see cref="T:NZXTSharp.INZXTDevice"/>s.
@@ -1406,6 +1451,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:NZXTSharp.CPUIDSDK">
+            <summary>
+            All code in this class is taken from a version of the 
+            CPUID SDK found in a CAM decompile.
+            </summary>
+        </member>
         <member name="T:NZXTSharp.HuePlus.CandleLight">
             <summary>
             Represents an RGB Candle Light effect.
@@ -2079,6 +2130,18 @@
         </member>
         <member name="M:NZXTSharp.KrakenX.KrakenX.Reconnect">
             <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenX.PumpSpeedOverrideLoop(System.Object)">
+            <summary>
+            Starts a thread that sends pump speed override packets.
+            </summary>
+            <param name="Buffer"></param>
+        </member>
+        <member name="M:NZXTSharp.KrakenX.KrakenX.FanSpeedOverrideLoop(System.Object)">
+            <summary>
+            Starts a thread that starts fan speed override packets.
+            </summary>
+            <param name="Buffer"></param>
         </member>
         <member name="T:NZXTSharp.KrakenX.KrakenXChannel">
             <summary>

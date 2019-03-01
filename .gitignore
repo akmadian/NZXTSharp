@@ -336,4 +336,5 @@ ASALocalRun/
 TestApp/
 NZXTSharpTesterApp/
 Scripts/
+NZXTSharp.Profiles/
 .vscode/
