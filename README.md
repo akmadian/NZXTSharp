@@ -53,7 +53,7 @@ NZXTSharp is provided under the GNU GPLv3 license, but I want to re-iterate thes
  
 Please keep in mind that NZXTSharp is in development, and will have breaking changes in the future.
  
-A big thank you to [Pet0203][2] for his help in reverse engineering the protocols and building NZXTSharp.
+A big thank you to [Pet0203][2], and [jonasmalacofilho][8] for their help in reverse engineering the protocols and building NZXTSharp.
  
 ###### </> With ♥ by Ari Madian
 
@@ -65,3 +65,4 @@ A big thank you to [Pet0203][2] for his help in reverse engineering the protocol
 [5]: https://github.com/antonpup/Aurora
 [6]: https://github.com/DarthAffe/RGB.NET
 [7]: https://discord.gg/yK8m2CU
+[8]: https://github.com/jonasmalacofilho
