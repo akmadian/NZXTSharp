@@ -51,6 +51,8 @@ NZXTSharp is provided under the GNU GPLv3 license, but I want to re-iterate thes
  - This software is provided with no warranty.
  - Neither I, nor any of NZXTSharp's collaborators hold any liability for any broken or non-functional hardware resulting from use of this package. Please use your best judgement.
  
+Neither I (akmadian), or NZXTSharp are affiliated with NZXT.
+ 
 Please keep in mind that NZXTSharp is in development, and will have breaking changes in the future.
  
 A big thank you to [Pet0203][2], and [jonasmalacofilho][8] for their help in reverse engineering the protocols and building NZXTSharp.
