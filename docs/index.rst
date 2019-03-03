@@ -36,7 +36,6 @@ A basic getting started example with the Hue+:
   SDK-Docs/NZXTSharp.Effects
   SDK-Docs/NZXTSharp.Params
   SDK-Docs/NZXTSharp.Exceptions
-  Supported Devices and Features <Supported>
   
 .. toctree::
   :maxdepth: 1
@@ -53,5 +52,8 @@ A basic getting started example with the Hue+:
 
 .. toctree:: 
   :maxdepth: 1
+  :caption: Misc.
 
   Support
+  Related SDKs and Apps <Related>
+  Supported Devices and Features <Supported>
