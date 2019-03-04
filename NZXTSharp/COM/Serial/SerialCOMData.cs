@@ -78,6 +78,10 @@ namespace NZXTSharp.COM {
             this._Name = Name;
         }
 
+        /// <summary>
+        /// Generates a string with information about the <see cref="SerialCOMData"/> instance.
+        /// </summary>
+        /// <returns>A string with information about the <see cref="SerialCOMData"/> instance.</returns>
         public override string ToString()
         {
             return String.Format("Parity: {0}, StopBits: {1}, WriteTimeout: {2}, ReadTimeout: {3}, Baud: {4}, DataBits: {5}, Name: {6}",

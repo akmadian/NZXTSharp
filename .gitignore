@@ -338,3 +338,16 @@ NZXTSharpTesterApp/
 Scripts/
 NZXTSharp.Profiles/
 .vscode/
+
+
+# DocFX Files
+NZXTSharp/_site/
+NZXTSharp/api/
+NZXTSharp/apidoc/
+NZXTSharp/articles/
+NZXTSharp/images/
+NZXTSharp/src
+NZXTSharp/docfx.json
+NZXTSharp/index.md
+NZXTSharp/log.txt
+NZXTSharp/toc.yml

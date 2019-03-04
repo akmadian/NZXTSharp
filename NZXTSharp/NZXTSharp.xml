@@ -4,6 +4,11 @@
         <name>NZXTSharp</name>
     </assembly>
     <members>
+        <member name="T:NZXTSharp.COM.ICOMController">
+            <summary>
+            Represents an HID or serial communication controller.
+            </summary>
+        </member>
         <member name="T:NZXTSharp.COM.SerialCOMData">
             <summary>
             Contains information needed to open a COM port.
@@ -55,6 +60,12 @@
             <param name="Baud"> The baud to use.</param>
             <param name="DataBits"> The number of DataBits to use.</param>
             <param name="Name">A custom name for the <see cref="T:NZXTSharp.COM.SerialCOMData"/>.</param>
+        </member>
+        <member name="M:NZXTSharp.COM.SerialCOMData.ToString">
+            <summary>
+            Generates a string with information about the <see cref="T:NZXTSharp.COM.SerialCOMData"/> instance.
+            </summary>
+            <returns>A string with information about the <see cref="T:NZXTSharp.COM.SerialCOMData"/> instance.</returns>
         </member>
         <member name="T:NZXTSharp.COM.SerialController">
             <summary>
@@ -117,6 +128,25 @@
             <summary>
             Copied from https://github.com/DarkMio/Octopode with modifications.
             </summary>
+        </member>
+        <member name="M:NZXTSharp.COM.DeviceEnumerator.EnumAllDevices">
+            <summary>
+            Enumerates all HID devices connected to the system.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing all found <see cref="T:HidLibrary.HidDevice"/>s.</returns>
+        </member>
+        <member name="M:NZXTSharp.COM.DeviceEnumerator.EnumNZXTDevices">
+            <summary>
+            Enumerates all NZXT devices connected to the system.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing all found NZXT <see cref="T:HidLibrary.HidDevice"/>s.</returns>
+        </member>
+        <member name="M:NZXTSharp.COM.DeviceEnumerator.EnumKrakenXDevices">
+            <summary>
+            Enumerates all <see cref="T:NZXTSharp.KrakenX.KrakenX"/> devices connected to the system.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing all found
+            <see cref="T:NZXTSharp.KrakenX.KrakenX"/> <see cref="T:HidLibrary.HidDevice"/>s.</returns>
         </member>
         <member name="P:NZXTSharp.COM.USBController.Type">
             <summary>
@@ -1122,6 +1152,144 @@
             <summary>
             A generic Grid device.
             </summary>
+        </member>
+        <member name="T:NZXTSharp.Exceptions.IncompatibleDeviceTypeException">
+            <summary>
+            Thrown when an <see cref="T:NZXTSharp.NZXTDeviceType"/> is passed to a method
+            or constructor that is not compatible with that method or constructor.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.IncompatibleDeviceTypeException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.IncompatibleDeviceTypeException.#ctor(System.String)">
+            <summary>
+            Constructs an <see cref="T:NZXTSharp.Exceptions.IncompatibleDeviceTypeException"/> with a custom message.
+            </summary>
+            <param name="message">A custom message.</param>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.IncompatibleDeviceTypeException.#ctor(System.String,System.Exception)">
+            <inheritdoc/>
+        </member>
+        <member name="T:NZXTSharp.Exceptions.IncompatibleEffectException">
+            <summary>
+            Thrown when an effect passed to <see cref="M:NZXTSharp.INZXTDevice.ApplyEffect(NZXTSharp.IEffect)"/> 
+            is not compatible with that <see cref="T:NZXTSharp.INZXTDevice"/>.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.IncompatibleEffectException.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.IncompatibleEffectException.#ctor(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.IncompatibleEffectException.#ctor(System.String,System.String)">
+            <summary>
+            Constructs an <see cref="T:NZXTSharp.Exceptions.IncompatibleEffectException"/> with more information
+            about the <see cref="T:NZXTSharp.INZXTDevice"/> and <see cref="T:NZXTSharp.IEffect"/>.
+            </summary>
+            <param name="DeviceName"></param>
+            <param name="EffectName"></param>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.IncompatibleEffectException.#ctor(System.String,System.Exception)">
+            <inheritdoc/>
+        </member>
+        <member name="T:NZXTSharp.Exceptions.IncompatibleParamException">
+            <summary>
+            Thrown when a param object passed to an <see cref="T:NZXTSharp.IEffect"/> 
+            constructor is not compatible with that <see cref="T:NZXTSharp.IEffect"/>.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.IncompatibleParamException.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.IncompatibleParamException.#ctor(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.IncompatibleParamException.#ctor(System.String,System.Exception)">
+            <inheritdoc/>
+        </member>
+        <member name="T:NZXTSharp.Exceptions.InvalidEffectSpeedException">
+             <summary>
+            Thrown when an invalid speed value is passed to an
+             <see cref="T:NZXTSharp.IParam"/> or <see cref="T:NZXTSharp.IEffect"/> constructor.
+             
+             Speed values must be 0 - 4 (inclusive); 
+             0 being slowest, 2 being normal, and 4 being fastest.
+             </summary>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.InvalidEffectSpeedException.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.InvalidEffectSpeedException.#ctor(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.InvalidEffectSpeedException.#ctor(System.String,System.Exception)">
+            <inheritdoc/>
+        </member>
+        <member name="T:NZXTSharp.Exceptions.InvalidParamException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.InvalidParamException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.InvalidParamException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.InvalidParamException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="T:NZXTSharp.Exceptions.MaxHandshakeRetryExceededException">
+            <summary>
+            Thrown when the maximum number of handshake attempts 
+            has been exceeded during device intitialization.
+            
+            Max Retry Count is 5 by default.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.MaxHandshakeRetryExceededException.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.MaxHandshakeRetryExceededException.#ctor(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.MaxHandshakeRetryExceededException.#ctor(System.Int32)">
+            <summary>
+            Constructs a <see cref="T:NZXTSharp.Exceptions.MaxHandshakeRetryExceededException"/>,
+            with more information about the max handshake retry.
+            </summary>
+            <param name="MaxCount">The max retry count.</param>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.MaxHandshakeRetryExceededException.#ctor(System.String,System.Exception)">
+            <inheritdoc/>
+        </member>
+        <member name="T:NZXTSharp.Exceptions.SubDeviceDoesNotExistException">
+            <summary>
+            Thrown When a user attempts to reference an
+            <see cref="T:NZXTSharp.ISubDevice"/>that does not exist.
+            </summary>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.SubDeviceDoesNotExistException.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.SubDeviceDoesNotExistException.#ctor(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NZXTSharp.Exceptions.SubDeviceDoesNotExistException.#ctor(System.String,System.Exception)">
+            <inheritdoc/>
         </member>
         <member name="T:NZXTSharp.IChannel">
             <summary>
