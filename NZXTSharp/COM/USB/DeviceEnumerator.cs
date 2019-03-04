@@ -10,7 +10,7 @@ namespace NZXTSharp.COM
     /// <summary>
     /// Copied from https://github.com/DarkMio/Octopode with modifications.
     /// </summary>
-    class DeviceEnumerator
+    public class DeviceEnumerator
     {
         public static IEnumerable<HidDevice> EnumAllDevices()
         {

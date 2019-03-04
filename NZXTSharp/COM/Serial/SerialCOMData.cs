@@ -9,7 +9,7 @@ namespace NZXTSharp.COM {
     /// <summary>
     /// Contains information needed to open a COM port.
     /// </summary>
-    internal class SerialCOMData {
+    public class SerialCOMData {
 
         #region Properties and Fields
         private readonly Parity _Parity;

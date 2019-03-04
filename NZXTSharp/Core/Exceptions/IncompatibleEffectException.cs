@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace NZXTSharp.Exceptions {
-    internal class IncompatibleEffectException : Exception {
+    public class IncompatibleEffectException : Exception {
 
         private static string baseString = "NXZTSharp.Exceptions.IncompatibleEffectException; ";
 

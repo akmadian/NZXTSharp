@@ -14,7 +14,7 @@ using HidLibrary;
 using NZXTSharp.Exceptions;
 
 namespace NZXTSharp.COM {
-    internal class USBController
+    public class USBController
     { 
 
         private NZXTDeviceType _Type;

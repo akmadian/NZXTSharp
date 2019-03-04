@@ -11,7 +11,7 @@ namespace NZXTSharp.COM {
     /// <summary>
     /// Represents a <see cref="SerialPort"/> with some useful methods.
     /// </summary>
-    internal class SerialController : ICOMController {
+    public class SerialController : ICOMController {
 
         #region Properties and Fields
         private SerialPort _Port;

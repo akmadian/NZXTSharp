@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NZXTSharp.Exceptions
 {
-    internal class MaxHandshakeRetryExceededException : Exception
+    public class MaxHandshakeRetryExceededException : Exception
     {
         public MaxHandshakeRetryExceededException()
         {

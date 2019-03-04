@@ -3,6 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace NZXTSharp.COM {
-    interface ICOMController {
+    public interface ICOMController {
     }
 }

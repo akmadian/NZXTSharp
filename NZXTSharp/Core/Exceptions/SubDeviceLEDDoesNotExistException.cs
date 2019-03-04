@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace NZXTSharp.Exceptions {
-    internal class SubDeviceLEDDoesNotExistException : Exception {
+    public class SubDeviceLEDDoesNotExistException : Exception {
         public SubDeviceLEDDoesNotExistException() {
 
         }

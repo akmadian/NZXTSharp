@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NZXTSharp.Exceptions
 {
-    internal class IncompatibleDeviceTypeException : Exception
+    public class IncompatibleDeviceTypeException : Exception
     {
 
         public IncompatibleDeviceTypeException()
