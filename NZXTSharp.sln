@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NZXTSharp", "NZXTSharp\NZXT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{CDEB958B-5717-4232-BE56-3A0F8A74DC66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZXTSharp.Profiles", "NZXTSharp.Profiles\NZXTSharp.Profiles.csproj", "{F47BFFC2-CB57-4BC0-81A6-06D44CD008C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp2", "TestApp2\TestApp2.csproj", "{D2D5F159-C835-4D6C-A052-1C1E4016ED14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{CDEB958B-5717-4232-BE56-3A0F8A74DC66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDEB958B-5717-4232-BE56-3A0F8A74DC66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDEB958B-5717-4232-BE56-3A0F8A74DC66}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F47BFFC2-CB57-4BC0-81A6-06D44CD008C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F47BFFC2-CB57-4BC0-81A6-06D44CD008C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F47BFFC2-CB57-4BC0-81A6-06D44CD008C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F47BFFC2-CB57-4BC0-81A6-06D44CD008C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2D5F159-C835-4D6C-A052-1C1E4016ED14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2D5F159-C835-4D6C-A052-1C1E4016ED14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2D5F159-C835-4D6C-A052-1C1E4016ED14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2D5F159-C835-4D6C-A052-1C1E4016ED14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
