@@ -1,6 +1,5 @@
 # NZXTSharp
 
-[![Documentation Status](https://readthedocs.org/projects/nzxtsharp/badge/?version=latest)](https://nzxtsharp.readthedocs.io/en/latest/?badge=latest) 
 [![Nuget](https://img.shields.io/nuget/v/NZXTSharp.svg)](https://www.nuget.org/packages/NZXTSharp)
 [![Discord](https://img.shields.io/badge/%20-Discord%20Server-blue.svg)](https://discord.gg/yK8m2CU)
 
@@ -9,6 +8,8 @@ NZXTSharp is a C# package that allows interaction with NZXT hardware.
 You can find NZXTSharp on NuGet [here][0].
 
 **I am looking for people to help NZXTSharp grow by integrating NZXTSharp with [ProjectAurora][5] and/ or [RGB.NET][6]. If you are interested, please contact me on [Discord][7], or by email.**
+
+I am planning to release v2.0 within a week of 3/9/2019 (m/d/yyyy). Currently, there is only docs work left to do.
 
 ## Syntax
 NZXTSharp's syntax is lightweight, only taking a few lines to get started.
