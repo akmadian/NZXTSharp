@@ -7,9 +7,7 @@ NZXTSharp is a C# package that allows interaction with NZXT hardware.
 
 You can find NZXTSharp on NuGet [here][0].
 
-**I am looking for people to help NZXTSharp grow by integrating NZXTSharp with [ProjectAurora][5] and/ or [RGB.NET][6]. If you are interested, please contact me on [Discord][7], or by email.**
-
-I am planning to release v2.0 within a week of 3/9/2019 (m/d/yyyy). Currently, there is only docs work left to do.
+**Note:** Development of NZXTSharp is quickly becoming too expensive for me to continue. As a college student only working part time (~5 Hrs/ Week), I don't have much money to buy devices for testing. Due to NZXT being unwilling to sponsor this project (in a capacity where they would send me products for testing) at this time, and because most of my income is already spoken for, I have decided to temporarily suspend the addition of support for new devices. I still fully intend to continue development of this SDK when I can afford it, and will always be available for tech support.
 
 ## Syntax
 NZXTSharp's syntax is lightweight, only taking a few lines to get started.
