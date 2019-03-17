@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>NZXTSharp Examples</title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="PLACEHOLDER ">
+    <meta name="generator" content="docfx 2.40.11.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+                <h1 id="placeholder">Examples</h1>
+                This page contains code examples and snippets. Actually reading the material instead of just skimming, then
+                copy and pasting is <strong>strongly recommended.</strong><br><br>
+                
+                NZXTSharp's syntax is designed to be simple, easy to use, and easy to learn.
+                The structure is built around the concepts of devices, subdevices, effects, and params. <br><br>
+                
+                Effects are created with params, and effects are applied to devices. Devices can "own" subdevices. <br><br>
+                
+                An example of a device would be a Hue+, and subdevices for the Hue+ might be an AER fan or RGB strip.
+                
+                <hr>
+                <h2>Getting Started</h2>
+                NZXTSharp can be used in one of two ways:
+                <li>With the <a href="NZXTSharp.DeviceLoader.html">DeviceLoader</a> class.</li>
+                <li>With individual device classes.</li>
+                
+                <br>The <a href="NZXTSharp.DeviceLoader.html">DeviceLoader</a> class provides a convenient interface for 
+                loading, and interacting with NZXT devices.
+                
+                <h3>The DeviceLoader</h3>
+                The <a href="NZXTSharp.DeviceLoader.html">DeviceLoader</a> can be instantiated, and has some static methods 
+                in case you don't want to deal with an instance. <br><br>
+                
+                A loader instance can be created with a <a href="NZXTSharp.DeviceLoadFilter.html">DeviceLoadFilter</a>.
+                Whatever category the filter defines, will be the devices that <b>will be</b> returned. <br><br>
+                
+                To get started:
+                <pre>
+    using NZXTSharp;
+
+    DeviceLoader loader = new DeviceLoader();</pre>
+                
+                You can then apply RGB effects, and set fan/ pump speeds on devices owned by the loader instance.
+                The loader class also exposes some useful methods for accessing, adding, removing, and filtering devices owned by the instace. <br><br>
+                
+                You can also get devices of a specific type that are owned by the loader instance. 
+                For example, if the loader instance owns a <a href="NZXTSharp.HuePlus.HuePlus.html">HuePlus</a> instance,
+                it can be accessed by getting the <a href="NZXTSharp.DeviceLoader.html#NZXTSharp_DeviceLoader_HuePlus">DeviceLoader.HuePlus</a> property. <br><br>
+                
+                Then, using the <a href="NZXTSharp.HuePlus.html">NZXTSharp.HuePlus</a> namespace, you can get full Hue+ functionality with the returned HuePlus instance.
+                
+                <h3>Individual Classes</h3>
+                For examples on how to interact with individual classes, see the device specific docs below.
+                
+                <hr>
+                <h2>Hue+</h2>
+                The Hue+ model consists of the <a href="NZXTSharp.HuePlus.HuePlus.html">HuePlus</a> class instance.
+                The instance owns three <a href="NZXTSharp.HuePlus.HuePlusChannel.html">HuePlusChannel</a> objects, 
+                but only <code><a href="NZXTSharp.HuePlus.HuePlus.html#NZXTSharp_HuePlus_HuePlus_Channel1">Channel1</a></code>
+                and <code><a href="NZXTSharp.HuePlus.HuePlus.html#NZXTSharp_HuePlus_HuePlus_Channel2">Channel2</a></code> 
+                objects have subdevices because they are the only "real" channels. <br><br>
+                
+                <h3>Boilerplate</h3>
+                To get started, you will need the following: <br>
+                
+                <pre>
+    using NZXTSharp;
+    using NZXTSharp.HuePlus;
+
+    HuePlus hue = new HuePlus();</pre>
+                
+                With this HuePlus instance, you can apply effects, get channel info, toggle the unit LED, etc.
+                
+                <h3>Applying Effects</h3>
+                Effects are applied to a Hue+ device with the <a href="NZXTSharp.HuePlus.HuePlus.html#NZXTSharp_HuePlus_HuePlus_ApplyEffect_NZXTSharp_HuePlus_HuePlusChannel_NZXTSharp_IEffect_System_Boolean_">ApplyEffect()</a> method.
+                The channel(s) to apply the effect to, and the effect object are passed as params to this method. <br><br>
+                
+                Adding on to the last example:
+                <pre>
+    using NZXTSharp;
+    using NZXTSharp.HuePlus;
+
+    HuePlus hue = new HuePlus();
+    
+    Color color = new Color(255, 255, 255); // You can make colors with RGB values
+    Color color = new Color("#ffffff") // Also works with Hex codes(with or without leading #)
+    
+    Fixed effect = new Fixed(color) // Create effect
+    
+    hue.ApplyEffect(hue.Both, effect); // Apply effect to both channels
+    hue.AppleEffect(hue.Channel1, effect); // Or just one
+    
+    hue.UnitLedOff(): // Turn unit LED off
+    hue.UnitLedOn(); // And back on again!</pre>
+                
+                <h3>SubDevices</h3>
+                A HuePlus instance has two channels that own subdevices: Channel1 and Channel2. 
+                The Both channel does not own any because it is not a "physical" channel.
+                Keep in mind that ALL changes to subdevices need to be "pushed" to the deivce by setting, or re-setting an effect. <br><br>
+                
+                All subdevice classes are held in the <a href="NZXTSharp.html">NZXTSharp</a> namespace. <br><br>
+                
+                Building on the Boilerplate example:
+                <pre>
+    using NZXTSharp;
+    using NZXTSharp.HuePlus;
+
+    HuePlus hue = new HuePlus();
+    Fixed effect = new Fixed(new Color("#FFFFFF");
+    
+    List<ISubDevice> Ch1Devices = hue.Channel1.SubDevices; // Not necessary, but syntax looks better</ISubDevice>
+    Ch1Devices[0].AllLedOff(); // Turn off all LEDs on first subdevice in channel.
+    hue.ApplyEffect(hue.Channel1, effect); // Apply changes
+    
+    Ch1Devices[1].ToggleLed(9); // Toggle individual LEDs with the ToggleLed method
+    Ch1Devices[1].Leds[8] = false; // Or by setting the value
+    hue.ApplyEffect(hue.Channel1, effect); // Apply changes
+    
+    Ch1Devices[1].ToggleLedRange(1, 5); // Or, toggle ranges of LEDs
+    hue.ApplyEffect(hue.Channel1, effect); // Apply changes</pre>
+                
+                <h3>Custom RGB Values for a Fixed Effect</h3>
+                The fixed effect, being the most versatile, allows the user of NZXTSharp to construct a fixed effect
+                with custom RGB values for each LED. This is done by passing a byte array to a Fixed effect constructor. <br><br>
+                
+                <b>Byte array schema:</b> The byte array must have at least one RGB value, and at most 120 RGB values. 
+                If the length is not within this range, an <a href="NZXTSharp.Exceptions.InvalidParamException.html">InvalidParamException</a> will be thrown. <br><br>
+                
+                <b>RGB Value formatting:</b> For the effect to display properly, all RGB values MUST be passed in G, R, B format.
+                RGB values, like all other RGB values in NZXTSharp must be between 0-255 (inclusive). <br><br>
+                
+                Building on the boilerplate example:
+                <pre>
+    using NZXTSharp;
+    using NZXTSharp.HuePlus;
+
+    HuePlus hue = new HuePlus();
+    
+    // Create GRB array, this will have two LEDs lit: one white, one red.
+    byte[] colors = new byte[] { 255, 255, 255, 0, 255, 0 };
+    Fixed effect = new Fixed(colors); // Create Effect
+                
+    hue.ApplyEffect(hue.Both, effect); // And apply it!
+                
+    // Also supports subdevice and LED toggling.
+    hue.Channe1.SubDevices[1].ToggleState(); // Toggle Device
+    hue.ApplyEffect(hue.Both, effect); // Apply Changes </pre>
+                
+                <hr>
+                <h2>KrakenX</h2>
+                The <a href="NZXTSharp.KrakenX.KrakenX.html">KrakenX</a> implementation is pretty similar to that of the HuePlus.
+                The KrakenX
+                
+                
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/akmadian/NZXTSharp/blob/develop/NZXTSharp/api/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
