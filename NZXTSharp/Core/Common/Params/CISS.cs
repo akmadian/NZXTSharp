@@ -10,7 +10,7 @@ namespace NZXTSharp
     /// <summary>
     /// Represents a CISS effect param.
     /// </summary>
-    internal class CISS : IParam {
+    public class CISS : IParam {
         private readonly int colorIndex;
         private int speed;
         private int evaluatedIndex;

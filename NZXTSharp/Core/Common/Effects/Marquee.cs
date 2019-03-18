@@ -74,14 +74,14 @@ namespace NZXTSharp
                 case NZXTDeviceType.HuePlus:
                     List<byte[]> outList = new List<byte[]>();
                     byte[] SettingsBytes = new byte[] { 0x4b, (byte)Channel.ChannelByte, 0x03, Param1, Param2 };
-                    byte[] final = SettingsBytes.ConcatenateByteArr(Channel.State == false ? new Color().AllOff() : Channel.BuildColorBytes(_Color));
+                    byte[] final = SettingsBytes.ConcatenateByteArr(Channel.State == false ? Color.AllOff() : Channel.BuildColorBytes(_Color));
                     outList.Add(final);
 
                     return outList;
                 case NZXTDeviceType.KrakenX:
                     List<byte[]> KrakenXOutList = new List<byte[]>();
                     byte[] KrakenXSettingsBytes = new byte[] { 0x02, 0x4c, 0x02, 0x03, Param2 };
-                    byte[] KrakenXfinal = KrakenXSettingsBytes.ConcatenateByteArr(Channel.State == false ? new Color().AllOff() : Channel.BuildColorBytes(_Color));
+                    byte[] KrakenXfinal = KrakenXSettingsBytes.ConcatenateByteArr(Channel.State == false ? Color.AllOff() : Channel.BuildColorBytes(_Color));
                     KrakenXOutList.Add(KrakenXfinal);
                     return KrakenXOutList;
                 default:
