@@ -342,6 +342,7 @@ NZXTSharp.Profiles/
 
 
 # DocFX Files
+Docs/
 NZXTSharp/_site/
 NZXTSharp/api/
 NZXTSharp/apidoc/

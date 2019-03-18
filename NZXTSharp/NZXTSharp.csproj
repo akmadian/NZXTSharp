@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.0-preview3</Version>
+    <Version>2.0</Version>
     <Description>The one-stop C# SDK for NZXT devices.</Description>
     <Authors>Ari Madian</Authors>
     <Company>Ari Madian</Company>
@@ -17,8 +17,14 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <AssemblyVersion>2.0.0</AssemblyVersion>
     <FileVersion>2.0.0</FileVersion>
-    <PackageReleaseNotes>(2.0.0-preview3)
-All KrakenX RGB effects are now implemented, but the breathing effect still has some intermittent issues.</PackageReleaseNotes>
+    <PackageReleaseNotes>(2.0)
+KrakenX support! 
+
+This update brings full support for KrakenX devices. Supported features include setting RGB effects, getting liquid temp, firmware version, fan and pump speeds; setting pump and fan speeds.
+
+There was a major refactor of all namespaces since v1.1, so your v1.1 code will not work with this update, but transitioning is pretty easy!
+
+Docs are still a work in progress, for more information, see https://github.com/akmadian/NZXTSharp#documentation</PackageReleaseNotes>
     <Copyright>Copyright provided under the GNU GPLv3 open source license.</Copyright>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
