@@ -120,6 +120,9 @@
                 and <code><a href="NZXTSharp.HuePlus.HuePlus.html#NZXTSharp_HuePlus_HuePlus_Channel2">Channel2</a></code> 
                 objects have subdevices because they are the only "real" channels. <br><br>
                 
+                Be aware that in order to use the HuePlus class with NZXTSharp, CAM must be closed. This is due to the way that 
+                COM ports work.
+                
                 <h3>Boilerplate</h3>
                 To get started, you will need the following: <br>
                 
@@ -208,10 +211,18 @@
                 
                 <hr>
                 <h2>KrakenX</h2>
-                The <a href="NZXTSharp.KrakenX.KrakenX.html">KrakenX</a> implementation is pretty similar to that of the HuePlus.
-                The KrakenX
+                The <a href="NZXTSharp.KrakenX.KrakenX.html">KrakenX</a> implementation is pretty similar to that of the HuePlus,
+                but the KrakenX class includes methods for getting/ setting pump and fan speeds, getting firmware version and liquid temp. <br><br>
                 
+                Most of the syntax for using the KrakenX is the same as when using the HuePlus class, but the KrakenX does not have subdevices. <br><br>
                 
+                <b>Please Read:</b>
+                Unlike the HuePlus, the KrakenX class can be used when CAM is open, but <b>I do not reccomend it.</b> When setting
+                fan/ pump speeds, NZXTSharp will send speed override messages to the KrakenX device at the same time as CAM.
+                This can lead to NZXTSharp and CAM "fighting" over the pump/ fan speeds, and rapid speeding up/ slowing down 
+                of fan and pump speeds. This has the potential to shorten the lifespan of your fans, and your pump's impeller. <br><br>
+                
+                For more information on fan and pump speed overrides, see the <a href="protocols/KrakenX%20Protocol.html">KrakenX Protocol</a>.
             </article>
           </div>
           
