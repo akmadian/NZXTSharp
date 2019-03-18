@@ -30,8 +30,10 @@ hue.ApplyEffect(hue.Both, effect); // Apply effect
 <br>**A:** The Hue+ is fully supported, the KrakenX is a WIP, and the Hue 2 or the Grid v3 is most likely next.
 
 ## Documentation
-Documentation can be found at [NZXTSharp's readthedocs.io page][3]. Docs are built from [the docs branch][4].
-There are also XML docs in the source.
+Docs are in a bit of a weird spot right now because I am working on transitioning docs from [NZXTSharp's readthedocs.io page][3] to [NZXTSharp's DocFX page][9]. <br>
+
+ - The best place to go for source code documentation, and docs about the SDK's classes and their methods, supported devices and features, and support, is the [DocFX page][9]. <br>
+ - If you want docs about the device protocols, and related SDKs/ Applications, check out the [readthedocs.io page][3].
 
 
 
@@ -67,3 +69,5 @@ A big thank you to [Pet0203][2], and [jonasmalacofilho][8] for their help in rev
 [6]: https://github.com/DarthAffe/RGB.NET
 [7]: https://discord.gg/yK8m2CU
 [8]: https://github.com/jonasmalacofilho
+[9]: http://nzxtsharp.jnhost.ml/
+
