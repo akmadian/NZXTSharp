@@ -5,12 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="RGB.NET.Core" Version="0.1.15" />
-    <PackageReference Include="System.IO.Ports" Version="4.6.0-preview.18571.3" />
+    <Compile Remove="Helpers\**" />
+    <EmbeddedResource Remove="Helpers\**" />
+    <None Remove="Helpers\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Helpers\" />
+    <PackageReference Include="hidlibrary" Version="3.2.46" />
+    <PackageReference Include="RGB.NET.Core" Version="0.1.15" />
+    <PackageReference Include="System.IO.Ports" Version="4.6.0-preview.18571.3" />
   </ItemGroup>
 
 </Project>

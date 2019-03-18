@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
+using HidLibrary;
+
 using System.Threading;
 using System.IO;
 using System.IO.Ports;
@@ -266,19 +268,6 @@ namespace RGB.NET.Devices.NZXT {
             this._DataBits = DataBits;
             this._Name = Name;
         }
-
-        public override string ToString()
-        {
-            return String.Format("Parity: {0}, StopBits: {1}, WriteTimeout: {2}, ReadTimeout: {3}, Baud: {4}, DataBits: {5}, Name: {6}",
-                this.Parity,
-                this.StopBits,
-                this.WriteTimeout,
-                this.ReadTimeout,
-                this.Baud,
-                this.DataBits,
-                this.Name
-            );
-        }
         #endregion
     }
 
@@ -450,6 +439,30 @@ namespace RGB.NET.Devices.NZXT {
             byte[] SettingsBytes = new byte[] { 0x4b, (byte)info.ChannelByte, 0x00, 0x02, 0x03 };
             //byte[] final = SettingsBytes.ConcatenateByteArr(_Color.Expanded());
             return new List<byte[]>() { };
+        }
+    }
+
+    class DeviceEnumerator
+    {
+        public static IEnumerable<HidDevice> EnumAllDevices()
+        {
+            return HidDevices.Enumerate();
+        }
+
+        public static IEnumerable<HidDevice> EnumNZXTDevices()
+        {
+            return HidDevices.Enumerate(0x1e71);
+        }
+
+        public static IEnumerable<HidDevice> EnumKrakenXDevices()
+        {
+            foreach (var device in EnumNZXTDevices())
+            {
+                if (device.Attributes.ProductId == (int)0x170e)
+                {
+                    yield return device;
+                }
+            }
         }
     }
 }
