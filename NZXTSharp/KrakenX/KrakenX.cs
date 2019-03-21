@@ -309,13 +309,13 @@ namespace NZXTSharp.KrakenX
         /// Gets the last reported liquid temp.
         /// </summary>
         /// <returns>The last reported liquid temp as a rounded integer, in degrees C.</returns>
-        public int? GetLiquidTemp()
+        public int? GetLiquidTemp(bool AsFarenheit = false)
         {
             if (_COMController.LastReport != null)
             {
                 HidReport report = _COMController.LastReport;
                 double temp = (report.Data[0] + (report.Data[1] * 0.1));
-                return temp.Round();
+                return AsFarenheit ? temp.Round().DegreesCtoF() : temp.Round();
             } else
             {
                 return 0;

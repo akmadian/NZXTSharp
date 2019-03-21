@@ -15,6 +15,16 @@ namespace NZXTSharp {
         {
             return Convert.ToInt32(thisone.ToString() + other.ToString());
         }
+
+        /// <summary>
+        /// Converts a temp measurment in degrees C to degrees F.
+        /// </summary>
+        /// <param name="DegreesC">The temp value in degrees C</param>
+        /// <returns>The value of <paramref name="DegreesC"/> in degrees F.</returns>
+        public static int DegreesCtoF(this int? DegreesC)
+        {
+            return (DegreesC * (9 / 5) + 32);
+        }
     }
 
     internal static class DoubleExtensions
@@ -30,6 +40,11 @@ namespace NZXTSharp {
                 return (int)(thisone + (1.0 - part));
             }
             return null;
+        }
+
+        public static int? DegreesCtoF(this double DegreesC)
+        {
+            return (DegreesC.Round() * (9 / 5) + 32);
         }
     }
     
