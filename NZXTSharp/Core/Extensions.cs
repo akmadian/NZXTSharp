@@ -23,7 +23,7 @@ namespace NZXTSharp {
         /// <returns>The value of <paramref name="DegreesC"/> in degrees F.</returns>
         public static int DegreesCtoF(this int? DegreesC)
         {
-            return (DegreesC * (9 / 5) + 32);
+            return (int)(DegreesC * (9 / 5) + 32);
         }
     }
 
