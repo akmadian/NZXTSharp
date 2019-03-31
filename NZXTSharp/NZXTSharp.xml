@@ -1291,6 +1291,13 @@
         <member name="M:NZXTSharp.Exceptions.SubDeviceDoesNotExistException.#ctor(System.String,System.Exception)">
             <inheritdoc/>
         </member>
+        <member name="M:NZXTSharp.IntExtensions.DegreesCtoF(System.Nullable{System.Int32})">
+            <summary>
+            Converts a temp measurment in degrees C to degrees F.
+            </summary>
+            <param name="DegreesC">The temp value in degrees C</param>
+            <returns>The value of <paramref name="DegreesC"/> in degrees F.</returns>
+        </member>
         <member name="T:NZXTSharp.IChannel">
             <summary>
             Represents an RGB or Fan channel on an <see cref="T:NZXTSharp.INZXTDevice"/>.
@@ -2179,7 +2186,7 @@
             </summary>
             <param name="Percent">The percentage to set the fans to. Must be 25-100 (inclusive).</param>
         </member>
-        <member name="M:NZXTSharp.KrakenX.KrakenX.GetLiquidTemp">
+        <member name="M:NZXTSharp.KrakenX.KrakenX.GetLiquidTemp(System.Boolean)">
             <summary>
             Gets the last reported liquid temp.
             </summary>

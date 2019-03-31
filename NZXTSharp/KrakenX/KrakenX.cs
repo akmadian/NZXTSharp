@@ -308,6 +308,7 @@ namespace NZXTSharp.KrakenX
         /// <summary>
         /// Gets the last reported liquid temp.
         /// </summary>
+        /// <param name="AsFarenheit">Whether or not to return the temp value in degrees F.</param>
         /// <returns>The last reported liquid temp as a rounded integer, in degrees C.</returns>
         public int? GetLiquidTemp(bool AsFarenheit = false)
         {
