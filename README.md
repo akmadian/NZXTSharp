@@ -27,7 +27,7 @@ hue.ApplyEffect(hue.Both, effect); // Apply effect
 <br>**A:** As of yet, no. I am focusing on support for the .NET Framework. Python or C++ is most likely next.
 
 **Q:** Is XX device supported? 
-<br>**A:** The Hue+ is fully supported, the KrakenX is a WIP, and the Hue 2 or the Grid v3 is most likely next.
+<br>**A:** The Hue+ and KrakenX devices are fully supported, the Hue 2 or the Grid v3 is most likely next.
 
 ## Documentation
 Docs are in a bit of a weird spot right now because I am working on transitioning docs from [NZXTSharp's readthedocs.io page][3] to [NZXTSharp's DocFX page][9]. <br>
