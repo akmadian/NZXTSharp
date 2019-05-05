@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.1.0</Version>
+    <Version>2.1.1</Version>
     <Description>The one-stop C# SDK for NZXT devices.</Description>
     <Authors>Ari Madian</Authors>
     <Company>Ari Madian</Company>
@@ -15,10 +15,10 @@
     <PackageIconUrl>https://i.imgur.com/4GAobyk.jpg</PackageIconUrl>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <AssemblyVersion>2.1.0</AssemblyVersion>
-    <FileVersion>2.1.0</FileVersion>
-    <PackageReleaseNotes>(2.1)
-Added support for getting KrakenX liquid temperature in degrees F.</PackageReleaseNotes>
+    <AssemblyVersion>2.1.1</AssemblyVersion>
+    <FileVersion>2.1.1</FileVersion>
+    <PackageReleaseNotes>(2.1.1)
+Added whitespace trimming to hex code Color constructor.</PackageReleaseNotes>
     <Copyright>Copyright provided under the GNU GPLv3 open source license.</Copyright>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
