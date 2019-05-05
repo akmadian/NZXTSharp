@@ -65,6 +65,8 @@ namespace NZXTSharp {
         /// <param name="hexColor">The color code. Supports codes with a leading #, and without.</param>
         public Color(string hexColor)
         {
+            hexColor = hexColor.Trim();
+            
             if (!Regex.IsMatch(hexColor, "#?([a-f]|[A-F]|[0-9]){6}")) // Validate input
             {
                 throw new InvalidParamException("Invalid color format. The color must be of the form #FFFFFF or FFFFFF");

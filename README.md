@@ -27,7 +27,7 @@ hue.ApplyEffect(hue.Both, effect); // Apply effect
 <br>**A:** As of yet, no. I am focusing on support for the .NET Framework. Python or C++ is most likely next.
 
 **Q:** Is XX device supported? 
-<br>**A:** The Hue+ is fully supported, the KrakenX is a WIP, and the Hue 2 or the Grid v3 is most likely next.
+<br>**A:** The Hue+ and KrakenX devices are fully supported, the Hue 2 or the Grid v3 is most likely next.
 
 ## Documentation
 Docs are in a bit of a weird spot right now because I am working on transitioning docs from [NZXTSharp's readthedocs.io page][3] to [NZXTSharp's DocFX page][9]. <br>
@@ -51,6 +51,8 @@ NZXTSharp is provided under the GNU GPLv3 license, but I want to re-iterate thes
  - This software is provided as is.
  - This software is provided with no warranty.
  - Neither I, nor any of NZXTSharp's collaborators hold any liability for any broken or non-functional hardware resulting from use of this package. Please use your best judgement.
+ 
+NZXTSharp does not currently support any kind of rate limiting. I would reccomend rate limiting effect applications to ~90/ sec maximum. I believe that if you go over this, there is a potential for fried hardware, please use your best judgement.
  
 Neither I (akmadian), or NZXTSharp are affiliated with NZXT.
  
