@@ -25,7 +25,7 @@ Added whitespace trimming to hex code Color constructor.</PackageReleaseNotes>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;0414;0169;0649</NoWarn>
-    <DocumentationFile>D:\Programming\1.GitHub_Repos\NZXTSharp\NZXTSharp\NZXTSharp.xml</DocumentationFile>
+    <DocumentationFile>C:\src\NZXTSharp\NZXTSharp\NZXTSharp.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
