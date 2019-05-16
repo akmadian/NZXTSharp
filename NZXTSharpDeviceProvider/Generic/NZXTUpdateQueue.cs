@@ -29,14 +29,17 @@ namespace RGB.NET.Devices.NZXT {
         #region Methods
 
         /// <inheritdoc />
+        /// 
+        
         protected override void Update(Dictionary<object, Color> dataSet) {
             foreach (KeyValuePair<object, Color> data in dataSet) {
+                /*
                 _NZXTLedColor color = new _NZXTLedColor
                 (
                     data.Value.R,
                     data.Value.G,
                     data.Value.B
-                );
+                );*/
                 
             }
         }

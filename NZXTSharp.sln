@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NZXTSharp", "NZXTSharp\NZXTSharp.csproj", "{D82AC01D-C629-4BBF-9E25-18B0BDA66D3F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{CDEB958B-5717-4232-BE56-3A0F8A74DC66}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RGB.NET.Devices.NZXT", "NZXTSharpDeviceProvider\RGB.NET.Devices.NZXT.csproj", "{FE1161CE-2165-4EE9-84A8-AC067179275C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProviderTestApp", "ProviderTestApp\ProviderTestApp.csproj", "{3E6E495A-7314-48AF-880B-1EC598B73053}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProviderTestApp", "ProviderTestApp\ProviderTestApp.csproj", "{B36E5940-71B3-4539-AEA2-2A9A90034D68}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RGB.NET.Core", "RGB.NET.Core\RGB.NET.Core.csproj", "{27D1C58C-5E67-4031-97A7-8DB0A911872D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,22 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D82AC01D-C629-4BBF-9E25-18B0BDA66D3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D82AC01D-C629-4BBF-9E25-18B0BDA66D3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D82AC01D-C629-4BBF-9E25-18B0BDA66D3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D82AC01D-C629-4BBF-9E25-18B0BDA66D3F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CDEB958B-5717-4232-BE56-3A0F8A74DC66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CDEB958B-5717-4232-BE56-3A0F8A74DC66}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CDEB958B-5717-4232-BE56-3A0F8A74DC66}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CDEB958B-5717-4232-BE56-3A0F8A74DC66}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FE1161CE-2165-4EE9-84A8-AC067179275C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FE1161CE-2165-4EE9-84A8-AC067179275C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE1161CE-2165-4EE9-84A8-AC067179275C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE1161CE-2165-4EE9-84A8-AC067179275C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3E6E495A-7314-48AF-880B-1EC598B73053}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E6E495A-7314-48AF-880B-1EC598B73053}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E6E495A-7314-48AF-880B-1EC598B73053}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E6E495A-7314-48AF-880B-1EC598B73053}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B36E5940-71B3-4539-AEA2-2A9A90034D68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B36E5940-71B3-4539-AEA2-2A9A90034D68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B36E5940-71B3-4539-AEA2-2A9A90034D68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B36E5940-71B3-4539-AEA2-2A9A90034D68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27D1C58C-5E67-4031-97A7-8DB0A911872D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27D1C58C-5E67-4031-97A7-8DB0A911872D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27D1C58C-5E67-4031-97A7-8DB0A911872D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27D1C58C-5E67-4031-97A7-8DB0A911872D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

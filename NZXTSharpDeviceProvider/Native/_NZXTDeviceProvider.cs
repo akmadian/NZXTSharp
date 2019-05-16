@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
+using NZXTSharp;
+
 using HidLibrary;
 
 using System.Threading;
@@ -14,6 +16,8 @@ namespace RGB.NET.Devices.NZXT {
     public class _NZXTDeviceProvider { // TODO: Check performance, optimize if needed
 
         #region Fields and Properties
+
+        private DeviceLoader loader = new DeviceLoader();
 
         private int _SDKVersion;
 
@@ -125,13 +129,17 @@ namespace RGB.NET.Devices.NZXT {
 
                 foreach(_NZXTDeviceInfo info in _DevicesCh1)
                 {
+                    Console.WriteLine("Adding device info to CH1; len - " + _DevicesCh1.Count());
                     _Devices.Add(info);
                 }
-
+                Console.WriteLine("Between Adds");
+                Console.WriteLine("D2 Len - " + _DevicesCh2.Count());
                 foreach (_NZXTDeviceInfo info in _DevicesCh2)
                 {
+                    Console.WriteLine("Adding device info to CH2; len - " + _DevicesCh2.Count());
                     _Devices.Add(info);
                 }
+                Console.WriteLine("After Adds");
             } else { }
         }
 
@@ -156,12 +164,14 @@ namespace RGB.NET.Devices.NZXT {
             Console.WriteLine("Processing Channel Info for - " + ChannelByte);
 
             Console.WriteLine("    Subdevices Found - " + bytes[4]);
+            int PrevNumSubDevices = NumSubDevices;
             NumSubDevices += bytes[4];
+            int NewSubDevices = NumSubDevices - PrevNumSubDevices;
             List<_NZXTDeviceInfo> temp = new List<_NZXTDeviceInfo>();
 
-            for (int i = 0; i < NumSubDevices; i++)
+            for (int i = 0; i < NewSubDevices; i++)
             {
-                Console.WriteLine("    Processing SubDevice");
+                Console.WriteLine("\n    Processing SubDevice");
                 NZXTDeviceType Type;
 
                 switch (bytes[3])
@@ -188,10 +198,20 @@ namespace RGB.NET.Devices.NZXT {
                 Console.WriteLine("    Added");
             }
             Console.WriteLine("    Adding From Temp");
-            foreach(_NZXTDeviceInfo info in temp)
+            if (ChannelByte == 1)
             {
-                _DevicesCh1 = temp;
-                Console.WriteLine("\tAdded");
+                foreach (_NZXTDeviceInfo info in temp)
+                {
+                    _DevicesCh1 = temp;
+                    Console.WriteLine("\tAdded");
+                }
+            } else if (ChannelByte == 2)
+            {
+                foreach (_NZXTDeviceInfo info in temp)
+                {
+                    _DevicesCh2 = temp;
+                    Console.WriteLine("\tAdded");
+                }
             }
 
         }
