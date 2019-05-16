@@ -42,6 +42,14 @@ namespace RGB.NET.Devices.NZXT {
                     this.Model = submodel;
                     this.ledsCount = 7;
                     break;
+                case NZXTDeviceType.KrakenXLogo:
+                    this.DeviceName = "NZXT KrakenX Logo";
+                    this.ledsCount = 1;
+                    break;
+                case NZXTDeviceType.KrakenXRing:
+                    this.DeviceName = "NZXT KrakenX Ring";
+                    this.ledsCount = 7;
+                    break;
             }
             Console.WriteLine("    Finished Initializing");
         }

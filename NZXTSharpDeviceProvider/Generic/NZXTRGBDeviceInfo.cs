@@ -84,6 +84,12 @@ namespace RGB.NET.Devices.NZXT {
                 case NZXTDeviceType.Cooler:
                     this.DeviceType = RGBDeviceType.Cooler;
                     break;
+                case NZXTDeviceType.KrakenXLogo:
+                    this.DeviceType = RGBDeviceType.Cooler;
+                    break;
+                case NZXTDeviceType.KrakenXRing:
+                    this.DeviceType = RGBDeviceType.Cooler;
+                    break;
             }
         }
 

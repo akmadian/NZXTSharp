@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-using NZXTSharp;
-
 using HidLibrary;
 
 using System.Threading;
@@ -16,8 +14,6 @@ namespace RGB.NET.Devices.NZXT {
     public class _NZXTDeviceProvider { // TODO: Check performance, optimize if needed
 
         #region Fields and Properties
-
-        private DeviceLoader loader = new DeviceLoader();
 
         private int _SDKVersion;
 
@@ -66,12 +62,30 @@ namespace RGB.NET.Devices.NZXT {
 
         public void Initialize() {
             Console.WriteLine("Native Provider Initializing");
-            ScanForHuePlus();
-
+            LoadDevices();
             _Initialized = true;
         }
 
-        private void ScanForHuePlus() 
+        private void LoadDevices()
+        {
+            LoadHuePlus();
+            LoadKrakenX();
+        }
+
+        private void LoadKrakenX()
+        {
+            List<HidDevice> foundKrakenX = NZXTDeviceEnumerator.EnumKrakenXDevices().ToList();
+            if (foundKrakenX.Count() > 0)
+            {
+                _NZXTDeviceInfo RingInfo = new _NZXTDeviceInfo(0x02, NZXTDeviceType.KrakenXRing);
+                _NZXTDeviceInfo LogoInfo = new _NZXTDeviceInfo(0x01, NZXTDeviceType.KrakenXLogo);
+
+                _Devices.Add(RingInfo);
+                _Devices.Add(LogoInfo);
+            }
+        }
+
+        private void LoadHuePlus() 
         {
             Console.WriteLine("Starting Scan");
             SerialCOMData data = new SerialCOMData(
@@ -216,6 +230,34 @@ namespace RGB.NET.Devices.NZXT {
 
         }
         #endregion
+    }
+
+    internal class NZXTDeviceEnumerator
+    {
+        /// <summary>
+        /// Enumerates all NZXT devices connected to the system.
+        /// </summary>
+        /// <returns>An <see cref="IEnumerable{T}"/> containing all found NZXT <see cref="HidDevice"/>s.</returns>
+        internal static IEnumerable<HidDevice> EnumNZXTDevices()
+        {
+            return HidDevices.Enumerate(0x1E71);
+        }
+
+        /// <summary>
+        /// Enumerates all <see cref="KrakenX.KrakenX"/> devices connected to the system.
+        /// </summary>
+        /// <returns>An <see cref="IEnumerable{T}"/> containing all found
+        /// <see cref="KrakenX.KrakenX"/> <see cref="HidDevice"/>s.</returns>
+        internal static IEnumerable<HidDevice> EnumKrakenXDevices()
+        {
+            foreach (var device in EnumNZXTDevices())
+            {
+                if (device.Attributes.ProductId == 0x170e)
+                {
+                    yield return device;
+                }
+            }
+        }
     }
 
     internal class SerialCOMData

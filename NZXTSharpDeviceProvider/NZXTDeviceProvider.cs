@@ -146,7 +146,12 @@ namespace RGB.NET.Devices.NZXT {
                 case NZXTDeviceType.Cooler:
                     yield return new NZXTCoolerRGBDevice(new NZXTCoolerRGBDeviceInfo(i, nativeDeviceInfo));
                     break;
-                
+                case NZXTDeviceType.KrakenXLogo:
+                    yield return new NZXTKrakenXLogoDevice(new NZXTKrakenXLogoDeviceInfo(i, nativeDeviceInfo));
+                    break;
+                case NZXTDeviceType.KrakenXRing:
+                    yield return new NZXTKrakenXRingDevice(new NZXTKrakenXRingDeviceInfo(i, nativeDeviceInfo));
+                    break;
 
                 // ReSharper disable once RedundantCaseLabel
                 case NZXTDeviceType.Unknown:

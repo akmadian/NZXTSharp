@@ -9,6 +9,6 @@ namespace RGB.NET.Devices.NZXT
     public class NZXTKrakenXRingDeviceInfo : NZXTRGBDeviceInfo
     {
         internal NZXTKrakenXRingDeviceInfo(int deviceIndex, _NZXTDeviceInfo nativeInfo)
-            : base(deviceIndex, RGBDeviceType.Mousepad, nativeInfo) { }
+            : base(deviceIndex, RGBDeviceType.Cooler, nativeInfo) { }
     }
 }

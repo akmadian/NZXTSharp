@@ -10,5 +10,7 @@ namespace RGB.NET.Devices.NZXT {
         Cooler = 3,
         CableCombs = 4,
         UnderGlow = 5,
+        KrakenXLogo = 6,
+        KrakenXRing = 7,
     }
 }
