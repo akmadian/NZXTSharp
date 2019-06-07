@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.1.0</Version>
+    <Version>2.1.2</Version>
     <Description>The one-stop C# SDK for NZXT devices.</Description>
     <Authors>Ari Madian</Authors>
     <Company>Ari Madian</Company>
@@ -11,30 +11,34 @@
     <RepositoryUrl>https://github.com/akmadian/NZXTSharp</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>NZXT, Hue+, Kraken, KrakenX, NZXT_Kraken, Hue_Plus, Hue, Plus, SDK, NZXT_SDK, RGB, RGB_SDK</PackageTags>
-    <PackageLicenseUrl>https://github.com/akmadian/NZXTSharp/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageIconUrl>https://i.imgur.com/4GAobyk.jpg</PackageIconUrl>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <AssemblyVersion>2.1.0</AssemblyVersion>
-    <FileVersion>2.1.0</FileVersion>
-    <PackageReleaseNotes>(2.1)
-Added support for getting KrakenX liquid temperature in degrees F.</PackageReleaseNotes>
+    <AssemblyVersion>2.1.2</AssemblyVersion>
+    <FileVersion>2.1.2</FileVersion>
+    <PackageReleaseNotes>(2.1.2)
+Fixed a bug where a NullReferenceException would be thrown when initializing a DeviceLoader, and no Serial Devices are connected.</PackageReleaseNotes>
     <Copyright>Copyright provided under the GNU GPLv3 open source license.</Copyright>
     <SignAssembly>false</SignAssembly>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;0414;0169;0649</NoWarn>
-    <DocumentationFile>D:\Programming\1.GitHub_Repos\NZXTSharp\NZXTSharp\NZXTSharp.xml</DocumentationFile>
+    <DocumentationFile>C:\src\NZXTSharp\NZXTSharp\NZXTSharp.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="docfx.console" Version="2.40.11">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="hidlibrary" Version="3.2.46" />
     <PackageReference Include="System.IO.Ports" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

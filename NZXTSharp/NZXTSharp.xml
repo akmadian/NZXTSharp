@@ -910,7 +910,7 @@
             </summary>
             <param name="Loader"></param>
         </member>
-        <member name="M:NZXTSharp.DeviceLoader.GetDevices(NZXTSharp.DeviceLoadFilter)">
+        <member name="M:NZXTSharp.DeviceLoader.GetDevices(NZXTSharp.DeviceLoadFilter,System.Boolean)">
             <summary>
             Gets and returns all connected devices.
             </summary>
@@ -925,11 +925,12 @@
             <param name="Filter"></param>
             <returns>An array of <see cref="T:NZXTSharp.INZXTDevice"/>s.</returns>
         </member>
-        <member name="M:NZXTSharp.DeviceLoader.TryGetSerialDevices(NZXTSharp.DeviceLoadFilter)">
+        <member name="M:NZXTSharp.DeviceLoader.TryGetSerialDevices(NZXTSharp.DeviceLoadFilter,System.Boolean)">
             <summary>
             Tries to get all NZXT Serial devices connected to the system.
             </summary>
             <param name="Filter"></param>
+            <param name="ThrowExceptions"></param>
             <returns>An array of <see cref="T:NZXTSharp.INZXTDevice"/>s.</returns>
         </member>
         <member name="M:NZXTSharp.DeviceLoader.InstantiateSerialDevices(System.Collections.Generic.List{NZXTSharp.NZXTDeviceType},NZXTSharp.DeviceLoadFilter)">
@@ -938,7 +939,7 @@
             on a serial protocol.
             </summary>
             <param name="Devices">A List of <see cref="T:NZXTSharp.INZXTDevice"/>s found by 
-            <see cref="M:NZXTSharp.DeviceLoader.TryGetSerialDevices(NZXTSharp.DeviceLoadFilter)"/></param>
+            <see cref="!:DeviceLoader.TryGetSerialDevices(DeviceLoadFilter)"/></param>
             <param name="Filter"></param>
             <returns>An array containing instances of found <see cref="T:NZXTSharp.INZXTDevice"/>s.</returns>
         </member>
@@ -2190,6 +2191,7 @@
             <summary>
             Gets the last reported liquid temp.
             </summary>
+            <param name="AsFarenheit">Whether or not to return the temp value in degrees F.</param>
             <returns>The last reported liquid temp as a rounded integer, in degrees C.</returns>
         </member>
         <member name="M:NZXTSharp.KrakenX.KrakenX.GetLastReport">

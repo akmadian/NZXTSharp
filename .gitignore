@@ -336,7 +336,6 @@ ASALocalRun/
 TestApp/
 TestApp2/
 NZXTSharpTesterApp/
-Scripts/
 NZXTSharp.Profiles/
 .vscode/
 
@@ -353,3 +352,5 @@ NZXTSharp/docfx.json
 NZXTSharp/index.md
 NZXTSharp/log.txt
 NZXTSharp/toc.yml
+TestApp3/
+ProviderTestApp/
