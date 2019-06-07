@@ -50,6 +50,8 @@ namespace NZXTSharp
 
         private bool _ThrowExceptions = true;
 
+        public event LogHandler OnLogMessage;
+
         /// <summary>
         /// Returns the first <see cref="KrakenX.KrakenX"/> instance owned 
         /// by the <see cref="DeviceLoader"/> if one exists.
@@ -168,7 +170,7 @@ namespace NZXTSharp
             }
 
             this._Initialized = false;
-            _Devices = GetDevices(_Filter);
+            _Devices = GetDevices(_Filter, _ThrowExceptions);
             this._Initialized = true;
         }
 
@@ -375,6 +377,7 @@ namespace NZXTSharp
         {
             this._ThrowExceptions = this._ThrowExceptions ? false : true;
         }
+
         #endregion
         #endregion
 
@@ -399,13 +402,13 @@ namespace NZXTSharp
         /// <param name="Filter">A <see cref="DeviceLoadFilter"/>, returned devices will only include
         /// devices that fit into categories as defined by the filter.</param>
         /// <returns>An array of all NZXT devices connected to the system.</returns>
-        public static List<INZXTDevice> GetDevices(DeviceLoadFilter Filter = DeviceLoadFilter.All)
+        public static List<INZXTDevice> GetDevices(DeviceLoadFilter Filter = DeviceLoadFilter.All, bool ThrowExceptions = true)
         {
             int[] SupportedHIDIDs = new int[] { 0x170e };
             List<INZXTDevice> devices = new List<INZXTDevice>();
 
             devices.AddRange(TryGetHIDDevices(Filter));
-            devices.AddRange(TryGetSerialDevices(Filter));
+            devices.AddRange(TryGetSerialDevices(Filter, ThrowExceptions));
 
             return devices;
         }
@@ -427,32 +430,43 @@ namespace NZXTSharp
         /// Tries to get all NZXT Serial devices connected to the system.
         /// </summary>
         /// <param name="Filter"></param>
+        /// <param name="ThrowExceptions"></param>
         /// <returns>An array of <see cref="INZXTDevice"/>s.</returns>
-        private static INZXTDevice[] TryGetSerialDevices(DeviceLoadFilter Filter)
+        private static INZXTDevice[] TryGetSerialDevices(DeviceLoadFilter Filter, bool ThrowExceptions = true)
         {
             List<NZXTDeviceType> DevicesFound = new List<NZXTDeviceType>();
             
             SerialController HuePlusController = new SerialController(SerialPort.GetPortNames(), HuePlusCOMData);
-            if (HuePlusController.IsOpen) // Try to open connection to Hue+
+            try
             {
-                int Retries = 0;
-
-                while (true)
+                if ((bool)HuePlusController?.IsOpen) // Try to open connection to Hue+
                 {
-                    if (HuePlusController.Write(new byte[] { 0xc0}, 1).FirstOrDefault() == 1)
-                    {
-                        DevicesFound.Add(NZXTDeviceType.HuePlus);
-                        break;
-                    } else
-                    {
-                        Retries++;
+                    int Retries = 0;
 
-                        Thread.Sleep(40);
+                    while (true)
+                    {
+                        if (HuePlusController?.Write(new byte[] { 0xc0 }, 1).FirstOrDefault() == 1)
+                        {
+                            DevicesFound.Add(NZXTDeviceType.HuePlus);
+                            break;
+                        }
+                        else
+                        {
+                            Retries++;
 
-                        if (Retries >= 5) break;
+                            Thread.Sleep(40);
+
+                            if (Retries >= 5) break;
+                        }
                     }
+                    HuePlusController?.Dispose();
                 }
-                HuePlusController.Dispose();
+            } catch (NullReferenceException e)
+            {
+                if (ThrowExceptions)
+                {
+                    throw e;
+                }
             }
 
             return InstantiateSerialDevices(DevicesFound, Filter);
