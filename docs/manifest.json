@@ -1,0 +1,746 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/src/NZXTSharp/NZXTSharp",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.Alternating.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.Alternating.html",
+          "hash": "ieyXTpnj3sG7LwtoEvyiJw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.Breathing.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.Breathing.html",
+          "hash": "nGJjudcrGcsCO7HhLjMQQQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.CISS.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.CISS.html",
+          "hash": "Ir4smzy7Vc5CWQR3sKff0w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.COM.DeviceEnumerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.COM.DeviceEnumerator.html",
+          "hash": "MrN1/ej8jAeCnuxHuJsSfg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.COM.ICOMController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.COM.ICOMController.html",
+          "hash": "csjnNxQx3yLpboDJ+A3AZg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.COM.SerialCOMData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.COM.SerialCOMData.html",
+          "hash": "P1GSl8pvgji6RLtWdoENvA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.COM.SerialController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.COM.SerialController.html",
+          "hash": "S2U9rO3CTLiM9Kli+t46Xg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.COM.USBController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.COM.USBController.html",
+          "hash": "pPhORrCvc8y7H60EHEAExw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.COM.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.COM.html",
+          "hash": "XdJ5wbA+AQvb/Ur9vOraKA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.Color.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.Color.html",
+          "hash": "1kzsgQenDVPvwai18BiwCw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.CoveringMarquee.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.CoveringMarquee.html",
+          "hash": "qPaBDyobNjBcL7Y9/HLLVQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.DeviceLoadFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.DeviceLoadFilter.html",
+          "hash": "6WipfcRntkF/V5tawZs43g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.DeviceLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.DeviceLoader.html",
+          "hash": "XWKYzZLQs6ujdcaFFbK6xw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.Exceptions.IncompatibleDeviceTypeException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.Exceptions.IncompatibleDeviceTypeException.html",
+          "hash": "RLH70Hm18eh6oGJghrckOQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.Exceptions.IncompatibleEffectException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.Exceptions.IncompatibleEffectException.html",
+          "hash": "NISgHGfO8/pnDRdYnyHu9w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.Exceptions.IncompatibleParamException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.Exceptions.IncompatibleParamException.html",
+          "hash": "o5LJDpZzJcMMcs1jzzgtlw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.Exceptions.InvalidEffectSpeedException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.Exceptions.InvalidEffectSpeedException.html",
+          "hash": "XNvV9SN5K3faWus4zZa3Zw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.Exceptions.InvalidParamException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.Exceptions.InvalidParamException.html",
+          "hash": "M1fquePW/nnYRueYwav4cw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.Exceptions.MaxHandshakeRetryExceededException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.Exceptions.MaxHandshakeRetryExceededException.html",
+          "hash": "hsDxwNjgBPNvhNhefs2q+Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.Exceptions.SubDeviceDoesNotExistException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.Exceptions.SubDeviceDoesNotExistException.html",
+          "hash": "VWIke3WAHuP4J1ncItlGuA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.Exceptions.SubDeviceLEDDoesNotExistException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.Exceptions.SubDeviceLEDDoesNotExistException.html",
+          "hash": "YwzwW9lGihZRikcDf58KoQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.Exceptions.TooManyColorsProvidedException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.Exceptions.TooManyColorsProvidedException.html",
+          "hash": "gYjhKOKsYttk3Ra1oLFoSA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.Exceptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.Exceptions.html",
+          "hash": "oKTyx4V/hBNCkbVYyZLPuA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.Fading.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.Fading.html",
+          "hash": "f0UiQUwVby97pxDGc6gTbw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.Fan.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.Fan.html",
+          "hash": "9dRcXvjO9ebmAEHDrS7EvA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.Fixed.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.Fixed.html",
+          "hash": "qowiACB7ydFrozvtq5oF9w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.HIDDeviceID.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.HIDDeviceID.html",
+          "hash": "oZfYLMmRZuNYJ97smEG2og=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.HuePlus.CandleLight.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.HuePlus.CandleLight.html",
+          "hash": "3t9DMcmAVrBbrSVzMkccvw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.HuePlus.DataRecieved.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.HuePlus.DataRecieved.html",
+          "hash": "iFOUVQVeUhu0pAFsraVDeA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.HuePlus.Direction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.HuePlus.Direction.html",
+          "hash": "HcWVMqIRZHRQaAU0/vrNlQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.HuePlus.HuePlus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.HuePlus.HuePlus.html",
+          "hash": "xt4w8Xc0hU0/IkmGGxZliA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.HuePlus.HuePlusChannel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.HuePlus.HuePlusChannel.html",
+          "hash": "acZNEdh2nQayKl2ykPtaAA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.HuePlus.HuePlusChannelInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.HuePlus.HuePlusChannelInfo.html",
+          "hash": "3zU+MXPklUBWZk722wgkrQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.HuePlus.LogHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.HuePlus.LogHandler.html",
+          "hash": "h1GKvfYui3oILng7Sf+4aQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.HuePlus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.HuePlus.html",
+          "hash": "w/ZOfeY6oWHqbngzyVxRSg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.IChannel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.IChannel.html",
+          "hash": "9JQgviGpZKI09XS6IXwAvw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.IEffect.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.IEffect.html",
+          "hash": "rQ/KaKy/piP/hoh3JVJ9dg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.INZXTDevice.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.INZXTDevice.html",
+          "hash": "cGMPHPF+8vut97u6GJO73w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.IParam.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.IParam.html",
+          "hash": "c6zLgQaLCjoDNR4lUgqIQA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.ISubDevice.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.ISubDevice.html",
+          "hash": "cGrRU+JlVL7rwdOCGRAVUw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.KrakenX.DCB.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.KrakenX.DCB.html",
+          "hash": "u8Lf/A8BI5l0mAJoiJIhYg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.KrakenX.KrakenX.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.KrakenX.KrakenX.html",
+          "hash": "s0dS6ZBlwm1090hpeeb3OQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.KrakenX.KrakenXChannel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.KrakenX.KrakenXChannel.html",
+          "hash": "Pk61+kTK+WNZUK6r7g6uZw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.KrakenX.Loading.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.KrakenX.Loading.html",
+          "hash": "x5YqZU6tQxbUPKXBQCl7mA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.KrakenX.OverrideThread.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.KrakenX.OverrideThread.html",
+          "hash": "2FLBAtB8z3EiXTCubjDhrw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.KrakenX.TaiChi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.KrakenX.TaiChi.html",
+          "hash": "uZcCYtPzBl2Vh2o47DLLJw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.KrakenX.ThreadStopType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.KrakenX.ThreadStopType.html",
+          "hash": "Y7hrmjgdX1G3yUG2xx+NFw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.KrakenX.WaterCooler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.KrakenX.WaterCooler.html",
+          "hash": "iZeZXbBvOI/JS9rZ8wffEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.KrakenX.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.KrakenX.html",
+          "hash": "yIcFUkxA4PhKvFD2PrzZtg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.LSS.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.LSS.html",
+          "hash": "Ok1YOrRNBmluMZQy7cexuA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.Marquee.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.Marquee.html",
+          "hash": "YvcHa1alyJPpeEVuossrZw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.NZXTDeviceType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.NZXTDeviceType.html",
+          "hash": "MQyK7EvJmyzmU8Z8IrGUzA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.Pulse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.Pulse.html",
+          "hash": "jWm4AcwAOddXtTIej/gBhg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.SpectrumWave.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.SpectrumWave.html",
+          "hash": "NswMRZGa73Qd22haabr0Hg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.Strip.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.Strip.html",
+          "hash": "JnI/EWif+z5zI4mFKci2hA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.Wings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.Wings.html",
+          "hash": "iNtOgIzaJxF40Am9FzpS/Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NZXTSharp.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NZXTSharp.html",
+          "hash": "wGYQOI40boorQh+BsACiLA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "K3r0mjN2V5XYkUK+b9suIA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Disable incremental build by force rebuild option.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "ForceRebuild"
+      },
+      "processors": {
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 57,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: it's disabled.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
