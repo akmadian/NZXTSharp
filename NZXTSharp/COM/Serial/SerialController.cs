@@ -113,8 +113,15 @@ namespace NZXTSharp.COM {
             Thread.Sleep(50);
             List<byte> reply = new List<byte>();
 
-            for (int bytes = 0; bytes < responselength; bytes++)
-                reply.Add(Convert.ToByte(_Port.ReadByte()));
+            try
+            {
+                for (int bytes = 0; bytes < responselength; bytes++)
+                    reply.Add(Convert.ToByte(_Port.ReadByte()));
+            }
+            catch(TimeoutException)
+            {
+                
+            }
 
             return reply.ToArray();
         }
