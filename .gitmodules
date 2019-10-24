@@ -1,0 +1,3 @@
+[submodule "nzxtsharp-diagnostic-utility"]
+    path = nzxtsharp-diagnostic-utility
+    url = https://github.com/akmadian/nzxtsharp-diagnostic-utility.git
