@@ -345,7 +345,7 @@ namespace NZXTSharp.HuePlus
         /// Based on the method found in a decompile of CAM.
         /// </summary>
         /// <returns>A <see cref="System.Version"/> object.</returns>
-        private Version GetFirmwareVersion()
+        public Version GetFirmwareVersion()
         {
             byte[] reply = _COMController.Write(new byte[] { 0x8c, 0 }, 5);
             int Major = reply[0] - 0xc0;

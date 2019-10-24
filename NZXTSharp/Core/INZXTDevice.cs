@@ -52,5 +52,7 @@ namespace NZXTSharp
         /// Attempts to reconnect to the <see cref="INZXTDevice"/>.
         /// </summary>
         void Reconnect();
+
+        Version GetFirmwareVersion();
     }
 }

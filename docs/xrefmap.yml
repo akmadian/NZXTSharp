@@ -2511,6 +2511,19 @@ references:
   isSpec: "True"
   fullName: NZXTSharp.HuePlus.HuePlus.FirmwareVersion
   nameWithType: HuePlus.FirmwareVersion
+- uid: NZXTSharp.HuePlus.HuePlus.GetFirmwareVersion
+  name: GetFirmwareVersion()
+  href: api/NZXTSharp.HuePlus.HuePlus.html#NZXTSharp_HuePlus_HuePlus_GetFirmwareVersion
+  commentId: M:NZXTSharp.HuePlus.HuePlus.GetFirmwareVersion
+  fullName: NZXTSharp.HuePlus.HuePlus.GetFirmwareVersion()
+  nameWithType: HuePlus.GetFirmwareVersion()
+- uid: NZXTSharp.HuePlus.HuePlus.GetFirmwareVersion*
+  name: GetFirmwareVersion
+  href: api/NZXTSharp.HuePlus.HuePlus.html#NZXTSharp_HuePlus_HuePlus_GetFirmwareVersion_
+  commentId: Overload:NZXTSharp.HuePlus.HuePlus.GetFirmwareVersion
+  isSpec: "True"
+  fullName: NZXTSharp.HuePlus.HuePlus.GetFirmwareVersion
+  nameWithType: HuePlus.GetFirmwareVersion
 - uid: NZXTSharp.HuePlus.HuePlus.ID
   name: ID
   href: api/NZXTSharp.HuePlus.HuePlus.html#NZXTSharp_HuePlus_HuePlus_ID
@@ -3108,6 +3121,19 @@ references:
   isSpec: "True"
   fullName: NZXTSharp.INZXTDevice.Dispose
   nameWithType: INZXTDevice.Dispose
+- uid: NZXTSharp.INZXTDevice.GetFirmwareVersion
+  name: GetFirmwareVersion()
+  href: api/NZXTSharp.INZXTDevice.html#NZXTSharp_INZXTDevice_GetFirmwareVersion
+  commentId: M:NZXTSharp.INZXTDevice.GetFirmwareVersion
+  fullName: NZXTSharp.INZXTDevice.GetFirmwareVersion()
+  nameWithType: INZXTDevice.GetFirmwareVersion()
+- uid: NZXTSharp.INZXTDevice.GetFirmwareVersion*
+  name: GetFirmwareVersion
+  href: api/NZXTSharp.INZXTDevice.html#NZXTSharp_INZXTDevice_GetFirmwareVersion_
+  commentId: Overload:NZXTSharp.INZXTDevice.GetFirmwareVersion
+  isSpec: "True"
+  fullName: NZXTSharp.INZXTDevice.GetFirmwareVersion
+  nameWithType: INZXTDevice.GetFirmwareVersion
 - uid: NZXTSharp.INZXTDevice.ID
   name: ID
   href: api/NZXTSharp.INZXTDevice.html#NZXTSharp_INZXTDevice_ID
